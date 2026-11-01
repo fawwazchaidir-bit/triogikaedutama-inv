@@ -26,6 +26,34 @@ test.describe("autentikasi & keamanan HTTP", () => {
     await expect(page).toHaveURL(/\/login/); // sesi benar-benar dicabut
   });
 
+  test("halaman login: nama aplikasi; password tersembunyi secara bawaan, dapat ditampilkan/disembunyikan tanpa mengirim form", async ({ page }) => {
+    await page.goto("/login");
+    await expect(page).toHaveTitle(/Financial Management System$/);
+    await expect(page.getByText("Financial Management System", { exact: true })).toBeVisible();
+    await expect(page.getByText(/Invoice Management/)).toHaveCount(0);
+
+    const input = page.getByLabel("Password");
+    await input.fill("Rahasia-Uji-12345");
+    await expect(input).toHaveAttribute("type", "password"); // bawaan: tersembunyi
+    const toggle = page.getByRole("button", { name: "Tampilkan kata sandi" });
+    await expect(toggle).toHaveAttribute("aria-pressed", "false");
+    await toggle.click();
+    await expect(input).toHaveAttribute("type", "text");
+    await expect(input).toHaveValue("Rahasia-Uji-12345"); // nilai tidak hilang
+    await expect(page.getByRole("button", { name: "Sembunyikan kata sandi" })).toHaveAttribute("aria-pressed", "true");
+    await expect(page).toHaveURL(/\/login$/); // tombol bukan submit
+    await page.getByRole("button", { name: "Sembunyikan kata sandi" }).click();
+    await expect(input).toHaveAttribute("type", "password");
+
+    // masuk tetap berfungsi; sidebar memakai nama baru
+    await page.getByLabel("Email").fill(USERS.finance);
+    await input.fill(E2E_PASSWORD);
+    await page.getByRole("button", { name: "Masuk" }).click();
+    await expect(page).not.toHaveURL(/\/login/);
+    await expect(page.getByText("Financial Management System", { exact: true })).toBeVisible();
+    await expect(page).toHaveTitle(/· Financial Management System$/);
+  });
+
   test("cookie sesi HttpOnly + SameSite=Lax; header keamanan terpasang; tidak ada X-Powered-By", async ({ page, context }) => {
     const res = await page.goto("/login");
     const h = res!.headers();
@@ -78,11 +106,12 @@ test.describe("autentikasi & keamanan HTTP", () => {
 
   test("halaman yang dilarang tampil 404 bagi peran tanpa izin, bukan error 500", async ({ page }) => {
     await login(page, "staff");
-    for (const p of ["/dashboard", "/audit-log", "/cash", "/statements"]) { // staff operasional: tanpa dashboard & audit log (Pembayaran, Laporan, Pengaturan = setara Finance Manager)
+    for (const p of ["/dashboard", "/audit-log"]) { // staf administrasi keuangan: tanpa dashboard & audit log (halaman keuangan terbuka, hanya-baca)
       const res = await page.goto(p);
       expect(res!.status(), p).toBe(404);
       await expect(page.getByText("Halaman tidak ditemukan")).toBeVisible();
     }
+    for (const p of ["/cash", "/statements", "/taxes", "/closing", "/reconciliation"]) expect((await page.goto(p))!.status(), p).toBe(200);
   });
 
   test("pengguna baru wajib mengganti password sebelum memakai aplikasi (UI & API)", async ({ page, browser }) => {

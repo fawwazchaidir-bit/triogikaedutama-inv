@@ -6,6 +6,7 @@ import path from "node:path";
 import { prisma } from "@/server/db";
 import { resetDb, seedFixtures, demiChefInput, type Fixtures } from "../helpers/db";
 import { cancelInvoice, createDraft, issueInvoice, rejectInvoice, submitInvoice } from "@/server/services/invoices";
+import { recordPayment, reversePayment } from "@/server/services/payments";
 import { renderInvoicePdf } from "@/server/pdf/render";
 import { AppError } from "@/server/errors";
 
@@ -37,6 +38,79 @@ const pages = (buf: Buffer, name: string): number => {
   writeFileSync(f, buf);
   return Number(/Pages:\s+(\d+)/.exec(execFileSync("pdfinfo", [f], { encoding: "utf8" }))![1]);
 };
+
+describe("PDF invoice LUNAS (kwitansi)", () => {
+  const OUTDIR = process.env.PDF_OUT_DIR;
+  const render = async (id: string, name: string) => {
+    const r = await renderInvoicePdf(fx.finance, id);
+    if (OUTDIR) writeFileSync(path.join(OUTDIR, `${name}.pdf`), r.buffer);
+    return { ...r, text: pdfText(r.buffer, name) };
+  };
+  const issue = async () => issueInvoice(fx.finance, (await createDraft(fx.finance, demiChefInput(fx))).id); // 14.000.000
+  const pay = (invoiceId: string, paymentDate: string, amount: number, extra: Record<string, unknown> = {}) => recordPayment(fx.finance, { invoiceId, paymentDate, amount, method: "Transfer", ...extra });
+
+  it("belum dibayar / dibayar sebagian: TANPA watermark LUNAS; lunas: watermark + tanggal pelunasan + nama file _LUNAS", async () => {
+    const inv = await issue();
+    const unpaid = await render(inv.id, "lunas-0");
+    expect(unpaid.doc).toMatchObject({ paid: false, data: { watermark: null } });
+    expect(unpaid.text).not.toContain("LUNAS");
+    await pay(inv.id, "2026-01-14", 5_000_000);
+    const part = await render(inv.id, "lunas-1");
+    expect(part.doc.paid).toBe(false);
+    expect(part.text).not.toContain("LUNAS");
+    await pay(inv.id, "2026-01-20", 9_000_000);
+    const full = await render(inv.id, "lunas-2");
+    expect(full.doc).toMatchObject({ paid: true, filename: "Invoice_00434_CV_Bima_Satria_Jaya_LUNAS.pdf", data: { watermark: "LUNAS", approved: true } });
+    expect(pages(full.buffer, "lunas-2")).toBe(1);
+    const t = full.text.replace(/[ \t]+/g, " ");
+    expect(t).toContain("** LUNAS **");
+    expect(t).toContain("Status LUNAS (20/01/2026)");
+    expect(t).toContain("LUNAS — pembayaran diterima penuh pada 20/01/2026. Dokumen ini berfungsi sebagai bukti pembayaran.");
+    // isi resmi tetap utuh (nomor, tanda tangan, total)
+    for (const keep of ["00434", "Nett Total", "(Elva Aditya Fawwaz, S.E.)", "Rp. 14.000.000,-"]) expect(t).toContain(keep);
+  });
+
+  it("lunas karena PPh dipotong pelanggan (uang + PPh = total) juga berwatermark LUNAS", async () => {
+    const inv = await issue();
+    await pay(inv.id, "2026-01-15", 13_720_000, { withholdingAmount: 280_000 });
+    const r = await render(inv.id, "lunas-pph");
+    expect(r.doc.paid).toBe(true);
+    expect(r.text).toContain("LUNAS (15/01/2026)");
+  });
+
+  it("pembayaran dibalik → watermark hilang otomatis; dibayar ulang → tanggal pelunasan mengikuti pembayaran yang berlaku", async () => {
+    const inv = await issue();
+    const p1 = await pay(inv.id, "2026-01-14", 14_000_000);
+    expect((await render(inv.id, "lunas-r1")).doc.paid).toBe(true);
+    await reversePayment(fx.finance, p1.id, { reason: "Dana dikembalikan ke pelanggan" });
+    const afterReverse = await render(inv.id, "lunas-r2");
+    expect(afterReverse.doc).toMatchObject({ paid: false, filename: "Invoice_00434_CV_Bima_Satria_Jaya.pdf" });
+    expect(afterReverse.text).not.toContain("LUNAS");
+    await pay(inv.id, "2026-02-03", 14_000_000);
+    const again = await render(inv.id, "lunas-r3");
+    expect(again.doc.paid).toBe(true);
+    expect(again.text).toContain("LUNAS (03/02/2026)"); // bukan 14/01 yang sudah dibalik
+  });
+
+  it("draft tidak pernah LUNAS; invoice batal (setelah pembayaran dibalik) = DIBATALKAN, bukan LUNAS", async () => {
+    const draft = await createDraft(fx.finance, demiChefInput(fx));
+    expect((await render(draft.id, "lunas-d")).doc).toMatchObject({ paid: false, data: { watermark: "DRAFT" } });
+    const inv = await issue();
+    const p = await pay(inv.id, "2026-01-14", 14_000_000);
+    await reversePayment(fx.finance, p.id, { reason: "Salah transfer" });
+    await cancelInvoice(fx.finance, inv.id, { reason: "Pelanggan membatalkan" });
+    const c = await render(inv.id, "lunas-c");
+    expect(c.doc).toMatchObject({ paid: false, data: { watermark: "DIBATALKAN" } });
+    expect(c.text).not.toContain("LUNAS");
+  });
+
+  it("staf dapat mengunduh kwitansi lunas yang sama (PDF invoice terbit dapat dilihat semua peran berizin)", async () => {
+    const inv = await issue();
+    await pay(inv.id, "2026-01-14", 14_000_000);
+    const r = await renderInvoicePdf(fx.staff, inv.id);
+    expect(r.doc.paid).toBe(true);
+  });
+});
 
 describe("PDF invoice", () => {
   it("invoice referensi: struktur, nomor, tanggal, terbilang, total, rekening — sesuai data tersimpan", async () => {

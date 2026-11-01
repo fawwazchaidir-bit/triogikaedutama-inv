@@ -1,5 +1,6 @@
 "use client";
-import { useId } from "react";
+import { useId, useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { CONTROL } from "./styles";
 
@@ -29,6 +30,24 @@ export function TextField({ label, error, hint, className, required, id, ...rest
   return (
     <Field label={label} error={error} hint={hint} required={required} htmlFor={fid} className={className}>
       <input id={fid} required={required} aria-invalid={!!error} className={cn(CONTROL, "h-10", error && "border-brand-600")} {...rest} />
+    </Field>
+  );
+}
+
+/** Kolom password dengan tombol tampil/sembunyikan. Nama tombol sengaja tidak memuat kata "password" agar tidak bentrok dengan label kolom. */
+export function PasswordField({ label, error, hint, className, required, id, ...rest }: Omit<InputProps, "type">) {
+  const auto = useId();
+  const fid = id ?? auto;
+  const [shown, setShown] = useState(false);
+  return (
+    <Field label={label} error={error} hint={hint} required={required} htmlFor={fid} className={className}>
+      <div className="relative">
+        <input id={fid} type={shown ? "text" : "password"} required={required} aria-invalid={!!error} className={cn(CONTROL, "h-10 pr-11", error && "border-brand-600")} {...rest} />
+        <button type="button" onClick={() => setShown((v) => !v)} aria-pressed={shown} aria-label={shown ? "Sembunyikan kata sandi" : "Tampilkan kata sandi"} title={shown ? "Sembunyikan kata sandi" : "Tampilkan kata sandi"}
+          className="absolute inset-y-0 right-0 flex w-10 items-center justify-center rounded-r-md text-muted hover:text-ink focus-visible:text-ink">
+          {shown ? <EyeOff className="size-4" aria-hidden /> : <Eye className="size-4" aria-hidden />}
+        </button>
+      </div>
     </Field>
   );
 }

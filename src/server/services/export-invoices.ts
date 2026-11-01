@@ -21,7 +21,7 @@ export async function exportInvoiceList(actor: Actor, filters: InvoiceListQuery,
   const live = items.filter((i) => i.status === "ISSUED");
   const table: ReportTable = {
     type: "daftar-invoice", title: "Daftar Invoice", description: "Hasil filter daftar invoice", periodLabel,
-    disclaimer: "Ekspor operasional dari sistem invoice — bukan laporan akuntansi. Total hanya menjumlahkan invoice berstatus Diterbitkan.",
+    disclaimer: "Ekspor operasional dari sistem — bukan laporan akuntansi. Total hanya menjumlahkan invoice berstatus Diterbitkan.",
     generatedAt: new Date().toISOString(),
     columns: [
       { key: "number", label: "Nomor", type: "text", width: 14 }, { key: "date", label: "Tanggal", type: "date" },

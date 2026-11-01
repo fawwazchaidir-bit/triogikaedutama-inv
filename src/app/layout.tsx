@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: { default: "Trilogika Invoice", template: "%s · Trilogika Invoice" },
-  description: "Sistem manajemen invoice internal Trilogika Edutama",
+  title: { default: "Financial Management System", template: "%s · Financial Management System" },
+  description: "Financial Management System internal Trilogika Edutama",
   robots: { index: false, follow: false },
 };
 

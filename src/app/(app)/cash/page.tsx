@@ -29,10 +29,12 @@ export default async function CashPage({ searchParams }: { searchParams: Promise
   const sp = await searchParams;
   const f = schema.safeParse(Object.fromEntries(Object.entries(sp).map(([k, v]) => [k, Array.isArray(v) ? v[0] : v]).filter(([, v]) => v))).data ?? {};
   const today = todayIso(env().APP_TIMEZONE);
-  const canRecord = can(user.role, "cash:record");
+  const canRecord = can(user.role, "cash:record"); // semua jenis entri non-pengeluaran
+  const canReceipt = canRecord || can(user.role, "cash:receipt"); // penerimaan lain (staf: menunggu persetujuan)
+  const canTransfer = can(user.role, "cash:transfer");
   const [accounts, warnings, transfers, options, coa] = await Promise.all([
     listCashAccounts(user), getFinanceWarnings(user), listTransfers(user, { pageSize: 10 }),
-    canRecord ? listCashAccountOptions(user) : Promise.resolve([]), canRecord ? listCoaAccounts(user) : Promise.resolve([]),
+    canReceipt || canTransfer ? listCashAccountOptions(user) : Promise.resolve([]), canReceipt ? listCoaAccounts(user) : Promise.resolve([]),
   ]);
   const selected = accounts.find((a) => a.id === f.account) ?? accounts[0];
   const from = f.from ?? `${today.slice(0, 4)}-01-01`;
@@ -43,7 +45,7 @@ export default async function CashPage({ searchParams }: { searchParams: Promise
   return (
     <div>
       <PageHeader title="Kas & Bank" description="Saldo = saldo awal (diinput Administrator) + mutasi sejak tanggal saldo awal. Hanya entri yang sudah berlaku yang dihitung."
-        actions={canRecord ? <><TransferCreate accounts={options} /><EntryCreate mode="other" accounts={options} categories={coa} /></> : undefined} />
+        actions={canReceipt || canTransfer ? <>{canTransfer && <TransferCreate accounts={options} />}{canReceipt && <EntryCreate mode="other" accounts={options} categories={coa} incomeOnly={!canRecord} />}</> : undefined} />
 
       {warnings.negativeAccounts.length > 0 && <div className="mb-3"><Notice tone="danger"><strong>Saldo negatif:</strong> {warnings.negativeAccounts.map((a) => `${a.name} (${formatRupiah(a.balance, "PLAIN")})`).join(", ")}. Periksa apakah ada penerimaan yang belum dicatat atau salah input.</Notice></div>}
       {warnings.unallocatedPayments > 0 && <div className="mb-3"><Notice tone="warn"><strong>{warnings.unallocatedPayments} pembayaran invoice belum dialokasikan ke akun kas/bank</strong> (dicatat sebelum akun dikonfigurasi atau akun default nonaktif). Pembayaran ini masuk laba rugi tetapi tidak masuk saldo.</Notice></div>}

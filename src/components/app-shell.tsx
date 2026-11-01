@@ -53,10 +53,10 @@ export function AppShell({ user, nav, company, children }: ShellProps) {
         <Image src={company.logoUrl} alt="" width={40} height={40} unoptimized className="size-10 rounded-full bg-white/5" />
         <div className="min-w-0">
           <p className="truncate text-sm font-semibold leading-tight text-white">{company.name}</p>
-          <p className="text-xs text-stone-400">Invoice Management</p>
+          <p className="text-xs text-stone-400">Financial Management System</p>
         </div>
       </div>
-      <nav aria-label="Menu utama" className="flex-1 space-y-0.5 px-3 py-2">
+      <nav aria-label="Menu utama" className="min-h-0 flex-1 space-y-0.5 overflow-y-auto px-3 py-2">
         {nav.map((item) => {
           const Icon = ICONS[item.href] ?? FileText;
           const active = pathname === item.href || pathname.startsWith(`${item.href}/`);

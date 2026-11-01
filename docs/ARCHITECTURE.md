@@ -151,7 +151,7 @@ Diuji: 10 penerbitan paralel → 10 nomor berurutan; 4 permintaan terbit paralel
    └──(penyetuju menerbitkan draftnya sendiri: kunci → hitung ulang → nomor → snapshot → DP→ledger → audit)────────────►│
 ```
 
-- **Alur kerja dua orang (pemisahan tugas):** *Staff Operasional* menginput data lengkap (termasuk harga, diskon, pajak) lalu **mengajukan**.
+- **Alur kerja dua orang (pemisahan tugas):** *Staf Administrasi Keuangan* (sebelumnya "Staff Operasional") menginput data lengkap (termasuk harga, diskon, pajak) lalu **mengajukan**.
   *Finance Manager* (atau Administrator) melihat seluruh data, lalu **menyetujui & menerbitkan** atau **mengembalikan** ke staff dengan alasan wajib
   (staff memperbaiki lalu mengajukan ulang). Pengaju dapat **menarik kembali** selama belum diverifikasi.
 - Selama **SUBMITTED**, isi terkunci (aplikasi + trigger DB) sehingga yang diperiksa = yang diterbitkan. Saat persetujuan, server **menghitung ulang** dari data
@@ -165,11 +165,11 @@ Diuji: 10 penerbitan paralel → 10 nomor berurutan; 4 permintaan terbit paralel
 
 ## 8. RBAC (least privilege) — ditegakkan di service
 
-**Prinsip:** *Staff Operasional* = *Finance Manager* **dikurangi otoritas persetujuan & koreksi dan dashboard**, ditambah hak **mengajukan** invoice.
+**Prinsip:** *Staf Administrasi Keuangan* = *Finance Manager* **dikurangi otoritas persetujuan, koreksi, finalisasi, jurnal, tutup buku, dan dashboard**, ditambah hak **mengajukan** invoice. Staf **mencatat** (pengeluaran, penerimaan lain, transfer, pembayaran, rekonsiliasi draft) dan **melihat** semua laporan; Finance Manager **memutuskan** (setujui, balikkan, finalisasi, tutup).
 Hal yang hanya dapat dilakukan Finance Manager (dan Admin): **menyetujui & menerbitkan / mengembalikan** pengajuan (approval),
 **membatalkan invoice terbit**, dan **membalikkan pembayaran** — operasi yang mengoreksi catatan keuangan yang sudah resmi.
 
-| Izin | Admin (pemilik) | Finance Manager | Staff Operasional |
+| Izin | Admin (pemilik) | Finance Manager | Staf Administrasi Keuangan |
 |---|:--:|:--:|:--:|
 | Dashboard | ✔ | ✔ | — |
 | Lihat seluruh invoice, detail lengkap, riwayat per invoice, unduh PDF invoice terbit | ✔ | ✔ | ✔ |
@@ -187,26 +187,33 @@ Hal yang hanya dapat dilakukan Finance Manager (dan Admin): **menyetujui & mener
 | Audit log (lengkap) | ✔ | — | — |
 
 Sumber kebenaran: `src/lib/permissions.ts` (dengan tes — termasuk tes yang memastikan selisih izin Finance Manager atas Staff persis `invoice:approve`, `invoice:cancel`, `payment:reverse`, dan `dashboard:view`,
-ditambah `invoice:submit` milik staff). Label peran di UI: *Administrator*, *Finance Manager*, *Staff Operasional* (nilai internal enum tetap `ADMIN/FINANCE/STAFF`).
+ditambah `invoice:submit` milik staff). Label peran di UI: *Administrator*, *Finance Manager*, *Staf Administrasi Keuangan* (nilai internal enum tetap `ADMIN/FINANCE/STAFF`).
 Karena Pembayaran dan Laporan memuat data seluruh invoice, Staff memang melihat semua invoice; yang tetap dibatasi hanyalah **menyunting/menghapus/mengajukan draft milik orang lain** (→ 404).
 
 ### Hak akses modul keuangan (basis kas)
 
-| Izin | Admin | Finance Manager | Staff Operasional |
+| Izin | Admin | Finance Manager | Staf Administrasi Keuangan |
 |---|:--:|:--:|:--:|
 | Mencatat **pengeluaran** (kategori beban) | ✔ langsung berlaku | ✔ langsung berlaku | ✔ **menunggu persetujuan** |
-| Menyetujui / menolak pengeluaran staff | ✔ | ✔ | — |
-| Melihat pengeluaran | semua | semua | hanya miliknya |
-| Penerimaan lain, investasi, pendanaan, transfer antar akun | ✔ | ✔ | — |
-| Membalikkan entri kas / transfer | ✔ | ✔ | — |
-| Kas & Bank (saldo, buku kas), Laporan Keuangan (laba rugi, arus kas), ekspor | ✔ | ✔ | — |
-| Bagan akun, akun kas/bank, **saldo awal** | ✔ kelola | lihat | — |
-| Jurnal manual (catat) · pembalikan jurnal | ✔ | ✔ | — |
-| **Pajak**: lihat rekap/register/estimasi · catat setoran | ✔ | ✔ | — |
-| Mengisi no. bukti potong pada pembayaran (`payment:record`) | ✔ | ✔ | ✔ (via API; tanpa halaman Pajak) |
-| Profil pajak (PKP, rezim & tarif PPh badan) | ✔ | lihat | — |
-| **Rekonsiliasi bank** (impor, cocokkan, finalisasi, buka kembali) | ✔ | ✔ | — |
-| **Tutup buku** bulanan (tutup · buka kembali periode terakhir) | ✔ | ✔ | — |
+| Mencatat **penerimaan lain** (akun pendapatan lain-lain, mis. bunga/jasa giro) | ✔ langsung berlaku | ✔ langsung berlaku | ✔ **menunggu persetujuan** |
+| Investasi, pendanaan (modal/pinjaman), prive, uang keluar non-operasional | ✔ | ✔ | — |
+| **Transfer** antar akun kas/bank | ✔ | ✔ | ✔ langsung berlaku |
+| Menyetujui / menolak pengeluaran & penerimaan staf | ✔ | ✔ | — |
+| Membalikkan entri kas / transfer / jurnal / pembayaran | ✔ | ✔ | — |
+| Melihat Kas & Bank, pengeluaran, jurnal, **laporan keuangan (laba rugi, neraca, arus kas, neraca saldo, buku besar)**, pajak, periode tutup buku, ekspor CSV/Excel/PDF | ✔ | ✔ | ✔ **hanya-baca** |
+| Jurnal manual (catat) | ✔ | ✔ | — |
+| **Pajak**: catat setoran | ✔ | ✔ | — |
+| Profil pajak (PKP, rezim & tarif PPh badan) | ✔ ubah | lihat | lihat |
+| Mengisi no. bukti potong pada pembayaran (`payment:record`) | ✔ | ✔ | ✔ |
+| **Rekonsiliasi bank**: impor rekening koran, cocokkan/lepas, catat dari mutasi, hapus draft (`bank:reconcile`) | ✔ | ✔ | ✔ |
+| Rekonsiliasi bank: **finalisasi / buka kembali** (`bank:finalize`) | ✔ | ✔ | — |
+| **Tutup buku** bulanan (tutup · buka kembali periode terakhir) | ✔ | ✔ | lihat daftar periksa saja |
+| Bagan akun, akun kas/bank, **saldo awal** | ✔ kelola | lihat | lihat |
+| Dashboard | ✔ | ✔ | — |
+
+Izin baru: `cash:receipt` (penerimaan lain), `cash:transfer`, `bank:finalize`. `cash:record` tetap = semua entri non-pengeluaran + setoran pajak (Finance/Admin). Entri staf diberi status `PENDING` oleh service karena staf tidak memegang `expense:approve`
+(aturan yang sama dengan pengeluaran, sehingga "Persetujuan tetap di Finance"). Pada **Catat dari mutasi** (rekonsiliasi), entri milik staf menunggu persetujuan lebih dulu dan barisnya dicocokkan setelah disetujui; kategori yang ditawarkan dibatasi beban (keluar) dan pendapatan lain (masuk).
+Tes `tests/integration/role-matrix.test.ts` memeriksa 30+ aksi × 3 peran dalam satu tabel.
 
 Pencatat tidak dapat menyetujui entrinya sendiri (maker-checker, ditegakkan di service).
 
@@ -236,6 +243,10 @@ tag `** DRAFT **`, kalimat peringatan di kaki halaman, nomor `DRAFT`, penandatan
 Pembatasan ini diterapkan di sumber data (`document-data.ts` tidak memuat file cap/tanda tangan untuk dokumen yang belum disetujui), bukan sekadar disembunyikan di template.
 Nomor, nama penandatangan (**Finance Manager**), cap, dan tanda tangan baru muncul setelah invoice disetujui & diterbitkan; semuanya dibekukan di snapshot.
 Unduhan PDF (termasuk draft) dicatat di audit log; tombol unduh hanya tersedia untuk invoice terbit.
+
+**Kwitansi (invoice LUNAS):** setelah invoice terbit dilunasi (`paymentStatus = PAID`, termasuk lunas karena PPh yang dipotong pelanggan), PDF yang sama otomatis diberi watermark hijau **LUNAS** (tag `** LUNAS **`, baris ringkasan `Status — LUNAS (tanggal pelunasan)`,
+kalimat di kaki halaman "pembayaran diterima penuh pada … berfungsi sebagai bukti pembayaran", nama file `…_LUNAS.pdf`). Status dibaca saat PDF dibuat, jadi bila pembayaran **dibalik** watermark hilang sendiri dan bila dibayar ulang tanggal pelunasan mengikuti pembayaran yang berlaku
+(`settlementDate`, fungsi murni). Isi resmi (nomor, tanda tangan, cap, total) tidak berubah; watermark DIBATALKAN/DRAFT selalu didahulukan. Kwitansi bermeterai/e-meterai **tidak** ditangani — tanyakan konsultan pajak bila diperlukan.
 
 Deviasi sadar dari referensi: (a) **A4 landscape** (atas permintaan revisi; referensi portrait); (b) nominal rata kanan; (c) nilai nol tetap ditampilkan "0" seperti referensi;
 (d) baris *Subtotal/Discount/Sisa Tagihan* hanya muncul bila relevan; (e) nama penandatangan mengikuti brief (`Elva Aditya Fawwaz, S.E.`) — referensi bertuliskan `Elva Aditya S, S.E.` (ubah di Pengaturan);
@@ -319,7 +330,7 @@ Rekening koran (impor CSV; format angka/tanggal Indonesia **dan** Inggris terdet
 * **Selisih** = saldo akhir bank + Σ transaksi buku beredar (belum cocok, ≤ akhir periode) − saldo buku pada akhir periode. **Harus 0 untuk difinalisasi**; mutasi harus sama dengan selisih saldo awal/akhir; saldo awal harus menyambung dengan periode final sebelumnya.
 * Pencocokan satu baris ↔ banyak transaksi (setoran gabungan), jumlah harus persis; satu transaksi hanya sekali per akun (indeks unik di DB). `autoMatch` hanya mengambil yang **tak ambigu** (jumlah sama, tanggal ≤ jendela, satu kandidat).
 * Baris yang tak ada di buku (biaya admin, bunga) dicatat langsung dari mutasi (membuat entri kas + mencocokkannya; kategori sesuai arah).
-* `DRAFT → FINALIZED`; yang final **tidak dapat diubah**; hanya yang terakhir pada akun itu dapat dibuka kembali (alasan wajib, audit). Hak: `bank:reconcile` (Finance Manager/Admin); Staff tidak punya akses.
+* `DRAFT → FINALIZED`; yang final **tidak dapat diubah**; hanya yang terakhir pada akun itu dapat dibuka kembali (alasan wajib, audit). Hak: `bank:reconcile` (impor, cocokkan, hapus draft — Finance Manager/Admin/Staf Administrasi Keuangan) dan `bank:finalize` (finalisasi & buka kembali — hanya Finance Manager/Admin).
 * Laporan rekonsiliasi (ringkasan, transaksi beredar, mutasi + status cocok) dapat diunduh CSV/Excel/PDF. Pengujian: `bank-round1..3` (fuzz dengan "bank" sebagai kebenaran independen) + unit `bank-recon.test.ts`; `db:reconcile` memeriksa mutasi, pencocokan, dan saldo menyambung.
 
 ## 10f. Tutup buku bulanan

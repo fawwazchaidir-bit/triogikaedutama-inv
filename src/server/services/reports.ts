@@ -30,7 +30,7 @@ export const REPORT_META: Record<ReportType, { title: string; description: strin
 };
 
 const DISCLAIMER =
-  "Laporan operasional penagihan dari data sistem invoice — BUKAN laporan akuntansi (tidak memuat jurnal, pengakuan pendapatan, atau penyesuaian). " +
+  "Laporan operasional penagihan dari data sistem — BUKAN laporan akuntansi (tidak memuat jurnal, pengakuan pendapatan, atau penyesuaian). " +
   "Nilai invoice (penerbitan) dan penerimaan kas dilaporkan terpisah dan tidak boleh dijumlahkan.";
 
 export const reportQuerySchema = z.object({

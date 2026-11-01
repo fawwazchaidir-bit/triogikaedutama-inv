@@ -142,17 +142,53 @@ describe("pagar database rekening koran (SQL langsung)", () => {
 });
 
 describe("izin & balapan", () => {
-  it("staff tidak dapat melihat maupun bertindak; finance & admin dapat", async () => {
+  it("staf (Staf Administrasi Keuangan): boleh melihat dan mengerjakan DRAFT (impor, cocokkan, lepas, catat dari mutasi, hapus draft) tetapi TIDAK finalisasi/buka kembali; admin & finance boleh semuanya", async () => {
     const { st } = await oneMatchedStatement();
-    const line = (await getStatementWorkspace(fx.finance, st.id)).lines[0]!;
-    for (const f of [() => listStatements(fx.staff), () => getStatementWorkspace(fx.staff, st.id), () => getReconOverview(fx.staff)]) expect((await err(f()))?.code).toBe("FORBIDDEN");
-    for (const f of [
-      (a: typeof fx.staff) => createStatement(a, {}), (a: typeof fx.staff) => autoMatchStatement(a, st.id), (a: typeof fx.staff) => unmatchLine(a, line.id),
-      (a: typeof fx.staff) => matchLine(a, line.id, { items: [] }), (a: typeof fx.staff) => finalizeStatement(a, st.id), (a: typeof fx.staff) => deleteStatement(a, st.id),
-      (a: typeof fx.staff) => reopenStatement(a, st.id, { reason: "coba-coba" }), (a: typeof fx.staff) => createEntryForLine(a, line.id, { counterAccountId: c("6-1800") }),
-    ]) expect((await err(f(fx.staff)))?.code).toBe("FORBIDDEN");
-    expect((await getReconOverview(fx.admin)).length).toBe(2);
-    expect(await err(finalizeStatement(fx.admin, st.id))).toBeNull();
+    const ws = await getStatementWorkspace(fx.staff, st.id);
+    const line = ws.lines[0]!;
+    expect((await listStatements(fx.staff)).length).toBe(1);
+    expect((await getReconOverview(fx.staff)).length).toBe(2);
+
+    // otoritas Finance Manager: finalisasi & buka kembali
+    expect((await err(finalizeStatement(fx.staff, st.id)))?.code).toBe("FORBIDDEN");
+    expect((await err(reopenStatement(fx.staff, st.id, { reason: "coba-coba" })))?.code).toBe("FORBIDDEN");
+    expect(await err(finalizeStatement(fx.finance, st.id))).toBeNull();
+    // sesudah final, staf tak dapat mengubah apa pun (rekonsiliasi final imutabel)
+    for (const f of [() => unmatchLine(fx.staff, line.id), () => autoMatchStatement(fx.staff, st.id), () => deleteStatement(fx.staff, st.id)]) expect((await err(f()))?.code).toBe("CONFLICT");
+    expect((await err(reopenStatement(fx.staff, st.id, { reason: "coba-coba" })))?.code).toBe("FORBIDDEN");
+    expect(await err(reopenStatement(fx.admin, st.id, { reason: "Dibuka admin untuk uji" }))).toBeNull();
+
+    // pekerjaan draft oleh staf
+    expect(await err(unmatchLine(fx.staff, line.id))).toBeNull();
+    expect((await autoMatchStatement(fx.staff, st.id)).matched).toBe(1);
+    expect((await err(createStatement(fx.staff, {})))?.code).toBe("VALIDATION"); // diizinkan, tetapi masukan kosong ditolak validasi (bukan FORBIDDEN)
+    expect((await err(matchLine(fx.staff, line.id, { items: [] })))?.code).toBe("VALIDATION");
+    expect(await err(deleteStatement(fx.staff, st.id))).toBeNull();
+    expect(await prisma.bankStatement.count()).toBe(0);
+  });
+
+  it("staf mencatat dari mutasi: uang keluar (beban) & uang masuk (pendapatan lain) menunggu persetujuan lalu dicocokkan; kategori lain ditolak", async () => {
+    const st = await stmt([{ txDate: d(1, 10), description: "BIAYA ADM", amount: -15_000 }, { txDate: d(1, 11), description: "BUNGA", amount: 25_000 }, { txDate: d(1, 12), description: "TAMBAHAN MODAL", amount: 1_000_000 }]);
+    const lines = (await getStatementWorkspace(fx.staff, st.id)).lines;
+    const fee = lines.find((l) => l.description === "BIAYA ADM")!, interest = lines.find((l) => l.description === "BUNGA")!, capital = lines.find((l) => l.description === "TAMBAHAN MODAL")!;
+    expect(await createEntryForLine(fx.staff, fee.id, { counterAccountId: c("6-1800") })).toEqual({ status: "PENDING_APPROVAL" });
+    expect(await createEntryForLine(fx.staff, interest.id, { counterAccountId: c("4-2200") })).toEqual({ status: "PENDING_APPROVAL" });
+    // modal/pinjaman/aset = otoritas Finance Manager (cash:record)
+    expect((await err(createEntryForLine(fx.staff, capital.id, { counterAccountId: c("3-1100") })))?.code).toBe("FORBIDDEN");
+    const entries = await prisma.cashEntry.findMany({ orderBy: { createdAt: "asc" } });
+    expect(entries.map((e) => [e.direction, Number(e.amount), e.status, e.createdById])).toEqual([["OUT", 15_000, "PENDING", fx.staff.userId], ["IN", 25_000, "PENDING", fx.staff.userId]]);
+    // belum bisa difinalisasi / dicocokkan sebelum disetujui
+    let ws = await getStatementWorkspace(fx.finance, st.id);
+    expect(ws.lines.filter((l) => l.matched !== 0)).toHaveLength(0);
+    expect((await err(finalizeStatement(fx.finance, st.id)))?.code).toBe("CONFLICT");
+    // Finance menyetujui → staf mencocokkan manual
+    for (const e of entries) expect(await err(approveEntry(fx.finance, e.id))).toBeNull();
+    ws = await getStatementWorkspace(fx.staff, st.id);
+    await matchLine(fx.staff, fee.id, { items: [{ type: "CASH_ENTRY", id: entries[0]!.id }] });
+    await matchLine(fx.staff, interest.id, { items: [{ type: "CASH_ENTRY", id: entries[1]!.id }] });
+    expect(ws.statement.status).toBe("DRAFT");
+    // finance/admin mencatat dari mutasi langsung berlaku & cocok
+    expect(await createEntryForLine(fx.finance, capital.id, { counterAccountId: c("3-1100") })).toEqual({ status: "MATCHED" });
   });
 
   it("finalisasi paralel ×4: tepat satu berhasil; pencocokan otomatis paralel ×3: tidak ada pencocokan ganda", async () => {

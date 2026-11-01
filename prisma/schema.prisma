@@ -1,4 +1,4 @@
-// Trilogika Edutama — Invoice Management System
+// Trilogika Edutama — Financial Management System
 //
 // Prinsip desain skema (lihat docs/ARCHITECTURE.md):
 //  * Uang = bilangan bulat Rupiah (BigInt). Tidak ada float.

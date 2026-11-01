@@ -14,7 +14,7 @@ export const GET = route<{ id: string }>(async ({ req, actor, params }) => {
     const unissued = doc.status === "DRAFT" || doc.status === "SUBMITTED";
     await writeAudit(prisma, actor, {
       action: "invoice.pdf_download", entityType: "Invoice", entityId: id,
-      summary: unissued ? "PDF DRAFT (belum diverifikasi, berwatermark) diunduh" : `PDF invoice ${doc.number} diunduh`,
+      summary: unissued ? "PDF DRAFT (belum diverifikasi, berwatermark) diunduh" : `PDF invoice ${doc.number}${doc.paid ? " (LUNAS)" : ""} diunduh`,
     });
   }
   return new Response(new Uint8Array(buffer), {

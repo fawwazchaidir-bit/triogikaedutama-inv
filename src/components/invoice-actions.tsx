@@ -63,6 +63,8 @@ export function InvoiceActions({ inv, can, variant = "menu", onDone, initialDial
   const pdfBase = `/api/invoices/${inv.id}/pdf`;
   const canPdfNow = can.pdf;
   const unissued = inv.status === "DRAFT" || inv.status === "SUBMITTED";
+  const paid = inv.status === "ISSUED" && inv.totalAmount > 0 && inv.balanceAmount === 0; // PDF otomatis berwatermark LUNAS (kwitansi)
+  const pdfLabel = paid ? "Unduh PDF (Lunas)" : "Unduh PDF";
 
   const items = [
     { label: "Lihat detail", href: `/invoices/${inv.id}` },
@@ -72,7 +74,7 @@ export function InvoiceActions({ inv, can, variant = "menu", onDone, initialDial
     { label: "Kembalikan ke staff…", onSelect: () => setDlg("reject"), hidden: !can.reject },
     { label: "Tarik kembali pengajuan…", onSelect: () => setDlg("recall"), hidden: !can.recall },
     { label: unissued ? "Preview PDF (draft)" : "Preview PDF", onSelect: () => setDlg("preview"), hidden: !canPdfNow },
-    { label: "Unduh PDF", href: `${pdfBase}?download=1`, download: true, hidden: !canPdfNow || unissued },
+    { label: pdfLabel, href: `${pdfBase}?download=1`, download: true, hidden: !canPdfNow || unissued },
     { label: "Catat pembayaran…", onSelect: () => setDlg("pay"), hidden: !(inv.status === "ISSUED" && inv.balanceAmount > 0 && can.pay) },
     { label: "Duplikasi", onSelect: () => run(async () => { const d = await api<{ id: string }>(`/api/invoices/${inv.id}/duplicate`, { method: "POST", body: {} }); done("Draft baru dibuat dari invoice ini.", `/invoices/${d.id}/edit`); }), hidden: !can.duplicate },
     "sep" as const,
@@ -86,7 +88,7 @@ export function InvoiceActions({ inv, can, variant = "menu", onDone, initialDial
         <div className="flex flex-wrap items-center gap-2">
           {inv.status === "DRAFT" && can.edit && <Link href={`/invoices/${inv.id}/edit`} className="inline-flex h-10 items-center rounded-md border border-line bg-white px-4 text-sm font-medium shadow-sm hover:bg-canvas">Edit draft</Link>}
           {canPdfNow && <Button onClick={() => setDlg("preview")}>{unissued ? "Preview PDF (draft)" : "Preview PDF"}</Button>}
-          {canPdfNow && !unissued && <a href={`${pdfBase}?download=1`} className="inline-flex h-10 items-center rounded-md border border-line bg-white px-4 text-sm font-medium shadow-sm hover:bg-canvas">Unduh PDF</a>}
+          {canPdfNow && !unissued && <a href={`${pdfBase}?download=1`} className="inline-flex h-10 items-center rounded-md border border-line bg-white px-4 text-sm font-medium shadow-sm hover:bg-canvas">{pdfLabel}</a>}
           {can.submit && <Button variant="primary" onClick={() => setDlg("submit")}>Ajukan untuk verifikasi</Button>}
           {can.approve && <Button variant="primary" onClick={() => setDlg("approve")}>Setujui &amp; terbitkan</Button>}
           {can.reject && <Button variant="danger" onClick={() => setDlg("reject")}>Kembalikan ke staff</Button>}
@@ -99,8 +101,9 @@ export function InvoiceActions({ inv, can, variant = "menu", onDone, initialDial
       {/* Pratinjau PDF: iframe ke endpoint yang memakai SNAPSHOT tersimpan, bukan input browser. */}
       <Dialog open={dlg === "preview"} onClose={close} title={`Preview invoice ${label}`} size="xl"
         footer={<>
-          {canPdfNow && !unissued && <a href={`${pdfBase}?download=1`} className="inline-flex h-10 items-center rounded-md bg-brand-600 px-4 text-sm font-medium text-white hover:bg-brand-700">Unduh PDF</a>}
+          {canPdfNow && !unissued && <a href={`${pdfBase}?download=1`} className="inline-flex h-10 items-center rounded-md bg-brand-600 px-4 text-sm font-medium text-white hover:bg-brand-700">{pdfLabel}</a>}
           <Button onClick={close}>Tutup</Button></>}>
+        {paid && <p className="mb-2 text-xs text-muted">Invoice sudah <b>lunas</b> — PDF berwatermark <b>LUNAS</b> beserta tanggal pelunasan, sehingga berfungsi sebagai bukti pembayaran (kwitansi). Bila pembayaran dibalik, watermark hilang otomatis.</p>}
         {unissued && <p className="mb-2 text-xs text-muted">Dokumen berwatermark <b>DRAFT</b> — belum bernomor, tanpa tanda tangan &amp; cap. Belum untuk dikirim ke pelanggan; versi resmi baru tersedia setelah diverifikasi Finance Manager.</p>}
         <iframe title={`Pratinjau PDF ${label}`} src={`${pdfBase}#toolbar=0&navpanes=0`} className="h-[68vh] w-full rounded border border-line bg-canvas" />
       </Dialog>

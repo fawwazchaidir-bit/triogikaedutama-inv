@@ -48,7 +48,9 @@ describe("profil pajak", () => {
     await expect(sql(`UPDATE company_settings SET "corporateTaxRegime" = 'GENERAL', "corporateTaxRateBps" = NULL`)).rejects.toThrow(/company_settings_tax_profile/);
     expect(await profile({ regime: "GENERAL", rateBps: 2200 })).toEqual({ isPkp: true, regime: "GENERAL", rateBps: 2200 });
     expect((await prisma.auditLog.findMany({ where: { action: "tax.profile" } })).length).toBe(1);
-    expect((await err(getTaxProfile(fx.staff)))?.code).toBe("FORBIDDEN");
+    expect(await getTaxProfile(fx.staff)).toEqual({ isPkp: true, regime: "GENERAL", rateBps: 2200 }); // staf: hanya-baca
+    expect((await err(updateTaxProfile(fx.staff, { isPkp: false, regime: "NONE", rateBps: null })))?.code).toBe("FORBIDDEN");
+    expect((await err(updateTaxProfile(fx.finance, { isPkp: false, regime: "NONE", rateBps: null })))?.code).toBe("FORBIDDEN"); // hanya Administrator
   });
 });
 
@@ -76,11 +78,11 @@ describe("rekap PPN", () => {
     expect(toCsv(t)).toContain("Rekap PPN Keluaran");
   });
 
-  it("rentang > 36 bulan, balik, masa depan ditolak; staff ditolak", async () => {
+  it("rentang > 36 bulan, balik, masa depan ditolak; staf boleh melihat (hanya-baca)", async () => {
     expect((await err(getVatSummary(fx.finance, { from: "2020-01-01", to: today })))?.code).toBe("VALIDATION");
     expect((await err(getVatSummary(fx.finance, { from: d(3, 1), to: d(2, 1) })))?.code).toBe("VALIDATION");
     expect((await err(getVatSummary(fx.finance, { from: d(1, 1), to: "2999-01-01" })))?.code).toBe("VALIDATION");
-    expect((await err(getVatSummary(fx.staff, {})))?.code).toBe("FORBIDDEN");
+    expect(await err(getVatSummary(fx.staff, {}))).toBeNull();
   });
 });
 
@@ -219,7 +221,7 @@ describe("estimasi PPh badan", () => {
 });
 
 describe("setoran pajak & ikhtisar", () => {
-  it("hanya yang berwenang kas; daftar setoran; ikhtisar saldo; staff ditolak", async () => {
+  it("hanya yang berwenang kas; daftar setoran; ikhtisar saldo; staf boleh melihat tetapi tidak menyetor", async () => {
     const a = await inv(d(1, 13), { taxed: true });
     await recordPayment(fx.finance, { invoiceId: a.id, paymentDate: d(1, 25), amount: 15_260_000, withholdingAmount: 280_000, method: "Transfer" });
     expect((await err(recordTaxPayment(fx.staff, { kind: "PPN", taxPeriod: "2026-01", entryDate: d(2, 1), cashAccountId: fx.bankAcctId, amount: 500_000, reference: "NTPN-1" })))?.code).toBe("FORBIDDEN");
@@ -232,6 +234,6 @@ describe("setoran pajak & ikhtisar", () => {
     expect(list[0]).toMatchObject({ kind: "PPN", amount: 500, reference: "NTPN-1" });
     const o = await getTaxOverview(fx.finance);
     expect(o).toMatchObject({ vatLiability: 1_540_000 - 500, pphCredit: 280_000, pphBadanPayable: 0, vatOnUnpaidInvoices: 0, withholdingMissingRef: 1 });
-    expect((await err(getTaxOverview(fx.staff)))?.code).toBe("FORBIDDEN");
+    expect(await getTaxOverview(fx.staff)).toEqual(o);
   });
 });

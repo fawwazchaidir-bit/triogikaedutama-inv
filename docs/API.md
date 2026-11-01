@@ -13,7 +13,7 @@ REST JSON di bawah `/api`. Dipakai oleh UI aplikasi; dapat dipakai pihak lain **
   Pesan selalu Bahasa Indonesia dan aman ditampilkan; detail internal tidak pernah dikirim.
 - **Uang:** bilangan bulat Rupiah (`number`). **Tanggal:** `YYYY-MM-DD` (zona Asia/Jakarta). **Waktu:** ISO-8601 UTC.
 - **Paginasi:** `?page=1&pageSize=20` → `{ items, total, page, pageSize, pageCount }`.
-- **Izin:** dicek di service; tabel di bawah menyebut izin minimum. `404` dipakai (bukan `403`) bila Staff menyunting/menghapus/mengajukan draft milik orang lain.
+- **Izin:** dicek di service; tabel di bawah menyebut izin minimum. `404` dipakai (bukan `403`) bila Staf menyunting/menghapus/mengajukan draft milik orang lain.
 
 ## Endpoint
 
@@ -43,8 +43,8 @@ REST JSON di bawah `/api`. Dipakai oleh UI aplikasi; dapat dipakai pihak lain **
 | `GET /api/dashboard?from&to&customerId&status&paymentStatus&q` | `dashboard:view` | Metrik & tren |
 | `GET /api/reports/:type?format=json\|csv\|xlsx&from&to&customerId` | `report:view` | `invoices by-customer by-product payments receivables overdue paid cancelled monthly` |
 | `GET /api/audit-logs?q&action&entityType&entityId&from&to&page` | `audit:view` | Audit log |
-| `GET/POST /api/finance/entries` · `DELETE …/:id` · `POST …/:id/approve\|reject\|reverse` | `expense:record` · `expense:view_own`/`finance:view` · `expense:approve` · `expense:void` | Entri kas manual (pengeluaran: staff → `PENDING`); `DELETE` hanya pengajuan sendiri yang menunggu; `reject`/`reverse` butuh `{ reason }` |
-| `GET/POST /api/finance/transfers` · `POST …/:id/reverse` | `finance:view` · `cash:record` · `expense:void` | Transfer antar akun kas/bank |
+| `GET/POST /api/finance/entries` · `DELETE …/:id` · `POST …/:id/approve\|reject\|reverse` | `expense:record` / `cash:receipt` / `cash:record` · `finance:view` · `expense:approve` · `expense:void` | Entri kas manual (pengeluaran dan penerimaan lain oleh staf → `PENDING`; modal/investasi/prive = `cash:record`); `DELETE` hanya pengajuan sendiri yang menunggu; `reject`/`reverse` butuh `{ reason }` |
+| `GET/POST /api/finance/transfers` · `POST …/:id/reverse` | `finance:view` · `cash:transfer` · `expense:void` | Transfer antar akun kas/bank (langsung berlaku); pembalikan = Finance/Admin |
 | `GET/POST /api/finance/cash-accounts` · `PATCH …/:id` · `GET …/options` | `finance:view` · `finance:manage` · (opsi: pencatat) | Akun kas/bank + saldo awal; `options` = pilihan aktif tanpa saldo |
 | `GET/POST /api/finance/coa` · `PATCH …/:id` | `finance:view`/`expense:record` · `finance:manage` | Bagan akun (staff hanya melihat kategori beban yang boleh dipilih) |
 | `GET /api/finance/ledger?accountId&from&to` | `finance:view` | Buku kas satu akun dengan saldo berjalan |
@@ -64,8 +64,8 @@ REST JSON di bawah `/api`. Dipakai oleh UI aplikasi; dapat dipakai pihak lain **
 | `PUT /api/payments/:id/withholding-ref` | `payment:record` | Isi/ubah nomor bukti potong pada pembayaran bertanda PPh dipotong |
 | `GET /api/finance/bank/overview` · `GET/POST /api/finance/bank/statements` · `POST …/statements/preview` | `finance:view` · `bank:reconcile` | Ringkasan per akun bank; daftar/impor rekening koran (`csv` teks atau `lines[]`); pratinjau pemetaan CSV |
 | `GET /api/finance/bank/statements/:id?format=json\|csv\|xlsx\|pdf` · `DELETE` | `finance:view` · `bank:reconcile` | Ruang kerja rekonsiliasi atau laporan rekonsiliasi; hapus rekening koran draft |
-| `POST …/statements/:id/auto-match\|finalize\|reopen` | `bank:reconcile` | Cocokkan otomatis (tak ambigu), finalisasi (selisih harus 0), buka kembali (`{reason}`, hanya yang terakhir) |
-| `POST /api/finance/bank/lines/:id/match\|unmatch\|entry` | `bank:reconcile` | Cocokkan satu baris dengan transaksi buku, batalkan, atau catat entri kas dari mutasi (`{ counterAccountId }`) |
+| `POST …/statements/:id/auto-match` · `POST …/finalize\|reopen` | `bank:reconcile` · `bank:finalize` | Cocokkan otomatis (tak ambigu); finalisasi (selisih harus 0) dan buka kembali (`{reason}`, hanya yang terakhir) hanya Finance/Admin |
+| `POST /api/finance/bank/lines/:id/match\|unmatch\|entry` | `bank:reconcile` | Cocokkan satu baris dengan transaksi buku, batalkan, atau catat entri kas dari mutasi (`{ counterAccountId }` → `{ status: "MATCHED" \| "PENDING_APPROVAL" }`; entri staf menunggu persetujuan) |
 | `POST /api/finance/proof` | `expense:record` | Unggah bukti pengeluaran (PNG/JPEG/PDF) |
 | `GET /api/files/:id` | tergantung jenis | Logo/cap/tanda tangan/bukti bayar (diunduh, bukan dirender inline) |
 

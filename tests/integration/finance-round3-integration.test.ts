@@ -255,7 +255,7 @@ describe("(a) fuzz berbasis model — tiga skenario acak berbeda", () => {
 // ───────────────────────────── (b) silang modul & alur peran ─────────────────────────────
 
 describe("(b) alur lintas peran dari awal sampai laporan", () => {
-  it("Staff input invoice → Finance setujui → staff catat pembayaran & pengeluaran → Finance setujui → angka konsisten di seluruh modul; staff tak melihat laporan keuangan", async () => {
+  it("Staff input invoice → Finance setujui → staf catat pembayaran & pengeluaran → Finance setujui → angka konsisten di seluruh modul; staf melihat laporan keuangan yang sama (hanya-baca)", async () => {
     const draft = await createDraft(fx.staff, demiChefInput(fx, { invoiceDate: "2026-04-02", paymentTermDays: 14, downPayment: 3_000_000 }));
     await submitInvoice(fx.staff, draft.id);
     const inv = await issueInvoice(fx.finance, draft.id);
@@ -272,8 +272,9 @@ describe("(b) alur lintas peran dari awal sampai laporan", () => {
 
     // staff: boleh melihat pengeluarannya sendiri & laporan invoice, tidak boleh laporan keuangan/kas
     expect((await listEntries(fx.staff, {})).items[0]).toMatchObject({ status: "APPROVED", approvedByName: "Finance Uji" });
-    expect((await err(getIncomeStatement(fx.staff, {})))?.code).toBe("FORBIDDEN");
-    expect((await err(listCashAccounts(fx.staff)))?.code).toBe("FORBIDDEN");
+    // staf melihat angka yang SAMA dengan Finance (hanya-baca)
+    expect(await getIncomeStatement(fx.staff, {})).toEqual(await getIncomeStatement(fx.finance, {}));
+    expect(await listCashAccounts(fx.staff)).toEqual(await listCashAccounts(fx.finance));
     expect((await runReport(fx.staff, "payments", {})).totals?.amount).toBe(9_000_000);
 
     // jejak audit lengkap & berurutan untuk seluruh perjalanan

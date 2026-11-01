@@ -88,11 +88,13 @@ describe("pengeluaran: staff mengajukan, Finance Manager menyetujui", () => {
     expect((await bal())["Kas Kecil"]).toBe(1_000_000 - 275_000 - 25_000);
   });
 
-  it("visibilitas: staff hanya melihat pengeluaran sendiri; Finance melihat semua; filter status/jenis/pencarian", async () => {
+  it("visibilitas: staf administrasi keuangan dan Finance sama-sama melihat semua entri (hanya-baca bagi staf); filter status/jenis/pencarian", async () => {
     const mine = await entry(fx.staff, { cashAccountId: fx.bankAcctId, counterAccountId: fx.coa["6-1300"], description: "Internet bulan Maret" });
     await entry(fx.staff2, { cashAccountId: fx.bankAcctId, counterAccountId: fx.coa["6-1300"], description: "Listrik staff dua" });
     await entry(fx.finance, { cashAccountId: fx.bankAcctId, counterAccountId: fx.coa["4-2200"], direction: "IN", amount: 150_000, description: "Bunga Maret" });
-    expect((await listEntries(fx.staff, {})).items.map((i) => i.id)).toEqual([mine.id]);
+    expect((await listEntries(fx.staff, {})).total).toBe(3); // akses baca seluruh catatan kas
+    expect((await listEntries(fx.staff, {})).items.map((i) => i.id)).toContain(mine.id);
+    expect((await listEntries(fx.staff, { kind: "OTHER" })).items.map((i) => i.counterCode)).toEqual(["4-2200"]);
     expect((await listEntries(fx.finance, {})).total).toBe(3);
     expect((await listEntries(fx.finance, { status: "PENDING" })).total).toBe(2);
     expect((await listEntries(fx.finance, { kind: "OTHER" })).items.map((i) => i.counterCode)).toEqual(["4-2200"]);

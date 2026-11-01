@@ -36,7 +36,7 @@ test.describe("modul keuangan basis kas (UI + RBAC)", () => {
     await dlg2.getByRole("button", { name: "Batal" }).click();
   });
 
-  test("Staff: mencatat pengeluaran → menunggu persetujuan; tidak ada akses kas/laporan keuangan/persetujuan", async ({ page }) => {
+  test("Staf Administrasi Keuangan: pengeluaran, penerimaan lain & transfer; laporan hanya-baca; tanpa persetujuan/koreksi/jurnal/finalisasi/tutup buku", async ({ page }) => {
     await login(page, "staff");
     await expect(page.getByRole("navigation", { name: "Menu utama" }).getByRole("link", { name: "Pengeluaran" })).toBeVisible();
     await page.goto("/expenses");
@@ -53,25 +53,64 @@ test.describe("modul keuangan basis kas (UI + RBAC)", () => {
     await expect(row.getByRole("button", { name: "Setujui" })).toHaveCount(0);
     await expect(row.getByRole("button", { name: "Batalkan" })).toBeVisible(); // pencatat dapat membatalkan pengajuannya
 
-    // kategori yang tersedia untuk staff hanya beban (tidak ada pendapatan/modal/aset)
+    // kategori pada dialog pengeluaran hanya beban (tidak ada pendapatan/modal/aset)
     await page.getByRole("button", { name: "Catat pengeluaran" }).click();
     const opts = await page.getByRole("dialog", { name: "Catat pengeluaran" }).getByLabel("Kategori").locator("option").allTextContents();
     expect(opts.length).toBeGreaterThan(8);
     expect(opts.filter((o) => /^(1|2|3|4|7)-/.test(o))).toEqual([]);
     await page.keyboard.press("Escape");
 
-    // halaman & API keuangan tertutup
-    for (const p of ["/cash", "/statements"]) expect((await page.goto(p))!.status(), p).toBe(404);
-    for (const u of ["/api/finance/cash-accounts", "/api/finance/statements/cash-flow", "/api/finance/transfers", "/api/finance/coa/00000000-0000-4000-8000-000000000000"]) {
-      const r = u.includes("/coa/") ? await page.request.patch(u, { data: { name: "x" }, headers: ORIGIN }) : await page.request.get(u);
-      expect(r.status(), u).toBe(403);
-    }
-    expect((await page.request.post("/api/finance/transfers", { data: {}, headers: ORIGIN })).status()).toBe(403);
-    // staff memanggil API entri non-pengeluaran langsung → 403
-    const coa = await (await page.request.get("/api/finance/coa")).json();
-    expect(coa.data.every((c: { type: string }) => c.type === "BEBAN")).toBe(true);
-    await page.goto("/settings");
-    await expect(page.getByRole("link", { name: "Keuangan" })).toHaveCount(0);
+    // Kas & Bank: transfer dan penerimaan lain (bukan modal/investasi/prive)
+    await page.goto("/cash");
+    await expect(page.getByRole("button", { name: "Transfer antar akun" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Catat penerimaan / non-operasional" })).toHaveCount(0); // versi penuh = Finance
+    await page.getByRole("button", { name: "Catat penerimaan lain" }).click();
+    const rc = page.getByRole("dialog", { name: "Catat penerimaan lain" });
+    const rcOpts = await rc.getByLabel("Kategori").locator("option").allTextContents();
+    expect(rcOpts.filter((o) => /^\d-/.test(o)).every((o) => o.startsWith("4-"))).toBe(true); // hanya akun pendapatan
+    await rc.getByLabel("Kategori").selectOption({ label: "4-2200 — Pendapatan Bunga & Jasa Giro" });
+    await rc.getByLabel("Nominal").fill("45000");
+    await rc.getByLabel("Keterangan").fill("Bunga E2E staf");
+    await rc.getByRole("button", { name: "Simpan" }).click();
+    await expect(page.getByText(/Penerimaan diajukan; menunggu persetujuan/)).toBeVisible();
+    await page.getByRole("button", { name: "Transfer antar akun" }).click();
+    const tr = page.getByRole("dialog", { name: "Transfer antar akun" });
+    await tr.getByLabel("Nominal").fill("27500"); // nominal sengaja unik agar tidak ikut tercocokkan pada tes rekonsiliasi berikutnya
+    await tr.getByLabel("Keterangan").fill("Transfer E2E staf");
+    await tr.getByRole("button", { name: "Simpan transfer" }).click();
+    await expect(page.getByText("Transfer dicatat.")).toBeVisible();
+    await expect(page.getByRole("row", { name: /Transfer E2E staf/ }).first()).toBeVisible();
+    await expect(page.getByRole("button", { name: "Balikkan" })).toHaveCount(0); // koreksi = Finance
+
+    // halaman keuangan terbuka HANYA-BACA: tanpa tombol ubah/jurnal/tutup/setor/finalisasi
+    await page.goto("/statements");
+    await expect(page.getByRole("heading", { name: "Laporan Keuangan", exact: true, level: 1 })).toBeVisible();
+    await expect(page.getByRole("link", { name: "PDF" })).toBeVisible();
+    await page.goto("/journals");
+    await expect(page.getByRole("button", { name: "Catat jurnal" })).toHaveCount(0);
+    await page.goto("/closing");
+    await expect(page.getByTestId("period-row").first()).toBeVisible();
+    await expect(page.getByRole("button", { name: /Tutup bulan|Buka kembali/ })).toHaveCount(0);
+    await page.goto("/taxes");
+    await expect(page.getByRole("button", { name: /Ubah profil pajak|Catat setoran pajak/ })).toHaveCount(0);
+    await page.goto("/reconciliation");
+    await expect(page.getByRole("button", { name: /Impor rekening koran/ })).toBeVisible(); // staf mengerjakan rekonsiliasi (draft)
+    await page.goto("/settings?tab=finance");
+    await expect(page.getByRole("button", { name: /Tambah akun/ })).toHaveCount(0);
+
+    // API: baca boleh; tulis otoritas Finance/Admin → 403
+    for (const u of ["/api/finance/cash-accounts", "/api/finance/statements/cash-flow", "/api/finance/periods", "/api/finance/taxes/overview"]) expect((await page.request.get(u)).status(), u).toBe(200);
+    const zero = "00000000-0000-4000-8000-000000000000";
+    for (const [method, u, data] of [
+      ["patch", `/api/finance/coa/${zero}`, { name: "x" }], ["post", "/api/finance/journals", {}], ["post", "/api/finance/periods/close", { year: 2026, month: 1, acknowledge: [], note: "coba staf" }],
+      ["post", `/api/finance/bank/statements/${zero}/finalize`, {}], ["post", `/api/finance/transfers/${zero}/reverse`, { reason: "coba staf" }], ["post", `/api/finance/entries/${zero}/approve`, {}],
+      ["post", "/api/finance/taxes/payments", {}], ["put", "/api/finance/taxes/profile", { isPkp: false, regime: "NONE", rateBps: null }],
+    ] as const) expect((await page.request[method](u, { data, headers: ORIGIN })).status(), `${method} ${u}`).toBe(403);
+    // entri non-pengeluaran selain penerimaan lain (mis. modal) lewat API langsung → 403
+    const coa = (await (await page.request.get("/api/finance/coa")).json()).data as { id: string; code: string }[];
+    const accts = (await (await page.request.get("/api/finance/cash-accounts/options")).json()).data as { id: string }[];
+    const capital = await page.request.post("/api/finance/entries", { headers: ORIGIN, data: { entryDate: new Date(Date.now() + 7 * 3_600_000).toISOString().slice(0, 10), cashAccountId: accts[0]!.id, counterAccountId: coa.find((c) => c.code === "3-1100")!.id, direction: "IN", amount: 1000, description: "Modal lewat API (ditolak)" } });
+    expect(capital.status()).toBe(403);
   });
 
   test("Staff: pengeluaran di atas Rp1 juta wajib berbukti (UI + API); tepat Rp1 juta boleh tanpa bukti", async ({ page }) => {
@@ -332,7 +371,7 @@ test.describe("modul keuangan basis kas (UI + RBAC)", () => {
     expect((await page.request.get("/api/finance/journal-book?source=BUKAN")).status()).toBe(422);
   });
 
-  test("Pajak: Admin mengatur profil; pembayaran dengan PPh dipotong + PPN → register, rekap PPN, setoran, estimasi PPh badan + jurnal; staff tidak punya akses", async ({ page, browser }) => {
+  test("Pajak: Admin mengatur profil; pembayaran dengan PPh dipotong + PPN → register, rekap PPN, setoran, estimasi PPh badan + jurnal; staf hanya-baca", async ({ page, browser }) => {
     // Admin: profil pajak (tarif diisi pengguna) + invoice ber-PPN
     await login(page, "admin");
     await page.goto("/taxes");
@@ -421,17 +460,18 @@ test.describe("modul keuangan basis kas (UI + RBAC)", () => {
 
     await fctx.close();
 
-    // Staff tidak melihat pajak
+    // Staf: melihat pajak (hanya-baca), tidak dapat mengubah/menyetor
     const sctx = await browser.newContext();
     const sp = await sctx.newPage();
     await login(sp, "staff");
-    expect((await sp.goto("/taxes"))!.status()).toBe(404);
-    for (const u of ["/api/finance/taxes/overview", "/api/finance/taxes/vat", "/api/finance/taxes/payments", "/api/finance/taxes/profile"]) expect((await sp.request.get(u)).status(), u).toBe(403);
+    expect((await sp.goto("/taxes"))!.status()).toBe(200);
+    for (const u of ["/api/finance/taxes/overview", "/api/finance/taxes/vat", "/api/finance/taxes/payments", "/api/finance/taxes/profile"]) expect((await sp.request.get(u)).status(), u).toBe(200);
+    expect((await sp.request.post("/api/finance/taxes/payments", { headers: ORIGIN, data: {} })).status()).toBe(403);
     expect((await sp.request.put("/api/finance/taxes/profile", { headers: ORIGIN, data: { isPkp: false, regime: "NONE", rateBps: null } })).status()).toBe(403);
     expect((await sp.request.post("/api/finance/taxes/corporate-journal", { headers: ORIGIN, data: { year: 2026 } })).status()).toBe(403);
     await sctx.close();
   });
-  test("Rekonsiliasi bank: impor CSV → cocok otomatis → catat biaya & bunga dari mutasi → selisih 0 → finalisasi → buka kembali; staff tidak punya akses", async ({ page, browser }) => {
+  test("Rekonsiliasi bank: impor CSV → cocok otomatis → catat biaya & bunga dari mutasi → selisih 0 → finalisasi → buka kembali; staf hanya mengerjakan draft", async ({ page, browser }) => {
     await login(page, "finance");
     const accts = (await (await page.request.get("/api/finance/cash-accounts/options")).json()).data as { id: string; name: string }[];
     const bca = accts.find((a) => a.name === "Bank E2E BCA")!;
@@ -501,13 +541,21 @@ test.describe("modul keuangan basis kas (UI + RBAC)", () => {
     const sctx = await browser.newContext();
     const sp = await sctx.newPage();
     await login(sp, "staff");
-    expect((await sp.goto("/reconciliation"))!.status()).toBe(404);
-    for (const u of ["/api/finance/bank/overview", "/api/finance/bank/statements"]) expect((await sp.request.get(u)).status(), u).toBe(403);
-    expect((await sp.request.post("/api/finance/bank/statements/preview", { headers: ORIGIN, data: { text: "a" } })).status()).toBe(403);
+    expect((await sp.goto("/reconciliation"))!.status()).toBe(200);
+    for (const u of ["/api/finance/bank/overview", "/api/finance/bank/statements"]) expect((await sp.request.get(u)).status(), u).toBe(200);
+    expect((await sp.request.post("/api/finance/bank/statements/preview", { headers: ORIGIN, data: { text: "a" } })).status()).not.toBe(403); // staf mengimpor (hanya validasi yang menolak)
+    // di ruang kerja: staf dapat mencocokkan draft tetapi finalisasi/buka kembali = Finance
+    await sp.goto(`/reconciliation/${(await (await sp.request.get("/api/finance/bank/statements")).json()).data[0].id}`);
+    await expect(sp.getByRole("button", { name: "Pencocokan otomatis" })).toBeVisible();
+    await expect(sp.getByRole("button", { name: "Finalisasi" })).toHaveCount(0);
+    await expect(sp.getByText(/Finalisasi dilakukan Finance Manager|menunggu finalisasi Finance Manager/)).toBeVisible();
+    const sid = (await (await sp.request.get("/api/finance/bank/statements")).json()).data[0].id as string;
+    expect((await sp.request.post(`/api/finance/bank/statements/${sid}/finalize`, { headers: ORIGIN, data: {} })).status()).toBe(403);
+    expect((await sp.request.post(`/api/finance/bank/statements/${sid}/reopen`, { headers: ORIGIN, data: { reason: "coba staf" } })).status()).toBe(403);
     await sctx.close();
   });
 
-  test("Tutup buku bulanan: daftar periksa → peringatan diakui → ditutup → transaksi bertanggal bulan itu ditolak → dibuka kembali; kunci bebas dihapus; staff tidak punya akses", async ({ page, browser }) => {
+  test("Tutup buku bulanan: daftar periksa → peringatan diakui → ditutup → transaksi bertanggal bulan itu ditolak → dibuka kembali; kunci bebas dihapus; staf hanya melihat", async ({ page, browser }) => {
     await login(page, "finance");
     await page.goto("/closing");
     await expect(page.getByRole("heading", { name: "Tutup Buku", exact: true, level: 1 })).toBeVisible();
@@ -575,13 +623,14 @@ test.describe("modul keuangan basis kas (UI + RBAC)", () => {
     expect(noNote.status()).toBe(422);
     expect((await page.request.put("/api/finance/books-lock", { headers: ORIGIN, data: { lockedThrough: null, reason: "coba-coba" } })).status()).toBe(405);
 
-    // staff: tidak dapat melihat/menutup/membuka
+    // staf: dapat melihat periode & daftar periksa, tidak dapat menutup/membuka
     const sctx = await browser.newContext();
     const sp = await sctx.newPage();
     await login(sp, "staff");
-    expect((await sp.goto("/closing"))!.status()).toBe(404);
-    expect((await sp.request.get("/api/finance/periods")).status()).toBe(403);
-    expect((await sp.request.get("/api/finance/periods/checklist?year=2026&month=1")).status()).toBe(403);
+    expect((await sp.goto("/closing"))!.status()).toBe(200);
+    await expect(sp.getByRole("button", { name: /Tutup bulan|Buka kembali/ })).toHaveCount(0);
+    expect((await sp.request.get("/api/finance/periods")).status()).toBe(200);
+    expect((await sp.request.get(`/api/finance/periods/checklist?year=${yy}&month=${mm}`)).status()).toBe(200);
     expect((await sp.request.post("/api/finance/periods/close", { headers: ORIGIN, data: { year: yy, month: mm, acknowledge: [], note: "coba staff" } })).status()).toBe(403);
     expect((await sp.request.post("/api/finance/periods/reopen", { headers: ORIGIN, data: { year: yy, month: mm, reason: "coba staff" } })).status()).toBe(403);
     await sctx.close();
@@ -599,7 +648,7 @@ test.describe("modul keuangan basis kas (UI + RBAC)", () => {
     expect((await entry(lastDay)).status()).toBe(201);
   });
 
-  test("Laporan keuangan: pembanding periode, pemeriksaan silang kas, unduhan PDF (laporan, pajak, rekonsiliasi); staff ditolak", async ({ page, browser }) => {
+  test("Laporan keuangan: pembanding periode, pemeriksaan silang kas, unduhan PDF (laporan, pajak, rekonsiliasi); staf boleh melihat", async ({ page, browser }) => {
     await login(page, "finance");
     await page.goto("/statements?type=income-statement");
     await expect(page.getByRole("heading", { name: "Laporan Keuangan", exact: true, level: 1 })).toBeVisible();
@@ -640,11 +689,12 @@ test.describe("modul keuangan basis kas (UI + RBAC)", () => {
       expect((await rec.body()).subarray(0, 5).toString()).toBe("%PDF-");
     }
 
-    // staff: tidak dapat mengunduh laporan apa pun
+    // staf: boleh mengunduh laporan (hanya-baca) — angka sama
     const sctx = await browser.newContext();
     const sp = await sctx.newPage();
     await login(sp, "staff");
-    for (const u of ["/api/finance/statements/income-statement?format=pdf", "/api/finance/taxes/vat?format=pdf", "/api/finance/periods"]) expect((await sp.request.get(u)).status(), u).toBe(403);
+    for (const u of ["/api/finance/statements/income-statement?format=pdf", "/api/finance/taxes/vat?format=pdf", "/api/finance/periods"]) expect((await sp.request.get(u)).status(), u).toBe(200);
+    expect((await sp.request.get("/api/dashboard")).status()).toBe(403); // dashboard tetap khusus Finance/Admin
     await sctx.close();
   });
 });

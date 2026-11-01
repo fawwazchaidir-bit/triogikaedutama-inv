@@ -19,7 +19,7 @@ type Style = NonNullable<React.ComponentProps<typeof View>["style"]>;
 export interface PdfImage { data: Buffer; format: "png" | "jpg" }
 
 export interface InvoicePdfData {
-  watermark: "DRAFT" | "DIBATALKAN" | null;
+  watermark: "DRAFT" | "DIBATALKAN" | "LUNAS" | null;
   /** true = sudah diverifikasi/diterbitkan → nomor, tanda tangan, dan cap boleh tampil. */
   approved: boolean;
   /** Peringatan singkat di kaki halaman (draft / dibatalkan). */
@@ -149,9 +149,10 @@ function Pair({ label, value, labelStyle, bold }: { label: string; value: string
 
 export function InvoicePdf({ data }: { data: InvoicePdfData }) {
   const c = data.company;
-  const wmColor = data.watermark === "DIBATALKAN" ? "#B3161F" : "#555555";
+  const TAG_COLOR = { DRAFT: "#444444", DIBATALKAN: "#B3161F", LUNAS: "#1B7F3B" } as const;
+  const wmColor = data.watermark ? TAG_COLOR[data.watermark] : "#555555";
   return (
-    <Document title={`Invoice ${data.meta.number}`} author={c.name} subject={`Invoice ${data.meta.number} — ${data.customerName}`} creator="Trilogika Invoice System" producer="Trilogika Invoice System">
+    <Document title={`Invoice ${data.meta.number}`} author={c.name} subject={`Invoice ${data.meta.number} — ${data.customerName}`} creator="Trilogika Financial Management System" producer="Trilogika Financial Management System">
       <Page size="A4" orientation="landscape" style={s.page}>
         <View style={s.content}>
         {/* ── Header: identitas | INVOICE (tengah) | nomor & tanggal (mepet kanan) ── */}
@@ -170,7 +171,7 @@ export function InvoicePdf({ data }: { data: InvoicePdfData }) {
           <View style={s.titleWrap}>
             <Text style={s.title}>INVOICE</Text>
             {data.watermark && (
-              <Text style={[s.statusTag, { color: data.watermark === "DIBATALKAN" ? "#B3161F" : "#444444" }]}>** {data.watermark} **</Text>
+              <Text style={[s.statusTag, { color: wmColor }]}>** {data.watermark} **</Text>
             )}
           </View>
           <View style={s.metaWrap}>

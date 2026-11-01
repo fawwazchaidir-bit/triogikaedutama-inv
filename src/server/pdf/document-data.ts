@@ -11,6 +11,7 @@ import { terbilang } from "@/lib/finance/terbilang";
 import { numberForFilename } from "@/lib/finance/invoice-number";
 import { resolveRemark } from "@/lib/finance/remark";
 import { formatDateShort } from "@/lib/format";
+import { settlementDate } from "@/lib/finance/settlement";
 import type { InvoicePdfData, PdfImage } from "./InvoicePdf";
 import type { InvoiceTaxGroupDto } from "@/lib/types";
 
@@ -20,6 +21,8 @@ import type { InvoiceTaxGroupDto } from "@/lib/types";
  *                         Finance Manager, dan cap muncul.
  *  • DRAFT / SUBMITTED  → dari data tersimpan + master saat ini, diberi watermark DRAFT. TANPA nomor, tanda tangan, dan cap
  *                         sampai diverifikasi (dicegah di sini, di sumber data — bukan sekadar disembunyikan di template).
+ *  • ISSUED + LUNAS     → isi tetap dari snapshot; ditambah watermark LUNAS + tanggal pelunasan sehingga berfungsi sebagai bukti pembayaran (kwitansi).
+ *                         Status lunas dibaca saat PDF dibuat: bila pembayaran dibalik, watermark otomatis hilang.
  * Tidak pernah memakai nilai dari input browser yang belum disimpan.
  */
 
@@ -38,6 +41,8 @@ export interface InvoiceDocument {
   data: InvoicePdfData;
   filename: string;
   status: "DRAFT" | "SUBMITTED" | "ISSUED" | "CANCELLED";
+  /** Invoice terbit yang sudah lunas → PDF berwatermark LUNAS. */
+  paid: boolean;
   number: string | null;
   invoiceId: string;
 }
@@ -108,17 +113,27 @@ export async function loadInvoiceDocument(actor: Actor, id: string): Promise<Inv
   summary.push({ label: "Nett Total", value: formatRupiah(total, style), bold: true });
   if (dp > 0) summary.push({ label: "Sisa Tagihan", value: formatRupiah(total - dp, style), bold: true });
 
+  // Lunas hanya berarti pada invoice TERBIT (batal/draft tidak pernah "lunas").
+  let paidOn: string | null = null;
+  if (inv.status === "ISSUED" && inv.paymentStatus === "PAID") {
+    const pays = await prisma.payment.findMany({ where: { invoiceId: inv.id }, select: { id: true, entryType: true, reversesPaymentId: true, paymentDate: true } });
+    paidOn = settlementDate(pays.map((p) => ({ id: p.id, entryType: p.entryType, reversesPaymentId: p.reversesPaymentId, date: dateToIso(p.paymentDate) })));
+  }
+  const paid = paidOn !== null;
+  if (paid) summary.push({ label: "Status", value: `LUNAS (${formatDateShort(paidOn)})`, bold: true, rule: false });
+
   const number = isDraft ? "DRAFT" : inv.number!;
   const inwordAmount = display.terbilangSource === "BALANCE" ? total - dp : total;
 
   const [logo, stamp, signature] = await Promise.all([image(company.logoFileId), image(company.stampFileId), image(company.signatureFileId)]);
 
   const data: InvoicePdfData = {
-    watermark: isDraft ? "DRAFT" : inv.status === "CANCELLED" ? "DIBATALKAN" : null,
+    watermark: isDraft ? "DRAFT" : inv.status === "CANCELLED" ? "DIBATALKAN" : paid ? "LUNAS" : null,
     approved: !isDraft,
     disclaimer: isDraft
       ? "DRAFT — belum diverifikasi Finance Manager. Bukan invoice resmi; jangan dikirim atau ditagihkan kepada pelanggan."
-      : inv.status === "CANCELLED" ? "Invoice ini telah DIBATALKAN dan tidak berlaku sebagai tagihan." : null,
+      : inv.status === "CANCELLED" ? "Invoice ini telah DIBATALKAN dan tidak berlaku sebagai tagihan."
+        : paid ? `LUNAS — pembayaran diterima penuh pada ${formatDateShort(paidOn)}. Dokumen ini berfungsi sebagai bukti pembayaran.` : null,
     company: {
       name: company.name, tagline: company.tagline,
       addressLines: company.address.split(/\r?\n/).map((l) => l.trim()).filter(Boolean),
@@ -138,8 +153,8 @@ export async function loadInvoiceDocument(actor: Actor, id: string): Promise<Inv
 
   const filename = isDraft
     ? `Invoice_DRAFT_${inv.id.slice(0, 8)}_${safeCustomer(customerName)}.pdf`
-    : `Invoice_${numberForFilename(number)}_${safeCustomer(customerName)}.pdf`;
-  return { data, filename, status: inv.status, number: inv.number, invoiceId: inv.id };
+    : `Invoice_${numberForFilename(number)}_${safeCustomer(customerName)}${paid ? "_LUNAS" : ""}.pdf`;
+  return { data, filename, status: inv.status, paid, number: inv.number, invoiceId: inv.id };
 }
 
 export { formatNumberId };

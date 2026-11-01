@@ -19,20 +19,21 @@ const today = () => new Date(Date.now() + 7 * 3_600_000).toISOString().slice(0, 
  * Dialog pencatatan entri kas. `mode="expense"` = pengeluaran (kategori beban, arah keluar); `mode="other"` = penerimaan lain,
  * investasi, pendanaan (hanya Finance Manager/Admin). Isi dialog dipasang HANYA saat terbuka agar state selalu bersih.
  */
-export function EntryCreate({ mode, accounts, categories, label }: { mode: "expense" | "other"; accounts: CashAccountOptionDto[]; categories: CoaAccountDto[]; label?: string }) {
+/** `incomeOnly` (mode "other"): pencatat hanya boleh penerimaan lain (kategori pendapatan, selalu masuk) — menunggu persetujuan bila bukan penyetuju. */
+export function EntryCreate({ mode, accounts, categories, label, incomeOnly = false }: { mode: "expense" | "other"; accounts: CashAccountOptionDto[]; categories: CoaAccountDto[]; label?: string; incomeOnly?: boolean }) {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <Button variant="primary" onClick={() => setOpen(true)}><Plus className="size-4" />{label ?? (mode === "expense" ? "Catat pengeluaran" : "Catat penerimaan / non-operasional")}</Button>
-      {open && <EntryDialog mode={mode} accounts={accounts} categories={categories} onClose={() => setOpen(false)} />}
+      <Button variant="primary" onClick={() => setOpen(true)}><Plus className="size-4" />{label ?? (mode === "expense" ? "Catat pengeluaran" : incomeOnly ? "Catat penerimaan lain" : "Catat penerimaan / non-operasional")}</Button>
+      {open && <EntryDialog mode={mode} incomeOnly={incomeOnly} accounts={accounts} categories={categories} onClose={() => setOpen(false)} />}
     </>
   );
 }
 
-function EntryDialog({ mode, accounts, categories, onClose }: { mode: "expense" | "other"; accounts: CashAccountOptionDto[]; categories: CoaAccountDto[]; onClose: () => void }) {
+function EntryDialog({ mode, incomeOnly, accounts, categories, onClose }: { mode: "expense" | "other"; incomeOnly: boolean; accounts: CashAccountOptionDto[]; categories: CoaAccountDto[]; onClose: () => void }) {
   const router = useRouter();
   const toast = useToast();
-  const cats = categories.filter((c) => c.isActive && c.manualEntry && (mode === "expense" ? c.type === "BEBAN" : c.type !== "BEBAN"));
+  const cats = categories.filter((c) => c.isActive && c.manualEntry && (mode === "expense" ? c.type === "BEBAN" : incomeOnly ? c.type === "PENDAPATAN" : c.type !== "BEBAN"));
   const [f, setF] = useState({
     date: today(), cashAccountId: accounts.find((a) => a.isDefault && a.kind === "BANK")?.id ?? accounts[0]?.id ?? "", counterAccountId: "",
     direction: "OUT" as "IN" | "OUT", amount: null as number | null, payee: "", description: "", reference: "",
@@ -66,7 +67,7 @@ function EntryDialog({ mode, accounts, categories, onClose }: { mode: "expense" 
       const e = await api<CashEntryDto>("/api/finance/entries", {
         body: { entryDate: f.date, cashAccountId: f.cashAccountId, counterAccountId: f.counterAccountId, direction, amount: f.amount ?? 0, description: f.description, payee: f.payee, reference: f.reference, proofFileId },
       });
-      toast.success(e.status === "PENDING" ? "Pengeluaran diajukan; menunggu persetujuan Finance Manager." : "Entri kas dicatat.");
+      toast.success(e.status === "PENDING" ? `${mode === "expense" ? "Pengeluaran" : "Penerimaan"} diajukan; menunggu persetujuan Finance Manager.` : "Entri kas dicatat.");
       onClose(); router.refresh();
     } catch (e) {
       const fieldErrs = e instanceof ApiClientError ? e.fieldErrors : {}; setFe(fieldErrs); setError(Object.keys(fieldErrs).length ? null : errorMessage(e));
@@ -74,8 +75,8 @@ function EntryDialog({ mode, accounts, categories, onClose }: { mode: "expense" 
   }
 
   return (
-    <Dialog open onClose={() => !busy && onClose()} title={mode === "expense" ? "Catat pengeluaran" : "Catat penerimaan / non-operasional"}
-      description={mode === "expense" ? "Pengeluaran staff menunggu persetujuan Finance Manager sebelum masuk saldo dan laporan." : "Penerimaan lain, pembelian/penjualan aset, modal, prive, dan pinjaman. Langsung berlaku."}
+    <Dialog open onClose={() => !busy && onClose()} title={mode === "expense" ? "Catat pengeluaran" : incomeOnly ? "Catat penerimaan lain" : "Catat penerimaan / non-operasional"}
+      description={mode === "expense" ? "Pengeluaran oleh staf menunggu persetujuan Finance Manager sebelum masuk saldo dan laporan." : incomeOnly ? "Penerimaan lain (mis. bunga, jasa giro, hibah). Menunggu persetujuan Finance Manager sebelum masuk saldo dan laporan." : "Penerimaan lain, pembelian/penjualan aset, modal, prive, dan pinjaman. Langsung berlaku."}
       footer={<><Button onClick={onClose} disabled={busy}>Batal</Button><Button variant="primary" loading={busy} onClick={() => void submit()}>Simpan</Button></>}>
       <div className="grid gap-4 sm:grid-cols-2">
         {error && <div className="sm:col-span-2"><Notice tone="danger">{error}</Notice></div>}

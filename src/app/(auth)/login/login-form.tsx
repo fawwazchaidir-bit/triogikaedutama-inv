@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { api, ApiClientError } from "@/lib/api-client";
 import { Button } from "@/components/ui/button";
-import { TextField } from "@/components/ui/field";
+import { PasswordField, TextField } from "@/components/ui/field";
 import { Notice } from "@/components/ui/card";
 
 export function LoginForm() {
@@ -34,12 +34,12 @@ export function LoginForm() {
         <Image src="/brand/logo.png" alt="Trilogika Edutama" width={72} height={72} priority unoptimized />
         <div>
           <h1 className="text-xl font-semibold text-ink">Trilogika Edutama</h1>
-          <p className="text-sm text-muted">Invoice Management System</p>
+          <p className="text-sm text-muted">Financial Management System</p>
         </div>
       </div>
       {error && <Notice tone="danger">{error}</Notice>}
       <TextField label="Email" type="email" name="email" autoComplete="username" required autoFocus value={email} onChange={(e) => setEmail(e.target.value)} />
-      <TextField label="Password" type="password" name="password" autoComplete="current-password" required value={password} onChange={(e) => setPassword(e.target.value)} />
+      <PasswordField label="Password" name="password" autoComplete="current-password" required value={password} onChange={(e) => setPassword(e.target.value)} />
       <Button type="submit" variant="primary" loading={loading} className="w-full">Masuk</Button>
     </form>
   );

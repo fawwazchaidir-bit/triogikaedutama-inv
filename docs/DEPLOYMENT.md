@@ -51,7 +51,7 @@ sudo -E -u trilogika npm run db:seed     # satu kali (butuh ADMIN_EMAIL & ADMIN_
 
 ```ini
 [Unit]
-Description=Trilogika Invoice
+Description=Trilogika Financial Management System
 After=network.target postgresql.service
 
 [Service]
@@ -117,7 +117,7 @@ Pasang reverse proxy HTTPS (konfigurasi Nginx di atas) di depan `127.0.0.1:3000`
 5. **Pengaturan → Penomoran invoice**: konfirmasi nomor berikutnya (**periksa dulu apakah 00434/00435 sudah terpakai**).
 6. **Produk & Layanan**: lengkapi katalog. **Pelanggan**: tambahkan pelanggan aktif.
 6b. **Pengaturan → Keuangan**: tinjau **bagan akun usulan** bersama akuntan; tambahkan **akun kas & bank beserta saldo awal dan tanggalnya** (sebelum pembayaran invoice pertama dicatat agar masuk saldo). Pembayaran sebelum akun ada ditandai "belum dialokasikan" (dibukukan ke akun penampung 1-1450). Setelah itu, di **Jurnal**, input **jurnal saldo awal** untuk aset tetap/utang/modal (bertanggal tepat pada tanggal mulai pembukuan = saldo awal akun kas tertua) dan — setelah laporan bulanan final — gunakan **Tutup buku**. Pastikan bagan akun sudah diterapkan (`npm run db:seed` idempoten) sebelum membuka Laporan Keuangan.
-7. **Pengaturan → Pengguna**: buat akun **Finance Manager** (penyetuju) & **Staff Operasional** (penginput) — password sementara, wajib diganti. Periksa **Pengaturan → Perusahaan & dokumen → Jabatan penandatangan = "Finance Manager"** dan unggah tanda tangan & cap (hanya tercetak pada invoice yang sudah disetujui).
+7. **Pengaturan → Pengguna**: buat akun **Finance Manager** (penyetuju) & **Staf Administrasi Keuangan** (penginput) — password sementara, wajib diganti. Periksa **Pengaturan → Perusahaan & dokumen → Jabatan penandatangan = "Finance Manager"** dan unggah tanda tangan & cap (hanya tercetak pada invoice yang sudah disetujui).
 8. Uji alur penuh: login Staff → buat & **ajukan** invoice uji → login Finance Manager → **setujui & terbitkan** → unduh PDF (landscape) → bandingkan dengan dokumen Word → batalkan (alasan: uji) bila tidak dipakai. Pastikan PDF sebelum disetujui berwatermark DRAFT.
 9. Jadwalkan backup & rekonsiliasi (bagian 5) dan **lakukan satu kali latihan pemulihan**.
 

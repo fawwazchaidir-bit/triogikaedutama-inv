@@ -25,7 +25,11 @@ export default async function StatementPage({ params }: { params: Promise<{ id: 
   let ws;
   try { ws = await getStatementWorkspace(user, id); } catch (e) { if (e instanceof AppError || (e instanceof Error && e.name === "ZodError")) notFound(); throw e; }
   const canAct = can(user.role, "bank:reconcile");
-  const categories = canAct ? await listCoaAccounts(user) : [];
+  const canFinalize = can(user.role, "bank:finalize");
+  const approvalRequired = !can(user.role, "expense:approve"); // pencatat non-penyetuju: entri dari mutasi menunggu persetujuan
+  // Tanpa izin mencatat semua jenis entri (cash:record), kategori dibatasi ke beban (uang keluar) dan pendapatan lain (uang masuk).
+  const allCategories = canAct ? await listCoaAccounts(user) : [];
+  const categories = can(user.role, "cash:record") ? allCategories : allCategories.filter((c) => c.type === "BEBAN" || c.type === "PENDAPATAN");
   const s = ws.statement, sum = ws.summary;
   const draft = s.status === "DRAFT";
   return (
@@ -42,7 +46,7 @@ export default async function StatementPage({ params }: { params: Promise<{ id: 
           <div><dt className="text-muted">Selisih</dt><dd role="status" className={cn("tabular text-lg font-semibold", sum.difference === 0 ? "text-emerald-700" : "text-brand-700")}>{R(sum.difference)}{sum.difference === 0 ? " ✓" : ""}</dd></div>
         </dl>
         {draft && sum.problems.length > 0 && <p className="border-t border-line px-5 py-3 text-sm text-muted">Belum dapat difinalisasi: {sum.problems.join("; ")}.</p>}
-        <div className="border-t border-line px-5 py-3"><StatementActions ws={ws} canAct={canAct} /></div>
+        <div className="border-t border-line px-5 py-3"><StatementActions ws={ws} canAct={canAct} canFinalize={canFinalize} /></div>
       </Card>
 
       <Card className="mb-4">
@@ -61,7 +65,7 @@ export default async function StatementPage({ params }: { params: Promise<{ id: 
                     <Td>{l.matches.length === 0 ? <Badge tone="amber">Belum cocok</Badge> : (
                       <ul className="space-y-0.5 text-xs">{l.matches.map((m) => <li key={m.id}>{m.label} <span className="text-muted">({m.method === "AUTO" ? "otomatis" : "manual"})</span></li>)}{!full && <li className="text-brand-700">Sisa {R(l.amount - l.matched)}</li>}</ul>
                     )}</Td>
-                    <Td align="right"><LineActions line={l} outstanding={ws.outstanding} categories={categories} locked={!canAct || !draft} /></Td>
+                    <Td align="right"><LineActions line={l} outstanding={ws.outstanding} categories={categories} locked={!canAct || !draft} approvalRequired={approvalRequired} /></Td>
                   </tr>
                 );
               })}

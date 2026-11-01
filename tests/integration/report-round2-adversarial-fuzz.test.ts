@@ -44,11 +44,13 @@ function rng(seed: number) {
 const dateOf = (offset: number) => new Date(Date.UTC(2026, 0, 1 + offset)).toISOString().slice(0, 10);
 
 describe("izin & masukan tak sah", () => {
-  it("Staff ditolak untuk semua laporan, kecocokan kas, laporan pajak, dan laporan rekonsiliasi", async () => {
-    for (const f of [
-      () => runStatement(fx.staff, "income-statement", { compare: "previous" }), () => getCashTieOut(fx.staff, {}), () => runTaxReport(fx.staff, "vat-summary", {}),
-      () => runReconciliationReport(fx.staff, crypto.randomUUID()),
-    ]) expect((await err(f()))?.code).toBe("FORBIDDEN");
+  it("Staf boleh MELIHAT/mengunduh laporan keuangan, kecocokan kas, laporan pajak, dan laporan rekonsiliasi (angka sama dengan Finance); id rekonsiliasi acak → tidak ditemukan", async () => {
+    const a = await runStatement(fx.staff, "income-statement", { compare: "previous" });
+    const b = await runStatement(fx.finance, "income-statement", { compare: "previous" });
+    expect({ ...a, generatedAt: "" }).toEqual({ ...b, generatedAt: "" });
+    expect(await getCashTieOut(fx.staff, {})).toEqual(await getCashTieOut(fx.finance, {}));
+    expect((await runTaxReport(fx.staff, "vat-summary", {})).title).toBe("Rekap PPN Keluaran");
+    expect((await err(runReconciliationReport(fx.staff, crypto.randomUUID())))?.code).toBe("NOT_FOUND");
   });
 
   it("masukan aneh: compare tak dikenal, tanggal terbalik/masa depan, akun buku besar tanpa pilihan, laporan tak dikenal, id rekonsiliasi acak", async () => {

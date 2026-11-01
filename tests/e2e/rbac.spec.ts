@@ -4,11 +4,12 @@ import { login } from "./helpers";
 const ORIGIN = { Origin: "http://127.0.0.1:3100" };
 
 test.describe("RBAC end-to-end", () => {
-  test("Staff Operasional: setara Finance Manager kecuali approval & dashboard; API sensitif → 403", async ({ page }) => {
+  test("Staf Administrasi Keuangan: setara Finance Manager kecuali approval, koreksi, dashboard; API sensitif → 403", async ({ page }) => {
     await login(page, "staff");
     const nav = page.getByRole("navigation", { name: "Menu utama" });
     // Pembayaran & Laporan kini tersedia; Dashboard tetap tidak ada
-    await expect(nav.getByRole("link")).toHaveText(["Invoice", "Pelanggan", "Produk & Layanan", "Pembayaran", "Pengeluaran", "Laporan", "Pengaturan"]);
+    await expect(nav.getByRole("link")).toHaveText(["Invoice", "Pelanggan", "Produk & Layanan", "Pembayaran", "Pengeluaran", "Kas & Bank", "Rekonsiliasi Bank", "Jurnal", "Laporan", "Laporan Keuangan", "Pajak", "Tutup Buku", "Pengaturan"]);
+    await expect(page.getByText("Staf Administrasi Keuangan", { exact: true })).toBeVisible(); // label peran di sidebar
 
     // staff melihat seluruh invoice (draft miliknya + invoice terbit lainnya)
     await page.goto("/invoices");

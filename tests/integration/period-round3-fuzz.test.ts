@@ -9,6 +9,7 @@ import { createJournal } from "@/server/services/journals";
 import { getTrialBalance } from "@/server/services/finance-ledger";
 import { closePeriod, listPeriods, reopenPeriod } from "@/server/services/periods";
 import { getBooksLock } from "@/server/services/books-lock";
+import { todayIso } from "@/lib/format";
 import { periodEnd } from "@/lib/accounting/periods";
 import { AppError } from "@/server/errors";
 
@@ -52,6 +53,8 @@ const expenseIn = (from: string, to: string) => q(`SELECT (
 async function run(seed: number, steps: number) {
   const R = rng(seed);
   const big = await issueInvoice(fx.finance, (await createDraft(fx.finance, demiChefInput(fx, { invoiceDate: "2026-01-01", paymentTermDays: 30, lines: [{ ...demiChefInput(fx).lines[0]!, quantity: 700 }] }))).id);
+  const now = todayIso("Asia/Jakarta"); // bulan 2026 terakhir yang sudah berakhir pada hari uji (bulan berjalan tak dapat ditutup)
+  const lastEnded = Number(now.slice(0, 4)) > 2026 ? 12 : Number(now.slice(5, 7)) - 1;
   let lastClosed = 0; // bulan terakhir yang ditutup menurut model (0 = tidak ada)
   const frozen = new Map<number, string>(); // bulan → neraca saldo saat ditutup
   const tbJson = async (m: number) => JSON.stringify((await getTrialBalance(fx.finance, { to: periodEnd(2026, m) })).rows.map((r) => [r.code, r.net]));
@@ -78,8 +81,8 @@ async function run(seed: number, steps: number) {
       await expectOutcome(date, "jurnal", () => createJournal(fx.finance, { journalDate: date, description: `Penyusutan ${i}`, lines: [{ accountId: c("6-2000"), debit: amount, credit: 0 }, { accountId: c("1-2900"), debit: 0, credit: amount }] }));
     }
     else if (op < 90) {
-      const m = R.pick([lastClosed + 1, lastClosed + 1, lastClosed + 1, lastClosed + 2, lastClosed, 10]);
-      const ok = m === lastClosed + 1 && m >= 1 && m <= 9;
+      const m = R.pick([lastClosed + 1, lastClosed + 1, lastClosed + 1, lastClosed + 2, lastClosed, Math.min(lastEnded + 1, 12)]);
+      const ok = m === lastClosed + 1 && m >= 1 && m <= lastEnded;
       const e = await err(closePeriod(fx.finance, { year: 2026, month: m, acknowledge: ["bank-recon", "negative-cash", "unallocated", "withholding-ref", "draft-invoices"], note: `Tutup ${m}` }));
       log.push(`tutup ${m} → ${e ? e.code : "ok"}`);
       if (ok) { expect(e, `tutup ${m} harus berhasil: ${e?.message}\n${log.slice(-6).join("\n")}`).toBeNull(); lastClosed = m; frozen.set(m, await tbJson(m)); }

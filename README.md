@@ -1,8 +1,8 @@
-# Trilogika Invoice — Invoice Management System
+# Trilogika Financial Management System
 
-Aplikasi invoice internal **Trilogika Edutama** yang menggantikan pembuatan invoice manual di Microsoft Word:
-data dimasukkan **sekali**, disimpan terstruktur di PostgreSQL, lalu dipakai ulang untuk nomor otomatis, perhitungan,
-terbilang, PDF, pembayaran, dashboard, dan laporan.
+Aplikasi keuangan internal **Trilogika Edutama**: invoice (menggantikan pembuatan invoice manual di Microsoft Word), pembayaran, kas & bank,
+buku besar, laporan keuangan, pajak, rekonsiliasi bank, dan tutup buku. Data dimasukkan **sekali**, disimpan terstruktur di PostgreSQL, lalu dipakai ulang untuk nomor otomatis,
+perhitungan, terbilang, PDF, dashboard, dan seluruh laporan.
 
 > Aplikasi **berfungsi penuh** (bukan mockup): login berperan, master data, mesin invoice dengan alur persetujuan, PDF A4 landscape, pembayaran,
 > dashboard, laporan, audit log — semuanya tersimpan permanen di database dan diuji (lihat [Pengujian](#pengujian)).
@@ -11,11 +11,11 @@ terbilang, PDF, pembayaran, dashboard, dan laporan.
 
 | Area | Ringkasan |
 |---|---|
-| **Invoice** | **Staff Operasional** menginput data lengkap → **ajukan** → **Finance Manager** memeriksa (melihat seluruh data) lalu **menyetujui & menerbitkan** atau **mengembalikan** dengan alasan → unduh PDF resmi. Nomor otomatis & unik (aman untuk pengguna bersamaan), jatuh tempo otomatis (hari kalender/kerja), banyak item, diskon, pajak, transport, administrasi, DP, terbilang bahasa Indonesia. Duplikasi, pembatalan (nomor & riwayat dipertahankan), ekspor CSV/Excel. |
+| **Invoice** | **Staf Administrasi Keuangan** menginput data lengkap → **ajukan** → **Finance Manager** memeriksa (melihat seluruh data) lalu **menyetujui & menerbitkan** atau **mengembalikan** dengan alasan → unduh PDF resmi. Nomor otomatis & unik (aman untuk pengguna bersamaan), jatuh tempo otomatis (hari kalender/kerja), banyak item, diskon, pajak, transport, administrasi, DP, terbilang bahasa Indonesia. Duplikasi, pembatalan (nomor & riwayat dipertahankan), ekspor CSV/Excel. |
 | **Keuangan** | Mesin kalkulasi terpusat berbasis bilangan bulat Rupiah (BigInt), urutan perhitungan eksplisit, satu aturan pembulatan, pajak dapat dikonfigurasi (tarif, DPP pecahan, inklusif/eksklusif). |
 | **Snapshot** | Invoice terbit membekukan pelanggan, lembaga, rekening, harga, dan pajak. Mengubah master tidak mengubah invoice lama — dijaga aplikasi **dan** trigger database. |
 | **Pembayaran** | Buku besar *append-only*; pembayaran sebagian/lunas; koreksi lewat pembalikan (tidak ada penghapusan); bukti bayar; kelebihan bayar ditolak. |
-| **PDF** | **A4 landscape** meniru invoice referensi Trilogika (judul INVOICE di tengah, blok Number/Inv. Date/Payment Term/Due Date mepet kanan); *Product Description* dinamis (nama peserta, dll) sedangkan *Remark* tetap mengikuti program; deskripsi panjang & banyak item membungkus otomatis; header tabel berulang; **watermark DRAFT** pada dokumen yang belum diverifikasi (tanpa nomor, tanda tangan, dan cap — baru muncul setelah disetujui Finance Manager), watermark DIBATALKAN; logo, cap, tanda tangan dari Pengaturan; nama file otomatis `Invoice_00434_CV_Bima_Satria_Jaya.pdf`. |
+| **PDF** | **A4 landscape** meniru invoice referensi Trilogika (judul INVOICE di tengah, blok Number/Inv. Date/Payment Term/Due Date mepet kanan); *Product Description* dinamis (nama peserta, dll) sedangkan *Remark* tetap mengikuti program; deskripsi panjang & banyak item membungkus otomatis; header tabel berulang; **watermark DRAFT** pada dokumen yang belum diverifikasi (tanpa nomor, tanda tangan, dan cap — baru muncul setelah disetujui Finance Manager), watermark DIBATALKAN; logo, cap, tanda tangan dari Pengaturan; nama file otomatis `Invoice_00434_CV_Bima_Satria_Jaya.pdf`. Invoice **lunas** otomatis berwatermark **LUNAS** + tanggal pelunasan (berfungsi sebagai kwitansi; hilang bila pembayaran dibalik). |
 | **Keuangan (basis kas, SAK EMKM)** | Pengeluaran (staff mengajukan → Finance Manager menyetujui; **bukti wajib di atas Rp1 juta**), Kas & Bank dengan **saldo awal manual**, transfer, penerimaan non-operasional, bagan akun usulan SAK EMKM. Pembayaran invoice otomatis masuk akun kas/bank. Entri berlaku tidak dapat diubah (koreksi = pembalikan). |
 | **Buku besar & laporan** | **Buku jurnal** (jurnal kas diturunkan otomatis — tidak mungkin berselisih dari modul kas), **jurnal manual** seimbang, **buku besar per akun, neraca saldo, laba rugi, neraca, arus kas** dengan **pembanding periode sebelumnya / tahun lalu**, pemeriksaan silang kas, dan ekspor **CSV / Excel / PDF**. Dijaga trigger database (jurnal seimbang saat commit, append-only); diuji dengan fuzz + oracle SQL. |
 | **Pajak** | **PPN keluaran** dipisah per pembayaran, **PPh yang dipotong pelanggan** (kredit pajak + register bukti potong), **setoran pajak**, dan **estimasi PPh badan** dengan tarif yang Anda isi sendiri (sistem tidak mengasumsikan tarif). Estimasi manajemen, bukan SPT. |
@@ -23,7 +23,7 @@ terbilang, PDF, pembayaran, dashboard, dan laporan.
 | **Tutup buku bulanan** | Tutup bulan berurutan dengan **daftar periksa** (wajib vs peringatan yang harus diakui), **foto + hash** neraca saldo untuk mendeteksi perubahan diam-diam, transaksi bertanggal bulan tertutup ditolak (aplikasi **dan** database), buka kembali hanya periode terakhir dengan alasan. |
 | **Master data** | Pelanggan (autocomplete, pencegahan duplikasi, arsip, riwayat & piutang), produk/layanan (template deskripsi otomatis), pajak, rekening bank. |
 | **Dashboard & laporan** | 10 metrik dengan definisi eksplisit (nilai invoice ≠ kas ≠ piutang), grafik tren, 9 laporan + ekspor CSV/XLSX. |
-| **Keamanan** | Login berperan (Administrator / Finance Manager / Staff Operasional; Staff = Finance Manager tanpa approval & dashboard, sehingga input ↔ verifikasi terpisah) ditegakkan di backend, sesi ber-hash, scrypt, rate limit login, CSRF, header keamanan, validasi unggahan berdasarkan isi file, audit log append-only. |
+| **Keamanan** | Login berperan (Administrator / Finance Manager / Staf Administrasi Keuangan; staf = mencatat & melihat, Finance Manager = menyetujui, membalikkan, memfinalisasi, dan menutup buku, sehingga input ↔ verifikasi terpisah; tombol tampil/sembunyikan password di halaman login) ditegakkan di backend, sesi ber-hash, scrypt, rate limit login, CSRF, header keamanan, validasi unggahan berdasarkan isi file, audit log append-only. |
 
 ## Teknologi
 

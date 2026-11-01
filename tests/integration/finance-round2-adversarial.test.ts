@@ -8,6 +8,9 @@ import { approveEntry, cancelPendingEntry, createEntry, createTransfer, listEntr
 import { createCoaAccount, listCoaAccounts, updateCoaAccount } from "@/server/services/finance-coa";
 import { getAccountLedger, getCashFlow, getFinanceWarnings, getIncomeStatement, runStatement } from "@/server/services/finance-statements";
 import { readFileForActor, storeFile } from "@/server/services/files";
+import { createJournal } from "@/server/services/journals";
+import { recordTaxPayment } from "@/server/services/finance-tax";
+import { closePeriod } from "@/server/services/periods";
 import { todayIso } from "@/lib/format";
 import { CASH_AMOUNT_MAX } from "@/lib/accounting/limits";
 import { AppError } from "@/server/errors";
@@ -145,30 +148,47 @@ describe("pagar database (SQL langsung melewati aplikasi)", () => {
 });
 
 describe("izin silang & pemisahan tugas (service)", () => {
-  it("Staff hanya dapat mencatat PENGELUARAN; penerimaan lain/investasi/pendanaan/transfer/persetujuan/koreksi/laporan semuanya ditolak", async () => {
-    const base = { cashAccountId: fx.bankAcctId, amount: 50_000, description: "Percobaan staff", entryDate: "2026-03-09" };
-    expect(await code(createEntry(fx.staff, { ...base, counterAccountId: fx.coa["4-2200"], direction: "IN" }))).toBe("FORBIDDEN"); // pendapatan lain
+  it("Staf Administrasi Keuangan: mencatat pengeluaran & penerimaan lain (menunggu persetujuan) dan transfer; investasi/pendanaan/prive, persetujuan, koreksi, jurnal, setoran pajak, tutup buku, dan pengelolaan akun ditolak; laporan hanya-baca", async () => {
+    const base = { cashAccountId: fx.bankAcctId, amount: 50_000, description: "Percobaan staf", entryDate: "2026-03-09" };
+    // penerimaan lain (akun pendapatan, masuk) → diizinkan tetapi MENUNGGU persetujuan (maker-checker, sama seperti pengeluaran)
+    const other = await createEntry(fx.staff, { ...base, counterAccountId: fx.coa["4-2200"], direction: "IN" });
+    expect(other).toMatchObject({ status: "PENDING", direction: "IN", counterCode: "4-2200", createdByName: "Staff Uji" });
+    expect((await listCashAccounts(fx.finance)).find((a) => a.id === fx.bankAcctId)!.balance).toBe(10_000_000); // belum masuk saldo
+    expect(await code(createEntry(fx.staff, { ...base, counterAccountId: fx.coa["4-2200"], direction: "OUT" }))).toBe("VALIDATION"); // pendapatan harus masuk
+    // jenis lain = otoritas Finance Manager (cash:record)
     expect(await code(createEntry(fx.staff, { ...base, counterAccountId: fx.coa["1-2100"], direction: "OUT" }))).toBe("FORBIDDEN"); // investasi
     expect(await code(createEntry(fx.staff, { ...base, counterAccountId: fx.coa["3-1100"], direction: "IN" }))).toBe("FORBIDDEN"); // modal
     expect(await code(createEntry(fx.staff, { ...base, counterAccountId: fx.coa["3-1200"], direction: "OUT" }))).toBe("FORBIDDEN"); // prive
     expect(await code(createEntry(fx.staff, { ...base, counterAccountId: fx.coa["6-1300"], direction: "IN" }))).toBe("VALIDATION"); // beban masuk
-    expect(await code(createTransfer(fx.staff, { transferDate: "2026-03-09", fromAccountId: fx.bankAcctId, toAccountId: fx.cashAcctId, amount: 1000 }))).toBe("FORBIDDEN");
+    // transfer antar akun: diizinkan dan langsung berlaku; membalikkannya = otoritas Finance
+    const tr = await createTransfer(fx.staff, { transferDate: "2026-03-09", fromAccountId: fx.bankAcctId, toAccountId: fx.cashAcctId, amount: 1000 });
+    expect(tr.createdByName).toBe("Staff Uji");
+    const bal = (await listCashAccounts(fx.staff)).map((a) => [a.name, a.balance]).sort();
+    expect(bal).toEqual([["Bank Mandiri", 9_999_000], ["Kas Kecil", 1_001_000]]);
+    expect(await code(reverseTransfer(fx.staff, tr.id, { reason: "tidak berwenang" }))).toBe("FORBIDDEN");
+
     const pend = await entry(fx.staff);
-    // izin approve harus berdiri sendiri (bukan hanya tertutup aturan "bukan pencatat"): staff LAIN pun tidak boleh menyetujui
+    // izin approve harus berdiri sendiri (bukan hanya tertutup aturan "bukan pencatat"): staf LAIN pun tidak boleh menyetujui
     expect(await code(approveEntry(fx.staff2, pend.id))).toBe("FORBIDDEN");
     expect((await prisma.cashEntry.findUniqueOrThrow({ where: { id: pend.id } })).status).toBe("PENDING");
     for (const fn of [
       () => approveEntry(fx.staff, pend.id), () => rejectEntry(fx.staff, pend.id, { reason: "tidak berwenang" }), () => reverseEntry(fx.staff, pend.id, { reason: "tidak berwenang" }),
-      () => listCashAccounts(fx.staff), () => getCashFlow(fx.staff, {}), () => getIncomeStatement(fx.staff, {}), () => runStatement(fx.staff, "cash-flow", {}),
-      () => getAccountLedger(fx.staff, { accountId: fx.bankAcctId }), () => getFinanceWarnings(fx.staff),
       () => createCoaAccount(fx.staff, { code: "6-5000", name: "Beban Gelap", type: "BEBAN", manualEntry: true }),
       () => createCashAccount(fx.staff, { name: "Kas Gelap", kind: "KAS", coaAccountId: fx.coa["1-1100"], openingBalance: 1, openingDate: "2026-01-01" }),
+      () => createJournal(fx.staff, { journalDate: "2026-03-09", description: "Gelap", lines: [{ accountId: fx.coa["6-2000"], debit: 10, credit: 0 }, { accountId: fx.coa["1-2900"], debit: 0, credit: 10 }] }),
+      () => recordTaxPayment(fx.staff, { kind: "PPN", taxPeriod: "2026-02", entryDate: "2026-03-09", cashAccountId: fx.bankAcctId, amount: 1000, reference: "NTPN-UJI-1" }),
+      () => closePeriod(fx.staff, { year: 2026, month: 1, acknowledge: [], note: "tidak berwenang" }),
     ]) expect(await code(fn())).toBe("FORBIDDEN");
-    // daftar kategori untuk staff hanya akun beban yang boleh dipilih — tanpa akun sistem/ekuitas/aset
+
+    // laporan & catatan keuangan: boleh DILIHAT (hanya-baca)
+    for (const fn of [
+      () => listCashAccounts(fx.staff), () => getCashFlow(fx.staff, {}), () => getIncomeStatement(fx.staff, {}), () => runStatement(fx.staff, "balance-sheet", {}),
+      () => getAccountLedger(fx.staff, { accountId: fx.bankAcctId }), () => getFinanceWarnings(fx.staff), () => listEntries(fx.staff, {}),
+    ]) expect(await code(fn())).toBeUndefined();
+    // daftar kategori: staf melihat seluruh bagan akun (baca), tetapi hanya akun yang boleh dipilih yang ditawarkan pada dialog pencatatan
     const cats = await listCoaAccounts(fx.staff);
-    expect(cats.length).toBeGreaterThan(5);
-    expect(cats.every((c) => c.type === "BEBAN" && c.manualEntry && c.isActive)).toBe(true);
-    expect(cats.map((c) => c.code)).not.toContain("7-1100");
+    expect(cats.map((c) => c.code)).toContain("7-1100");
+    expect(cats.length).toBe((await listCoaAccounts(fx.finance)).length);
   });
 
   it("Finance Manager mencatat/menyetujui/membalikkan tetapi TIDAK mengelola bagan akun, akun kas, atau saldo awal (hanya Administrator)", async () => {
@@ -188,14 +208,14 @@ describe("izin silang & pemisahan tugas (service)", () => {
     const mine = await entry(fx.staff);
     expect(await code(cancelPendingEntry(fx.staff2, mine.id))).toBe("NOT_FOUND");
     expect(await code(cancelPendingEntry(fx.finance, mine.id))).toBe("NOT_FOUND"); // penyetuju menolak, bukan menghapus
-    expect((await listEntries(fx.staff2, {})).total).toBe(0);
+    expect((await listEntries(fx.staff2, {})).items.map((i) => i.id)).toContain(mine.id); // melihat boleh (hanya-baca), membatalkan milik orang lain tidak
     await approveEntry(fx.finance, mine.id);
     expect(await code(cancelPendingEntry(fx.staff, mine.id))).toBe("CONFLICT"); // sudah berlaku
     expect(await code(approveEntry(fx.finance, mine.id))).toBe("CONFLICT"); // tidak dua kali
     expect(await code(rejectEntry(fx.finance, mine.id, { reason: "terlambat menolak" }))).toBe("CONFLICT");
   });
 
-  it("bukti pengeluaran: hanya unggahan sendiri berjenis EXPENSE_PROOF; file palsu ditolak; hak baca terbatas", async () => {
+  it("bukti pengeluaran: hanya unggahan sendiri berjenis EXPENSE_PROOF; file palsu ditolak; yang berhak melihat catatan keuangan boleh membaca bukti (tercatat di audit)", async () => {
     expect(await code(storeFile(fx.staff, "EXPENSE_PROOF", { name: "nota.pdf", bytes: TXT }))).toBe("VALIDATION"); // magic bytes
     expect(await code(storeFile(fx.staff, "LOGO", { name: "l.png", bytes: PDF }))).toBe("FORBIDDEN");
     const mine = await storeFile(fx.staff, "EXPENSE_PROOF", { name: "../../nota.pdf", bytes: PDF });
@@ -207,9 +227,9 @@ describe("izin silang & pemisahan tugas (service)", () => {
     const e = await entry(fx.staff, { proofFileId: mine.id });
     expect(e.proofFileId).toBe(mine.id);
     expect((await readFileForActor(fx.staff, mine.id)).kind).toBe("EXPENSE_PROOF");
-    expect(await code(readFileForActor(fx.staff2, mine.id))).toBe("FORBIDDEN");
+    expect((await readFileForActor(fx.staff2, mine.id)).kind).toBe("EXPENSE_PROOF"); // staf lain: hak baca catatan keuangan (hanya-baca)
     expect((await readFileForActor(fx.finance, mine.id)).kind).toBe("EXPENSE_PROOF");
-    expect(await prisma.auditLog.count({ where: { action: "file.view" } })).toBe(2);
+    expect(await prisma.auditLog.count({ where: { action: "file.view" } })).toBe(3);
   });
 });
 

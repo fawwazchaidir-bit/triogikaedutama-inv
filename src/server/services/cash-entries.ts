@@ -73,7 +73,7 @@ async function lockEntry(tx: Tx, id: string): Promise<void> {
 const rp = (n: number) => formatRupiah(n, "PLAIN");
 
 export async function createEntry(actor: Actor, raw: unknown): Promise<CashEntryDto> {
-  if (!actorCan(actor, "expense:record") && !actorCan(actor, "cash:record")) throw Errors.forbidden();
+  if (!actorCan(actor, "expense:record") && !actorCan(actor, "cash:record") && !actorCan(actor, "cash:receipt")) throw Errors.forbidden();
   const input = parseInput(entryInputSchema, raw);
   const today = todayIso(env().APP_TIMEZONE);
   if (input.entryDate > today) throw Errors.validation("Tanggal tidak boleh di masa depan.", { entryDate: "Tidak boleh di masa depan" });
@@ -88,8 +88,11 @@ export async function createEntry(actor: Actor, raw: unknown): Promise<CashEntry
       throw Errors.validation("Akun kategori ini dipetakan ke akun kas/bank. Gunakan transfer antar akun.", { counterAccountId: "Pilih kategori yang tersedia" });
     }
     const isExpense = counter.type === "BEBAN";
-    // Izin menurut jenis entri (ditegakkan di service, bukan hanya UI).
-    assertCan(actor, isExpense ? "expense:record" : "cash:record");
+    // Izin menurut jenis entri (ditegakkan di service, bukan hanya UI): pengeluaran → expense:record; penerimaan lain (akun pendapatan) →
+    // cash:receipt atau cash:record; investasi/pendanaan/uang keluar non-operasional → cash:record saja.
+    if (isExpense) assertCan(actor, "expense:record");
+    else if (counter.type === "PENDAPATAN") { if (!actorCan(actor, "cash:record") && !actorCan(actor, "cash:receipt")) throw Errors.forbidden(); }
+    else assertCan(actor, "cash:record");
     if (isExpense && input.direction !== "OUT") throw Errors.validation("Pengeluaran harus berarah keluar. Koreksi dilakukan lewat pembalikan.", { direction: "Pengeluaran = keluar" });
     if (counter.type === "PENDAPATAN" && input.direction !== "IN") throw Errors.validation("Pendapatan harus berarah masuk.", { direction: "Pendapatan = masuk" });
 
@@ -273,7 +276,7 @@ const toTransferDto = (t: Prisma.CashTransferGetPayload<{ include: typeof transf
 });
 
 export async function createTransfer(actor: Actor, raw: unknown): Promise<CashTransferDto> {
-  assertCan(actor, "cash:record");
+  assertCan(actor, "cash:transfer");
   const input = parseInput(transferInputSchema, raw);
   const today = todayIso(env().APP_TIMEZONE);
   if (input.transferDate > today) throw Errors.validation("Tanggal tidak boleh di masa depan.", { transferDate: "Tidak boleh di masa depan" });

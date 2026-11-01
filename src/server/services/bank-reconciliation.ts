@@ -359,7 +359,7 @@ export async function unmatchLine(actor: Actor, lineId: string): Promise<void> {
 
 export const entryForLineSchema = z.object({ counterAccountId: uuid, description: optionalText(300, "Uraian"), proofFileId: z.preprocess((v) => (v === "" ? undefined : v ?? undefined), uuid.optional()) });
 /** Baris yang tidak ada di buku (biaya admin, bunga, penerimaan/pengeluaran belum dicatat) → entri kas (tanggal & nominal = baris) lalu dicocokkan. */
-export async function createEntryForLine(actor: Actor, lineId: string, raw: unknown): Promise<void> {
+export async function createEntryForLine(actor: Actor, lineId: string, raw: unknown): Promise<{ status: "MATCHED" | "PENDING_APPROVAL" }> {
   assertCan(actor, "bank:reconcile");
   uuid.parse(lineId);
   const input = parseInput(entryForLineSchema, raw);
@@ -373,8 +373,10 @@ export async function createEntryForLine(actor: Actor, lineId: string, raw: unkn
     entryDate: dateToIso(line.txDate), cashAccountId: line.statement.cashAccountId, counterAccountId: input.counterAccountId, direction: remaining > 0 ? "IN" : "OUT",
     amount: Math.abs(remaining), description: description.length >= 3 ? description : `${description} (mutasi bank)`, reference: line.reference ?? undefined, proofFileId: input.proofFileId,
   });
-  if (entry.status !== "APPROVED") throw Errors.conflict("Entri menunggu persetujuan dan belum dapat dicocokkan.");
+  // Pencatat yang bukan penyetuju (Staf Administrasi Keuangan): entri menunggu persetujuan Finance Manager; baris dicocokkan setelah entri berlaku.
+  if (entry.status !== "APPROVED") return { status: "PENDING_APPROVAL" };
   await matchLine(actor, lineId, { items: [{ type: "CASH_ENTRY", id: entry.id }] });
+  return { status: "MATCHED" };
 }
 
 // ───────────────────────────── Siklus hidup ─────────────────────────────
@@ -390,7 +392,7 @@ export async function deleteStatement(actor: Actor, id: string): Promise<void> {
 }
 
 export async function finalizeStatement(actor: Actor, id: string): Promise<StatementWorkspace> {
-  assertCan(actor, "bank:reconcile");
+  assertCan(actor, "bank:finalize");
   uuid.parse(id);
   await transaction(async (tx) => {
     requireDraft(await lockStatement(tx, id));
@@ -408,7 +410,7 @@ export async function finalizeStatement(actor: Actor, id: string): Promise<State
 
 export const reopenSchema = z.object({ reason: z.string().trim().min(5, "Alasan minimal 5 karakter").max(300) });
 export async function reopenStatement(actor: Actor, id: string, raw: unknown): Promise<StatementWorkspace> {
-  assertCan(actor, "bank:reconcile");
+  assertCan(actor, "bank:finalize");
   uuid.parse(id);
   const { reason } = parseInput(reopenSchema, raw);
   await transaction(async (tx) => {

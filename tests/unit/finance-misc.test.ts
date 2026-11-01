@@ -152,10 +152,10 @@ describe("matriks hak akses (least privilege)", () => {
   it("ADMIN memiliki seluruh izin", () => {
     for (const p of PERMISSIONS) expect(can("ADMIN", p)).toBe(true);
   });
-  it("STAFF Operasional: input lengkap, mengajukan, mencatat pembayaran, laporan; tanpa approval, pembatalan, pembalikan pembayaran, dashboard, dan administrasi sistem", () => {
+  it("STAFF (Staf Administrasi Keuangan): input lengkap, mengajukan, pembayaran, pengeluaran & penerimaan lain (menunggu persetujuan), transfer, rekonsiliasi draft, lihat laporan keuangan; tanpa approval, koreksi, finalisasi, jurnal, tutup buku, dashboard, administrasi sistem", () => {
     for (const p of [
       "invoice:approve", "invoice:cancel", "payment:reverse", "dashboard:view", "audit:view",
-      "finance:view", "finance:manage", "cash:record", "expense:approve", "expense:void", "journal:record", "books:lock", "bank:reconcile",
+      "finance:manage", "cash:record", "expense:approve", "expense:void", "journal:record", "books:lock", "bank:finalize",
       "settings:manage", "numbering:manage", "tax:manage", "user:manage", "product:manage",
     ] as const) {
       expect(can("STAFF", p), p).toBe(false);
@@ -164,15 +164,15 @@ describe("matriks hak akses (least privilege)", () => {
       "invoice:create", "invoice:override_price", "invoice:discount", "invoice:submit", "invoice:preview_draft",
       "invoice:view", "invoice:pdf", "invoice:history",
       "payment:view", "payment:record", "report:view", "settings:view", "customer:update", "customer:archive",
-      "expense:record", "expense:view_own",
+      "expense:record", "expense:view_own", "finance:view", "cash:receipt", "cash:transfer", "bank:reconcile",
     ] as const) {
       expect(can("STAFF", p), p).toBe(true);
     }
   });
-  it("beda Staff Operasional dengan Finance Manager: approval/koreksi/kas & laporan keuangan/dashboard; staff menambah pengajuan & melihat pengeluaran sendiri", () => {
+  it("beda Staf Administrasi Keuangan dengan Finance Manager: hanya approval/koreksi/finalisasi/jurnal/tutup buku/entri kas non-penerimaan/dashboard; staf menambah pengajuan invoice & melihat pengeluaran sendiri", () => {
     const f = ROLE_PERMISSIONS.FINANCE, st = ROLE_PERMISSIONS.STAFF;
     expect([...f].filter((p) => !st.has(p)).sort()).toEqual([
-      "bank:reconcile", "books:lock", "cash:record", "dashboard:view", "expense:approve", "expense:void", "finance:view", "invoice:approve", "invoice:cancel", "journal:record", "payment:reverse",
+      "bank:finalize", "books:lock", "cash:record", "dashboard:view", "expense:approve", "expense:void", "invoice:approve", "invoice:cancel", "journal:record", "payment:reverse",
     ]);
     expect([...st].filter((p) => !f.has(p)).sort()).toEqual(["expense:view_own", "invoice:submit"]);
   });
@@ -190,13 +190,13 @@ describe("matriks hak akses (least privilege)", () => {
   });
   it("hanya penyetuju (Finance Manager & Administrator) yang dapat menyetujui invoice", () => {
     expect((["ADMIN", "FINANCE", "STAFF"] as const).filter((r) => can(r, "invoice:approve"))).toEqual(["ADMIN", "FINANCE"]);
-    expect(ROLE_LABELS).toEqual({ ADMIN: "Administrator", FINANCE: "Finance Manager", STAFF: "Staff Operasional" });
+    expect(ROLE_LABELS).toEqual({ ADMIN: "Administrator", FINANCE: "Finance Manager", STAFF: "Staf Administrasi Keuangan" });
   });
-  it("menu sidebar sesuai peran (staff: tanpa Dashboard, dengan Pembayaran & Laporan)", () => {
+  it("menu sidebar sesuai peran (staf: seperti Finance Manager tanpa Dashboard — halaman keuangan hanya-baca)", () => {
     const labels = (r: "ADMIN" | "FINANCE" | "STAFF") => visibleNav(r).map((i) => i.label);
     expect(labels("ADMIN")).toEqual(["Dashboard", "Invoice", "Pelanggan", "Produk & Layanan", "Pembayaran", "Pengeluaran", "Kas & Bank", "Rekonsiliasi Bank", "Jurnal", "Laporan", "Laporan Keuangan", "Pajak", "Tutup Buku", "Audit Log", "Pengaturan"]);
     expect(labels("FINANCE")).toEqual(["Dashboard", "Invoice", "Pelanggan", "Produk & Layanan", "Pembayaran", "Pengeluaran", "Kas & Bank", "Rekonsiliasi Bank", "Jurnal", "Laporan", "Laporan Keuangan", "Pajak", "Tutup Buku", "Pengaturan"]);
-    expect(labels("STAFF")).toEqual(["Invoice", "Pelanggan", "Produk & Layanan", "Pembayaran", "Pengeluaran", "Laporan", "Pengaturan"]);
+    expect(labels("STAFF")).toEqual(["Invoice", "Pelanggan", "Produk & Layanan", "Pembayaran", "Pengeluaran", "Kas & Bank", "Rekonsiliasi Bank", "Jurnal", "Laporan", "Laporan Keuangan", "Pajak", "Tutup Buku", "Pengaturan"]);
   });
   it("tanpa role = tanpa izin", () => {
     expect(can(null, "dashboard:view")).toBe(false);

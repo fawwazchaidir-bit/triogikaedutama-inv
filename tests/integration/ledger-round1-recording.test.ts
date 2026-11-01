@@ -262,11 +262,12 @@ describe("jurnal manual: aturan & pembalikan", () => {
 });
 
 describe("izin akses lapisan buku besar", () => {
-  it("staff tidak dapat melihat/mencatat; finance dan admin dapat; membalikkan jurnal = Finance/Admin", async () => {
+  it("staf boleh MELIHAT buku besar (hanya-baca) tetapi tidak mencatat/membalikkan jurnal; finance dan admin dapat; membalikkan jurnal = Finance/Admin", async () => {
     const j = await createJournal(fx.finance, { journalDate: "2026-02-28", description: "Penyusutan", lines: [{ accountId: c("6-2000"), debit: 10_000, credit: 0 }, { accountId: c("1-2900"), debit: 0, credit: 10_000 }] });
     for (const f of [() => getTrialBalance(fx.staff), () => getBalanceSheet(fx.staff), () => getGlIncomeStatement(fx.staff), () => getJournalBook(fx.staff), () => listManualJournals(fx.staff), () => getGeneralLedger(fx.staff, { accountId: c("1-1100") })]) {
-      expect((await err(f()))?.code).toBe("FORBIDDEN");
+      expect(await err(f())).toBeNull(); // baca diizinkan
     }
+    expect((await getTrialBalance(fx.staff)).rows).toEqual((await getTrialBalance(fx.finance)).rows);
     expect((await err(createJournal(fx.staff, { journalDate: "2026-02-28", description: "x x x", lines: [{ accountId: c("6-2000"), debit: 1, credit: 0 }, { accountId: c("1-2900"), debit: 0, credit: 1 }] })))?.code).toBe("FORBIDDEN");
     expect((await err(reverseJournal(fx.staff, j.id, { reason: "Coba-coba staff" })))?.code).toBe("FORBIDDEN");
     expect((await err(getTrialBalance(fx.admin)))).toBeNull();

@@ -8,12 +8,14 @@
  *   ADMIN   — (pemilik) semua, termasuk pengguna, pengaturan, penomoran, pajak, audit log.
  *   FINANCE — Finance Manager: VERIFIKATOR/penyetuju invoice (setujui → terbit, kembalikan), melihat seluruh data invoice,
  *             satu-satunya yang membatalkan invoice terbit & membalikkan pembayaran, plus pembayaran, laporan, unduh PDF.
- *   Keuangan (basis kas): Administrator mengelola bagan akun/akun kas/saldo awal; Finance Manager melihat seluruh kas & laporan
- *             keuangan, mencatat, menyetujui, dan membalikkan; Staff hanya mencatat pengeluaran (menunggu persetujuan) & melihat catatannya sendiri.
- *   STAFF   — Staff Operasional: menginput data invoice secara lengkap (termasuk harga/diskon/pajak) lalu MENGAJUKAN
- *             untuk diverifikasi; juga mencatat pembayaran, melihat laporan, dan seluruh invoice. Beda dengan Finance
- *             Manager: TIDAK dapat menyetujui/menerbitkan/mengembalikan, membatalkan invoice terbit, atau membalikkan
- *             pembayaran (otoritas koreksi) — dan tanpa dashboard.
+ *   Keuangan (basis kas): Administrator mengelola bagan akun/akun kas/saldo awal; Finance Manager mencatat, menyetujui, membalikkan,
+ *             memfinalisasi rekonsiliasi bank, dan menutup buku.
+ *   STAFF   — Staf Administrasi Keuangan (nilai enum tetap STAFF): menginput data invoice secara lengkap (termasuk harga/diskon/pajak) lalu
+ *             MENGAJUKAN untuk diverifikasi; mencatat pembayaran; mencatat PENGELUARAN dan PENERIMAAN LAIN (keduanya menunggu persetujuan
+ *             Finance Manager) serta TRANSFER antar akun; mengimpor rekening koran dan mencocokkannya (draft); dan MELIHAT seluruh laporan
+ *             keuangan tanpa dapat mengubahnya. Beda dengan Finance Manager: TIDAK dapat menyetujui/menerbitkan/mengembalikan, membatalkan
+ *             invoice terbit, membalikkan apa pun (otoritas koreksi), memfinalisasi/membuka rekonsiliasi bank, mencatat jurnal manual,
+ *             setoran pajak, menutup buku, atau mengelola akun & pengaturan keuangan — dan tanpa dashboard.
  */
 
 export type Role = "ADMIN" | "FINANCE" | "STAFF";
@@ -49,14 +51,17 @@ export const PERMISSIONS = [
   "user:manage",
   "finance:view",          // kas & bank, buku kas, seluruh pengeluaran, laporan keuangan (arus kas, laba rugi), bagan akun
   "finance:manage",        // bagan akun, akun kas/bank, saldo awal
-  "cash:record",           // entri kas non-pengeluaran (penerimaan lain, investasi, pendanaan) & transfer antar akun — langsung berlaku
+  "cash:record",           // SEMUA entri kas non-pengeluaran (penerimaan lain, investasi, pendanaan, setoran pajak) — langsung berlaku bagi penyetuju
+  "cash:receipt",          // hanya PENERIMAAN LAIN (uang masuk ke akun pendapatan lain-lain); bagi non-penyetuju entri menunggu persetujuan
+  "cash:transfer",         // transfer antar akun kas/bank (langsung berlaku)
   "expense:record",        // mencatat pengeluaran (staff: menunggu persetujuan; penyetuju: langsung berlaku)
   "expense:view_own",      // melihat pengeluaran yang dicatat sendiri
   "expense:approve",       // menyetujui/menolak pengeluaran staff
   "expense:void",          // membalikkan entri kas/transfer/jurnal yang sudah berlaku (koreksi)
   "journal:record",        // mencatat jurnal manual (penyesuaian, penyusutan, saldo awal non-kas) — langsung berlaku
   "books:lock",            // menetapkan/membuka penutupan buku (transaksi ≤ tanggal tutup ditolak)
-  "bank:reconcile",        // impor rekening koran, mencocokkan, membuat entri dari mutasi, memfinalisasi/membuka rekonsiliasi bank
+  "bank:reconcile",        // impor rekening koran, mencocokkan/melepas (draft), membuat entri dari mutasi, menghapus draft
+  "bank:finalize",         // memfinalisasi / membuka kembali rekonsiliasi bank (otoritas Finance Manager)
 ] as const;
 
 export type Permission = (typeof PERMISSIONS)[number];
@@ -74,11 +79,12 @@ export const ROLE_PERMISSIONS: Record<Role, ReadonlySet<Permission>> = {
     "payment:view", "payment:record", "payment:reverse",
     "report:view",
     "settings:view",
-    "finance:view", "cash:record", "expense:record", "expense:approve", "expense:void", "journal:record", "books:lock", "bank:reconcile",
+    "finance:view", "cash:record", "cash:receipt", "cash:transfer", "expense:record", "expense:approve", "expense:void", "journal:record", "books:lock", "bank:reconcile", "bank:finalize",
   ]),
-  // Staff Operasional = Finance Manager TANPA otoritas koreksi/persetujuan — approval (setujui/terbitkan/kembalikan),
-  // pembatalan invoice terbit, dan pembalikan pembayaran tetap di tangan Finance Manager — serta TANPA dashboard;
-  // sebagai gantinya staff dapat mengajukan invoice. Mengedit/menghapus/mengajukan draft hanya untuk draft
+  // Staf Administrasi Keuangan = Finance Manager TANPA otoritas koreksi/persetujuan — approval (setujui/terbitkan/kembalikan),
+  // pembatalan invoice terbit, pembalikan, finalisasi rekonsiliasi, jurnal manual, dan tutup buku tetap di tangan Finance Manager — serta TANPA
+  // dashboard; sebagai gantinya staf dapat mengajukan invoice, mencatat penerimaan lain (menunggu persetujuan) & transfer, mengerjakan
+  // rekonsiliasi bank sampai draft siap, dan melihat seluruh laporan keuangan (hanya baca). Mengedit/menghapus/mengajukan draft hanya untuk draft
   // miliknya sendiri (lihat `canEditDraft`).
   STAFF: new Set<Permission>([
     "customer:view", "customer:create", "customer:update", "customer:archive",
@@ -89,6 +95,7 @@ export const ROLE_PERMISSIONS: Record<Role, ReadonlySet<Permission>> = {
     "report:view",
     "settings:view",
     "expense:record", "expense:view_own",
+    "finance:view", "cash:receipt", "cash:transfer", "bank:reconcile",
   ]),
 };
 
@@ -100,7 +107,7 @@ export function can(role: Role | null | undefined, permission: Permission): bool
 export const ROLE_LABELS: Record<Role, string> = {
   ADMIN: "Administrator",
   FINANCE: "Finance Manager",
-  STAFF: "Staff Operasional",
+  STAFF: "Staf Administrasi Keuangan",
 };
 
 /** Menu sidebar beserta izin (salah satu cukup) untuk melihatnya. */

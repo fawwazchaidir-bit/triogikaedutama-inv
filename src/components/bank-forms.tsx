@@ -120,7 +120,7 @@ function ImportDialog({ accounts, onClose }: { accounts: AccountReconOverview[];
 }
 
 // ───────────────────────────── Ruang kerja rekonsiliasi ─────────────────────────────
-export function StatementActions({ ws, canAct }: { ws: StatementWorkspace; canAct: boolean }) {
+export function StatementActions({ ws, canAct, canFinalize }: { ws: StatementWorkspace; canAct: boolean; canFinalize: boolean }) {
   const router = useRouter();
   const draft = ws.statement.status === "DRAFT";
   const auto = useAction("Pencocokan otomatis selesai.");
@@ -136,10 +136,11 @@ export function StatementActions({ ws, canAct }: { ws: StatementWorkspace; canAc
       {draft && <>
         <label className="flex items-center gap-1 text-xs text-muted">Jendela ± <select value={win} onChange={(e) => setWin(e.target.value)} className="h-9 rounded-md border border-line bg-white px-2 text-sm">{[0, 1, 3, 5, 7, 14].map((n) => <option key={n} value={n}>{n} hari</option>)}</select></label>
         <Button loading={auto.busy} onClick={() => void auto.run(() => api(`/api/finance/bank/statements/${ws.statement.id}/auto-match`, { body: { windowDays: Number(win) } }))}>Pencocokan otomatis</Button>
-        <Button variant="primary" disabled={!ws.summary.canFinalize} onClick={() => setConfirm("final")}>Finalisasi</Button>
+        {canFinalize && <Button variant="primary" disabled={!ws.summary.canFinalize} onClick={() => setConfirm("final")}>Finalisasi</Button>}
         <Button variant="danger" onClick={() => setConfirm("delete")}>Hapus draft</Button>
+        {!canFinalize && <span className="text-sm text-muted">{ws.summary.canFinalize ? "Siap — menunggu finalisasi Finance Manager." : "Finalisasi dilakukan Finance Manager setelah selisih 0."}</span>}
       </>}
-      {!draft && <Button onClick={() => setConfirm("reopen")}>Buka kembali</Button>}
+      {!draft && canFinalize && <Button onClick={() => setConfirm("reopen")}>Buka kembali</Button>}
       {auto.error && <span className="text-sm text-brand-700">{auto.error}</span>}
       <ConfirmDialog open={confirm === "final"} onClose={() => setConfirm(null)} loading={fin.busy} confirmLabel="Ya, finalisasi" title="Finalisasi rekonsiliasi?"
         description={`Saldo bank ${R(ws.summary.closing)} + transaksi beredar ${R(ws.summary.outstandingNet)} = saldo buku ${R(ws.summary.bookBalance)}. Setelah final, pencocokan tidak dapat diubah (kecuali dibuka kembali dengan alasan).`}
@@ -159,7 +160,7 @@ export function StatementActions({ ws, canAct }: { ws: StatementWorkspace; canAc
 }
 
 /** Aksi per baris mutasi: cocokkan manual (pilih transaksi), catat dari mutasi, lepas. */
-export function LineActions({ line, outstanding, categories, locked }: { line: StatementLineDto; outstanding: StatementWorkspace["outstanding"]; categories: CoaAccountDto[]; locked: boolean }) {
+export function LineActions({ line, outstanding, categories, locked, approvalRequired }: { line: StatementLineDto; outstanding: StatementWorkspace["outstanding"]; categories: CoaAccountDto[]; locked: boolean; approvalRequired: boolean }) {
   const [mode, setMode] = useState<"match" | "entry" | null>(null);
   const un = useAction("Pencocokan dilepas.");
   if (locked) return null;
@@ -169,7 +170,7 @@ export function LineActions({ line, outstanding, categories, locked }: { line: S
       {remaining !== 0 && <><Button size="sm" onClick={() => setMode("match")}>Cocokkan</Button><Button size="sm" onClick={() => setMode("entry")}>Catat dari mutasi</Button></>}
       {line.matches.length > 0 && <Button size="sm" loading={un.busy} onClick={() => void un.run(() => api(`/api/finance/bank/lines/${line.id}/unmatch`, { body: {} }))}>Lepas</Button>}
       {mode === "match" && <MatchDialog line={line} items={outstanding.filter((i) => i.matchedIn === null)} remaining={remaining} onClose={() => setMode(null)} />}
-      {mode === "entry" && <EntryDialog line={line} remaining={remaining} categories={categories} onClose={() => setMode(null)} />}
+      {mode === "entry" && <EntryDialog line={line} remaining={remaining} categories={categories} approvalRequired={approvalRequired} onClose={() => setMode(null)} />}
     </div>
   );
 }
@@ -201,8 +202,9 @@ function MatchDialog({ line, items, remaining, onClose }: { line: StatementLineD
     </Dialog>
   );
 }
-function EntryDialog({ line, remaining, categories, onClose }: { line: StatementLineDto; remaining: number; categories: CoaAccountDto[]; onClose: () => void }) {
-  const a = useAction("Entri kas dicatat dan dicocokkan.");
+function EntryDialog({ line, remaining, categories, approvalRequired, onClose }: { line: StatementLineDto; remaining: number; categories: CoaAccountDto[]; approvalRequired: boolean; onClose: () => void }) {
+  const toast = useToast();
+  const a = useAction(null); // pesan sukses bergantung hasil (langsung cocok / menunggu persetujuan)
   const inflow = remaining > 0;
   const usable = categories.filter((c) => c.isActive && c.manualEntry && (inflow ? c.type !== "BEBAN" : c.type !== "PENDAPATAN"));
   const [counter, setCounter] = useState("");
@@ -217,11 +219,12 @@ function EntryDialog({ line, remaining, categories, onClose }: { line: Statement
       if (!res.ok) throw new ApiClientError(j.error?.message ?? "Gagal mengunggah bukti.", res.status, j.error?.code ?? "UNKNOWN", j.error?.fieldErrors);
       proofFileId = j.data.id;
     }
-    await api(`/api/finance/bank/lines/${line.id}/entry`, { body: { counterAccountId: counter, description, proofFileId } });
+    const res = await api<{ status: "MATCHED" | "PENDING_APPROVAL" }>(`/api/finance/bank/lines/${line.id}/entry`, { body: { counterAccountId: counter, description, proofFileId } });
+    toast.success(res.status === "MATCHED" ? "Entri kas dicatat dan dicocokkan." : "Entri dicatat dan menunggu persetujuan Finance Manager; cocokkan barisnya setelah disetujui.");
   }
   return (
-    <Dialog open onClose={() => !a.busy && onClose()} title="Catat dari mutasi bank" description={`${inflow ? "Uang masuk" : "Uang keluar"} ${R(Math.abs(remaining))} tanggal ${formatDateShort(line.txDate)} — dicatat sebagai entri kas lalu langsung dicocokkan.`}
-      footer={<><Button onClick={onClose} disabled={a.busy}>Batal</Button><Button variant="primary" loading={a.busy} disabled={!counter} onClick={async () => { if ((await a.run(submit)).ok) onClose(); }}>Catat & cocokkan</Button></>}>
+    <Dialog open onClose={() => !a.busy && onClose()} title="Catat dari mutasi bank" description={`${inflow ? "Uang masuk" : "Uang keluar"} ${R(Math.abs(remaining))} tanggal ${formatDateShort(line.txDate)} — ${approvalRequired ? "dicatat sebagai entri kas yang menunggu persetujuan Finance Manager; baris dicocokkan setelah entri disetujui." : "dicatat sebagai entri kas lalu langsung dicocokkan."}`}
+      footer={<><Button onClick={onClose} disabled={a.busy}>Batal</Button><Button variant="primary" loading={a.busy} disabled={!counter} onClick={async () => { if ((await a.run(submit)).ok) onClose(); }}>{approvalRequired ? "Catat (menunggu persetujuan)" : "Catat & cocokkan"}</Button></>}>
       <div className="space-y-4">
         {a.error && <Notice tone="danger">{a.error}</Notice>}
         <SelectField label="Kategori" required value={counter} onChange={(e) => setCounter(e.target.value)} error={a.fe.counterAccountId}>

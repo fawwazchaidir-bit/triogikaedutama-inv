@@ -50,7 +50,7 @@ export function toCsv(t: ReportTable): string {
 
 export async function toXlsx(t: ReportTable): Promise<Buffer> {
   const wb = new ExcelJS.Workbook();
-  wb.creator = "Trilogika Invoice System";
+  wb.creator = "Trilogika Financial Management System";
   wb.created = new Date();
   const ws = wb.addWorksheet(t.title.slice(0, 28).replace(/[\\/?*[\]:]/g, " "), { views: [{ state: "frozen", ySplit: 5 }] });
 

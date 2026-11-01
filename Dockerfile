@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-# Image produksi Trilogika Invoice. Tiga target:
+# Image produksi Trilogika Financial Management System. Tiga target:
 #   runner (default) — aplikasi saja (Next.js standalone, tanpa devDependencies)
 #   tools            — migrasi / seed / backup / rekonsiliasi (memuat Prisma CLI & tsx)
 # Dasar Debian (bukan Alpine) agar engine Prisma (openssl-3.0.x) kompatibel.

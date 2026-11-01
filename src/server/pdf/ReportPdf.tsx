@@ -53,7 +53,7 @@ export function ReportPdf({ data }: { data: ReportPdfData }) {
   const statement = t.rows.some((r) => typeof r.kind === "string"); // laporan berstruktur (judul/jumlah/catatan) vs tabel biasa
 
   return (
-    <Document title={pdfSafe(t.title)} author={pdfSafe(data.companyName)} creator="Trilogika Invoice System">
+    <Document title={pdfSafe(t.title)} author={pdfSafe(data.companyName)} creator="Trilogika Financial Management System">
       <Page size="A4" orientation={landscape ? "landscape" : "portrait"} style={s.page}>
         <View style={s.content}>
           <View fixed>

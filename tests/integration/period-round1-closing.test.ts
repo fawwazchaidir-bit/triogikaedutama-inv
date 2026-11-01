@@ -8,6 +8,8 @@ import { createJournal } from "@/server/services/journals";
 import { autoMatchStatement, createStatement, finalizeStatement } from "@/server/services/bank-reconciliation";
 import { closePeriod, getPeriodChecklist, listPeriods, reopenPeriod } from "@/server/services/periods";
 import { getBooksLock, readBooksLock } from "@/server/services/books-lock";
+import { todayIso } from "@/lib/format";
+import { periodEnd } from "@/lib/accounting/periods";
 import { AppError } from "@/server/errors";
 
 /**
@@ -102,22 +104,26 @@ describe("Januari: dari daftar periksa sampai ditutup", () => {
     expect(await err(createEntry(fx.finance, { entryDate: "2026-02-01", cashAccountId: fx.bankAcctId, counterAccountId: c("6-1600"), amount: 1000, description: "ATK" }))).toBeNull();
   });
 
-  it("rantai penuh Januari–September; bulan berjalan tidak dapat ditutup; kunci buku berpindah ke akhir September", async () => {
+  it("rantai penuh Januari s.d. bulan terakhir yang sudah berakhir; bulan berjalan tidak dapat ditutup; kunci buku berpindah ke akhir rantai", async () => {
     await januaryBooks();
-    for (let m = 1; m <= 9; m++) await close(m, ["bank-recon"], `Tutup bulan ke-${m}`);
-    expect(await getBooksLock()).toBe("2026-09-30");
+    const today = todayIso("Asia/Jakarta");
+    const ty = Number(today.slice(0, 4)), tm = Number(today.slice(5, 7));
+    const last = ty > 2026 ? 12 : tm - 1; // bulan 2026 terakhir yang sudah berakhir pada hari uji (≥ 9 sejak Oktober 2026)
+    for (let m = 1; m <= last; m++) await close(m, ["bank-recon"], `Tutup bulan ke-${m}`);
+    expect(await getBooksLock()).toBe(periodEnd(2026, last));
     const ps = (await listPeriods(fx.finance)).periods;
-    expect(ps.filter((p) => p.state === "CLOSED").map((p) => p.key).sort()).toEqual(["2026-01", "2026-02", "2026-03", "2026-04", "2026-05", "2026-06", "2026-07", "2026-08", "2026-09"]);
+    expect(ps.filter((p) => p.state === "CLOSED").map((p) => p.key).sort()).toEqual(Array.from({ length: last }, (_, i) => `2026-${String(i + 1).padStart(2, "0")}`));
     expect(ps.filter((p) => p.state === "CLOSED").every((p) => p.verified === true)).toBe(true);
     // bulan tanpa transaksi membawa neraca yang sama (semua aset 15.600.000 sejak Januari)
-    expect((await row(9)).snapshot).toMatchObject({ assets: 15_600_000, totalDebit: 16_000_000, revenue: 0, profitBeforeTax: 0 });
-    // Oktober masih berjalan pada hari uji
-    const oct = await getPeriodChecklist(fx.finance, { year: 2026, month: 10 });
-    expect(oct.checks.find((x) => x.id === "ended")).toMatchObject({ ok: false, severity: "HARD" });
-    expect(oct.closable).toBe(false);
-    const e = await err(close(10));
-    expect(e?.code).toBe("CONFLICT");
-    expect(e?.message).toMatch(/Bulan sudah berakhir/);
+    expect((await row(last)).snapshot).toMatchObject({ assets: 15_600_000, totalDebit: 16_000_000, revenue: 0, profitBeforeTax: 0 });
+    if (ty === 2026) { // bulan berjalan belum berakhir
+      const cur = await getPeriodChecklist(fx.finance, { year: 2026, month: tm });
+      expect(cur.checks.find((x) => x.id === "ended")).toMatchObject({ ok: false, severity: "HARD" });
+      expect(cur.closable).toBe(false);
+      const e = await err(close(tm));
+      expect(e?.code).toBe("CONFLICT");
+      expect(e?.message).toMatch(/Bulan sudah berakhir/);
+    }
   });
 });
 
@@ -260,11 +266,11 @@ describe("pemeriksaan PERINGATAN", () => {
 });
 
 describe("izin", () => {
-  it("Finance & Admin boleh menutup/membuka; Staff tidak boleh melihat maupun mengubah", async () => {
+  it("Finance & Admin boleh menutup/membuka; Staf hanya boleh MELIHAT daftar periode & daftar periksa, tidak mengubah", async () => {
     await januaryBooks();
     expect((await err(close(1, ["bank-recon"], "Tutup oleh staf", fx.staff)))?.code).toBe("FORBIDDEN");
-    expect((await err(listPeriods(fx.staff)))?.code).toBe("FORBIDDEN");
-    expect((await err(getPeriodChecklist(fx.staff, { year: 2026, month: 1 })))?.code).toBe("FORBIDDEN");
+    expect(await err(listPeriods(fx.staff))).toBeNull();
+    expect((await getPeriodChecklist(fx.staff, { year: 2026, month: 1 })).closable).toBe(true);
     expect(await err(close(1, ["bank-recon"], "Tutup oleh admin", fx.admin))).toBeNull();
     expect((await err(reopenPeriod(fx.staff, { year: 2026, month: 1, reason: "Staf iseng" })))?.code).toBe("FORBIDDEN");
     expect(await err(reopenPeriod(fx.admin, { year: 2026, month: 1, reason: "Admin membuka kembali" }))).toBeNull();
