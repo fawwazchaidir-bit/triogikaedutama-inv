@@ -49,21 +49,26 @@ describe("PDF invoice LUNAS (kwitansi)", () => {
   const issue = async () => issueInvoice(fx.finance, (await createDraft(fx.finance, demiChefInput(fx))).id); // 14.000.000
   const pay = (invoiceId: string, paymentDate: string, amount: number, extra: Record<string, unknown> = {}) => recordPayment(fx.finance, { invoiceId, paymentDate, amount, method: "Transfer", ...extra });
 
-  it("belum dibayar / dibayar sebagian: TANPA watermark LUNAS; lunas: watermark + tanggal pelunasan + nama file _LUNAS", async () => {
+  it("belum dibayar / dibayar sebagian: TANPA watermark LUNAS; lunas: judul KWITANSI + watermark + tanggal pelunasan + nama file Kwitansi_…", async () => {
     const inv = await issue();
     const unpaid = await render(inv.id, "lunas-0");
     expect(unpaid.doc).toMatchObject({ paid: false, data: { watermark: null } });
     expect(unpaid.text).not.toContain("LUNAS");
+    expect(unpaid.text).toContain("INVOICE");
+    expect(unpaid.text).not.toContain("KWITANSI");
+    expect(unpaid.doc.data.title).toBe("INVOICE");
     await pay(inv.id, "2026-01-14", 5_000_000);
     const part = await render(inv.id, "lunas-1");
     expect(part.doc.paid).toBe(false);
     expect(part.text).not.toContain("LUNAS");
     await pay(inv.id, "2026-01-20", 9_000_000);
     const full = await render(inv.id, "lunas-2");
-    expect(full.doc).toMatchObject({ paid: true, filename: "Invoice_00434_CV_Bima_Satria_Jaya_LUNAS.pdf", data: { watermark: "LUNAS", approved: true } });
+    expect(full.doc).toMatchObject({ paid: true, filename: "Kwitansi_00434_CV_Bima_Satria_Jaya.pdf", data: { title: "KWITANSI", watermark: "LUNAS", approved: true } });
     expect(pages(full.buffer, "lunas-2")).toBe(1);
     const t = full.text.replace(/[ \t]+/g, " ");
     expect(t).toContain("** LUNAS **");
+    expect(t).toContain("KWITANSI");
+    expect(t).not.toContain("INVOICE"); // judul berganti
     expect(t).toContain("Status LUNAS (20/01/2026)");
     expect(t).toContain("LUNAS — pembayaran diterima penuh pada 20/01/2026. Dokumen ini berfungsi sebagai bukti pembayaran.");
     // isi resmi tetap utuh (nomor, tanda tangan, total)
@@ -86,6 +91,8 @@ describe("PDF invoice LUNAS (kwitansi)", () => {
     const afterReverse = await render(inv.id, "lunas-r2");
     expect(afterReverse.doc).toMatchObject({ paid: false, filename: "Invoice_00434_CV_Bima_Satria_Jaya.pdf" });
     expect(afterReverse.text).not.toContain("LUNAS");
+    expect(afterReverse.text).toContain("INVOICE"); // kembali menjadi invoice
+    expect(afterReverse.text).not.toContain("KWITANSI");
     await pay(inv.id, "2026-02-03", 14_000_000);
     const again = await render(inv.id, "lunas-r3");
     expect(again.doc.paid).toBe(true);

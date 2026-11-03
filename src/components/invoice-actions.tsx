@@ -64,7 +64,7 @@ export function InvoiceActions({ inv, can, variant = "menu", onDone, initialDial
   const canPdfNow = can.pdf;
   const unissued = inv.status === "DRAFT" || inv.status === "SUBMITTED";
   const paid = inv.status === "ISSUED" && inv.totalAmount > 0 && inv.balanceAmount === 0; // PDF otomatis berwatermark LUNAS (kwitansi)
-  const pdfLabel = paid ? "Unduh PDF (Lunas)" : "Unduh PDF";
+  const pdfLabel = paid ? "Unduh Kwitansi (PDF)" : "Unduh PDF";
 
   const items = [
     { label: "Lihat detail", href: `/invoices/${inv.id}` },
@@ -103,7 +103,7 @@ export function InvoiceActions({ inv, can, variant = "menu", onDone, initialDial
         footer={<>
           {canPdfNow && !unissued && <a href={`${pdfBase}?download=1`} className="inline-flex h-10 items-center rounded-md bg-brand-600 px-4 text-sm font-medium text-white hover:bg-brand-700">{pdfLabel}</a>}
           <Button onClick={close}>Tutup</Button></>}>
-        {paid && <p className="mb-2 text-xs text-muted">Invoice sudah <b>lunas</b> — PDF berwatermark <b>LUNAS</b> beserta tanggal pelunasan, sehingga berfungsi sebagai bukti pembayaran (kwitansi). Bila pembayaran dibalik, watermark hilang otomatis.</p>}
+        {paid && <p className="mb-2 text-xs text-muted">Invoice sudah <b>lunas</b> — PDF berjudul <b>KWITANSI</b> dan berwatermark <b>LUNAS</b> beserta tanggal pelunasan, sehingga berfungsi sebagai bukti pembayaran. Bila pembayaran dibalik, watermark hilang otomatis.</p>}
         {unissued && <p className="mb-2 text-xs text-muted">Dokumen berwatermark <b>DRAFT</b> — belum bernomor, tanpa tanda tangan &amp; cap. Belum untuk dikirim ke pelanggan; versi resmi baru tersedia setelah diverifikasi Finance Manager.</p>}
         <iframe title={`Pratinjau PDF ${label}`} src={`${pdfBase}#toolbar=0&navpanes=0`} className="h-[68vh] w-full rounded border border-line bg-canvas" />
       </Dialog>

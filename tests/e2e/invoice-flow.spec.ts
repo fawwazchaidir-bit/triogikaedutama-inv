@@ -103,9 +103,9 @@ test("Finance: buat → draft → preview → terbitkan → unduh PDF → bayar 
   await expect(page.getByRole("button", { name: "Catat pembayaran" })).toHaveCount(0);
 
   // Setelah lunas: PDF otomatis menjadi kwitansi (watermark LUNAS + tanggal pelunasan); tombol unduh menyebutkannya
-  await expect(page.getByRole("link", { name: "Unduh PDF (Lunas)" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Unduh Kwitansi (PDF)" })).toBeVisible();
   const receipt = await page.request.get(`/api/invoices/${id}/pdf?download=1`);
-  expect(receipt.headers()["content-disposition"]).toContain(`Invoice_${number}_CV_Bima_Satria_Jaya_LUNAS.pdf`);
+  expect(receipt.headers()["content-disposition"]).toContain(`Kwitansi_${number}_CV_Bima_Satria_Jaya.pdf`);
   const receiptText = await pdfText(receipt, "lunas");
   expect(receiptText).toContain("** LUNAS **");
   expect(receiptText).toMatch(/Status\s+LUNAS \(\d{2}\/\d{2}\/\d{4}\)/);

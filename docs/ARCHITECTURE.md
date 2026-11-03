@@ -244,8 +244,8 @@ Pembatasan ini diterapkan di sumber data (`document-data.ts` tidak memuat file c
 Nomor, nama penandatangan (**Finance Manager**), cap, dan tanda tangan baru muncul setelah invoice disetujui & diterbitkan; semuanya dibekukan di snapshot.
 Unduhan PDF (termasuk draft) dicatat di audit log; tombol unduh hanya tersedia untuk invoice terbit.
 
-**Kwitansi (invoice LUNAS):** setelah invoice terbit dilunasi (`paymentStatus = PAID`, termasuk lunas karena PPh yang dipotong pelanggan), PDF yang sama otomatis diberi watermark hijau **LUNAS** (tag `** LUNAS **`, baris ringkasan `Status — LUNAS (tanggal pelunasan)`,
-kalimat di kaki halaman "pembayaran diterima penuh pada … berfungsi sebagai bukti pembayaran", nama file `…_LUNAS.pdf`). Status dibaca saat PDF dibuat, jadi bila pembayaran **dibalik** watermark hilang sendiri dan bila dibayar ulang tanggal pelunasan mengikuti pembayaran yang berlaku
+**Kwitansi (invoice LUNAS):** setelah invoice terbit dilunasi (`paymentStatus = PAID`, termasuk lunas karena PPh yang dipotong pelanggan), PDF yang sama otomatis **berganti judul menjadi KWITANSI** dan diberi watermark hijau **LUNAS** (tag `** LUNAS **`, baris ringkasan `Status — LUNAS (tanggal pelunasan)`,
+kalimat di kaki halaman "pembayaran diterima penuh pada … berfungsi sebagai bukti pembayaran", nama file `Kwitansi_<nomor>_<pelanggan>.pdf`). Status dibaca saat PDF dibuat, jadi bila pembayaran **dibalik** watermark hilang sendiri dan bila dibayar ulang tanggal pelunasan mengikuti pembayaran yang berlaku
 (`settlementDate`, fungsi murni). Isi resmi (nomor, tanda tangan, cap, total) tidak berubah; watermark DIBATALKAN/DRAFT selalu didahulukan. Kwitansi bermeterai/e-meterai **tidak** ditangani — tanyakan konsultan pajak bila diperlukan.
 
 Deviasi sadar dari referensi: (a) **A4 landscape** (atas permintaan revisi; referensi portrait); (b) nominal rata kanan; (c) nilai nol tetap ditampilkan "0" seperti referensi;

@@ -4,7 +4,7 @@ import { Document, Font, Image, Page, StyleSheet, Text, View } from "@react-pdf/
 
 /**
  * Template PDF invoice — A4 LANDSCAPE. Turunan invoice referensi Trilogika (Word):
- *   header (logo + identitas | judul INVOICE di tengah | nomor/tanggal/term/jatuh tempo mepet kanan) → Customer →
+ *   header (logo + identitas | judul INVOICE (KWITANSI bila lunas) di tengah | nomor/tanggal/term/jatuh tempo mepet kanan) → Customer →
  *   tabel bergaris putus-putus → [Inword/Remark/Transfer Via | Sincerely + penandatangan | ringkasan biaya].
  *
  * Nomor, cap, dan tanda tangan HANYA ada pada dokumen yang sudah diverifikasi (`approved`). Dokumen draft/menunggu
@@ -19,6 +19,8 @@ type Style = NonNullable<React.ComponentProps<typeof View>["style"]>;
 export interface PdfImage { data: Buffer; format: "png" | "jpg" }
 
 export interface InvoicePdfData {
+  /** Judul dokumen: invoice lunas menjadi KWITANSI. */
+  title: "INVOICE" | "KWITANSI";
   watermark: "DRAFT" | "DIBATALKAN" | "LUNAS" | null;
   /** true = sudah diverifikasi/diterbitkan → nomor, tanda tangan, dan cap boleh tampil. */
   approved: boolean;
@@ -152,7 +154,7 @@ export function InvoicePdf({ data }: { data: InvoicePdfData }) {
   const TAG_COLOR = { DRAFT: "#444444", DIBATALKAN: "#B3161F", LUNAS: "#1B7F3B" } as const;
   const wmColor = data.watermark ? TAG_COLOR[data.watermark] : "#555555";
   return (
-    <Document title={`Invoice ${data.meta.number}`} author={c.name} subject={`Invoice ${data.meta.number} — ${data.customerName}`} creator="Trilogika Financial Management System" producer="Trilogika Financial Management System">
+    <Document title={`${data.title === "KWITANSI" ? "Kwitansi" : "Invoice"} ${data.meta.number}`} author={c.name} subject={`${data.title === "KWITANSI" ? "Kwitansi" : "Invoice"} ${data.meta.number} — ${data.customerName}`} creator="Trilogika Financial Management System" producer="Trilogika Financial Management System">
       <Page size="A4" orientation="landscape" style={s.page}>
         <View style={s.content}>
         {/* ── Header: identitas | INVOICE (tengah) | nomor & tanggal (mepet kanan) ── */}
@@ -169,7 +171,7 @@ export function InvoicePdf({ data }: { data: InvoicePdfData }) {
             </View>
           </View>
           <View style={s.titleWrap}>
-            <Text style={s.title}>INVOICE</Text>
+            <Text style={s.title}>{data.title}</Text>
             {data.watermark && (
               <Text style={[s.statusTag, { color: wmColor }]}>** {data.watermark} **</Text>
             )}
