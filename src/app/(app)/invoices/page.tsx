@@ -67,9 +67,9 @@ export default async function InvoicesPage({ searchParams }: { searchParams: SP 
         title="Invoice"
         description="Cari, pantau pembayaran, dan kelola seluruh invoice."
         actions={<>
-          <a href={exportHref("csv")} className="inline-flex h-10 items-center gap-2 rounded-md border border-line bg-white px-3 text-sm font-medium shadow-sm hover:bg-canvas"><Download className="size-4" />CSV</a>
-          <a href={exportHref("xlsx")} className="inline-flex h-10 items-center gap-2 rounded-md border border-line bg-white px-3 text-sm font-medium shadow-sm hover:bg-canvas"><Download className="size-4" />Excel</a>
-          {canCreate && <Link href="/invoices/new" className="inline-flex h-10 items-center gap-2 rounded-md bg-brand-600 px-4 text-sm font-medium text-white shadow-sm hover:bg-brand-700"><Plus className="size-4" />Buat invoice</Link>}
+          <a href={exportHref("csv")} className="inline-flex h-10 items-center gap-2 rounded-md border border-line bg-surface px-3 text-sm font-medium shadow-sm hover:bg-canvas"><Download className="size-4" />CSV</a>
+          <a href={exportHref("xlsx")} className="inline-flex h-10 items-center gap-2 rounded-md border border-line bg-surface px-3 text-sm font-medium shadow-sm hover:bg-canvas"><Download className="size-4" />Excel</a>
+          {canCreate && <Link href="/invoices/new" className="inline-flex h-10 items-center gap-2 rounded-md bg-brand-600 px-4 text-sm font-medium text-white shadow-sm hover:bg-brand-hover"><Plus className="size-4" />Buat invoice</Link>}
         </>}
       />
 
@@ -105,7 +105,7 @@ export default async function InvoicesPage({ searchParams }: { searchParams: SP 
           <EmptyState
             title={Object.values(base).some(Boolean) ? "Tidak ada invoice yang cocok" : "Belum ada invoice"}
             description={Object.values(base).some(Boolean) ? "Ubah atau reset filter untuk melihat data lain." : "Buat invoice pertama Anda — pilih pelanggan, tambahkan produk, lalu terbitkan."}
-            action={canCreate ? <Link href="/invoices/new" className="inline-flex h-10 items-center rounded-md bg-brand-600 px-4 text-sm font-medium text-white hover:bg-brand-700">Buat invoice</Link> : undefined}
+            action={canCreate ? <Link href="/invoices/new" className="inline-flex h-10 items-center rounded-md bg-brand-600 px-4 text-sm font-medium text-white hover:bg-brand-hover">Buat invoice</Link> : undefined}
           />
         ) : list && (
           <>

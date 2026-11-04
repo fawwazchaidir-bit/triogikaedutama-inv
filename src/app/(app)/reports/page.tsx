@@ -50,7 +50,7 @@ export default async function ReportsPage({ searchParams }: { searchParams: Prom
             <span className="w-36 text-xs font-semibold uppercase tracking-wide text-muted">{g.label}</span>
             {g.types.map((t) => (
               <Link key={t} href={`/reports${buildQuery({ ...filters, type: t })}`} aria-current={t === type ? "page" : undefined}
-                className={cn("rounded-full border px-3 py-1 text-sm", t === type ? "border-brand-600 bg-brand-600 text-white" : "border-line bg-white text-ink-soft hover:bg-canvas")}>
+                className={cn("rounded-full border px-3 py-1 text-sm", t === type ? "border-brand-600 bg-brand-600 text-white" : "border-line bg-surface text-ink-soft hover:bg-canvas")}>
                 {REPORT_META[t].title}
               </Link>
             ))}
@@ -76,8 +76,8 @@ export default async function ReportsPage({ searchParams }: { searchParams: Prom
         <Card>
           <CardHeader title={table.title} description={`${table.description} · Periode: ${table.periodLabel}`}
             actions={<>
-              <a href={exportHref("csv")} className="inline-flex h-9 items-center gap-2 rounded-md border border-line bg-white px-3 text-sm font-medium hover:bg-canvas"><Download className="size-4" />CSV</a>
-              <a href={exportHref("xlsx")} className="inline-flex h-9 items-center gap-2 rounded-md border border-line bg-white px-3 text-sm font-medium hover:bg-canvas"><Download className="size-4" />Excel</a>
+              <a href={exportHref("csv")} className="inline-flex h-9 items-center gap-2 rounded-md border border-line bg-surface px-3 text-sm font-medium hover:bg-canvas"><Download className="size-4" />CSV</a>
+              <a href={exportHref("xlsx")} className="inline-flex h-9 items-center gap-2 rounded-md border border-line bg-surface px-3 text-sm font-medium hover:bg-canvas"><Download className="size-4" />Excel</a>
             </>} />
           {table.rows.length === 0 ? <EmptyState title="Tidak ada data" description="Tidak ada transaksi pada periode/filter ini." /> : (
             <TableWrap>

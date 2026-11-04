@@ -22,6 +22,13 @@ export function formatDateLong(iso: string | null | undefined): string {
   return `${Number(d)} ${MONTHS_ID[Number(m) - 1] ?? m} ${y}`;
 }
 
+/** "2025-08-01" → "1 Agu 2025" (ringkas, untuk filter periode & tabel dashboard). */
+export function formatDateCompact(iso: string | null | undefined): string {
+  if (!iso) return "-";
+  const [y, m, d] = iso.slice(0, 10).split("-");
+  return `${Number(d)} ${MONTHS_ID_SHORT[Number(m) - 1] ?? m} ${y}`;
+}
+
 export function monthLabel(ym: string, short = false): string {
   const [y, m] = ym.split("-");
   const names = short ? MONTHS_ID_SHORT : MONTHS_ID;

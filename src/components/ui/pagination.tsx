@@ -4,7 +4,7 @@ import { cn } from "@/lib/cn";
 /** Pagination berbasis URL (server component friendly): `hrefFor(page)` membangun query string. */
 export function Pagination({ page, pageCount, total, hrefFor }: { page: number; pageCount: number; total: number; hrefFor: (p: number) => string }) {
   if (pageCount <= 1) return <p className="px-5 py-3 text-xs text-muted">{total} data</p>;
-  const link = "rounded-md border border-line bg-white px-3 py-1.5 text-sm hover:bg-canvas";
+  const link = "rounded-md border border-line bg-surface px-3 py-1.5 text-sm hover:bg-canvas";
   return (
     <nav aria-label="Halaman" className="flex flex-wrap items-center justify-between gap-3 px-5 py-3">
       <p className="text-xs text-muted">{total} data · halaman {page} dari {pageCount}</p>

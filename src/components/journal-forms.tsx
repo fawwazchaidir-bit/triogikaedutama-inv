@@ -81,7 +81,7 @@ function JournalDialog({ accounts, startDate, onClose }: { accounts: CoaAccountD
               {rows.map((r, i) => (
                 <tr key={r.key} className="align-top">
                   <td className="py-1 pr-2">
-                    <select aria-label={`Akun baris ${i + 1}`} value={r.accountId} onChange={(e) => set(r.key, { accountId: e.target.value })} className="h-10 w-full rounded-md border border-line bg-white px-2 text-sm">
+                    <select aria-label={`Akun baris ${i + 1}`} value={r.accountId} onChange={(e) => set(r.key, { accountId: e.target.value })} className="h-10 w-full rounded-md border border-line bg-surface px-2 text-sm">
                       <option value="">Pilih akun…</option>
                       {usable.map((a) => <option key={a.id} value={a.id}>{a.code} — {a.name}</option>)}
                     </select>
@@ -90,7 +90,7 @@ function JournalDialog({ accounts, startDate, onClose }: { accounts: CoaAccountD
                   </td>
                   <td className="py-1 pr-2"><MoneyInput label={`Debit baris ${i + 1}`} className="[&>label]:sr-only" value={r.debit} onChange={(v) => set(r.key, { debit: v, ...(v ? { credit: null } : {}) })} /></td>
                   <td className="py-1 pr-2"><MoneyInput label={`Kredit baris ${i + 1}`} className="[&>label]:sr-only" value={r.credit} onChange={(v) => set(r.key, { credit: v, ...(v ? { debit: null } : {}) })} /></td>
-                  <td className="py-1 pr-2"><input aria-label={`Catatan baris ${i + 1}`} value={r.memo} onChange={(e) => set(r.key, { memo: e.target.value })} className="h-10 w-full rounded-md border border-line bg-white px-2 text-sm" placeholder="Opsional" /></td>
+                  <td className="py-1 pr-2"><input aria-label={`Catatan baris ${i + 1}`} value={r.memo} onChange={(e) => set(r.key, { memo: e.target.value })} className="h-10 w-full rounded-md border border-line bg-surface px-2 text-sm" placeholder="Opsional" /></td>
                   <td className="py-1"><button type="button" aria-label={`Hapus baris ${i + 1}`} disabled={rows.length <= 2} onClick={() => setRows((rs) => rs.filter((x) => x.key !== r.key))} className="rounded p-2 text-brand-700 hover:bg-brand-50 disabled:opacity-30"><Trash2 className="size-4" /></button></td>
                 </tr>
               ))}

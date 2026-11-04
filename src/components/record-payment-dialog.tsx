@@ -82,7 +82,7 @@ function PaymentDialogBody({ onClose, invoice, onDone }: { open: boolean; onClos
         <TextAreaField className="sm:col-span-2" label="Catatan" rows={2} value={pay.note} onChange={(e) => setPay({ ...pay, note: e.target.value })} error={fe.note} />
         <div className="sm:col-span-2">
           <label className="mb-1.5 block text-sm font-medium text-ink-soft" htmlFor="proof">Bukti pembayaran (opsional)</label>
-          <input id="proof" type="file" accept="image/png,image/jpeg,application/pdf" onChange={(e) => setProof(e.target.files?.[0] ?? null)} className="block w-full text-sm file:mr-3 file:rounded-md file:border file:border-line file:bg-white file:px-3 file:py-1.5 file:text-sm" />
+          <input id="proof" type="file" accept="image/png,image/jpeg,application/pdf" onChange={(e) => setProof(e.target.files?.[0] ?? null)} className="block w-full text-sm file:mr-3 file:rounded-md file:border file:border-line file:bg-surface file:px-3 file:py-1.5 file:text-sm" />
           <p className="mt-1 text-xs text-muted">PNG, JPEG, atau PDF — maksimal 3 MB.</p>
         </div>
       </div>

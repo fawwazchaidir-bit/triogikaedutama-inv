@@ -11,7 +11,14 @@ export async function login(page: Page, who: keyof typeof USERS, password = E2E_
   await expect(page).not.toHaveURL(/\/login/);
 }
 
+/** Menu pengguna (nama perusahaan ⌄) di bilah atas: berisi identitas, peran, ganti password, dan Keluar. */
+export async function openUserMenu(page: Page) {
+  await page.getByTestId("user-menu").click();
+  await expect(page.getByRole("menu", { name: "Menu pengguna" })).toBeVisible();
+}
+
 export async function logout(page: Page) {
-  await page.getByRole("button", { name: "Keluar" }).click();
+  await openUserMenu(page);
+  await page.getByRole("menuitem", { name: "Keluar" }).click();
   await expect(page).toHaveURL(/\/login/);
 }

@@ -86,9 +86,9 @@ export function InvoiceActions({ inv, can, variant = "menu", onDone, initialDial
     <>
       {variant === "menu" ? <Menu items={items} label={`Aksi invoice ${label}`} /> : (
         <div className="flex flex-wrap items-center gap-2">
-          {inv.status === "DRAFT" && can.edit && <Link href={`/invoices/${inv.id}/edit`} className="inline-flex h-10 items-center rounded-md border border-line bg-white px-4 text-sm font-medium shadow-sm hover:bg-canvas">Edit draft</Link>}
+          {inv.status === "DRAFT" && can.edit && <Link href={`/invoices/${inv.id}/edit`} className="inline-flex h-10 items-center rounded-md border border-line bg-surface px-4 text-sm font-medium shadow-sm hover:bg-canvas">Edit draft</Link>}
           {canPdfNow && <Button onClick={() => setDlg("preview")}>{unissued ? "Preview PDF (draft)" : "Preview PDF"}</Button>}
-          {canPdfNow && !unissued && <a href={`${pdfBase}?download=1`} className="inline-flex h-10 items-center rounded-md border border-line bg-white px-4 text-sm font-medium shadow-sm hover:bg-canvas">{pdfLabel}</a>}
+          {canPdfNow && !unissued && <a href={`${pdfBase}?download=1`} className="inline-flex h-10 items-center rounded-md border border-line bg-surface px-4 text-sm font-medium shadow-sm hover:bg-canvas">{pdfLabel}</a>}
           {can.submit && <Button variant="primary" onClick={() => setDlg("submit")}>Ajukan untuk verifikasi</Button>}
           {can.approve && <Button variant="primary" onClick={() => setDlg("approve")}>Setujui &amp; terbitkan</Button>}
           {can.reject && <Button variant="danger" onClick={() => setDlg("reject")}>Kembalikan ke staff</Button>}
@@ -101,7 +101,7 @@ export function InvoiceActions({ inv, can, variant = "menu", onDone, initialDial
       {/* Pratinjau PDF: iframe ke endpoint yang memakai SNAPSHOT tersimpan, bukan input browser. */}
       <Dialog open={dlg === "preview"} onClose={close} title={`Preview invoice ${label}`} size="xl"
         footer={<>
-          {canPdfNow && !unissued && <a href={`${pdfBase}?download=1`} className="inline-flex h-10 items-center rounded-md bg-brand-600 px-4 text-sm font-medium text-white hover:bg-brand-700">{pdfLabel}</a>}
+          {canPdfNow && !unissued && <a href={`${pdfBase}?download=1`} className="inline-flex h-10 items-center rounded-md bg-brand-600 px-4 text-sm font-medium text-white hover:bg-brand-hover">{pdfLabel}</a>}
           <Button onClick={close}>Tutup</Button></>}>
         {paid && <p className="mb-2 text-xs text-muted">Invoice sudah <b>lunas</b> — PDF berjudul <b>KWITANSI</b> dan berwatermark <b>LUNAS</b> beserta tanggal pelunasan, sehingga berfungsi sebagai bukti pembayaran. Bila pembayaran dibalik, watermark hilang otomatis.</p>}
         {unissued && <p className="mb-2 text-xs text-muted">Dokumen berwatermark <b>DRAFT</b> — belum bernomor, tanpa tanda tangan &amp; cap. Belum untuk dikirim ke pelanggan; versi resmi baru tersedia setelah diverifikasi Finance Manager.</p>}

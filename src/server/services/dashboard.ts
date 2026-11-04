@@ -8,6 +8,7 @@ import { isoToDate } from "../json";
 import { parseInput } from "../validate";
 import { currentYearMonth, todayIso } from "@/lib/format";
 import { isoDate } from "@/lib/validation/common";
+import { DERIVED_STATUS_ORDER, type DerivedStatus } from "@/lib/invoice-status";
 
 /**
  * ═══════════ DEFINISI ANGKA (agar tidak terjadi penghitungan ganda) ═══════════
@@ -49,6 +50,11 @@ export interface DashboardData {
   draftCount: number;
   /** Invoice menunggu verifikasi Finance Manager */
   pendingCount: number;
+  /**
+   * Sebaran status yang SALING LEPAS (jumlah baris = jumlah seluruh invoice pada periode): Belum dibayar / Sebagian (belum jatuh tempo),
+   * Lunas, Jatuh tempo, Menunggu verifikasi, Draft, Dibatalkan. `amount` = Σ NILAI invoice (bukan sisa tagihan).
+   */
+  statuses: { key: DerivedStatus; count: number; amount: number }[];
   /** Tren per bulan pada periode terpilih */
   trend: { month: string; invoiced: number; received: number }[];
 }
@@ -86,14 +92,16 @@ export async function getDashboard(actor: Actor, raw: unknown = {}): Promise<Das
   const customerSql = f.customerId ? Prisma.sql`AND i."customerId" = ${f.customerId}::uuid` : Prisma.empty;
   const qSql = f.q ? Prisma.sql`AND i."number" ILIKE ${"%" + f.q + "%"}` : Prisma.empty;
 
-  const [monthAgg, yearAgg, issuedAgg, unpaid, partial, paid, overdueAgg, cancelled, drafts, pending, cash, invTrend, cashTrend] = await Promise.all([
+  const sumTotal = { _sum: { totalAmount: true }, _count: { _all: true } } as const;
+  const notYetDue = { dueDate: { gte: isoToDate(today) } };
+  const [monthAgg, yearAgg, issuedAgg, unpaid, partial, paid, overdueAgg, cancelled, drafts, pending, cash, invTrend, cashTrend, unpaidOnly, partialOnly, paidAgg, cancelledAgg, draftAgg, pendingAgg] = await Promise.all([
     prisma.invoice.aggregate({ where: { ...base, status: "ISSUED", invoiceDate: { gte: monthStart } }, _sum: { totalAmount: true } }),
     prisma.invoice.aggregate({ where: { ...base, status: "ISSUED", invoiceDate: { gte: yearStart } }, _sum: { totalAmount: true } }),
     prisma.invoice.aggregate({ where: issued, _sum: { totalAmount: true, balanceAmount: true }, _count: { _all: true } }),
     prisma.invoice.count({ where: { ...issuedBase, paymentStatus: "UNPAID" } }),
     prisma.invoice.count({ where: { ...issuedBase, paymentStatus: "PARTIALLY_PAID" } }),
     prisma.invoice.count({ where: { ...issuedBase, paymentStatus: "PAID" } }),
-    prisma.invoice.aggregate({ where: { ...issuedBase, balanceAmount: { gt: 0n }, dueDate: { lt: isoToDate(today) } }, _sum: { balanceAmount: true }, _count: { _all: true } }),
+    prisma.invoice.aggregate({ where: { ...issuedBase, balanceAmount: { gt: 0n }, dueDate: { lt: isoToDate(today) } }, _sum: { balanceAmount: true, totalAmount: true }, _count: { _all: true } }),
     prisma.invoice.count({ where: { ...inPeriod, status: "CANCELLED" } }),
     prisma.invoice.count({ where: { ...inPeriod, status: "DRAFT" } }),
     prisma.invoice.count({ where: { ...inPeriod, status: "SUBMITTED" } }),
@@ -108,6 +116,12 @@ export async function getDashboard(actor: Actor, raw: unknown = {}): Promise<Das
       SELECT to_char(p."paymentDate", 'YYYY-MM') AS m, SUM(p."amount") AS amount FROM payments p JOIN invoices i ON i."id" = p."invoiceId"
        WHERE p."paymentDate" BETWEEN ${isoToDate(from)} AND ${isoToDate(to)} AND i."status" NOT IN ('DRAFT','SUBMITTED') ${customerSql} ${qSql}
        GROUP BY 1`,
+    prisma.invoice.aggregate({ where: { ...issuedBase, paymentStatus: "UNPAID", ...notYetDue }, ...sumTotal }),
+    prisma.invoice.aggregate({ where: { ...issuedBase, paymentStatus: "PARTIALLY_PAID", ...notYetDue }, ...sumTotal }),
+    prisma.invoice.aggregate({ where: { ...issuedBase, paymentStatus: "PAID" }, ...sumTotal }),
+    prisma.invoice.aggregate({ where: { ...inPeriod, status: "CANCELLED" }, ...sumTotal }),
+    prisma.invoice.aggregate({ where: { ...inPeriod, status: "DRAFT" }, ...sumTotal }),
+    prisma.invoice.aggregate({ where: { ...inPeriod, status: "SUBMITTED" }, ...sumTotal }),
   ]);
 
   // Deret bulan kontinu (bulan tanpa transaksi tetap tampil sebagai 0).
@@ -129,6 +143,10 @@ export async function getDashboard(actor: Actor, raw: unknown = {}): Promise<Das
     unpaidCount: unpaid, partialCount: partial, paidCount: paid,
     overdueCount: overdueAgg._count._all, overdueAmount: n(overdueAgg._sum.balanceAmount),
     cancelledCount: cancelled, draftCount: drafts, pendingCount: pending,
+    statuses: DERIVED_STATUS_ORDER.map((key) => {
+      const a = { UNPAID: unpaidOnly, PARTIAL: partialOnly, PAID: paidAgg, OVERDUE: overdueAgg, PENDING: pendingAgg, DRAFT: draftAgg, CANCELLED: cancelledAgg }[key];
+      return { key, count: a._count._all, amount: n(a._sum.totalAmount) };
+    }),
     trend: months.map((m) => ({ month: m, invoiced: inv.get(m) ?? 0, received: rec.get(m) ?? 0 })),
   };
 }

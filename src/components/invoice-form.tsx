@@ -221,8 +221,8 @@ export function InvoiceForm({ mode, invoice, defaults, taxes, perms }: InvoiceFo
                   <div className="flex items-center justify-between gap-2">
                     <p className="text-sm font-semibold text-ink-soft">Baris {i + 1}</p>
                     <div className="flex gap-1">
-                      <button type="button" aria-label={`Naikkan baris ${i + 1}`} disabled={i === 0} onClick={() => moveLine(i, -1)} className="rounded p-1.5 text-muted hover:bg-black/5 disabled:opacity-30"><ArrowUp className="size-4" /></button>
-                      <button type="button" aria-label={`Turunkan baris ${i + 1}`} disabled={i === lines.length - 1} onClick={() => moveLine(i, 1)} className="rounded p-1.5 text-muted hover:bg-black/5 disabled:opacity-30"><ArrowDown className="size-4" /></button>
+                      <button type="button" aria-label={`Naikkan baris ${i + 1}`} disabled={i === 0} onClick={() => moveLine(i, -1)} className="rounded p-1.5 text-muted hover:bg-hover disabled:opacity-30"><ArrowUp className="size-4" /></button>
+                      <button type="button" aria-label={`Turunkan baris ${i + 1}`} disabled={i === lines.length - 1} onClick={() => moveLine(i, 1)} className="rounded p-1.5 text-muted hover:bg-hover disabled:opacity-30"><ArrowDown className="size-4" /></button>
                       <button type="button" aria-label={`Hapus baris ${i + 1}`} disabled={lines.length === 1} onClick={() => removeLine(l.key)} className="rounded p-1.5 text-brand-700 hover:bg-brand-50 disabled:opacity-30"><Trash2 className="size-4" /></button>
                     </div>
                   </div>

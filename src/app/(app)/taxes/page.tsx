@@ -61,7 +61,7 @@ export default async function TaxesPage({ searchParams }: { searchParams: Promis
 
   const tab = (id: (typeof TABS)[number]) => (
     <Link key={id} href={`/taxes${buildQuery({ tab: id })}`} aria-current={f.tab === id ? "page" : undefined}
-      className={cn("rounded-md px-3 py-1.5 text-sm font-medium", f.tab === id ? "bg-ink text-white" : "text-ink-soft hover:bg-black/5")}>{LABEL[id]}</Link>
+      className={cn("rounded-md px-3 py-1.5 text-sm font-medium", f.tab === id ? "bg-sidebar-active text-white" : "text-ink-soft hover:bg-hover")}>{LABEL[id]}</Link>
   );
   return (
     <div>

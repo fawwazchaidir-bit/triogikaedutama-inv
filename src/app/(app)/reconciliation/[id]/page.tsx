@@ -35,7 +35,7 @@ export default async function StatementPage({ params }: { params: Promise<{ id: 
   return (
     <div>
       <PageHeader title={`Rekonsiliasi ${s.accountName}`} description={`${formatDateShort(s.periodStart)} – ${formatDateShort(s.periodEnd)}${s.label ? ` · ${s.label}` : ""}`}
-        actions={<><ExportLinks base={`/api/finance/bank/statements/${s.id}`} /><Link href="/reconciliation" className="inline-flex h-10 items-center rounded-md border border-line bg-white px-3 text-sm hover:bg-canvas">Kembali</Link><StatusBadge status={s.status} /></>} />
+        actions={<><ExportLinks base={`/api/finance/bank/statements/${s.id}`} /><Link href="/reconciliation" className="inline-flex h-10 items-center rounded-md border border-line bg-surface px-3 text-sm hover:bg-canvas">Kembali</Link><StatusBadge status={s.status} /></>} />
       {s.reopenReason && draft && <div className="mb-3"><Notice tone="info">Dibuka kembali: {s.reopenReason}</Notice></div>}
       <Card className="mb-4">
         <dl className="grid gap-3 px-5 py-4 text-sm sm:grid-cols-2 lg:grid-cols-5">

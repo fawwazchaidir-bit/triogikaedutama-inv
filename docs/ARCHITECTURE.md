@@ -360,6 +360,13 @@ Halaman `/closing`; API `/api/finance/periods{,/checklist,/close,/reopen}`; hak 
   PDF juga tersedia untuk laporan pajak dan laporan rekonsiliasi bank.
 * Penafian laporan: basis kas, struktur SAK EMKM tetapi **bukan** laporan keuangan resmi lengkap (belum ada Catatan atas Laporan Keuangan) dan bukan SPT.
 
+## 10h. Antarmuka: tema, kerangka aplikasi, pencarian, notifikasi, dashboard
+
+* **Tema** (`src/app/globals.css`, `src/lib/theme.ts`, `src/components/theme-toggle.tsx`): seluruh warna adalah token Tailwind 4 (`@theme`) — `canvas`, `surface`, `field`, `ink`, `muted`, `line`, `brand-*`, `header`, `sidebar-*`, `series-a/b`. Tema gelap menimpa token yang sama di bawah `[data-theme="dark"]`, termasuk skala bawaan `stone/emerald/amber/sky/violet` yang dipakai lencana, sehingga komponen **tidak** memakai varian `dark:` satu per satu (varian `dark:` tetap tersedia dan mengikuti atribut yang sama). Skrip kecil di `<head>` (`THEME_INIT_SCRIPT`) memasang `data-theme` **sebelum cat pertama** (localStorage `fms-theme`, jatuh ke `prefers-color-scheme`; aman bila storage diblokir) → tanpa kedip. Aturan: jangan menulis warna heksadesimal/`bg-white`/`bg-black` di komponen — pakai token (`bg-surface`, `bg-hover`, …). PDF & ekspor tidak memakai tema.
+* **Kerangka** (`src/components/app-shell.tsx`): bilah atas (merek dari nama perusahaan, pencarian, lonceng, tema, menu pengguna) + sidebar (daftar menu dari `NAV_ITEMS` menurut izin; laci di ponsel). Data lonceng diambil di `(app)/layout.tsx` oleh `getNotifications(actor)` — hitungan ringan per izin, tanpa tabel notifikasi.
+* **Pencarian** (`services/search.ts`, `GET /api/search`, halaman `/search`): menyusun `listInvoices/listCustomers/listPayments/listEntries` → izin & visibilitas identik dengan halaman asal; bagian tanpa izin bernilai `null` (UI tidak menyiratkan "tidak ada hasil"). Batas: ≥ 2 dan ≤ 80 karakter, 6 hasil per bagian.
+* **Dashboard** (`services/dashboard.ts`, `(app)/dashboard/page.tsx`): `statuses[]` = tujuh status saling lepas (`lib/invoice-status.ts`, `derivedStatus`) dengan agregat terpisah per status, sehingga jumlah baris = seluruh invoice pada filter. Filter periode & pelanggan adalah komponen klien (`dashboard-filters.tsx`) yang hanya mengubah URL; seluruh angka tetap dihitung di server. Grafik tren (`trend-chart.tsx`) = SVG tanpa pustaka (garis + area, skala "bulat" 1/2/5 × 10^k, label "Jt/Rb/M", tooltip, fokus keyboard, tombol tabel untuk aksesibilitas) memakai token `series-a/b`.
+
 ## 11. Risiko teknis & mitigasi
 
 | Risiko | Mitigasi | Bukti |

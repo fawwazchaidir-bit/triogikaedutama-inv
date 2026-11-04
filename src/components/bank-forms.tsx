@@ -134,7 +134,7 @@ export function StatementActions({ ws, canAct, canFinalize }: { ws: StatementWor
   return (
     <div className="flex flex-wrap items-center gap-2">
       {draft && <>
-        <label className="flex items-center gap-1 text-xs text-muted">Jendela ± <select value={win} onChange={(e) => setWin(e.target.value)} className="h-9 rounded-md border border-line bg-white px-2 text-sm">{[0, 1, 3, 5, 7, 14].map((n) => <option key={n} value={n}>{n} hari</option>)}</select></label>
+        <label className="flex items-center gap-1 text-xs text-muted">Jendela ± <select value={win} onChange={(e) => setWin(e.target.value)} className="h-9 rounded-md border border-line bg-surface px-2 text-sm">{[0, 1, 3, 5, 7, 14].map((n) => <option key={n} value={n}>{n} hari</option>)}</select></label>
         <Button loading={auto.busy} onClick={() => void auto.run(() => api(`/api/finance/bank/statements/${ws.statement.id}/auto-match`, { body: { windowDays: Number(win) } }))}>Pencocokan otomatis</Button>
         {canFinalize && <Button variant="primary" disabled={!ws.summary.canFinalize} onClick={() => setConfirm("final")}>Finalisasi</Button>}
         <Button variant="danger" onClick={() => setConfirm("delete")}>Hapus draft</Button>

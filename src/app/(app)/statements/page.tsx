@@ -104,7 +104,7 @@ export default async function StatementsPage({ searchParams }: { searchParams: P
   const warnings = await getFinanceWarnings(user);
   const tab = (id: (typeof TYPES)[number]) => (
     <Link key={id} href={`/statements${buildQuery({ type: id, ...q, accountId: f.accountId, compare: f.compare === "none" ? undefined : f.compare })}`} aria-current={f.type === id ? "page" : undefined}
-      className={cn("rounded-md px-3 py-1.5 text-sm font-medium", f.type === id ? "bg-ink text-white" : "text-ink-soft hover:bg-black/5")}>{LABEL[id]}</Link>
+      className={cn("rounded-md px-3 py-1.5 text-sm font-medium", f.type === id ? "bg-sidebar-active text-white" : "text-ink-soft hover:bg-hover")}>{LABEL[id]}</Link>
   );
   return (
     <div>

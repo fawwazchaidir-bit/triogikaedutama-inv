@@ -26,8 +26,8 @@ export default async function CustomerDetailPage({ params }: { params: Promise<{
   return (
     <div>
       <PageHeader title={c.name} description={[c.city, c.contactName && `Kontak: ${c.contactName}${c.contactTitle ? ` (${c.contactTitle})` : ""}`].filter(Boolean).join(" · ")}
-        actions={<><Link href="/customers" className="inline-flex h-10 items-center rounded-md border border-line bg-white px-4 text-sm hover:bg-canvas">← Semua pelanggan</Link>
-          {can(user.role, "invoice:create") && c.isActive && <Link href="/invoices/new" className="inline-flex h-10 items-center rounded-md bg-brand-600 px-4 text-sm font-medium text-white hover:bg-brand-700">Buat invoice</Link>}</>} />
+        actions={<><Link href="/customers" className="inline-flex h-10 items-center rounded-md border border-line bg-surface px-4 text-sm hover:bg-canvas">← Semua pelanggan</Link>
+          {can(user.role, "invoice:create") && c.isActive && <Link href="/invoices/new" className="inline-flex h-10 items-center rounded-md bg-brand-600 px-4 text-sm font-medium text-white hover:bg-brand-hover">Buat invoice</Link>}</>} />
       <section className="mb-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-4" aria-label="Ringkasan transaksi">
         {[["Jumlah invoice terbit", String(c.invoiceCount)], ["Nilai transaksi", R(c.invoicedAmount)], ["Sudah dibayar", R(c.paidAmount)], ["Piutang", R(c.outstandingAmount)]].map(([l, v], i) => (
           <div key={l} className="rounded-lg border border-line bg-surface p-4 shadow-sm"><p className="text-sm text-muted">{l}</p><p className={`tabular mt-1 text-2xl font-semibold ${i === 3 && c.outstandingAmount > 0 ? "text-brand-700" : ""}`}>{v}</p></div>

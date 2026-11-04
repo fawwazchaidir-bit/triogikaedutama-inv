@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { login } from "./helpers";
+import { login, openUserMenu } from "./helpers";
 
 const ORIGIN = { Origin: "http://127.0.0.1:3100" };
 
@@ -8,8 +8,10 @@ test.describe("RBAC end-to-end", () => {
     await login(page, "staff");
     const nav = page.getByRole("navigation", { name: "Menu utama" });
     // Pembayaran & Laporan kini tersedia; Dashboard tetap tidak ada
-    await expect(nav.getByRole("link")).toHaveText(["Invoice", "Pelanggan", "Produk & Layanan", "Pembayaran", "Pengeluaran", "Kas & Bank", "Rekonsiliasi Bank", "Jurnal", "Laporan", "Laporan Keuangan", "Pajak", "Tutup Buku", "Pengaturan"]);
-    await expect(page.getByText("Staf Administrasi Keuangan", { exact: true })).toBeVisible(); // label peran di sidebar
+    await expect(nav.getByRole("link")).toHaveText(["Invoice", "Pembayaran", "Pelanggan", "Produk & Layanan", "Pengeluaran", "Kas & Bank", "Jurnal", "Rekonsiliasi", "Laporan", "Laporan Keuangan", "Pajak", "Tutup Buku", "Pengaturan"]);
+    await openUserMenu(page);
+    await expect(page.getByRole("menu", { name: "Menu pengguna" }).getByText("Staf Administrasi Keuangan", { exact: true })).toBeVisible(); // label peran di menu pengguna
+    await page.keyboard.press("Escape");
 
     // staff melihat seluruh invoice (draft miliknya + invoice terbit lainnya)
     await page.goto("/invoices");
@@ -63,7 +65,7 @@ test.describe("RBAC end-to-end", () => {
 
   test("Finance Manager: dapat menyetujui/bayar/laporan; tidak dapat mengelola pengguna, penomoran, pajak, atau audit log", async ({ page }) => {
     await login(page, "finance");
-    await expect(page.getByRole("navigation", { name: "Menu utama" }).getByRole("link")).toHaveText(["Dashboard", "Invoice", "Pelanggan", "Produk & Layanan", "Pembayaran", "Pengeluaran", "Kas & Bank", "Rekonsiliasi Bank", "Jurnal", "Laporan", "Laporan Keuangan", "Pajak", "Tutup Buku", "Pengaturan"]);
+    await expect(page.getByRole("navigation", { name: "Menu utama" }).getByRole("link")).toHaveText(["Dashboard", "Invoice", "Pembayaran", "Pelanggan", "Produk & Layanan", "Pengeluaran", "Kas & Bank", "Jurnal", "Rekonsiliasi", "Laporan", "Laporan Keuangan", "Pajak", "Tutup Buku", "Pengaturan"]);
     for (const [method, url] of [["get", "/api/users"], ["get", "/api/audit-logs"], ["get", "/api/tax"]] as const) {
       expect((await page.request[method](url)).status(), url).toBe(403);
     }

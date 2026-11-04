@@ -63,7 +63,7 @@ export function Combobox<T>({
         }}
       />
       {open && (
-        <div className="absolute z-30 mt-1 w-full min-w-64 overflow-hidden rounded-md border border-line bg-white shadow-lg">
+        <div className="absolute z-30 mt-1 w-full min-w-64 overflow-hidden rounded-md border border-line bg-surface shadow-lg">
           <ul id={listId} role="listbox" className="max-h-64 overflow-y-auto py-1">
             {items.map((it, i) => (
               <li key={itemKey(it)} id={`${listId}-${i}`} role="option" aria-selected={i === active}

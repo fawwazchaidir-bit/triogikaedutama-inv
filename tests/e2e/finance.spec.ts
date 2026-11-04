@@ -164,7 +164,7 @@ test.describe("modul keuangan basis kas (UI + RBAC)", () => {
 
     await login(page, "finance");
     await page.goto("/dashboard");
-    await expect(page.getByRole("navigation", { name: "Menu utama" }).getByRole("link")).toHaveText(["Dashboard", "Invoice", "Pelanggan", "Produk & Layanan", "Pembayaran", "Pengeluaran", "Kas & Bank", "Rekonsiliasi Bank", "Jurnal", "Laporan", "Laporan Keuangan", "Pajak", "Tutup Buku", "Pengaturan"]);
+    await expect(page.getByRole("navigation", { name: "Menu utama" }).getByRole("link")).toHaveText(["Dashboard", "Invoice", "Pembayaran", "Pelanggan", "Produk & Layanan", "Pengeluaran", "Kas & Bank", "Jurnal", "Rekonsiliasi", "Laporan", "Laporan Keuangan", "Pajak", "Tutup Buku", "Pengaturan"]);
     await page.goto("/expenses?status=PENDING");
     await expect(page.getByText(/pengeluaran menunggu persetujuan/)).toBeVisible();
 
@@ -223,7 +223,7 @@ test.describe("modul keuangan basis kas (UI + RBAC)", () => {
     await t.getByLabel("Keterangan").fill("Transfer E2E");
     await t.getByRole("button", { name: "Simpan transfer" }).click();
     await expect(page.getByText("Transfer dicatat.")).toBeVisible();
-    const tr = page.locator("section", { has: page.getByRole("heading", { name: "Transfer antar akun terbaru" }) }).getByRole("row", { name: /Transfer E2E/ });
+    const tr = page.locator("section", { has: page.getByRole("heading", { name: "Transfer antar akun terbaru" }) }).getByRole("row", { name: /Transfer E2E(?! staf)/ });
     await expect(tr).toBeVisible();
     await tr.getByRole("button", { name: "Balikkan" }).click();
     await page.getByLabel("Alasan pembalikan").fill("Salah akun uji");

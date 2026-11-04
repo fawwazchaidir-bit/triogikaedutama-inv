@@ -4,7 +4,7 @@ export function Card({ className, children }: { className?: string; children: Re
   return <section className={cn("rounded-lg border border-line bg-surface shadow-sm", className)}>{children}</section>;
 }
 
-export function CardHeader({ title, description, actions }: { title: string; description?: string; actions?: React.ReactNode }) {
+export function CardHeader({ title, description, actions }: { title: React.ReactNode; description?: string; actions?: React.ReactNode }) {
   return (
     <header className="flex flex-wrap items-start justify-between gap-3 border-b border-line px-5 py-4">
       <div>

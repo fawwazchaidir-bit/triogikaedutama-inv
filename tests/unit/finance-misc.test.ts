@@ -194,9 +194,9 @@ describe("matriks hak akses (least privilege)", () => {
   });
   it("menu sidebar sesuai peran (staf: seperti Finance Manager tanpa Dashboard — halaman keuangan hanya-baca)", () => {
     const labels = (r: "ADMIN" | "FINANCE" | "STAFF") => visibleNav(r).map((i) => i.label);
-    expect(labels("ADMIN")).toEqual(["Dashboard", "Invoice", "Pelanggan", "Produk & Layanan", "Pembayaran", "Pengeluaran", "Kas & Bank", "Rekonsiliasi Bank", "Jurnal", "Laporan", "Laporan Keuangan", "Pajak", "Tutup Buku", "Audit Log", "Pengaturan"]);
-    expect(labels("FINANCE")).toEqual(["Dashboard", "Invoice", "Pelanggan", "Produk & Layanan", "Pembayaran", "Pengeluaran", "Kas & Bank", "Rekonsiliasi Bank", "Jurnal", "Laporan", "Laporan Keuangan", "Pajak", "Tutup Buku", "Pengaturan"]);
-    expect(labels("STAFF")).toEqual(["Invoice", "Pelanggan", "Produk & Layanan", "Pembayaran", "Pengeluaran", "Kas & Bank", "Rekonsiliasi Bank", "Jurnal", "Laporan", "Laporan Keuangan", "Pajak", "Tutup Buku", "Pengaturan"]);
+    expect(labels("ADMIN")).toEqual(["Dashboard", "Invoice", "Pembayaran", "Pelanggan", "Produk & Layanan", "Pengeluaran", "Kas & Bank", "Jurnal", "Rekonsiliasi", "Laporan", "Laporan Keuangan", "Pajak", "Tutup Buku", "Audit Log", "Pengaturan"]);
+    expect(labels("FINANCE")).toEqual(["Dashboard", "Invoice", "Pembayaran", "Pelanggan", "Produk & Layanan", "Pengeluaran", "Kas & Bank", "Jurnal", "Rekonsiliasi", "Laporan", "Laporan Keuangan", "Pajak", "Tutup Buku", "Pengaturan"]);
+    expect(labels("STAFF")).toEqual(["Invoice", "Pembayaran", "Pelanggan", "Produk & Layanan", "Pengeluaran", "Kas & Bank", "Jurnal", "Rekonsiliasi", "Laporan", "Laporan Keuangan", "Pajak", "Tutup Buku", "Pengaturan"]);
   });
   it("tanpa role = tanpa izin", () => {
     expect(can(null, "dashboard:view")).toBe(false);

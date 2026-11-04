@@ -41,7 +41,7 @@ export function UsersManager({ items, selfId }: { items: UserDto[]; selfId: stri
             {items.map((u) => (
               <tr key={u.id}>
                 <Td className="font-medium">{u.name}{u.id === selfId && <Badge className="ml-2">Anda</Badge>}</Td><Td>{u.email}</Td>
-                <Td><select aria-label={`Peran ${u.name}`} value={u.role} disabled={u.id === selfId} onChange={(e) => void patch(u, { role: e.target.value }, "Peran diubah. Pengguna perlu login ulang.")} className="h-8 rounded-md border border-line bg-white px-2 text-sm disabled:bg-canvas">
+                <Td><select aria-label={`Peran ${u.name}`} value={u.role} disabled={u.id === selfId} onChange={(e) => void patch(u, { role: e.target.value }, "Peran diubah. Pengguna perlu login ulang.")} className="h-8 rounded-md border border-line bg-surface px-2 text-sm disabled:bg-canvas">
                   {(Object.keys(ROLE_LABELS) as Role[]).map((r) => <option key={r} value={r}>{ROLE_LABELS[r]}</option>)}</select></Td>
                 <Td>{u.lastLoginAt ? formatDateTime(u.lastLoginAt) : "Belum pernah"}</Td>
                 <Td>{u.isActive ? <Badge tone="green">Aktif</Badge> : <Badge>Nonaktif</Badge>}{u.mustChangePassword && <Badge tone="amber" className="ml-1">Wajib ganti password</Badge>}</Td>

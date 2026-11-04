@@ -42,7 +42,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
       <nav aria-label="Bagian pengaturan" className="mb-5 flex flex-wrap gap-2 border-b border-line pb-3">
         {tabs.map((t) => (
           <Link key={t.id} href={`/settings?tab=${t.id}`} aria-current={t.id === tab ? "page" : undefined}
-            className={cn("rounded-md px-3 py-1.5 text-sm font-medium", t.id === tab ? "bg-ink text-white" : "text-ink-soft hover:bg-black/5")}>{t.label}</Link>
+            className={cn("rounded-md px-3 py-1.5 text-sm font-medium", t.id === tab ? "bg-sidebar-active text-white" : "text-ink-soft hover:bg-hover")}>{t.label}</Link>
         ))}
       </nav>
       {tab === "company" && <CompanyForm initial={await getSettings(user)} readOnly={!manage} />}

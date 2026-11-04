@@ -57,7 +57,7 @@ export function CompanyForm({ initial, readOnly }: { initial: CompanySettingsDto
           {s[field] ? <Image src={`/api/files/${s[field]}`} alt={label} width={80} height={80} unoptimized className="size-20 object-contain" /> : <span className="text-xs text-muted">Belum ada</span>}
         </div>
         <div className="space-y-2 text-sm">
-          {!dis && <input type="file" accept="image/png,image/jpeg" aria-label={`Unggah ${label}`} disabled={uploading === field} onChange={(e) => void upload(field, e.target.files?.[0])} className="block w-52 text-xs file:mr-2 file:rounded file:border file:border-line file:bg-white file:px-2 file:py-1" />}
+          {!dis && <input type="file" accept="image/png,image/jpeg" aria-label={`Unggah ${label}`} disabled={uploading === field} onChange={(e) => void upload(field, e.target.files?.[0])} className="block w-52 text-xs file:mr-2 file:rounded file:border file:border-line file:bg-surface file:px-2 file:py-1" />}
           <label className="flex items-center gap-2"><input type="checkbox" disabled={dis} checked={s[showKey]} onChange={(e) => set({ [showKey]: e.target.checked } as Partial<CompanySettingsDto>)} />Tampilkan di invoice</label>
           <p className="text-xs text-muted">{hint}</p>
         </div>

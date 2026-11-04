@@ -39,7 +39,7 @@ export function Dialog({
               <h2 id="dlg-title" className="text-lg font-semibold text-ink">{title}</h2>
               {description && <p className="mt-1 text-sm text-muted">{description}</p>}
             </div>
-            <button type="button" onClick={onClose} aria-label="Tutup" className="rounded-md p-1 text-muted hover:bg-black/5">
+            <button type="button" onClick={onClose} aria-label="Tutup" className="rounded-md p-1 text-muted hover:bg-hover">
               <X className="size-5" />
             </button>
           </header>

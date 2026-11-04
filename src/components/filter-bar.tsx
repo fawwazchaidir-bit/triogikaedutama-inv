@@ -12,7 +12,7 @@ export function FilterBar({ action, children, resetHref }: { action: string; chi
       {children}
       <div className="flex gap-2">
         <Button type="submit" variant="primary" size="sm" className="h-9">Terapkan</Button>
-        <Link href={resetHref} className="inline-flex h-9 items-center rounded-md border border-line bg-white px-3 text-sm hover:bg-canvas">Reset</Link>
+        <Link href={resetHref} className="inline-flex h-9 items-center rounded-md border border-line bg-surface px-3 text-sm hover:bg-canvas">Reset</Link>
       </div>
     </form>
   );

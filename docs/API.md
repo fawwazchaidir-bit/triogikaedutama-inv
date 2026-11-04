@@ -40,7 +40,8 @@ REST JSON di bawah `/api`. Dipakai oleh UI aplikasi; dapat dipakai pihak lain **
 | `GET/PATCH /api/settings/numbering` · `POST …/numbering/confirm` · `POST …/numbering/next` | `numbering:manage` | Format, aktivasi, naikkan nomor |
 | `GET/POST /api/settings/banks` · `PATCH /api/settings/banks/:id` | `settings:*` | Rekening bank |
 | `GET/POST /api/users` · `PATCH /api/users/:id` · `POST /api/users/:id/password` | `user:manage` | Pengguna |
-| `GET /api/dashboard?from&to&customerId&status&paymentStatus&q` | `dashboard:view` | Metrik & tren |
+| `GET /api/dashboard?from&to&customerId&status&paymentStatus&q` | `dashboard:view` | Metrik, tren, dan `statuses[]` (tujuh status invoice saling lepas: `UNPAID, PARTIAL, PAID, OVERDUE, PENDING, DRAFT, CANCELLED` dengan `count` & `amount`) |
+| `GET /api/search?q=` | salah satu: `invoice:view` / `invoice:view_own` / `customer:view` / `payment:view` / `finance:view` | Pencarian global (≥ 2, ≤ 80 karakter; 6 hasil per bagian + `total`). Bagian yang tidak boleh dilihat peran bernilai `null`. `tooShort: true` bila kata kunci terlalu pendek |
 | `GET /api/reports/:type?format=json\|csv\|xlsx&from&to&customerId` | `report:view` | `invoices by-customer by-product payments receivables overdue paid cancelled monthly` |
 | `GET /api/audit-logs?q&action&entityType&entityId&from&to&page` | `audit:view` | Audit log |
 | `GET/POST /api/finance/entries` · `DELETE …/:id` · `POST …/:id/approve\|reject\|reverse` | `expense:record` / `cash:receipt` / `cash:record` · `finance:view` · `expense:approve` · `expense:void` | Entri kas manual (pengeluaran dan penerimaan lain oleh staf → `PENDING`; modal/investasi/prive = `cash:record`); `DELETE` hanya pengajuan sendiri yang menunggu; `reject`/`reverse` butuh `{ reason }` |

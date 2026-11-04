@@ -11,7 +11,7 @@ export function ExportLinks({ base, params = {}, formats = ["csv", "xlsx", "pdf"
     <div className="flex gap-2">
       {formats.map((format) => (
         <a key={format} href={`${base}${buildQuery({ ...params, format })}`} download
-          className={`inline-flex items-center gap-2 rounded-md border border-line bg-white px-3 text-sm font-medium shadow-sm hover:bg-canvas ${size === "sm" ? "h-9" : "h-10"}`}>
+          className={`inline-flex items-center gap-2 rounded-md border border-line bg-surface px-3 text-sm font-medium shadow-sm hover:bg-canvas ${size === "sm" ? "h-9" : "h-10"}`}>
           <Download className="size-4" aria-hidden />{LABEL[format]}
         </a>
       ))}
