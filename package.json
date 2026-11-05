@@ -24,6 +24,7 @@
     "db:backup": "bash scripts/backup.sh",
     "db:restore": "bash scripts/restore.sh",
     "db:reconcile": "tsx --conditions=react-server scripts/reconcile.ts",
+    "smoke": "node scripts/smoke.mjs",
     "user:create": "tsx --conditions=react-server scripts/create-user.ts"
   },
   "dependencies": {

@@ -3,9 +3,10 @@
 Dua jalur resmi: **A. Server Linux (Node + systemd + Nginx)** atau **B. Docker Compose**. Keduanya membutuhkan **PostgreSQL ≥ 14**,
 **HTTPS** (wajib; cookie sesi menjadi `Secure` + HSTS aktif otomatis saat `APP_URL` berawalan `https://`), dan disk untuk backup.
 
-> Catatan kejujuran: `npm run build` + `next start`, mode *standalone* (dipakai Dockerfile), pembuatan PDF, engine Prisma, serta skrip backup/restore/rekonsiliasi
-> **telah dijalankan dan diverifikasi** di lingkungan pengembangan. Berkas `Dockerfile`, `docker-compose.yml`, dan workflow CI **belum dieksekusi** di sana
-> (tidak ada daemon Docker / runner GitHub) — jalankan sekali di staging sebelum dipakai produksi.
+> Menaikkan ke server nyata? Ikuti **[STAGING.md](STAGING.md)** (runbook langkah demi langkah) dan uji dengan **[UAT.md](UAT.md)**; dokumen ini adalah referensi teknisnya.
+> Catatan kejujuran: `npm run build` + `next start`, mode *standalone* (isi image Docker, termasuk PDF/Excel/aset di dalamnya), pembuatan PDF, engine Prisma, skrip
+> backup/restore/rekonsiliasi, dan `scripts/smoke.mjs` **telah dijalankan dan diverifikasi** di lingkungan pengembangan. `docker build`/`docker compose up` serta workflow CI
+> **belum dieksekusi** di sana (tidak ada daemon Docker / runner GitHub) — jalankan sekali di staging sebelum dipakai produksi.
 
 ## 1. Variabel environment
 
@@ -93,23 +94,16 @@ server { listen 80; server_name invoice.trilogikaedutama.id; return 301 https://
 
 ## 3. Jalur B — Docker Compose
 
-Buat file `.env` di samping `docker-compose.yml` (jangan di-commit) berisi:
-
-```dotenv
-POSTGRES_PASSWORD=ganti-dengan-password-kuat
-APP_URL=https://invoice.trilogikaedutama.id
-ADMIN_EMAIL=admin@trilogikaedutama.id
-ADMIN_PASSWORD=ganti-dengan-password-kuat-min-12
-```
-
-Lalu jalankan:
-
 ```bash
-docker compose up -d --build       # db -> migrate+seed (sekali) -> app di 127.0.0.1:3000
+cp .env.staging.example .env && chmod 600 .env     # isi APP_URL, ADMIN_EMAIL, dst.
+bash scripts/gen-secrets.sh                        # nilai acak untuk POSTGRES_PASSWORD, DATA_ENCRYPTION_KEY, ADMIN_PASSWORD
+docker compose up -d --build                       # db -> migrate+seed (idempoten) -> app (127.0.0.1:3000) + backup harian ke ./backups
+SMOKE_URL=https://domain-anda node scripts/smoke.mjs
 ```
 
-Pasang reverse proxy HTTPS (konfigurasi Nginx di atas) di depan `127.0.0.1:3000`. Rekonsiliasi dari image alat:
-`docker compose run --rm migrate npm run db:reconcile`. Hapus `ADMIN_PASSWORD` dari `.env` setelah akun dibuat.
+Pasang reverse proxy HTTPS di depan `127.0.0.1:3000`: contoh siap pakai `deploy/Caddyfile` (sertifikat otomatis) atau `deploy/nginx.conf` (+ certbot).
+Rekonsiliasi dari image alat: `docker compose run --rm migrate npm run db:reconcile`. Hapus `ADMIN_PASSWORD` dari `.env` setelah akun dibuat. Layanan `backup` menyimpan dump
+ke `./backups` — **salin keluar server** (lihat STAGING.md §7). Database sengaja tidak memiliki `ports` (tidak dapat dijangkau dari luar compose).
 
 ## 4. Checklist hari pertama (setelah login Administrator)
 

@@ -1,43 +1,80 @@
-# Contoh deployment satu-server: PostgreSQL + migrasi/seed sekali jalan + aplikasi.
-# Siapkan file `.env` (lihat docs/DEPLOYMENT.md) berisi minimal:
-#   POSTGRES_PASSWORD, APP_URL (https://…), ADMIN_EMAIL, ADMIN_PASSWORD
-# Pasang reverse proxy HTTPS (Caddy/Nginx) di depan port 3000 — JANGAN mengekspos aplikasi tanpa TLS.
+# Deployment satu-server: PostgreSQL + migrasi/seed sekali jalan + aplikasi + backup harian otomatis.
+#
+#   cp .env.staging.example .env      # lalu isi (rahasia: bash scripts/gen-secrets.sh)
+#   docker compose up -d --build
+#   SMOKE_URL=https://domain-anda node scripts/smoke.mjs      # verifikasi pasca-deploy
+#
+# Pasang reverse proxy HTTPS (deploy/Caddyfile atau deploy/nginx.conf) di depan 127.0.0.1:3000 —
+# JANGAN mengekspos aplikasi tanpa TLS. Panduan lengkap: docs/STAGING.md dan docs/DEPLOYMENT.md.
+x-logging: &logging
+  driver: json-file
+  options: { max-size: "10m", max-file: "5" }   # log berputar: disk tidak penuh oleh log
+
+x-db-url: &db-url postgresql://trilogika:${POSTGRES_PASSWORD}@db:5432/trilogika_invoice?schema=public
+
 services:
   db:
     image: postgres:16-alpine
     restart: unless-stopped
+    logging: *logging
     environment:
       POSTGRES_USER: trilogika
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?isi POSTGRES_PASSWORD di .env}
       POSTGRES_DB: trilogika_invoice
     volumes:
       - pgdata:/var/lib/postgresql/data
+    # Sengaja TANPA `ports`: database hanya dapat dijangkau dari jaringan compose (tidak terbuka ke host/internet).
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U trilogika -d trilogika_invoice"]
       interval: 5s
       timeout: 3s
       retries: 20
 
+  # Migrasi skema + seed Administrator pertama. Idempoten: aman dijalankan ulang pada setiap `up`
+  # (seed melewati bila Administrator sudah ada, sehingga ADMIN_PASSWORD boleh dihapus dari .env setelah pertama kali).
   migrate:
     build: { context: ., target: tools }
     depends_on: { db: { condition: service_healthy } }
     restart: "no"
+    logging: *logging
     environment:
-      DATABASE_URL: postgresql://trilogika:${POSTGRES_PASSWORD}@db:5432/trilogika_invoice?schema=public
-      ADMIN_EMAIL: ${ADMIN_EMAIL:?isi ADMIN_EMAIL di .env}
+      DATABASE_URL: *db-url
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-}
       ADMIN_NAME: ${ADMIN_NAME:-Administrator}
-      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?isi ADMIN_PASSWORD di .env (min. 12 karakter)}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
     command: ["sh", "-c", "npm run db:migrate && npm run db:seed"]
 
   app:
     build: { context: ., target: runner }
     depends_on: { migrate: { condition: service_completed_successfully } }
     restart: unless-stopped
+    logging: *logging
     ports: ["127.0.0.1:3000:3000"]   # hanya loopback; proxy HTTPS yang menghadap publik
     environment:
-      DATABASE_URL: postgresql://trilogika:${POSTGRES_PASSWORD}@db:5432/trilogika_invoice?schema=public
+      DATABASE_URL: *db-url
       APP_URL: ${APP_URL:?isi APP_URL (https://…) di .env}
       APP_TIMEZONE: Asia/Jakarta
-      TRUST_PROXY: "true"            # aplikasi berada di belakang reverse proxy tepercaya
+      TRUST_PROXY: "true"            # aplikasi berada di belakang reverse proxy tepercaya yang MENIMPA X-Forwarded-*
+      # Autentikasi dua langkah (TOTP). Kunci ini mengenkripsi rahasia TOTP — jangan diganti setelah ada pengguna ber-2FA.
+      DATA_ENCRYPTION_KEY: ${DATA_ENCRYPTION_KEY:?isi DATA_ENCRYPTION_KEY di .env (bash scripts/gen-secrets.sh)}
+      MFA_REQUIRED_ROLES: ${MFA_REQUIRED_ROLES:-}
+      # Integrasi website/Portal: kosong = nonaktif (benar untuk staging awal).
+      INTEGRATION_MASTER_KEY: ${INTEGRATION_MASTER_KEY:-}
+
+  # Backup harian otomatis (pg_dump terverifikasi + checksum + retensi) ke ./backups di host.
+  # PENTING: salin ./backups ke penyimpanan LUAR server (backup di server yang sama bukan perlindungan bencana).
+  backup:
+    build: { context: ., target: tools }
+    depends_on: { migrate: { condition: service_completed_successfully } }
+    restart: unless-stopped
+    logging: *logging
+    environment:
+      DATABASE_URL: *db-url
+      BACKUP_DIR: /backups
+      BACKUP_KEEP_DAYS: ${BACKUP_KEEP_DAYS:-30}
+    volumes:
+      - ./backups:/backups
+    command: ["sh", "-c", "while true; do npm run -s db:backup || echo '[backup] GAGAL — periksa log'; sleep 86400; done"]
+
 volumes:
   pgdata:

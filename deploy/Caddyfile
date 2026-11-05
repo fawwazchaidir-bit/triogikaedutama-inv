@@ -1,0 +1,33 @@
+# Reverse proxy HTTPS paling sederhana: Caddy mengurus sertifikat Let's Encrypt otomatis.
+#   1) DNS A/AAAA domain di bawah → IP server.   2) Port 80 & 443 terbuka.   3) sudo caddy run --config deploy/Caddyfile  (atau pasang sebagai layanan)
+# Ganti domain. Aplikasi (docker compose) mendengarkan di 127.0.0.1:3000 dan TRUST_PROXY=true.
+fms-staging.trilogikaedutama.id {
+	encode zstd gzip
+
+	# Unggahan maks 3 MB (MAX_UPLOAD_MB) + overhead multipart.
+	request_body {
+		max_size 4MB
+	}
+
+	reverse_proxy 127.0.0.1:3000 {
+		# MENIMPA (bukan menambahkan) header klien: aplikasi mempercayai X-Forwarded-* karena TRUST_PROXY=true.
+		header_up X-Forwarded-For {remote_host}
+		header_up X-Forwarded-Host {host}
+		header_up X-Forwarded-Proto {scheme}
+		header_up X-Real-IP {remote_host}
+		transport http {
+			response_header_timeout 60s
+		}
+	}
+
+	# Opsional (disarankan untuk staging): batasi ke IP kantor/VPN. Hapus tanda # lalu isi IP.
+	# @bukan_kantor not remote_ip 203.0.113.10 198.51.100.0/24
+	# respond @bukan_kantor "Akses ditolak" 403
+
+	log {
+		output file /var/log/caddy/fms.log {
+			roll_size 20MiB
+			roll_keep 10
+		}
+	}
+}

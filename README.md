@@ -28,6 +28,12 @@ perhitungan, terbilang, PDF, dashboard, dan seluruh laporan.
 | **Autentikasi dua langkah** | TOTP (Google/Microsoft Authenticator, dll.) + kode pemulihan sekali pakai; dapat **diwajibkan per peran** (`MFA_REQUIRED_ROLES`); login dua langkah dengan anti-replay & batas percobaan; reset oleh Administrator. Gratis (tanpa email/SMS). Kelola di menu pengguna → Keamanan (2FA). |
 | **Keamanan** | Login berperan (Administrator / Finance Manager / Staf Administrasi Keuangan; staf = mencatat & melihat, Finance Manager = menyetujui, membalikkan, memfinalisasi, dan menutup buku, sehingga input ↔ verifikasi terpisah; tombol tampil/sembunyikan password di halaman login) ditegakkan di backend, sesi ber-hash, scrypt, rate limit login, CSRF, header keamanan, validasi unggahan berdasarkan isi file, audit log append-only. |
 
+## Deploy ke staging / produksi
+
+Mulai dari **[docs/STAGING.md](docs/STAGING.md)** (runbook), **[docs/UAT.md](docs/UAT.md)** (skenario uji paralel + kriteria go-live), dan [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) (referensi teknis).
+Paket siap pakai: `docker-compose.yml` (db, migrasi+seed, app, backup harian), `.env.staging.example`, `scripts/gen-secrets.sh`, `deploy/Caddyfile` / `deploy/nginx.conf`,
+dan `npm run smoke` (smoke test pasca-deploy: kesehatan, HTTPS, header keamanan, CSRF, cookie, logout).
+
 ## Teknologi
 
 Next.js 16 (App Router) · React 19 · TypeScript (strict) · Tailwind CSS 4 · PostgreSQL 16 · Prisma 6 ·
