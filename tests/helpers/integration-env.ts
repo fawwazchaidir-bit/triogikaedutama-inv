@@ -8,3 +8,6 @@ process.env.DATABASE_URL = testUrl;
 
 // Kunci induk integrasi mesin-ke-mesin (hanya untuk tes).
 process.env.INTEGRATION_MASTER_KEY ??= "integration-test-master-key-0123456789abcdef";
+
+// Kunci enkripsi data (rahasia TOTP) — hanya untuk tes.
+process.env.DATA_ENCRYPTION_KEY ??= "test-data-encryption-key-0123456789abcdef-xyz";

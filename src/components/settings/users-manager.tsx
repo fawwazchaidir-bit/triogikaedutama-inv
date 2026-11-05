@@ -36,17 +36,19 @@ export function UsersManager({ items, selfId }: { items: UserDto[]; selfId: stri
         actions={<Button variant="primary" onClick={() => { setError(null); setFe({}); setCreate({ email: "", name: "", role: "STAFF", password: "" }); }}><Plus className="size-4" />Tambah pengguna</Button>} />
       <TableWrap>
         <Table>
-          <thead><tr><Th>Nama</Th><Th>Email</Th><Th>Peran</Th><Th>Login terakhir</Th><Th>Status</Th><Th align="right">Aksi</Th></tr></thead>
+          <thead><tr><Th>Nama</Th><Th>Email</Th><Th>Peran</Th><Th>2FA</Th><Th>Login terakhir</Th><Th>Status</Th><Th align="right">Aksi</Th></tr></thead>
           <tbody>
             {items.map((u) => (
               <tr key={u.id}>
                 <Td className="font-medium">{u.name}{u.id === selfId && <Badge className="ml-2">Anda</Badge>}</Td><Td>{u.email}</Td>
                 <Td><select aria-label={`Peran ${u.name}`} value={u.role} disabled={u.id === selfId} onChange={(e) => void patch(u, { role: e.target.value }, "Peran diubah. Pengguna perlu login ulang.")} className="h-8 rounded-md border border-line bg-surface px-2 text-sm disabled:bg-canvas">
                   {(Object.keys(ROLE_LABELS) as Role[]).map((r) => <option key={r} value={r}>{ROLE_LABELS[r]}</option>)}</select></Td>
+                <Td>{u.twoFactorEnabled ? <Badge tone="green">Aktif</Badge> : <span className="text-muted">—</span>}</Td>
                 <Td>{u.lastLoginAt ? formatDateTime(u.lastLoginAt) : "Belum pernah"}</Td>
                 <Td>{u.isActive ? <Badge tone="green">Aktif</Badge> : <Badge>Nonaktif</Badge>}{u.mustChangePassword && <Badge tone="amber" className="ml-1">Wajib ganti password</Badge>}</Td>
                 <Td align="right"><div className="flex justify-end gap-2">
                   <Button size="sm" onClick={() => { setError(null); setFe({}); setReset({ id: u.id, name: u.name, password: "" }); }}>Reset password</Button>
+                  {u.twoFactorEnabled && u.id !== selfId && <Button size="sm" onClick={() => { if (confirm(`Reset 2FA untuk ${u.name}? Semua sesinya diakhiri dan ia harus mengaktifkan 2FA lagi.`)) void api(`/api/users/${u.id}/reset-2fa`, { body: {} }).then(() => { toast.success("2FA direset."); router.refresh(); }).catch((e) => toast.error(errorMessage(e))); }}>Reset 2FA</Button>}
                   {u.id !== selfId && (u.isActive ? <Button size="sm" variant="danger" onClick={() => void patch(u, { isActive: false }, "Pengguna dinonaktifkan.")}>Nonaktifkan</Button> : <Button size="sm" onClick={() => void patch(u, { isActive: true }, "Pengguna diaktifkan.")}>Aktifkan</Button>)}
                 </div></Td>
               </tr>

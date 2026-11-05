@@ -3,6 +3,7 @@ import { createHash, randomBytes } from "node:crypto";
 import { prisma } from "../db";
 import { env, isSecureDeployment } from "../env";
 import type { Actor } from "../actor";
+import { mfaEnrollmentRequired } from "@/lib/totp";
 
 /**
  * Sesi berbasis cookie opaque. Token acak 256-bit; yang disimpan di DB hanya SHA-256-nya,
@@ -38,6 +39,9 @@ export async function createSession(userId: string, ip: string | null, userAgent
 export interface SessionUser extends Actor {
   sessionId: string;
   mustChangePassword: boolean;
+  /** Peran ini wajib 2FA (MFA_REQUIRED_ROLES) tetapi belum mengaktifkannya → hanya halaman/endpoint keamanan yang boleh dipakai. */
+  mfaEnrollmentRequired: boolean;
+  twoFactorEnabled: boolean;
 }
 
 /** Validasi token → pengguna. Mengembalikan null bila tidak valid / kedaluwarsa / idle / pengguna nonaktif. */
@@ -64,6 +68,8 @@ export async function validateSession(token: string | undefined | null): Promise
     name: session.user.name,
     role: session.user.role,
     mustChangePassword: session.user.mustChangePassword,
+    twoFactorEnabled: session.user.twoFactorEnabled,
+    mfaEnrollmentRequired: mfaEnrollmentRequired(session.user.role, session.user.twoFactorEnabled, env().MFA_REQUIRED_ROLES),
   };
 }
 
@@ -84,5 +90,9 @@ export async function revokeAllSessions(userId: string, exceptSessionId?: string
 /** Housekeeping: hapus sesi kedaluwarsa > 30 hari (dipanggil oportunistik saat login). */
 export async function purgeOldSessions(): Promise<void> {
   const cutoff = new Date(Date.now() - 30 * 86_400_000);
-  await prisma.session.deleteMany({ where: { OR: [{ expiresAt: { lt: cutoff } }, { revokedAt: { lt: cutoff } }] } });
+  // Dikirim bersamaan (bukan berurutan): pekerjaan latar ini tidak boleh menyisakan kueri yang menunggu giliran setelah koneksi ditutup.
+  await Promise.all([
+    prisma.session.deleteMany({ where: { OR: [{ expiresAt: { lt: cutoff } }, { revokedAt: { lt: cutoff } }] } }),
+    prisma.loginChallenge.deleteMany({ where: { expiresAt: { lt: new Date(Date.now() - 86_400_000) } } }),
+  ]);
 }

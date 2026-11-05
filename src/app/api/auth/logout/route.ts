@@ -10,5 +10,5 @@ export const POST = route(
     store.delete(SESSION_COOKIE_NAME());
     return { ok: true };
   },
-  { allowMustChange: true },
+  { allowMustChange: true, allowMfaSetup: true },
 );

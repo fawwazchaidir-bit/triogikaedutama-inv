@@ -21,15 +21,19 @@ export async function requirePageUser(): Promise<SessionUser> {
   const user = await getCurrentUser();
   if (!user) redirect("/login");
   if (user.mustChangePassword) redirect("/change-password");
+  if (user.mfaEnrollmentRequired) redirect("/security");
   return user;
 }
 
 /** Untuk route handler: lempar 401 bila belum masuk. */
-export async function requireApiUser(opts: { allowMustChange?: boolean } = {}): Promise<SessionUser> {
+export async function requireApiUser(opts: { allowMustChange?: boolean; allowMfaSetup?: boolean } = {}): Promise<SessionUser> {
   const user = await getCurrentUser();
   if (!user) throw Errors.unauthenticated();
   if (user.mustChangePassword && !opts.allowMustChange) {
     throw Errors.forbidden("Anda harus mengganti password terlebih dahulu.");
+  }
+  if (user.mfaEnrollmentRequired && !opts.allowMfaSetup) {
+    throw Errors.forbidden("Peran Anda wajib memakai autentikasi dua langkah. Aktifkan dulu di menu Keamanan.");
   }
   return user;
 }

@@ -41,9 +41,9 @@ describe("route handler API", () => {
     expect(files.find((f) => f.file === "health/route.ts")!.src).not.toMatch(/export (async )?function (POST|PUT|PATCH|DELETE)/);
   });
 
-  it("publicRoute hanya dipakai oleh login", () => {
-    const pub = files.filter((f) => /publicRoute\(/.test(f.src)).map((f) => f.file);
-    expect(pub).toEqual(["auth/login/route.ts"]);
+  it("publicRoute hanya dipakai oleh dua langkah login (password, lalu kode 2FA)", () => {
+    const pub = files.filter((f) => /publicRoute\(/.test(f.src)).map((f) => f.file).sort();
+    expect(pub).toEqual(["auth/2fa/route.ts", "auth/login/route.ts"]);
   });
 
   it("handler tidak mem-parse body sendiri (harus lewat readJson/readUpload yang membatasi ukuran & tipe)", () => {

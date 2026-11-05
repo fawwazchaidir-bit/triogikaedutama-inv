@@ -142,10 +142,19 @@ model User {
   isActive           Boolean   @default(true)
   mustChangePassword Boolean   @default(false)
   lastLoginAt        DateTime?
+
+  // Autentikasi dua langkah (TOTP). Rahasia dienkripsi AES-256-GCM (DATA_ENCRYPTION_KEY); tidak pernah disimpan polos.
+  twoFactorEnabled   Boolean   @default(false)
+  twoFactorSecretEnc String?
+  twoFactorEnabledAt DateTime?
+  /// Langkah waktu TOTP terakhir yang diterima — mencegah satu kode dipakai dua kali (replay).
+  twoFactorLastStep  Int?
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
 
   sessions            Session[]
+  recoveryCodes       TwoFactorRecoveryCode[]
+  loginChallenges     LoginChallenge[]
   customers           Customer[]         @relation("CustomerCreatedBy")
   invoicesCreated     Invoice[]          @relation("InvoiceCreatedBy")
   invoicesIssued      Invoice[]          @relation("InvoiceIssuedBy")
@@ -979,4 +988,39 @@ model ApiIdempotency {
   @@unique([clientId, key])
   @@index([createdAt])
   @@map("api_idempotency")
+}
+
+// ───────────────────────────── Autentikasi dua langkah ─────────────────────────────
+
+/// Kode pemulihan sekali pakai (hanya hash SHA-256 yang disimpan). Sekali terpakai tidak dapat "hidup" lagi (trigger).
+model TwoFactorRecoveryCode {
+  id        String    @id @default(uuid()) @db.Uuid
+  userId    String    @db.Uuid
+  codeHash  String
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, codeHash])
+  @@map("two_factor_recovery_codes")
+}
+
+/// Tantangan langkah-kedua saat login: dibuat setelah password benar, berlaku singkat, terbatas jumlah percobaan, sekali pakai.
+model LoginChallenge {
+  id         String    @id @default(uuid()) @db.Uuid
+  userId     String    @db.Uuid
+  /// Hanya SHA-256 token yang disimpan.
+  tokenHash  String    @unique
+  expiresAt  DateTime
+  attempts   Int       @default(0)
+  consumedAt DateTime?
+  ip         String?
+  createdAt  DateTime  @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
+  @@map("login_challenges")
 }

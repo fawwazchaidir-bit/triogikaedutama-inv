@@ -108,12 +108,12 @@ type RouteContext<P> = { params: Promise<P> };
 /** Route handler terautentikasi: cek Origin → sesi → jalankan → serialisasi hasil/error. */
 export function route<P = Record<string, never>>(
   handler: (args: HandlerArgs<P>) => Promise<unknown>,
-  opts: { allowMustChange?: boolean } = {},
+  opts: { allowMustChange?: boolean; allowMfaSetup?: boolean } = {},
 ) {
   return async (req: Request, ctx?: RouteContext<P>): Promise<Response> => {
     try {
       assertSameOrigin(req);
-      const actor = await requireApiUser({ allowMustChange: opts.allowMustChange });
+      const actor = await requireApiUser({ allowMustChange: opts.allowMustChange, allowMfaSetup: opts.allowMfaSetup });
       const params = (ctx?.params ? await ctx.params : {}) as P;
       return toResponse(await handler({ req, actor, params, meta: requestMeta(req.headers) }));
     } catch (err) {

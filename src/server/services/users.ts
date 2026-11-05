@@ -31,16 +31,17 @@ export interface UserDto {
   role: "ADMIN" | "FINANCE" | "STAFF";
   isActive: boolean;
   mustChangePassword: boolean;
+  twoFactorEnabled: boolean;
   lastLoginAt: string | null;
   createdAt: string;
 }
 
 const toDto = (u: {
   id: string; email: string; name: string; role: UserDto["role"]; isActive: boolean;
-  mustChangePassword: boolean; lastLoginAt: Date | null; createdAt: Date;
+  mustChangePassword: boolean; twoFactorEnabled: boolean; lastLoginAt: Date | null; createdAt: Date;
 }): UserDto => ({
   id: u.id, email: u.email, name: u.name, role: u.role, isActive: u.isActive,
-  mustChangePassword: u.mustChangePassword,
+  mustChangePassword: u.mustChangePassword, twoFactorEnabled: u.twoFactorEnabled,
   lastLoginAt: u.lastLoginAt?.toISOString() ?? null,
   createdAt: u.createdAt.toISOString(),
 });

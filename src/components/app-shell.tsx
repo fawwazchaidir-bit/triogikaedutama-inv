@@ -3,7 +3,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import {
-  BarChart3, Bell, BookCheck, BookOpen, ChevronDown, FileText, KeyRound, Landmark, LayoutDashboard, LogOut, Menu, Package, Percent, Receipt, RefreshCw,
+  BarChart3, Bell, BookCheck, BookOpen, ChevronDown, FileText, KeyRound, ShieldCheck, Landmark, LayoutDashboard, LogOut, Menu, Package, Percent, Receipt, RefreshCw,
   ScrollText, Search, Settings, TrendingUp, Users, Wallet, X,
 } from "lucide-react";
 import { cn } from "@/lib/cn";
@@ -100,6 +100,7 @@ function UserMenu({ user, company, busy, onLogout }: { user: ShellProps["user"];
             <p className="mt-1.5 inline-block rounded-full bg-brand-50 px-2 py-0.5 text-[11px] font-medium text-brand-700">{ROLE_LABELS[user.role]}</p>
           </div>
           <Link role="menuitem" href="/change-password" onClick={close} className="flex items-center gap-2.5 px-4 py-2.5 text-sm hover:bg-hover"><KeyRound className="size-4 text-muted" aria-hidden />Password</Link>
+          <Link role="menuitem" href="/security" onClick={close} className="flex items-center gap-2.5 px-4 py-2.5 text-sm hover:bg-hover"><ShieldCheck className="size-4 text-muted" aria-hidden />Keamanan (2FA)</Link>
           <button type="button" role="menuitem" disabled={busy} onClick={() => { close(); onLogout(); }} className="flex w-full items-center gap-2.5 px-4 py-2.5 text-left text-sm hover:bg-hover disabled:opacity-50">
             <LogOut className="size-4 text-muted" aria-hidden />Keluar
           </button>

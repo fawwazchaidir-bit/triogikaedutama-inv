@@ -12,5 +12,5 @@ export const POST = route(
     await changeOwnPassword(actor, await readJson(req, schema));
     return { ok: true };
   },
-  { allowMustChange: true },
+  { allowMustChange: true, allowMfaSetup: true },
 );

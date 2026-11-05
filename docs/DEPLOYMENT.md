@@ -19,6 +19,8 @@ Dua jalur resmi: **A. Server Linux (Node + systemd + Nginx)** atau **B. Docker C
 | `SESSION_IDLE_HOURS` `SESSION_ABSOLUTE_DAYS` | | Default 8 / 7 |
 | `MAX_UPLOAD_MB` | | Default 3 |
 | `ADMIN_EMAIL` `ADMIN_NAME` `ADMIN_PASSWORD` | seed | Administrator pertama (`npm run db:seed`). Password ≥ 12 karakter; **tidak ada default**. Hapus dari environment setelah seed. |
+| `DATA_ENCRYPTION_KEY` | untuk 2FA | Mengenkripsi rahasia TOTP di database: `openssl rand -hex 32` (≥ 32 karakter). **Jangan diganti** setelah ada pengguna ber-2FA (rahasia lama tak terbaca → semua harus direset); simpan di pengelola rahasia, terpisah dari backup database. Kosong = 2FA tidak dapat diaktifkan. |
+| `MFA_REQUIRED_ROLES` | | Peran yang **wajib** 2FA, mis. `ADMIN,FINANCE` (rekomendasi produksi). Pengguna peran itu dipaksa mengaktifkan 2FA saat masuk dan tidak dapat mematikannya. Mengisi ini tanpa `DATA_ENCRYPTION_KEY` membuat aplikasi menolak start (mencegah terkunci). |
 | `INTEGRATION_MASTER_KEY` | opsional | Aktifkan integrasi website/Portal: `openssl rand -hex 32` (≥ 32 karakter). **Jangan diganti** setelah kredensial dibuat; simpan di pengelola rahasia, terpisah dari backup database. Lihat `docs/INTEGRATION.md`. |
 | `TEST_DATABASE_URL` | test | Database **terpisah** untuk test/E2E (isinya dikosongkan test). Jangan arahkan ke produksi. |
 
@@ -169,6 +171,7 @@ alarm bila `db:reconcile` gagal atau backup terakhir lebih dari 26 jam.
 - [ ] HTTPS aktif, `APP_URL` berawalan `https://`, `TRUST_PROXY=true` hanya bila proxy menimpa `X-Forwarded-*`.
 - [ ] Password Administrator kuat; `ADMIN_PASSWORD` dihapus dari environment; tidak ada akun demo (`@trilogika.test`) di produksi (**jangan** menjalankan `db:seed:dev`).
 - [ ] PostgreSQL tidak terbuka ke internet; user DB khusus aplikasi dengan password kuat.
+- [ ] 2FA aktif: `DATA_ENCRYPTION_KEY` terisi, `MFA_REQUIRED_ROLES="ADMIN,FINANCE"`; **setiap** Administrator & Finance Manager sudah mengaktifkan dan **menyimpan kode pemulihan**; ada minimal dua Administrator (agar saling dapat mereset).
 - [ ] Backup berjalan, tersalin keluar server, dan latihan restore sukses.
 - [ ] Nomor invoice dikonfirmasi; konfigurasi pajak ditinjau konsultan pajak.
 - [ ] `npm audit --omit=dev` ditinjau (lihat [SECURITY.md](SECURITY.md)).

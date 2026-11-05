@@ -374,6 +374,13 @@ Halaman `/closing`; API `/api/finance/periods{,/checklist,/close,/reopen}`; hak 
 * **Data:** `api_clients` (kredensial; trigger: tak dihapus, tak diaktifkan kembali, id tetap, versi rahasia hanya maju), `api_nonces` (anti-replay, PK `(klien, nonce)`), `api_idempotency` (kunci + hash permintaan + respons tersimpan). Rahasia **diturunkan** (`secrets.ts`) dari `INTEGRATION_MASTER_KEY`, tidak disimpan.
 * **Urutan pemeriksaan** dan kode galat: `docs/INTEGRATION.md` §2–3. Handler bisnis berikutnya (pembayaran peserta, reimbursement) cukup memakai `machineRoute({ scope }, …)` + `writeMachineAudit`.
 
+## 10j. Autentikasi dua langkah (TOTP)
+
+* **Pustaka murni** `src/lib/totp.ts` (RFC 4226/6238, base32, kode pemulihan, `otpauth://`) — diuji dengan vektor resmi RFC. **Enkripsi** `src/server/crypto.ts` (AES-256-GCM, kunci HKDF per tujuan dari `DATA_ENCRYPTION_KEY`). **Layanan** `services/two-factor.ts` (enrol, nonaktifkan, kode pemulihan, reset) dan `services/auth.ts` (`beginLogin` → tantangan, `verifyLoginChallenge` → sesi).
+* **Data:** kolom 2FA pada `users` (rahasia terenkripsi, langkah TOTP terakhir), `two_factor_recovery_codes` (hash; trigger: terpakai tak dapat dihidupkan), `login_challenges` (hash token, kedaluwarsa, percobaan).
+* **Kewajiban per peran:** `SessionUser.mfaEnrollmentRequired` dihitung dari `MFA_REQUIRED_ROLES`; `requirePageUser` mengarahkan ke `/security` (halaman di luar kerangka aplikasi agar tidak berputar), `requireApiUser` menolak 403 kecuali `allowMfaSetup` (hanya endpoint keamanan, logout, ganti password).
+* **Atomisitas:** langkah TOTP diklaim dengan `UPDATE … WHERE lastStep < n`; kode pemulihan dengan `UPDATE … WHERE usedAt IS NULL`; tantangan dengan `UPDATE … WHERE consumedAt IS NULL` — permintaan paralel tidak mungkin sama-sama berhasil.
+
 ## 11. Risiko teknis & mitigasi
 
 | Risiko | Mitigasi | Bukti |
