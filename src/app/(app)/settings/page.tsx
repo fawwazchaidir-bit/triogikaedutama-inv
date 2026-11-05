@@ -11,6 +11,8 @@ import { CompanyForm } from "@/components/settings/company-form";
 import { BanksManager } from "@/components/settings/banks-manager";
 import { NumberingPanel } from "@/components/settings/numbering-panel";
 import { TaxManager } from "@/components/settings/tax-manager";
+import { IntegrationManager } from "@/components/settings/integration-manager";
+import { getIntegrationStatus, listApiClients } from "@/server/services/integration-clients";
 import { UsersManager } from "@/components/settings/users-manager";
 import { FinanceManager } from "@/components/settings/finance-manager";
 import { listCashAccounts } from "@/server/services/cash-accounts";
@@ -32,6 +34,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
     ...(can(user.role, "finance:view") ? [{ id: "finance", label: "Keuangan" }] : []),
     ...(can(user.role, "tax:manage") ? [{ id: "tax", label: "Pajak" }] : []),
     ...(can(user.role, "user:manage") ? [{ id: "users", label: "Pengguna" }] : []),
+    ...(can(user.role, "integration:manage") ? [{ id: "integration", label: "Integrasi" }] : []),
   ];
   const sp = await searchParams;
   const tab = tabs.some((t) => t.id === sp.tab) ? sp.tab! : "company";
@@ -50,6 +53,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
       {tab === "numbering" && <NumberingPanel status={await getNumberingStatus(user)} canManage={can(user.role, "numbering:manage")} today={todayIso(env().APP_TIMEZONE)} />}
       {tab === "finance" && <FinanceManager accounts={await listCashAccounts(user)} coa={await listCoaAccounts(user)} canManage={can(user.role, "finance:manage")} />}
       {tab === "tax" && <TaxManager items={await listTaxConfigs(user)} canManage={can(user.role, "tax:manage")} />}
+      {tab === "integration" && <IntegrationManager status={getIntegrationStatus(user)} items={await listApiClients(user)} />}
       {tab === "users" && <UsersManager items={await listUsers(user)} selfId={user.userId} />}
     </div>
   );

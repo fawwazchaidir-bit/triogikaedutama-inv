@@ -912,3 +912,71 @@ model AuditLog {
   @@index([action])
   @@map("audit_logs")
 }
+
+// ───────────────────────────── Integrasi mesin-ke-mesin ─────────────────────────────
+// Kredensial untuk sistem lain (website pendaftaran, Portal HRIS). Rahasia TIDAK disimpan: diturunkan dari INTEGRATION_MASTER_KEY
+// (HMAC atas id klien + versi), jadi kebocoran database saja tidak membocorkan rahasia. Dicabut = isActive false (tidak dihapus).
+
+model ApiClient {
+  id                  String    @id @default(uuid()) @db.Uuid
+  /// Pengenal publik yang dikirim di header (fmsk_ + 20 heksa). Bukan rahasia.
+  keyId               String    @unique
+  name                String
+  description         String?
+  /// Scope yang diizinkan (lihat src/lib/integration/scopes.ts).
+  scopes              String[]
+  /// Daftar IP yang diizinkan; kosong = tanpa pembatasan IP. Hanya efektif bila TRUST_PROXY benar atau server melihat IP asli.
+  allowedIps          String[]
+  rateLimitPerMinute  Int       @default(120)
+  secretVersion       Int       @default(1)
+  /// Rotasi tanpa henti layanan: versi lama tetap sah sampai prevValidUntil.
+  prevSecretVersion   Int?
+  prevValidUntil      DateTime?
+  isActive            Boolean   @default(true)
+  revokedAt           DateTime?
+  revokedById         String?   @db.Uuid
+  revokeReason        String?
+  createdById         String    @db.Uuid
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+  lastUsedAt          DateTime?
+  lastUsedIp          String?
+
+  nonces       ApiNonce[]
+  idempotency  ApiIdempotency[]
+
+  @@map("api_clients")
+}
+
+/// Nonce yang sudah dipakai (anti-replay). Dibersihkan berkala (> 1 hari; jendela jam hanya ±5 menit).
+model ApiNonce {
+  clientId  String   @db.Uuid
+  nonce     String
+  createdAt DateTime @default(now())
+
+  client ApiClient @relation(fields: [clientId], references: [id], onDelete: Restrict)
+
+  @@id([clientId, nonce])
+  @@index([createdAt])
+  @@map("api_nonces")
+}
+
+/// Kunci idempotensi: permintaan yang sama (kunci + isi sama) dijawab ulang dengan respons tersimpan, tanpa menjalankan ulang.
+model ApiIdempotency {
+  id             String    @id @default(uuid()) @db.Uuid
+  clientId       String    @db.Uuid
+  key            String
+  /// sha256(metode + path + query + hash badan) — kunci yang sama dengan isi berbeda ditolak.
+  requestHash    String
+  state          String    @default("IN_PROGRESS")
+  responseStatus Int?
+  responseBody   Json?
+  createdAt      DateTime  @default(now())
+  completedAt    DateTime?
+
+  client ApiClient @relation(fields: [clientId], references: [id], onDelete: Restrict)
+
+  @@unique([clientId, key])
+  @@index([createdAt])
+  @@map("api_idempotency")
+}

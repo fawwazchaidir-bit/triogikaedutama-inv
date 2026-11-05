@@ -19,6 +19,7 @@ Dua jalur resmi: **A. Server Linux (Node + systemd + Nginx)** atau **B. Docker C
 | `SESSION_IDLE_HOURS` `SESSION_ABSOLUTE_DAYS` | | Default 8 / 7 |
 | `MAX_UPLOAD_MB` | | Default 3 |
 | `ADMIN_EMAIL` `ADMIN_NAME` `ADMIN_PASSWORD` | seed | Administrator pertama (`npm run db:seed`). Password ≥ 12 karakter; **tidak ada default**. Hapus dari environment setelah seed. |
+| `INTEGRATION_MASTER_KEY` | opsional | Aktifkan integrasi website/Portal: `openssl rand -hex 32` (≥ 32 karakter). **Jangan diganti** setelah kredensial dibuat; simpan di pengelola rahasia, terpisah dari backup database. Lihat `docs/INTEGRATION.md`. |
 | `TEST_DATABASE_URL` | test | Database **terpisah** untuk test/E2E (isinya dikosongkan test). Jangan arahkan ke produksi. |
 
 Simpan secret di environment/secret manager (mis. `/etc/trilogika/invoice.env` dengan mode `640`), **jangan** di repository.

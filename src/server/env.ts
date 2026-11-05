@@ -16,6 +16,8 @@ const schema = z.object({
   SESSION_IDLE_HOURS: int(8, 1, 720),
   SESSION_ABSOLUTE_DAYS: int(7, 1, 90),
   MAX_UPLOAD_MB: int(3, 1, 20),
+  /** Kunci induk untuk menurunkan rahasia kredensial integrasi (mesin-ke-mesin). Kosong = integrasi nonaktif. Minimal 32 karakter acak. */
+  INTEGRATION_MASTER_KEY: z.string().trim().optional().transform((v) => v || undefined).pipe(z.string().min(32, "INTEGRATION_MASTER_KEY minimal 32 karakter").optional()),
 });
 
 export type Env = z.infer<typeof schema>;

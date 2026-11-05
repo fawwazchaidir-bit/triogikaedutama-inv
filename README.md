@@ -24,6 +24,7 @@ perhitungan, terbilang, PDF, dashboard, dan seluruh laporan.
 | **Master data** | Pelanggan (autocomplete, pencegahan duplikasi, arsip, riwayat & piutang), produk/layanan (template deskripsi otomatis), pajak, rekening bank. |
 | **Dashboard & laporan** | **Dashboard Keuangan**: 3 KPI (nilai invoice terbit ≠ penerimaan kas ≠ piutang), strip & tabel **7 status invoice saling lepas**, grafik tren garis + area, invoice terbaru, filter periode & pelanggan; 9 laporan + ekspor CSV/XLSX. |
 | **Tampilan & navigasi** | **Tema terang/gelap** (tersimpan per perangkat, bawaan mengikuti OS, tanpa kedip), bilah atas marun dengan **pencarian global** (invoice, pelanggan, pembayaran, entri kas — mengikuti izin), **lonceng notifikasi** (antrean kerja menurut peran), dan menu pengguna; layout responsif ponsel. |
+| **Integrasi sistem lain** | API mesin-ke-mesin untuk website & Portal: tanda tangan HMAC per permintaan, anti-replay, idempotensi, scope per kredensial, batas laju, rotasi tanpa henti layanan; kelola di Pengaturan → Integrasi (Administrator). Lihat [docs/INTEGRATION.md](docs/INTEGRATION.md). |
 | **Keamanan** | Login berperan (Administrator / Finance Manager / Staf Administrasi Keuangan; staf = mencatat & melihat, Finance Manager = menyetujui, membalikkan, memfinalisasi, dan menutup buku, sehingga input ↔ verifikasi terpisah; tombol tampil/sembunyikan password di halaman login) ditegakkan di backend, sesi ber-hash, scrypt, rate limit login, CSRF, header keamanan, validasi unggahan berdasarkan isi file, audit log append-only. |
 
 ## Teknologi

@@ -367,6 +367,13 @@ Halaman `/closing`; API `/api/finance/periods{,/checklist,/close,/reopen}`; hak 
 * **Pencarian** (`services/search.ts`, `GET /api/search`, halaman `/search`): menyusun `listInvoices/listCustomers/listPayments/listEntries` → izin & visibilitas identik dengan halaman asal; bagian tanpa izin bernilai `null` (UI tidak menyiratkan "tidak ada hasil"). Batas: ≥ 2 dan ≤ 80 karakter, 6 hasil per bagian.
 * **Dashboard** (`services/dashboard.ts`, `(app)/dashboard/page.tsx`): `statuses[]` = tujuh status saling lepas (`lib/invoice-status.ts`, `derivedStatus`) dengan agregat terpisah per status, sehingga jumlah baris = seluruh invoice pada filter. Filter periode & pelanggan adalah komponen klien (`dashboard-filters.tsx`) yang hanya mengubah URL; seluruh angka tetap dihitung di server. Grafik tren (`trend-chart.tsx`) = SVG tanpa pustaka (garis + area, skala "bulat" 1/2/5 × 10^k, label "Jt/Rb/M", tooltip, fokus keyboard, tombol tabel untuk aksesibilitas) memakai token `series-a/b`.
 
+## 10i. Integrasi mesin-ke-mesin
+
+* **Jalur terpisah dari pengguna manusia:** `/api/integration/v1/*` memakai `machineRoute` (`src/server/integration/machine-route.ts`) — tanpa cookie/CSRF, otentikasi = tanda tangan HMAC per permintaan; jalur browser (`route()`) tidak menerima tanda tangan mesin dan sebaliknya (diuji E2E).
+* **Pustaka murni** `src/lib/integration/signing.ts` (kanonikalisasi, tanda tangan, pola header) dipakai server, klien contoh, dan tes → satu definisi; vektor emas diverifikasi silang PHP/`openssl`/Node.
+* **Data:** `api_clients` (kredensial; trigger: tak dihapus, tak diaktifkan kembali, id tetap, versi rahasia hanya maju), `api_nonces` (anti-replay, PK `(klien, nonce)`), `api_idempotency` (kunci + hash permintaan + respons tersimpan). Rahasia **diturunkan** (`secrets.ts`) dari `INTEGRATION_MASTER_KEY`, tidak disimpan.
+* **Urutan pemeriksaan** dan kode galat: `docs/INTEGRATION.md` §2–3. Handler bisnis berikutnya (pembayaran peserta, reimbursement) cukup memakai `machineRoute({ scope }, …)` + `writeMachineAudit`.
+
 ## 11. Risiko teknis & mitigasi
 
 | Risiko | Mitigasi | Bukti |

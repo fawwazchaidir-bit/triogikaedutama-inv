@@ -31,6 +31,6 @@ export default defineConfig({
     url: `${BASE}/login`,
     timeout: 300_000,
     reuseExistingServer: !process.env.CI,
-    env: { DATABASE_URL: TEST_DB, APP_URL: BASE, NODE_ENV: "production", APP_TIMEZONE: "Asia/Jakarta", TRUST_PROXY: "false" },
+    env: { DATABASE_URL: TEST_DB, APP_URL: BASE, NODE_ENV: "production", APP_TIMEZONE: "Asia/Jakarta", TRUST_PROXY: "false", INTEGRATION_MASTER_KEY: "e2e-integration-master-key-0123456789abcdef" },
   },
 });

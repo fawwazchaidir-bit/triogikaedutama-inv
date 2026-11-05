@@ -62,6 +62,7 @@ export const PERMISSIONS = [
   "books:lock",            // menetapkan/membuka penutupan buku (transaksi ≤ tanggal tutup ditolak)
   "bank:reconcile",        // impor rekening koran, mencocokkan/melepas (draft), membuat entri dari mutasi, menghapus draft
   "bank:finalize",         // memfinalisasi / membuka kembali rekonsiliasi bank (otoritas Finance Manager)
+  "integration:manage",    // kredensial integrasi mesin-ke-mesin (website, Portal): buat, rotasi, cabut — hanya Administrator
 ] as const;
 
 export type Permission = (typeof PERMISSIONS)[number];
