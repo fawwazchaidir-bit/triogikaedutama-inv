@@ -1,0 +1,5261 @@
+{
+ "login": {
+  "title": "Halaman masuk",
+  "caption": "Alamat aplikasi dibuka di peramban (Chrome/Edge/Safari). Tombol bulan/matahari di kanan atas mengganti tema terang/gelap.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Email akun Anda (diberikan Administrator)."
+   },
+   {
+    "n": 2,
+    "text": "Password. Ikon mata di ujung kanan menampilkan/menyembunyikan isian."
+   },
+   {
+    "n": 3,
+    "text": "Klik Masuk. Setelah 5 kali salah, akun dikunci sementara 15 menit."
+   },
+   {
+    "n": 4,
+    "text": "Ganti tema terang/gelap (pilihan diingat di perangkat ini)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Trilogika Edutama"
+   ],
+   "tombol": [
+    "Ganti ke tema gelap",
+    "Tampilkan kata sandi",
+    "Masuk"
+   ],
+   "isian": [
+    "Email *",
+    "Password *"
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "pw-forced": {
+  "title": "Ganti password saat masuk pertama kali",
+  "caption": "Akun baru memakai password sementara dari Administrator. Aplikasi memaksa Anda menggantinya sebelum bisa dipakai.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Isi password sementara dari Administrator."
+   },
+   {
+    "n": 2,
+    "text": "Password baru: minimal 12 karakter, bukan password umum, tidak memuat nama/email Anda."
+   },
+   {
+    "n": 3,
+    "text": "Ketik ulang password baru yang sama."
+   },
+   {
+    "n": 4,
+    "text": "Simpan. Sesi Anda di perangkat lain otomatis berakhir."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Ganti Password"
+   ],
+   "tombol": [
+    "Ganti ke tema gelap",
+    "Tampilkan kata sandi",
+    "Simpan"
+   ],
+   "isian": [
+    "Password saat ini *",
+    "Password baru *",
+    "Ulangi password baru *"
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "shell": {
+  "title": "Kerangka aplikasi",
+  "caption": "Semua halaman memakai kerangka yang sama. Menu yang tampil mengikuti peran Anda.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Merek & nama aplikasi (klik untuk ke halaman awal)."
+   },
+   {
+    "n": 2,
+    "text": "Pencarian global: invoice, pelanggan, pembayaran, entri kas."
+   },
+   {
+    "n": 3,
+    "text": "Lonceng: daftar pekerjaan yang menunggu Anda. Titik merah = ada yang perlu ditindak."
+   },
+   {
+    "n": 4,
+    "text": "Tema terang/gelap."
+   },
+   {
+    "n": 5,
+    "text": "Menu pengguna: identitas, ganti password, Keamanan (2FA), Keluar."
+   },
+   {
+    "n": 6,
+    "text": "Menu utama (sidebar). Item yang tidak tampil berarti tidak termasuk wewenang peran Anda."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Dashboard Keuangan",
+    "Tren per Bulan",
+    "Invoice Terbaru",
+    "Ringkasan Status Invoice"
+   ],
+   "tombol": [
+    "1 Jan 2026 – 6 Nov 2026",
+    "Tampilkan tabel",
+    "Definisi angka (agar tidak terjadi hitung ganda)"
+   ],
+   "isian": [],
+   "kolom": [
+    "No. Invoice",
+    "Pelanggan",
+    "Tanggal",
+    "Jatuh Tempo",
+    "Total",
+    "Status",
+    "Jumlah Invoice",
+    "Belum dibayar",
+    "Sebagian",
+    "Lunas",
+    "Jatuh tempo",
+    "Menunggu verifikasi",
+    "Draft",
+    "Dibatalkan"
+   ],
+   "pilihan": [
+    "Pelanggan: Semua Pelanggan | CV Bima Satria Jaya | Hotel Tirta Asri | PT Nusantara Boga | PT Rasa Bersama | SMK Negeri 3 Sleman"
+   ]
+  }
+ },
+ "shell-bell": {
+  "title": "Lonceng notifikasi",
+  "caption": "Berisi antrean pekerjaan sesuai peran (mis. invoice menunggu verifikasi, pengeluaran menunggu persetujuan, invoice jatuh tempo). Klik butir untuk langsung ke daftar yang sudah terfilter.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Setiap baris = satu jenis pekerjaan beserta jumlahnya; klik untuk membukanya."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Dashboard Keuangan",
+    "Tren per Bulan",
+    "Invoice Terbaru",
+    "Ringkasan Status Invoice"
+   ],
+   "tombol": [
+    "1 Jan 2026 – 6 Nov 2026",
+    "Tampilkan tabel",
+    "Definisi angka (agar tidak terjadi hitung ganda)"
+   ],
+   "isian": [],
+   "kolom": [
+    "No. Invoice",
+    "Pelanggan",
+    "Tanggal",
+    "Jatuh Tempo",
+    "Total",
+    "Status",
+    "Jumlah Invoice",
+    "Belum dibayar",
+    "Sebagian",
+    "Lunas",
+    "Jatuh tempo",
+    "Menunggu verifikasi",
+    "Draft",
+    "Dibatalkan"
+   ],
+   "pilihan": [
+    "Pelanggan: Semua Pelanggan | CV Bima Satria Jaya | Hotel Tirta Asri | PT Nusantara Boga | PT Rasa Bersama | SMK Negeri 3 Sleman"
+   ]
+  }
+ },
+ "shell-usermenu": {
+  "title": "Menu pengguna",
+  "caption": "Dibuka dengan mengklik nama lembaga di kanan atas.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Nama, email, dan peran Anda."
+   },
+   {
+    "n": 2,
+    "text": "Ganti password kapan saja."
+   },
+   {
+    "n": 3,
+    "text": "Aktifkan/kelola autentikasi dua langkah."
+   },
+   {
+    "n": 4,
+    "text": "Keluar dari aplikasi (selalu lakukan di komputer bersama)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Dashboard Keuangan",
+    "Tren per Bulan",
+    "Invoice Terbaru",
+    "Ringkasan Status Invoice"
+   ],
+   "tombol": [
+    "1 Jan 2026 – 6 Nov 2026",
+    "Tampilkan tabel",
+    "Definisi angka (agar tidak terjadi hitung ganda)"
+   ],
+   "isian": [],
+   "kolom": [
+    "No. Invoice",
+    "Pelanggan",
+    "Tanggal",
+    "Jatuh Tempo",
+    "Total",
+    "Status",
+    "Jumlah Invoice",
+    "Belum dibayar",
+    "Sebagian",
+    "Lunas",
+    "Jatuh tempo",
+    "Menunggu verifikasi",
+    "Draft",
+    "Dibatalkan"
+   ],
+   "pilihan": [
+    "Pelanggan: Semua Pelanggan | CV Bima Satria Jaya | Hotel Tirta Asri | PT Nusantara Boga | PT Rasa Bersama | SMK Negeri 3 Sleman"
+   ]
+  }
+ },
+ "search": {
+  "title": "Hasil pencarian global",
+  "caption": "Ketik minimal 2 karakter di kotak cari (atas) lalu tekan Enter. Hasil dikelompokkan per jenis dan hanya menampilkan yang boleh Anda lihat.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Kata kunci: nomor invoice, nama pelanggan, referensi transfer, keterangan kas."
+   },
+   {
+    "n": 2,
+    "text": "Tiap bagian menunjukkan jumlah hasil; klik baris untuk membuka dokumennya."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Pencarian",
+    "Invoice (3)",
+    "Pelanggan (1)",
+    "Pembayaran (2)"
+   ],
+   "tombol": [],
+   "isian": [
+    "Kata kunci"
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "theme-dark": {
+  "title": "Tema gelap",
+  "caption": "Nyaman untuk bekerja malam hari. Pilihan tema tersimpan di perangkat Anda dan tidak memengaruhi PDF/Excel.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Klik lagi untuk kembali ke tema terang."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Invoice"
+   ],
+   "tombol": [
+    "Terapkan",
+    "Aksi invoice draft",
+    "Aksi invoice 00441",
+    "Aksi invoice 00440",
+    "Aksi invoice 00439",
+    "Aksi invoice 00437",
+    "Aksi invoice 00438",
+    "Aksi invoice 00435",
+    "Aksi invoice 00436"
+   ],
+   "isian": [
+    "Nomor / pelanggan",
+    "Dari tanggal",
+    "Sampai tanggal",
+    "Pelanggan Semua pelanggan CV Bima Satria Jaya Hotel Tirta Asri PT Nusantara Boga PT Rasa Bersama SMK Negeri 3 Sleman",
+    "Status invoice Semua Draft Menunggu verifikasi Diterbitkan Dibatalkan",
+    "Status pembayaran Semua Belum dibayar Dibayar sebagian Lunas Jatuh tempo"
+   ],
+   "kolom": [
+    "NOMOR",
+    "TANGGAL",
+    "PELANGGAN",
+    "TOTAL",
+    "DIBAYAR",
+    "SISA",
+    "JATUH TEMPO",
+    "STATUS",
+    "PEMBAYARAN",
+    "AKSI"
+   ],
+   "pilihan": [
+    "customerId: Semua pelanggan | CV Bima Satria Jaya | Hotel Tirta Asri | PT Nusantara Boga | PT Rasa Bersama | SMK Negeri 3 Sleman",
+    "status: Semua | Draft | Menunggu verifikasi | Diterbitkan | Dibatalkan",
+    "paymentStatus: Semua | Belum dibayar | Dibayar sebagian | Lunas | Jatuh tempo"
+   ]
+  }
+ },
+ "mobile-list": {
+  "title": "Tampilan di ponsel",
+  "caption": "Aplikasi menyesuaikan layar kecil. Menu utama berada di tombol tiga garis.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Buka menu utama."
+   },
+   {
+    "n": 2,
+    "text": "Pencarian."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Invoice"
+   ],
+   "tombol": [
+    "Terapkan",
+    "Aksi invoice draft",
+    "Aksi invoice 00441",
+    "Aksi invoice 00440",
+    "Aksi invoice 00439",
+    "Aksi invoice 00437",
+    "Aksi invoice 00438",
+    "Aksi invoice 00435",
+    "Aksi invoice 00436"
+   ],
+   "isian": [
+    "Nomor / pelanggan",
+    "Dari tanggal",
+    "Sampai tanggal",
+    "Pelanggan Semua pelanggan CV Bima Satria Jaya Hotel Tirta Asri PT Nusantara Boga PT Rasa Bersama SMK Negeri 3 Sleman",
+    "Status invoice Semua Draft Menunggu verifikasi Diterbitkan Dibatalkan",
+    "Status pembayaran Semua Belum dibayar Dibayar sebagian Lunas Jatuh tempo"
+   ],
+   "kolom": [
+    "NOMOR",
+    "TANGGAL",
+    "PELANGGAN",
+    "TOTAL",
+    "DIBAYAR",
+    "SISA",
+    "JATUH TEMPO",
+    "STATUS",
+    "PEMBAYARAN",
+    "AKSI"
+   ],
+   "pilihan": [
+    "customerId: Semua pelanggan | CV Bima Satria Jaya | Hotel Tirta Asri | PT Nusantara Boga | PT Rasa Bersama | SMK Negeri 3 Sleman",
+    "status: Semua | Draft | Menunggu verifikasi | Diterbitkan | Dibatalkan",
+    "paymentStatus: Semua | Belum dibayar | Dibayar sebagian | Lunas | Jatuh tempo"
+   ]
+  }
+ },
+ "mobile-menu": {
+  "title": "Menu di ponsel",
+  "caption": "Pilih halaman dari laci menu; tutup dengan tanda silang atau mengetuk area gelap.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Ketuk untuk berpindah halaman."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Invoice"
+   ],
+   "tombol": [
+    "Terapkan",
+    "Aksi invoice draft",
+    "Aksi invoice 00441",
+    "Aksi invoice 00440",
+    "Aksi invoice 00439",
+    "Aksi invoice 00437",
+    "Aksi invoice 00438",
+    "Aksi invoice 00435",
+    "Aksi invoice 00436"
+   ],
+   "isian": [
+    "Nomor / pelanggan",
+    "Dari tanggal",
+    "Sampai tanggal",
+    "Pelanggan Semua pelanggan CV Bima Satria Jaya Hotel Tirta Asri PT Nusantara Boga PT Rasa Bersama SMK Negeri 3 Sleman",
+    "Status invoice Semua Draft Menunggu verifikasi Diterbitkan Dibatalkan",
+    "Status pembayaran Semua Belum dibayar Dibayar sebagian Lunas Jatuh tempo"
+   ],
+   "kolom": [
+    "NOMOR",
+    "TANGGAL",
+    "PELANGGAN",
+    "TOTAL",
+    "DIBAYAR",
+    "SISA",
+    "JATUH TEMPO",
+    "STATUS",
+    "PEMBAYARAN",
+    "AKSI"
+   ],
+   "pilihan": [
+    "customerId: Semua pelanggan | CV Bima Satria Jaya | Hotel Tirta Asri | PT Nusantara Boga | PT Rasa Bersama | SMK Negeri 3 Sleman",
+    "status: Semua | Draft | Menunggu verifikasi | Diterbitkan | Dibatalkan",
+    "paymentStatus: Semua | Belum dibayar | Dibayar sebagian | Lunas | Jatuh tempo"
+   ]
+  }
+ },
+ "sec-idle": {
+  "title": "Keamanan akun — sebelum 2FA aktif",
+  "caption": "Dibuka dari menu pengguna → Keamanan (2FA). Peran yang diwajibkan (mis. Finance Manager & Administrator) akan diarahkan ke sini saat pertama masuk.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Status saat ini."
+   },
+   {
+    "n": 2,
+    "text": "Mulai mengaktifkan."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Autentikasi dua langkah (2FA)"
+   ],
+   "tombol": [
+    "Ganti ke tema gelap",
+    "Aktifkan 2FA"
+   ],
+   "isian": [],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "sec-password": {
+  "title": "Konfirmasi password",
+  "caption": "Demi keamanan, aplikasi meminta password lagi sebelum membuat kunci 2FA.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Masukkan password akun Anda."
+   },
+   {
+    "n": 2,
+    "text": "Lanjut ke kode QR."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Autentikasi dua langkah (2FA)"
+   ],
+   "tombol": [
+    "Ganti ke tema gelap",
+    "Tampilkan kata sandi",
+    "Lanjut",
+    "Batal"
+   ],
+   "isian": [
+    "Password *"
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "sec-qr": {
+  "title": "Pindai kode QR",
+  "caption": "Buka aplikasi autentikator di ponsel (Google Authenticator, Microsoft Authenticator, Aegis, dll.) → tambah akun → pindai kode ini.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Kode QR untuk dipindai aplikasi autentikator."
+   },
+   {
+    "n": 2,
+    "text": "Tidak bisa memindai? Ketik kunci ini secara manual di aplikasi."
+   },
+   {
+    "n": 3,
+    "text": "Masukkan 6 digit yang tampil di aplikasi (berganti tiap 30 detik)."
+   },
+   {
+    "n": 4,
+    "text": "Aktifkan 2FA."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Autentikasi dua langkah (2FA)"
+   ],
+   "tombol": [
+    "Ganti ke tema gelap",
+    "Aktifkan",
+    "Batal"
+   ],
+   "isian": [
+    "Kode 6 digit *"
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "sec-recovery": {
+  "title": "Simpan kode pemulihan",
+  "caption": "10 kode sekali pakai untuk masuk bila ponsel hilang/rusak. Ditampilkan SEKALI saja.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Sepuluh kode pemulihan. Setiap kode hanya berlaku sekali."
+   },
+   {
+    "n": 2,
+    "text": "Salin ke papan klip, atau Unduh .txt."
+   },
+   {
+    "n": 3,
+    "text": "Centang setelah kode tersimpan di tempat aman (brankas/pengelola password — bukan di ponsel yang sama)."
+   },
+   {
+    "n": 4,
+    "text": "Selesai (baru aktif setelah dicentang)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Simpan kode pemulihan"
+   ],
+   "tombol": [
+    "Ganti ke tema gelap",
+    "Salin",
+    "Unduh .txt",
+    "Selesai"
+   ],
+   "isian": [
+    "Saya sudah menyimpan kode ini di tempat aman."
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "sec-active": {
+  "title": "Keamanan akun — 2FA aktif",
+  "caption": "Status memuat tanggal aktif dan sisa kode pemulihan.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Status, tanggal aktif, dan sisa kode pemulihan."
+   },
+   {
+    "n": 2,
+    "text": "Buat 10 kode baru (yang lama hangus) — lakukan bila kode hampir habis."
+   },
+   {
+    "n": 3,
+    "text": "Mematikan 2FA (tidak tersedia untuk peran yang diwajibkan)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Autentikasi dua langkah (2FA)"
+   ],
+   "tombol": [
+    "Ganti ke tema gelap",
+    "Buat ulang kode pemulihan",
+    "Nonaktifkan 2FA"
+   ],
+   "isian": [],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "login-2fa": {
+  "title": "Masuk dengan 2FA (langkah 2)",
+  "caption": "Setelah password benar, aplikasi meminta kode dari aplikasi autentikator. Tanpa kode, tidak ada sesi yang dibuat.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Kode 6 digit dari aplikasi autentikator, ATAU salah satu kode pemulihan (format XXXXX-XXXXX)."
+   },
+   {
+    "n": 2,
+    "text": "Verifikasi untuk masuk."
+   },
+   {
+    "n": 3,
+    "text": "Kembali ke langkah 1 (mis. salah akun)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Trilogika Edutama"
+   ],
+   "tombol": [
+    "Ganti ke tema gelap",
+    "Verifikasi",
+    "Kembali"
+   ],
+   "isian": [
+    "Kode verifikasi *"
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "sec-regen": {
+  "title": "Buat ulang kode pemulihan / nonaktifkan",
+  "caption": "Tindakan sensitif selalu meminta password dan satu kode (dari autentikator atau salah satu kode pemulihan).",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Password akun."
+   },
+   {
+    "n": 2,
+    "text": "Kode autentikator atau kode pemulihan."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Autentikasi dua langkah (2FA)"
+   ],
+   "tombol": [
+    "Ganti ke tema gelap",
+    "Tampilkan kata sandi",
+    "Buat ulang",
+    "Batal"
+   ],
+   "isian": [
+    "Password *",
+    "Kode 6 digit (atau kode pemulihan) *"
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "dash": {
+  "title": "Dashboard Keuangan",
+  "caption": "Hanya Finance Manager (dan Administrator) yang melihat dashboard. Semua angka dihitung langsung dari database, bukan input manual.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Periode tanggal yang dianalisis (bawaan: 1 Januari s.d. hari ini)."
+   },
+   {
+    "n": 2,
+    "text": "Saring seluruh angka untuk satu pelanggan."
+   },
+   {
+    "n": 3,
+    "text": "Tiga angka utama: Nilai Invoice Terbit, Penerimaan Kas, dan Piutang Belum Dibayar. Klik kartu untuk melihat rinciannya."
+   },
+   {
+    "n": 4,
+    "text": "Enam status invoice yang SALING LEPAS (satu invoice hanya masuk satu status). Klik untuk membuka daftar yang cocok."
+   },
+   {
+    "n": 5,
+    "text": "Tren per bulan: Invoice Terbit (merah) dan Penerimaan Kas (kuning). Arahkan kursor ke titik untuk melihat nilai."
+   },
+   {
+    "n": 6,
+    "text": "Lima invoice terbaru pada periode; klik nomor untuk membuka."
+   },
+   {
+    "n": 7,
+    "text": "Jumlah & nilai per status (termasuk Dibatalkan). Baris Total = seluruh invoice pada periode."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Dashboard Keuangan",
+    "Tren per Bulan",
+    "Invoice Terbaru",
+    "Ringkasan Status Invoice"
+   ],
+   "tombol": [
+    "1 Jan 2026 – 6 Nov 2026",
+    "Tampilkan tabel",
+    "Definisi angka (agar tidak terjadi hitung ganda)"
+   ],
+   "isian": [],
+   "kolom": [
+    "No. Invoice",
+    "Pelanggan",
+    "Tanggal",
+    "Jatuh Tempo",
+    "Total",
+    "Status",
+    "Jumlah Invoice",
+    "Belum dibayar",
+    "Sebagian",
+    "Lunas",
+    "Jatuh tempo",
+    "Menunggu verifikasi",
+    "Draft",
+    "Dibatalkan"
+   ],
+   "pilihan": [
+    "Pelanggan: Semua Pelanggan | CV Bima Satria Jaya | Hotel Tirta Asri | PT Nusantara Boga | PT Rasa Bersama | SMK Negeri 3 Sleman"
+   ]
+  }
+ },
+ "dash-period": {
+  "title": "Memilih periode",
+  "caption": "Klik tombol periode. Pilih rentang cepat atau isi tanggal sendiri.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Rentang cepat: Bulan ini, 30 hari terakhir, Tahun ini, Tahun lalu."
+   },
+   {
+    "n": 2,
+    "text": "Tanggal awal."
+   },
+   {
+    "n": 3,
+    "text": "Tanggal akhir (tidak boleh di masa depan)."
+   },
+   {
+    "n": 4,
+    "text": "Terapkan. Tombol nonaktif bila tanggal tidak valid."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Dashboard Keuangan",
+    "Tren per Bulan",
+    "Invoice Terbaru",
+    "Ringkasan Status Invoice"
+   ],
+   "tombol": [
+    "1 Jan 2026 – 6 Nov 2026",
+    "Bulan ini",
+    "30 hari terakhir",
+    "Tahun ini",
+    "Tahun lalu",
+    "Terapkan",
+    "Tampilkan tabel",
+    "Definisi angka (agar tidak terjadi hitung ganda)"
+   ],
+   "isian": [
+    "Dari tanggal",
+    "Sampai tanggal"
+   ],
+   "kolom": [
+    "No. Invoice",
+    "Pelanggan",
+    "Tanggal",
+    "Jatuh Tempo",
+    "Total",
+    "Status",
+    "Jumlah Invoice",
+    "Belum dibayar",
+    "Sebagian",
+    "Lunas",
+    "Jatuh tempo",
+    "Menunggu verifikasi",
+    "Draft",
+    "Dibatalkan"
+   ],
+   "pilihan": [
+    "Pelanggan: Semua Pelanggan | CV Bima Satria Jaya | Hotel Tirta Asri | PT Nusantara Boga | PT Rasa Bersama | SMK Negeri 3 Sleman"
+   ]
+  }
+ },
+ "dash-table": {
+  "title": "Grafik dalam bentuk tabel",
+  "caption": "Tombol “Tampilkan tabel” mengganti grafik dengan tabel angka (berguna untuk dicetak atau dibaca pembaca layar).",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Kembali ke grafik."
+   },
+   {
+    "n": 2,
+    "text": "Nilai invoice terbit dan penerimaan kas tiap bulan."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Dashboard Keuangan",
+    "Tren per Bulan",
+    "Invoice Terbaru",
+    "Ringkasan Status Invoice"
+   ],
+   "tombol": [
+    "1 Jan 2026 – 6 Nov 2026",
+    "Tampilkan grafik",
+    "Definisi angka (agar tidak terjadi hitung ganda)"
+   ],
+   "isian": [],
+   "kolom": [
+    "BULAN",
+    "INVOICE TERBIT",
+    "PENERIMAAN KAS",
+    "Januari 2026",
+    "Februari 2026",
+    "Maret 2026",
+    "April 2026",
+    "Mei 2026",
+    "Juni 2026",
+    "Juli 2026",
+    "Agustus 2026",
+    "September 2026",
+    "Oktober 2026",
+    "November 2026",
+    "No. Invoice",
+    "Pelanggan",
+    "Tanggal",
+    "Jatuh Tempo",
+    "Total",
+    "Status",
+    "Jumlah Invoice",
+    "Belum dibayar",
+    "Sebagian",
+    "Lunas",
+    "Jatuh tempo",
+    "Menunggu verifikasi",
+    "Draft",
+    "Dibatalkan"
+   ],
+   "pilihan": [
+    "Pelanggan: Semua Pelanggan | CV Bima Satria Jaya | Hotel Tirta Asri | PT Nusantara Boga | PT Rasa Bersama | SMK Negeri 3 Sleman"
+   ]
+  }
+ },
+ "dash-customer": {
+  "title": "Dashboard untuk satu pelanggan",
+  "caption": "Setelah memilih pelanggan, semua kartu, status, grafik, dan tabel hanya memuat data pelanggan itu.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Pelanggan terpilih (kembalikan ke “Semua Pelanggan” untuk melihat keseluruhan)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Dashboard Keuangan",
+    "Tren per Bulan",
+    "Invoice Terbaru",
+    "Ringkasan Status Invoice"
+   ],
+   "tombol": [
+    "1 Jan 2026 – 6 Nov 2026",
+    "Tampilkan tabel",
+    "Definisi angka (agar tidak terjadi hitung ganda)"
+   ],
+   "isian": [],
+   "kolom": [
+    "No. Invoice",
+    "Pelanggan",
+    "Tanggal",
+    "Jatuh Tempo",
+    "Total",
+    "Status",
+    "Jumlah Invoice",
+    "Belum dibayar",
+    "Sebagian",
+    "Lunas",
+    "Jatuh tempo",
+    "Menunggu verifikasi",
+    "Draft",
+    "Dibatalkan"
+   ],
+   "pilihan": [
+    "Pelanggan: Semua Pelanggan | CV Bima Satria Jaya | Hotel Tirta Asri | PT Nusantara Boga | PT Rasa Bersama | SMK Negeri 3 Sleman"
+   ]
+  }
+ },
+ "cust-list": {
+  "title": "Daftar pelanggan",
+  "caption": "Menu Pelanggan. Pelaksana dan Finance Manager dapat menambah, mengubah, dan mengarsipkan pelanggan.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Cari nama, kontak, kota, atau email."
+   },
+   {
+    "n": 2,
+    "text": "Tampilkan pelanggan Aktif, Diarsipkan, atau Semua."
+   },
+   {
+    "n": 3,
+    "text": "Tambah pelanggan baru."
+   },
+   {
+    "n": 4,
+    "text": "Piutang = nilai invoice terbit dikurangi pembayaran yang tercatat."
+   },
+   {
+    "n": 5,
+    "text": "Edit data pelanggan; Arsipkan menyembunyikan pelanggan dari pilihan invoice baru (riwayat tetap)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Pelanggan"
+   ],
+   "tombol": [
+    "Terapkan",
+    "Tambah pelanggan",
+    "Edit",
+    "Arsipkan"
+   ],
+   "isian": [
+    "Cari",
+    "Status Aktif Diarsipkan Semua"
+   ],
+   "kolom": [
+    "PELANGGAN",
+    "KONTAK",
+    "INVOICE",
+    "NILAI INVOICE",
+    "DIBAYAR",
+    "PIUTANG",
+    "STATUS",
+    "AKSI"
+   ],
+   "pilihan": [
+    "status: Aktif | Diarsipkan | Semua"
+   ]
+  }
+ },
+ "cust-new": {
+  "title": "Menambah pelanggan",
+  "caption": "Hanya nama yang wajib; makin lengkap data kontak, makin rapi invoice dan penagihan.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Nama perusahaan/instansi persis seperti yang akan tercetak di invoice."
+   },
+   {
+    "n": 2,
+    "text": "NPWP (opsional) — dicetak bila diisi."
+   },
+   {
+    "n": 3,
+    "text": "Simpan. Aplikasi memeriksa kemungkinan duplikat lebih dulu."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Tambah pelanggan"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Simpan"
+   ],
+   "isian": [
+    "Nama perusahaan / instansi *",
+    "Nama kontak person",
+    "Jabatan kontak",
+    "Alamat",
+    "Kota",
+    "Telepon",
+    "Email",
+    "NPWP",
+    "Catatan internal"
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "cust-saved": {
+  "title": "Pelanggan tersimpan",
+  "caption": "Muncul notifikasi hijau dan pelanggan baru langsung ada di daftar serta di pilihan invoice.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Pelanggan baru."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Pelanggan"
+   ],
+   "tombol": [
+    "Terapkan",
+    "Tambah pelanggan",
+    "Edit",
+    "Arsipkan"
+   ],
+   "isian": [
+    "Cari",
+    "Status Aktif Diarsipkan Semua"
+   ],
+   "kolom": [
+    "PELANGGAN",
+    "KONTAK",
+    "INVOICE",
+    "NILAI INVOICE",
+    "DIBAYAR",
+    "PIUTANG",
+    "STATUS",
+    "AKSI"
+   ],
+   "pilihan": [
+    "status: Aktif | Diarsipkan | Semua"
+   ]
+  }
+ },
+ "cust-dup-exact": {
+  "title": "Pelanggan yang sudah ada (ditolak)",
+  "caption": "Bila nama dan kota sama persis dengan pelanggan yang sudah ada, penyimpanan ditolak dan pelanggan yang cocok ditampilkan. Pakai pelanggan itu, jangan buat ganda.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Pesan penolakan beserta pelanggan yang cocok (nama dan kotanya)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Tambah pelanggan"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Simpan"
+   ],
+   "isian": [
+    "Nama perusahaan / instansi *",
+    "Nama kontak person",
+    "Jabatan kontak",
+    "Alamat",
+    "Kota",
+    "Telepon",
+    "Email",
+    "NPWP",
+    "Catatan internal"
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "cust-dup": {
+  "title": "Peringatan pelanggan mirip",
+  "caption": "Bila nama sama tetapi kota berbeda, aplikasi meminta konfirmasi. Ini mencegah catatan ganda karena salah ketik, tetapi tetap mengizinkan cabang/pelanggan yang memang berbeda.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Pilih ini HANYA bila memang pelanggan yang berbeda (mis. cabang lain). Jika sama, tekan Batal dan pakai pelanggan yang sudah ada."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Tambah pelanggan"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Tetap simpan sebagai pelanggan berbeda",
+    "Simpan"
+   ],
+   "isian": [
+    "Nama perusahaan / instansi *",
+    "Nama kontak person",
+    "Jabatan kontak",
+    "Alamat",
+    "Kota",
+    "Telepon",
+    "Email",
+    "NPWP",
+    "Catatan internal"
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "cust-detail": {
+  "title": "Detail pelanggan",
+  "caption": "Klik nama pelanggan di daftar. Menampilkan data kontak, ringkasan piutang, dan seluruh riwayat invoice pelanggan itu.",
+  "marks": [],
+  "ui": {
+   "judul": [
+    "CV Bima Satria Jaya",
+    "Data pelanggan",
+    "Riwayat invoice"
+   ],
+   "tombol": [],
+   "isian": [],
+   "kolom": [
+    "NOMOR",
+    "TANGGAL",
+    "TOTAL",
+    "SISA",
+    "STATUS",
+    "PEMBAYARAN"
+   ],
+   "pilihan": []
+  }
+ },
+ "cust-edit": {
+  "title": "Mengubah pelanggan",
+  "caption": "Perubahan data pelanggan tidak mengubah invoice yang sudah terbit (nama pada invoice terbit adalah salinan beku).",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Simpan perubahan."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Edit pelanggan"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Simpan"
+   ],
+   "isian": [
+    "Nama perusahaan / instansi *",
+    "Nama kontak person",
+    "Jabatan kontak",
+    "Alamat",
+    "Kota",
+    "Telepon",
+    "Email",
+    "NPWP",
+    "Catatan internal"
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "cust-archive": {
+  "title": "Mengarsipkan pelanggan",
+  "caption": "Pelanggan yang tidak aktif diarsipkan (bukan dihapus). Riwayatnya tetap utuh dan dapat diaktifkan kembali lewat filter Status → Diarsipkan.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Konfirmasi pengarsipan."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Arsipkan PT Rasa Bersama?"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Arsipkan"
+   ],
+   "isian": [],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "prod-list": {
+  "title": "Produk & Layanan (katalog)",
+  "caption": "Katalog yang dipilih saat membuat invoice. Pelaksana dan Finance Manager dapat MELIHAT; penambahan/perubahan produk dilakukan Administrator.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Cari kode atau nama produk."
+   },
+   {
+    "n": 2,
+    "text": "Harga default terisi otomatis di baris invoice (dapat diubah oleh yang berwenang)."
+   },
+   {
+    "n": 3,
+    "text": "Pajak bawaan produk (non-PKP: umumnya “Tanpa pajak”)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Produk & Layanan"
+   ],
+   "tombol": [
+    "Terapkan"
+   ],
+   "isian": [
+    "Cari",
+    "Status Aktif Diarsipkan Semua"
+   ],
+   "kolom": [
+    "KODE",
+    "PRODUK / LAYANAN",
+    "BIDANG · SKEMA",
+    "SATUAN",
+    "HARGA DEFAULT",
+    "PAJAK",
+    "STATUS"
+   ],
+   "pilihan": [
+    "status: Aktif | Diarsipkan | Semua"
+   ]
+  }
+ },
+ "inv-list": {
+  "title": "Daftar invoice",
+  "caption": "Menu Invoice. Pelaksana melihat seluruh invoice; Finance Manager juga.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Membuat invoice baru."
+   },
+   {
+    "n": 2,
+    "text": "Ekspor daftar (sesuai filter) ke CSV atau Excel."
+   },
+   {
+    "n": 3,
+    "text": "Cari nomor invoice atau nama pelanggan."
+   },
+   {
+    "n": 4,
+    "text": "Saring menurut status dokumen: Draft, Menunggu verifikasi, Diterbitkan, Dibatalkan."
+   },
+   {
+    "n": 5,
+    "text": "Saring menurut pembayaran: Belum dibayar, Dibayar sebagian, Lunas, Jatuh tempo."
+   },
+   {
+    "n": 6,
+    "text": "Terapkan filter (Reset mengembalikan semua)."
+   },
+   {
+    "n": 7,
+    "text": "Sisa = tagihan yang belum dibayar. Merah = sudah lewat jatuh tempo."
+   },
+   {
+    "n": 8,
+    "text": "Menu aksi per baris (Duplikasi, Hapus draft, Batalkan — sesuai status & peran)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Invoice"
+   ],
+   "tombol": [
+    "Terapkan",
+    "Aksi invoice draft",
+    "Aksi invoice 00441",
+    "Aksi invoice 00440",
+    "Aksi invoice 00439",
+    "Aksi invoice 00437",
+    "Aksi invoice 00438",
+    "Aksi invoice 00435",
+    "Aksi invoice 00436"
+   ],
+   "isian": [
+    "Nomor / pelanggan",
+    "Dari tanggal",
+    "Sampai tanggal",
+    "Pelanggan Semua pelanggan CV Bima Satria Jaya Hotel Tirta Asri PT Cahaya Boga PT Nusantara Boga PT Rasa Bersama SMK Negeri 3 Sleman",
+    "Status invoice Semua Draft Menunggu verifikasi Diterbitkan Dibatalkan",
+    "Status pembayaran Semua Belum dibayar Dibayar sebagian Lunas Jatuh tempo"
+   ],
+   "kolom": [
+    "NOMOR",
+    "TANGGAL",
+    "PELANGGAN",
+    "TOTAL",
+    "DIBAYAR",
+    "SISA",
+    "JATUH TEMPO",
+    "STATUS",
+    "PEMBAYARAN",
+    "AKSI"
+   ],
+   "pilihan": [
+    "customerId: Semua pelanggan | CV Bima Satria Jaya | Hotel Tirta Asri | PT Cahaya Boga | PT Nusantara Boga | PT Rasa Bersama | SMK Negeri 3 Sleman",
+    "status: Semua | Draft | Menunggu verifikasi | Diterbitkan | Dibatalkan",
+    "paymentStatus: Semua | Belum dibayar | Dibayar sebagian | Lunas | Jatuh tempo"
+   ]
+  }
+ },
+ "inv-list-filtered": {
+  "title": "Contoh filter: invoice terbit yang jatuh tempo",
+  "caption": "Kombinasi filter dapat dipakai untuk menyiapkan penagihan. Angka di dashboard dan lonceng memakai definisi yang sama.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Filter aktif."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Invoice"
+   ],
+   "tombol": [
+    "Terapkan",
+    "Aksi invoice 00437",
+    "Aksi invoice 00438"
+   ],
+   "isian": [
+    "Nomor / pelanggan",
+    "Dari tanggal",
+    "Sampai tanggal",
+    "Pelanggan Semua pelanggan CV Bima Satria Jaya Hotel Tirta Asri PT Cahaya Boga PT Nusantara Boga PT Rasa Bersama SMK Negeri 3 Sleman",
+    "Status invoice Semua Draft Menunggu verifikasi Diterbitkan Dibatalkan",
+    "Status pembayaran Semua Belum dibayar Dibayar sebagian Lunas Jatuh tempo"
+   ],
+   "kolom": [
+    "NOMOR",
+    "TANGGAL",
+    "PELANGGAN",
+    "TOTAL",
+    "DIBAYAR",
+    "SISA",
+    "JATUH TEMPO",
+    "STATUS",
+    "PEMBAYARAN",
+    "AKSI"
+   ],
+   "pilihan": [
+    "customerId: Semua pelanggan | CV Bima Satria Jaya | Hotel Tirta Asri | PT Cahaya Boga | PT Nusantara Boga | PT Rasa Bersama | SMK Negeri 3 Sleman",
+    "status: Semua | Draft | Menunggu verifikasi | Diterbitkan | Dibatalkan",
+    "paymentStatus: Semua | Belum dibayar | Dibayar sebagian | Lunas | Jatuh tempo"
+   ]
+  }
+ },
+ "inv-row-menu": {
+  "title": "Menu aksi pada baris",
+  "caption": "Pada draft: Duplikasi dan Hapus draft. Pada invoice terbit: Duplikasi (dan Batalkan invoice untuk Finance Manager).",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Salin invoice menjadi draft baru (tanpa nomor & pembayaran)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Invoice"
+   ],
+   "tombol": [
+    "Terapkan",
+    "Aksi invoice draft",
+    "Preview PDF (draft)",
+    "Duplikasi",
+    "Aksi invoice 00441",
+    "Aksi invoice 00440",
+    "Aksi invoice 00439",
+    "Aksi invoice 00437",
+    "Aksi invoice 00438",
+    "Aksi invoice 00435",
+    "Aksi invoice 00436"
+   ],
+   "isian": [
+    "Nomor / pelanggan",
+    "Dari tanggal",
+    "Sampai tanggal",
+    "Pelanggan Semua pelanggan CV Bima Satria Jaya Hotel Tirta Asri PT Cahaya Boga PT Nusantara Boga PT Rasa Bersama SMK Negeri 3 Sleman",
+    "Status invoice Semua Draft Menunggu verifikasi Diterbitkan Dibatalkan",
+    "Status pembayaran Semua Belum dibayar Dibayar sebagian Lunas Jatuh tempo"
+   ],
+   "kolom": [
+    "NOMOR",
+    "TANGGAL",
+    "PELANGGAN",
+    "TOTAL",
+    "DIBAYAR",
+    "SISA",
+    "JATUH TEMPO",
+    "STATUS",
+    "PEMBAYARAN",
+    "AKSI"
+   ],
+   "pilihan": [
+    "customerId: Semua pelanggan | CV Bima Satria Jaya | Hotel Tirta Asri | PT Cahaya Boga | PT Nusantara Boga | PT Rasa Bersama | SMK Negeri 3 Sleman",
+    "status: Semua | Draft | Menunggu verifikasi | Diterbitkan | Dibatalkan",
+    "paymentStatus: Semua | Belum dibayar | Dibayar sebagian | Lunas | Jatuh tempo"
+   ]
+  }
+ },
+ "inv-new-error": {
+  "title": "Validasi saat menyimpan",
+  "caption": "Isian wajib yang kosong ditandai merah dengan pesan. Perbaiki lalu simpan lagi.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Pesan kesalahan / isian yang harus dilengkapi."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Buat invoice",
+    "Informasi utama",
+    "Rincian transaksi",
+    "Catatan",
+    "Ringkasan biaya"
+   ],
+   "tombol": [
+    "Tambah baris",
+    "Naikkan baris 1",
+    "Turunkan baris 1",
+    "Hapus baris 1",
+    "Simpan & ajukan verifikasi",
+    "Simpan draft",
+    "Simpan & pratinjau PDF"
+   ],
+   "isian": [
+    "Pelanggan *",
+    "Tanggal invoice *",
+    "Metode pembayaran",
+    "Jangka waktu (hari) *",
+    "Hitungan hari",
+    "Tanggal jatuh tempo",
+    "Referensi / No. kontrak",
+    "Transfer ke rekening",
+    "Produk / layanan",
+    "Qty",
+    "Satuan",
+    "Harga satuan",
+    "Product Description (dinamis)",
+    "Diskon baris",
+    "Pajak",
+    "Remark (tetap mengikuti program)",
+    "Catatan internal (tidak dicetak)",
+    "Diskon tambahan",
+    "Transport",
+    "Administrasi",
+    "Down Payment (DP) diterima"
+   ],
+   "kolom": [],
+   "pilihan": [
+    ": Transfer | Tunai | QRIS | Virtual Account | Cek/Giro",
+    ": Hari kalender | Hari kerja",
+    ": MANDIRI-IDR — 137-00-2072139-1 a.n. Trilogika Edutama",
+    ": Tanpa pajak | PPN 11%"
+   ]
+  }
+ },
+ "inv-new-top": {
+  "title": "Membuat invoice — Informasi utama",
+  "caption": "Buka Invoice → Buat invoice. Bagian atas berisi data dokumen.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Pilih pelanggan: ketik sebagian nama lalu pilih dari daftar. Pelanggan baru dapat ditambahkan langsung dari sini."
+   },
+   {
+    "n": 2,
+    "text": "Tanggal invoice (bawaan hari ini)."
+   },
+   {
+    "n": 3,
+    "text": "Jangka waktu pembayaran dalam hari. Tanggal jatuh tempo dihitung otomatis."
+   },
+   {
+    "n": 4,
+    "text": "Hari kalender atau hari kerja (Senin–Jumat)."
+   },
+   {
+    "n": 5,
+    "text": "Nomor kontrak/PO pelanggan (opsional, tercetak di invoice)."
+   },
+   {
+    "n": 6,
+    "text": "Rekening tujuan pembayaran yang tercetak di invoice."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Buat invoice",
+    "Informasi utama",
+    "Rincian transaksi",
+    "Catatan",
+    "Ringkasan biaya"
+   ],
+   "tombol": [
+    "Tambah baris",
+    "Naikkan baris 1",
+    "Turunkan baris 1",
+    "Hapus baris 1",
+    "Simpan & ajukan verifikasi",
+    "Simpan draft",
+    "Simpan & pratinjau PDF"
+   ],
+   "isian": [
+    "Pelanggan *",
+    "Tanggal invoice *",
+    "Metode pembayaran",
+    "Jangka waktu (hari) *",
+    "Hitungan hari",
+    "Tanggal jatuh tempo",
+    "Referensi / No. kontrak",
+    "Transfer ke rekening",
+    "Produk / layanan",
+    "Qty",
+    "Satuan",
+    "Harga satuan",
+    "Product Description (dinamis)",
+    "Diskon baris",
+    "Pajak",
+    "Remark (tetap mengikuti program)",
+    "Catatan internal (tidak dicetak)",
+    "Diskon tambahan",
+    "Transport",
+    "Administrasi",
+    "Down Payment (DP) diterima"
+   ],
+   "kolom": [],
+   "pilihan": [
+    ": Transfer | Tunai | QRIS | Virtual Account | Cek/Giro",
+    ": Hari kalender | Hari kerja",
+    ": MANDIRI-IDR — 137-00-2072139-1 a.n. Trilogika Edutama",
+    ": Tanpa pajak | PPN 11%"
+   ]
+  }
+ },
+ "inv-new-lines": {
+  "title": "Rincian transaksi (baris produk/layanan)",
+  "caption": "Setiap baris = satu produk/layanan. Memilih produk mengisi satuan, harga, dan deskripsi otomatis.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Cari & pilih produk dari katalog."
+   },
+   {
+    "n": 2,
+    "text": "Jumlah (qty). Harga satuan terisi dari katalog."
+   },
+   {
+    "n": 3,
+    "text": "Deskripsi baris yang tercetak. Boleh ditambah (mis. nama peserta, periode); “Remark” program tetap mengikuti produk."
+   },
+   {
+    "n": 4,
+    "text": "Diskon per baris (Rupiah) — hanya bila diizinkan."
+   },
+   {
+    "n": 5,
+    "text": "Tambah baris produk lain."
+   },
+   {
+    "n": 6,
+    "text": "Ubah urutan baris atau hapus baris."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Buat invoice",
+    "Informasi utama",
+    "Rincian transaksi",
+    "Catatan",
+    "Ringkasan biaya"
+   ],
+   "tombol": [
+    "Tambah baris",
+    "Naikkan baris 1",
+    "Turunkan baris 1",
+    "Hapus baris 1",
+    "Naikkan baris 2",
+    "Turunkan baris 2",
+    "Hapus baris 2",
+    "Simpan & ajukan verifikasi",
+    "Simpan draft",
+    "Simpan & pratinjau PDF"
+   ],
+   "isian": [
+    "Pelanggan *",
+    "Tanggal invoice *",
+    "Metode pembayaran",
+    "Jangka waktu (hari) *",
+    "Hitungan hari",
+    "Tanggal jatuh tempo",
+    "Referensi / No. kontrak",
+    "Transfer ke rekening",
+    "Produk / layanan",
+    "Qty",
+    "Satuan",
+    "Harga satuan",
+    "Product Description (dinamis)",
+    "Diskon baris",
+    "Pajak",
+    "Remark (tetap mengikuti program)",
+    "Catatan internal (tidak dicetak)",
+    "Diskon tambahan",
+    "Transport",
+    "Administrasi",
+    "Down Payment (DP) diterima"
+   ],
+   "kolom": [],
+   "pilihan": [
+    ": Transfer | Tunai | QRIS | Virtual Account | Cek/Giro",
+    ": Hari kalender | Hari kerja",
+    ": MANDIRI-IDR — 137-00-2072139-1 a.n. Trilogika Edutama",
+    ": Tanpa pajak | PPN 11%"
+   ]
+  }
+ },
+ "inv-new-summary": {
+  "title": "Ringkasan biaya (dihitung otomatis)",
+  "caption": "Panel kanan menghitung ulang setiap kali isian berubah. Angka akhir selalu dihitung ulang oleh server saat disimpan.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Diskon tambahan atas seluruh invoice (bila berwenang)."
+   },
+   {
+    "n": 2,
+    "text": "Biaya transport dan Administrasi (opsional)."
+   },
+   {
+    "n": 3,
+    "text": "Nett Total = total invoice, lengkap dengan terbilang."
+   },
+   {
+    "n": 4,
+    "text": "DP yang sudah diterima: dicatat sebagai pembayaran pertama saat invoice terbit (tidak mengurangi nilai invoice)."
+   },
+   {
+    "n": 5,
+    "text": "Sisa tagihan setelah DP."
+   },
+   {
+    "n": 6,
+    "text": "Simpan DAN langsung ajukan ke Finance Manager (jalan pintas bila sudah yakin)."
+   },
+   {
+    "n": 7,
+    "text": "Simpan sebagai draft (belum bernomor) — bisa dilanjutkan nanti."
+   },
+   {
+    "n": 8,
+    "text": "Simpan lalu tampilkan PDF draft untuk diperiksa."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Buat invoice",
+    "Informasi utama",
+    "Rincian transaksi",
+    "Catatan",
+    "Ringkasan biaya"
+   ],
+   "tombol": [
+    "Tambah baris",
+    "Naikkan baris 1",
+    "Turunkan baris 1",
+    "Hapus baris 1",
+    "Naikkan baris 2",
+    "Turunkan baris 2",
+    "Hapus baris 2",
+    "Simpan & ajukan verifikasi",
+    "Simpan draft",
+    "Simpan & pratinjau PDF"
+   ],
+   "isian": [
+    "Pelanggan *",
+    "Tanggal invoice *",
+    "Metode pembayaran",
+    "Jangka waktu (hari) *",
+    "Hitungan hari",
+    "Tanggal jatuh tempo",
+    "Referensi / No. kontrak",
+    "Transfer ke rekening",
+    "Produk / layanan",
+    "Qty",
+    "Satuan",
+    "Harga satuan",
+    "Product Description (dinamis)",
+    "Diskon baris",
+    "Pajak",
+    "Remark (tetap mengikuti program)",
+    "Catatan internal (tidak dicetak)",
+    "Diskon tambahan",
+    "Transport",
+    "Administrasi",
+    "Down Payment (DP) diterima"
+   ],
+   "kolom": [],
+   "pilihan": [
+    ": Transfer | Tunai | QRIS | Virtual Account | Cek/Giro",
+    ": Hari kalender | Hari kerja",
+    ": MANDIRI-IDR — 137-00-2072139-1 a.n. Trilogika Edutama",
+    ": Tanpa pajak | PPN 11%"
+   ]
+  }
+ },
+ "inv-draft": {
+  "title": "Draft invoice tersimpan",
+  "caption": "Draft belum bernomor dan berwatermark DRAFT. Isi masih dapat diubah oleh pembuatnya.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Ubah isi draft (hanya selama masih draft dan hanya oleh pembuatnya)."
+   },
+   {
+    "n": 2,
+    "text": "Pratinjau PDF draft (berwatermark)."
+   },
+   {
+    "n": 3,
+    "text": "Kirim ke Finance Manager untuk diperiksa & diterbitkan."
+   },
+   {
+    "n": 4,
+    "text": "Menu: Duplikasi dan Hapus draft."
+   },
+   {
+    "n": 5,
+    "text": "Penanda status: belum bernomor, tanpa tanda tangan & cap."
+   },
+   {
+    "n": 6,
+    "text": "Ringkasan biaya dan sisa tagihan."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Draft invoice",
+    "Informasi",
+    "Rincian transaksi",
+    "Riwayat",
+    "Ringkasan biaya"
+   ],
+   "tombol": [
+    "Preview PDF (draft)",
+    "Ajukan untuk verifikasi",
+    "Aksi lainnya"
+   ],
+   "isian": [],
+   "kolom": [
+    "NO.",
+    "DESKRIPSI",
+    "QTY",
+    "HARGA SATUAN",
+    "DISKON",
+    "PAJAK",
+    "JUMLAH BERSIH"
+   ],
+   "pilihan": []
+  }
+ },
+ "inv-pdf-draft": {
+  "title": "PDF draft (pratinjau)",
+  "caption": "Pratinjau draft berwatermark DRAFT; tanda tangan dan cap baru muncul setelah disetujui.",
+  "marks": [],
+  "ui": {}
+ },
+ "inv-submit-dialog": {
+  "title": "Mengajukan untuk verifikasi",
+  "caption": "Setelah diajukan, isi invoice terkunci. Draft tetap berwatermark sampai Finance Manager menyetujui.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Konfirmasi pengajuan."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Ajukan untuk verifikasi?"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Ya, ajukan"
+   ],
+   "isian": [],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "inv-submitted": {
+  "title": "Invoice menunggu verifikasi",
+  "caption": "Status berubah menjadi “Menunggu Verifikasi”. Pelaksana tidak dapat mengubah isinya, tetapi masih boleh menarik kembali selama belum diperiksa.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Status dokumen."
+   },
+   {
+    "n": 2,
+    "text": "Tarik kembali pengajuan (invoice kembali menjadi draft yang dapat diedit)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Invoice menunggu verifikasi",
+    "Informasi",
+    "Rincian transaksi",
+    "Riwayat",
+    "Ringkasan biaya"
+   ],
+   "tombol": [
+    "Preview PDF (draft)",
+    "Tarik kembali",
+    "Aksi lainnya"
+   ],
+   "isian": [],
+   "kolom": [
+    "NO.",
+    "DESKRIPSI",
+    "QTY",
+    "HARGA SATUAN",
+    "DISKON",
+    "PAJAK",
+    "JUMLAH BERSIH"
+   ],
+   "pilihan": []
+  }
+ },
+ "inv-withdraw-dialog": {
+  "title": "Menarik kembali pengajuan",
+  "caption": "Dipakai bila ada kesalahan yang disadari sebelum Finance Manager memeriksa.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Konfirmasi (di sini dibatalkan agar alur berlanjut)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Tarik kembali pengajuan?"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Ya, tarik kembali"
+   ],
+   "isian": [],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "inv-review": {
+  "title": "Meninjau invoice yang diajukan (Finance Manager)",
+  "caption": "Finance Manager membuka invoice dari lonceng atau filter “Menunggu verifikasi”. Periksa pelanggan, rincian, nominal, dan PDF sebelum memutuskan.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Periksa PDF (masih berwatermark DRAFT)."
+   },
+   {
+    "n": 2,
+    "text": "Setujui & terbitkan: nomor dialokasikan, tanda tangan & cap muncul, isi dibekukan."
+   },
+   {
+    "n": 3,
+    "text": "Kembalikan ke pelaksana dengan catatan perbaikan."
+   },
+   {
+    "n": 4,
+    "text": "Rincian yang diperiksa."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Invoice menunggu verifikasi",
+    "Informasi",
+    "Rincian transaksi",
+    "Riwayat",
+    "Ringkasan biaya"
+   ],
+   "tombol": [
+    "Preview PDF (draft)",
+    "Setujui & terbitkan",
+    "Kembalikan ke staff",
+    "Aksi lainnya"
+   ],
+   "isian": [],
+   "kolom": [
+    "NO.",
+    "DESKRIPSI",
+    "QTY",
+    "HARGA SATUAN",
+    "DISKON",
+    "PAJAK",
+    "JUMLAH BERSIH"
+   ],
+   "pilihan": []
+  }
+ },
+ "inv-return-dialog": {
+  "title": "Mengembalikan invoice ke pelaksana",
+  "caption": "Alasan wajib diisi dan akan terlihat oleh pelaksana.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Tulis perbaikan yang diminta secara spesifik."
+   },
+   {
+    "n": 2,
+    "text": "Kembalikan."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Kembalikan ke staff?"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Kembalikan"
+   ],
+   "isian": [
+    "Alasan / catatan perbaikan *"
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "inv-returned": {
+  "title": "Invoice dikembalikan oleh Finance Manager",
+  "caption": "Pelaksana melihat catatan perbaikan pada halaman invoice (juga di riwayat). Draft dapat diedit lagi.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Catatan dari Finance Manager."
+   },
+   {
+    "n": 2,
+    "text": "Perbaiki isi draft."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Draft invoice",
+    "Informasi",
+    "Rincian transaksi",
+    "Riwayat",
+    "Ringkasan biaya"
+   ],
+   "tombol": [
+    "Preview PDF (draft)",
+    "Ajukan untuk verifikasi",
+    "Aksi lainnya"
+   ],
+   "isian": [],
+   "kolom": [
+    "NO.",
+    "DESKRIPSI",
+    "QTY",
+    "HARGA SATUAN",
+    "DISKON",
+    "PAJAK",
+    "JUMLAH BERSIH"
+   ],
+   "pilihan": []
+  }
+ },
+ "inv-edit": {
+  "title": "Mengedit draft",
+  "caption": "Formulir sama dengan saat membuat invoice, sudah terisi. Ubah yang perlu, lalu simpan.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Contoh perbaikan: jumlah peserta menjadi 6."
+   },
+   {
+    "n": 2,
+    "text": "Simpan perbaikan sekaligus mengajukan ulang."
+   },
+   {
+    "n": 3,
+    "text": "Atau simpan saja tanpa mengajukan."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Edit draft invoice",
+    "Informasi utama",
+    "Rincian transaksi",
+    "Catatan",
+    "Ringkasan biaya"
+   ],
+   "tombol": [
+    "Tambah baris",
+    "Naikkan baris 1",
+    "Turunkan baris 1",
+    "Hapus baris 1",
+    "Naikkan baris 2",
+    "Turunkan baris 2",
+    "Hapus baris 2",
+    "Simpan & ajukan verifikasi",
+    "Simpan draft",
+    "Simpan & pratinjau PDF"
+   ],
+   "isian": [
+    "Pelanggan *",
+    "Tanggal invoice *",
+    "Metode pembayaran",
+    "Jangka waktu (hari) *",
+    "Hitungan hari",
+    "Tanggal jatuh tempo",
+    "Referensi / No. kontrak",
+    "Transfer ke rekening",
+    "Produk / layanan",
+    "Qty",
+    "Satuan",
+    "Harga satuan",
+    "Product Description (dinamis)",
+    "Diskon baris",
+    "Pajak",
+    "Remark (tetap mengikuti program)",
+    "Catatan internal (tidak dicetak)",
+    "Diskon tambahan",
+    "Transport",
+    "Administrasi",
+    "Down Payment (DP) diterima"
+   ],
+   "kolom": [],
+   "pilihan": [
+    ": Transfer | Tunai | QRIS | Virtual Account | Cek/Giro",
+    ": Hari kalender | Hari kerja",
+    ": MANDIRI-IDR — 137-00-2072139-1 a.n. Trilogika Edutama",
+    ": Tanpa pajak | PPN 11%"
+   ]
+  }
+ },
+ "inv-approve-dialog": {
+  "title": "Menyetujui & menerbitkan",
+  "caption": "Tindakan ini tidak dapat dibatalkan dengan mudah: isi dibekukan, nomor terpakai. Koreksi setelah terbit dilakukan lewat pembatalan.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Terbitkan."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Setujui & terbitkan invoice?"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Ya, setujui & terbitkan"
+   ],
+   "isian": [],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "inv-issued": {
+  "title": "Invoice terbit",
+  "caption": "Setelah terbit invoice bernomor, pelanggan & rincian dibekukan, dan siap ditagih.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Nomor invoice resmi (urut, tidak pernah dipakai ulang)."
+   },
+   {
+    "n": 2,
+    "text": "Preview PDF resmi di layar; Unduh PDF menyimpan berkasnya."
+   },
+   {
+    "n": 3,
+    "text": "Mencatat pembayaran/DP dari pelanggan (lihat bab Pembayaran)."
+   },
+   {
+    "n": 4,
+    "text": "Duplikasi atau Batalkan invoice (Finance Manager)."
+   },
+   {
+    "n": 5,
+    "text": "Daftar pembayaran yang tercatat pada invoice ini."
+   },
+   {
+    "n": 6,
+    "text": "Riwayat: siapa membuat, mengajukan, mengembalikan, menyetujui — lengkap dengan waktunya."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Invoice 00442",
+    "Informasi",
+    "Rincian transaksi",
+    "Pembayaran",
+    "Riwayat",
+    "Ringkasan biaya"
+   ],
+   "tombol": [
+    "Preview PDF",
+    "Catat pembayaran",
+    "Aksi lainnya",
+    "Balikkan"
+   ],
+   "isian": [],
+   "kolom": [
+    "NO.",
+    "DESKRIPSI",
+    "QTY",
+    "HARGA SATUAN",
+    "DISKON",
+    "PAJAK",
+    "JUMLAH BERSIH",
+    "TANGGAL",
+    "JENIS",
+    "METODE / REFERENSI",
+    "UANG DITERIMA",
+    "PPH DIPOTONG",
+    "DICATAT OLEH",
+    "BUKTI",
+    "AKSI"
+   ],
+   "pilihan": []
+  }
+ },
+ "inv-pdf-issued": {
+  "title": "PDF invoice resmi",
+  "caption": "PDF resmi: bernomor, bertanda tangan Finance Manager dan bercap. Bandingkan dengan draft di atas.",
+  "marks": [],
+  "ui": {}
+ },
+ "inv-menu-detail": {
+  "title": "Menu aksi pada invoice terbit",
+  "caption": "Hanya Finance Manager yang dapat membatalkan invoice terbit.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Salin menjadi draft baru."
+   },
+   {
+    "n": 2,
+    "text": "Batalkan invoice (alasan wajib)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Invoice 00442",
+    "Informasi",
+    "Rincian transaksi",
+    "Pembayaran",
+    "Riwayat",
+    "Ringkasan biaya"
+   ],
+   "tombol": [
+    "Preview PDF",
+    "Catat pembayaran",
+    "Aksi lainnya",
+    "Duplikasi",
+    "Batalkan invoice…",
+    "Balikkan"
+   ],
+   "isian": [],
+   "kolom": [
+    "NO.",
+    "DESKRIPSI",
+    "QTY",
+    "HARGA SATUAN",
+    "DISKON",
+    "PAJAK",
+    "JUMLAH BERSIH",
+    "TANGGAL",
+    "JENIS",
+    "METODE / REFERENSI",
+    "UANG DITERIMA",
+    "PPH DIPOTONG",
+    "DICATAT OLEH",
+    "BUKTI",
+    "AKSI"
+   ],
+   "pilihan": []
+  }
+ },
+ "inv-cancel-dialog": {
+  "title": "Membatalkan invoice terbit",
+  "caption": "Invoice tetap tersimpan dengan status Dibatalkan dan nomornya tidak dipakai ulang. Bila sudah ada pembayaran, balikkan pembayaran lebih dulu.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Alasan wajib (tercatat di riwayat)."
+   },
+   {
+    "n": 2,
+    "text": "Konfirmasi pembatalan (tidak dijalankan pada contoh ini)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Batalkan invoice 00442?"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Batalkan invoice"
+   ],
+   "isian": [
+    "Alasan pembatalan *",
+    "Buat draft pengganti (salinan) untuk diperbaiki dan diterbitkan ulang"
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "inv-cancelled": {
+  "title": "Invoice yang dibatalkan",
+  "caption": "Pesan merah menjelaskan siapa, kapan, dan mengapa dibatalkan. PDF-nya berwatermark DIBATALKAN.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Keterangan pembatalan beserta alasan."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Invoice 00440",
+    "Informasi",
+    "Rincian transaksi",
+    "Pembayaran",
+    "Riwayat",
+    "Ringkasan biaya"
+   ],
+   "tombol": [
+    "Preview PDF",
+    "Aksi lainnya"
+   ],
+   "isian": [],
+   "kolom": [
+    "NO.",
+    "DESKRIPSI",
+    "QTY",
+    "HARGA SATUAN",
+    "DISKON",
+    "PAJAK",
+    "JUMLAH BERSIH"
+   ],
+   "pilihan": []
+  }
+ },
+ "inv-duplicated": {
+  "title": "Hasil duplikasi",
+  "caption": "Duplikasi membuat draft baru dan langsung membuka formulir ubah: rincian disalin, tetapi tanpa nomor, tanpa DP, dan tanpa pembayaran. Sesuaikan tanggal/jumlah, lalu simpan atau ajukan.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Draft baru (bukan invoice terbit)."
+   },
+   {
+    "n": 2,
+    "text": "Periksa tanggal — bawaan hari ini."
+   },
+   {
+    "n": 3,
+    "text": "Simpan sebagai draft."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Edit draft invoice",
+    "Informasi utama",
+    "Rincian transaksi",
+    "Catatan",
+    "Ringkasan biaya"
+   ],
+   "tombol": [
+    "Tambah baris",
+    "Naikkan baris 1",
+    "Turunkan baris 1",
+    "Hapus baris 1",
+    "Naikkan baris 2",
+    "Turunkan baris 2",
+    "Hapus baris 2",
+    "Simpan draft",
+    "Simpan & pratinjau PDF"
+   ],
+   "isian": [
+    "Pelanggan *",
+    "Tanggal invoice *",
+    "Metode pembayaran",
+    "Jangka waktu (hari) *",
+    "Hitungan hari",
+    "Tanggal jatuh tempo",
+    "Referensi / No. kontrak",
+    "Transfer ke rekening",
+    "Produk / layanan",
+    "Qty",
+    "Satuan",
+    "Harga satuan",
+    "Product Description (dinamis)",
+    "Diskon baris",
+    "Pajak",
+    "Remark (tetap mengikuti program)",
+    "Catatan internal (tidak dicetak)",
+    "Diskon tambahan",
+    "Transport",
+    "Administrasi",
+    "Down Payment (DP) diterima"
+   ],
+   "kolom": [],
+   "pilihan": [
+    ": Transfer | Tunai | QRIS | Virtual Account | Cek/Giro",
+    ": Hari kalender | Hari kerja",
+    ": MANDIRI-IDR — 137-00-2072139-1 a.n. Trilogika Edutama",
+    ": Tanpa pajak | PPN 11%"
+   ]
+  }
+ },
+ "inv-delete-dialog": {
+  "title": "Menghapus draft",
+  "caption": "Hanya draft (belum bernomor) yang dapat dihapus; penghapusan tercatat di audit log.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Konfirmasi hapus."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Hapus draft?"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Hapus draft"
+   ],
+   "isian": [],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "pay-dialog": {
+  "title": "Mencatat pembayaran",
+  "caption": "Dari halaman invoice terbit → Catat pembayaran. Satu invoice dapat dibayar bertahap (DP, termin, pelunasan).",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Tanggal uang diterima (bukan tanggal pencatatan)."
+   },
+   {
+    "n": 2,
+    "text": "Jumlah yang diterima. Tidak boleh melebihi sisa tagihan."
+   },
+   {
+    "n": 3,
+    "text": "Transfer, Tunai, QRIS, Virtual Account, Cek/Giro, atau Lainnya."
+   },
+   {
+    "n": 4,
+    "text": "Akun kas/bank penerima. “Otomatis” = bank default untuk Transfer/QRIS/VA, kas untuk Tunai."
+   },
+   {
+    "n": 5,
+    "text": "Isi bila pelanggan memotong PPh (mis. PPh 23) — lihat contoh berikutnya."
+   },
+   {
+    "n": 6,
+    "text": "Nomor referensi transfer/bukti — mempermudah pencocokan dengan rekening koran."
+   },
+   {
+    "n": 7,
+    "text": "Unggah bukti transfer (PDF/JPG/PNG, opsional)."
+   },
+   {
+    "n": 8,
+    "text": "Simpan. Pembayaran tidak dapat diubah/dihapus; koreksi hanya lewat pembalikan oleh Finance Manager."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Catat pembayaran — 00442"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Simpan pembayaran"
+   ],
+   "isian": [
+    "Tanggal pembayaran *",
+    "Nominal *",
+    "Metode",
+    "Diterima di",
+    "PPh dipotong pelanggan (opsional)",
+    "Referensi transfer",
+    "Catatan",
+    "Bukti pembayaran (opsional)"
+   ],
+   "kolom": [],
+   "pilihan": [
+    ": Transfer | Tunai | QRIS | Virtual Account | Cek/Giro | Lainnya",
+    ": Otomatis — Bank Mandiri IDR | Kas Kecil | Bank Mandiri IDR"
+   ]
+  }
+ },
+ "pay-recorded": {
+  "title": "Setelah pembayaran dicatat",
+  "caption": "Status pembayaran berubah otomatis (Belum Dibayar → Dibayar Sebagian → Lunas). Pembayaran masuk ke buku kas akun yang dipilih.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Status pembayaran."
+   },
+   {
+    "n": 2,
+    "text": "Daftar pembayaran (termasuk DP) beserta pencatatnya."
+   },
+   {
+    "n": 3,
+    "text": "Sisa tagihan terkini."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Invoice 00442",
+    "Informasi",
+    "Rincian transaksi",
+    "Pembayaran",
+    "Riwayat",
+    "Ringkasan biaya"
+   ],
+   "tombol": [
+    "Preview PDF",
+    "Catat pembayaran",
+    "Aksi lainnya"
+   ],
+   "isian": [],
+   "kolom": [
+    "NO.",
+    "DESKRIPSI",
+    "QTY",
+    "HARGA SATUAN",
+    "DISKON",
+    "PAJAK",
+    "JUMLAH BERSIH",
+    "TANGGAL",
+    "JENIS",
+    "METODE / REFERENSI",
+    "UANG DITERIMA",
+    "PPH DIPOTONG",
+    "DICATAT OLEH",
+    "BUKTI",
+    "AKSI"
+   ],
+   "pilihan": []
+  }
+ },
+ "pay-pph": {
+  "title": "Pembayaran dengan PPh dipotong pelanggan",
+  "caption": "Bila pelanggan (mis. instansi) memotong PPh 23, uang yang masuk lebih kecil dari tagihan. Isi nominal uang yang DITERIMA dan PPh yang dipotong — keduanya mengurangi sisa tagihan.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Uang yang benar-benar masuk ke rekening."
+   },
+   {
+    "n": 2,
+    "text": "PPh yang dipotong pelanggan (menjadi kredit pajak lembaga). Nomor bukti potong dapat diisi kemudian di menu Pajak."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Catat pembayaran — 00442"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Simpan pembayaran"
+   ],
+   "isian": [
+    "Tanggal pembayaran *",
+    "Nominal *",
+    "Metode",
+    "Diterima di",
+    "PPh dipotong pelanggan (opsional)",
+    "Nomor bukti potong",
+    "Referensi transfer",
+    "Catatan",
+    "Bukti pembayaran (opsional)"
+   ],
+   "kolom": [],
+   "pilihan": [
+    ": Transfer | Tunai | QRIS | Virtual Account | Cek/Giro | Lainnya",
+    ": Otomatis — Bank Mandiri IDR | Kas Kecil | Bank Mandiri IDR"
+   ]
+  }
+ },
+ "pay-over": {
+  "title": "Pembayaran melebihi sisa tagihan ditolak",
+  "caption": "Aplikasi menolak nominal di atas sisa tagihan dan menyebutkan sisa yang benar.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Pesan kesalahan memuat sisa tagihan yang boleh dibayar."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Catat pembayaran — 00442"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Simpan pembayaran"
+   ],
+   "isian": [
+    "Tanggal pembayaran *",
+    "Nominal *",
+    "Metode",
+    "Diterima di",
+    "PPh dipotong pelanggan (opsional)",
+    "Referensi transfer",
+    "Catatan",
+    "Bukti pembayaran (opsional)"
+   ],
+   "kolom": [],
+   "pilihan": [
+    ": Transfer | Tunai | QRIS | Virtual Account | Cek/Giro | Lainnya",
+    ": Otomatis — Bank Mandiri IDR | Kas Kecil | Bank Mandiri IDR"
+   ]
+  }
+ },
+ "pay-paid": {
+  "title": "Invoice lunas",
+  "caption": "Sisa tagihan nol → status Lunas. PDF-nya otomatis berjudul KWITANSI.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Status Lunas."
+   },
+   {
+    "n": 2,
+    "text": "Unduh PDF (kini berupa kwitansi)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Invoice 00442",
+    "Informasi",
+    "Rincian transaksi",
+    "Pembayaran",
+    "Riwayat",
+    "Ringkasan biaya"
+   ],
+   "tombol": [
+    "Preview PDF",
+    "Aksi lainnya"
+   ],
+   "isian": [],
+   "kolom": [
+    "NO.",
+    "DESKRIPSI",
+    "QTY",
+    "HARGA SATUAN",
+    "DISKON",
+    "PAJAK",
+    "JUMLAH BERSIH",
+    "TANGGAL",
+    "JENIS",
+    "METODE / REFERENSI",
+    "UANG DITERIMA",
+    "PPH DIPOTONG",
+    "DICATAT OLEH",
+    "BUKTI",
+    "AKSI"
+   ],
+   "pilihan": []
+  }
+ },
+ "inv-pdf-kwitansi": {
+  "title": "Kwitansi (invoice lunas)",
+  "caption": "Invoice yang sudah lunas otomatis berjudul KWITANSI, bertanda LUNAS beserta tanggal pelunasan. Nomor dan isinya tetap sama.",
+  "marks": [],
+  "ui": {}
+ },
+ "pay-list": {
+  "title": "Daftar pembayaran",
+  "caption": "Menu Pembayaran: seluruh pembayaran dan pembalikan. Dipakai untuk mencocokkan dengan rekening koran.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Catat pembayaran: pilih invoice terbit lalu isi formulir yang sama."
+   },
+   {
+    "n": 2,
+    "text": "Cari nomor invoice, pelanggan, atau referensi transfer."
+   },
+   {
+    "n": 3,
+    "text": "Tampilkan Pembayaran saja atau Pembalikan saja."
+   },
+   {
+    "n": 4,
+    "text": "Akun kas/bank penerima."
+   },
+   {
+    "n": 5,
+    "text": "PPh yang dipotong pelanggan pada pembayaran itu."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Pembayaran"
+   ],
+   "tombol": [
+    "Catat pembayaran",
+    "Terapkan"
+   ],
+   "isian": [
+    "Invoice / pelanggan / referensi",
+    "Dari tanggal",
+    "Sampai tanggal",
+    "Jenis Semua Pembayaran Pembalikan"
+   ],
+   "kolom": [
+    "TANGGAL",
+    "INVOICE",
+    "PELANGGAN",
+    "JENIS",
+    "METODE / REFERENSI",
+    "DITERIMA DI",
+    "UANG DITERIMA",
+    "PPH DIPOTONG",
+    "PPN",
+    "DICATAT OLEH",
+    "BUKTI"
+   ],
+   "pilihan": [
+    "type: Semua | Pembayaran | Pembalikan"
+   ]
+  }
+ },
+ "pay-pick": {
+  "title": "Memilih invoice untuk dibayar",
+  "caption": "Dari halaman Pembayaran, cari invoice terbit yang masih punya sisa tagihan.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Ketik nomor atau nama pelanggan lalu pilih invoice."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Pilih invoice"
+   ],
+   "tombol": [
+    "Tutup"
+   ],
+   "isian": [
+    "Nomor invoice atau pelanggan"
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "pay-reverse-dialog": {
+  "title": "Membalikkan pembayaran (Finance Manager)",
+  "caption": "Pembayaran tidak dapat diedit atau dihapus. Kesalahan dikoreksi dengan pembalikan — baris pembalik bernilai negatif, baris asli tetap terlihat.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Alasan wajib dan tercatat di audit."
+   },
+   {
+    "n": 2,
+    "text": "Konfirmasi. Saldo invoice dan kas/bank dikoreksi otomatis."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Balikkan pembayaran?"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Balikkan pembayaran"
+   ],
+   "isian": [
+    "Alasan pembalikan *"
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "pay-reversed": {
+  "title": "Hasil pembalikan",
+  "caption": "Baris Pembalikan (nominal negatif) muncul di daftar bersama alasannya; status invoice kembali menyesuaikan.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Baris pembalik."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Pembayaran"
+   ],
+   "tombol": [
+    "Catat pembayaran",
+    "Terapkan"
+   ],
+   "isian": [
+    "Invoice / pelanggan / referensi",
+    "Dari tanggal",
+    "Sampai tanggal",
+    "Jenis Semua Pembayaran Pembalikan"
+   ],
+   "kolom": [
+    "TANGGAL",
+    "INVOICE",
+    "PELANGGAN",
+    "JENIS",
+    "METODE / REFERENSI",
+    "DITERIMA DI",
+    "UANG DITERIMA",
+    "PPH DIPOTONG",
+    "PPN",
+    "DICATAT OLEH",
+    "BUKTI",
+    "AKSI"
+   ],
+   "pilihan": [
+    "type: Semua | Pembayaran | Pembalikan"
+   ]
+  }
+ },
+ "exp-list": {
+  "title": "Daftar pengeluaran (Pelaksana)",
+  "caption": "Menu Pengeluaran. Pelaksana mengajukan pengeluaran; Finance Manager menyetujui. Pelaksana hanya melihat pengeluaran yang ia catat sendiri.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Mencatat pengeluaran baru."
+   },
+   {
+    "n": 2,
+    "text": "Saring: Menunggu persetujuan, Berlaku, Ditolak."
+   },
+   {
+    "n": 3,
+    "text": "Pengeluaran atau Penerimaan lain / non-operasional."
+   },
+   {
+    "n": 4,
+    "text": "Hanya entri berstatus Berlaku yang masuk saldo dan laporan."
+   },
+   {
+    "n": 5,
+    "text": "Pelaksana dapat membatalkan pengajuannya sendiri selama masih menunggu persetujuan."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Pengeluaran"
+   ],
+   "tombol": [
+    "Catat pengeluaran",
+    "Terapkan",
+    "Batalkan"
+   ],
+   "isian": [
+    "Keterangan / penerima / no. bukti",
+    "Dari tanggal",
+    "Sampai tanggal",
+    "Status Semua Menunggu persetujuan Berlaku Ditolak",
+    "Jenis Semua entri kas Pengeluaran Penerimaan lain / non-operasional"
+   ],
+   "kolom": [
+    "TANGGAL",
+    "KATEGORI",
+    "KETERANGAN",
+    "AKUN",
+    "NOMINAL",
+    "STATUS",
+    "PENCATAT",
+    "AKSI"
+   ],
+   "pilihan": [
+    "status: Semua | Menunggu persetujuan | Berlaku | Ditolak",
+    "kind: Semua entri kas | Pengeluaran | Penerimaan lain / non-operasional"
+   ]
+  }
+ },
+ "exp-proof-required": {
+  "title": "Bukti wajib untuk pengeluaran di atas Rp1 juta",
+  "caption": "Pengeluaran lebih dari Rp1.000.000 tidak dapat disimpan tanpa bukti (nota/kuitansi). Di bawah itu bukti opsional tetapi dianjurkan.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Pesan: bukti wajib."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Catat pengeluaran"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Simpan"
+   ],
+   "isian": [
+    "Tanggal *",
+    "Dibayar dari *",
+    "Kategori *",
+    "Nominal *",
+    "Penerima",
+    "No. bukti / kuitansi",
+    "Keterangan *",
+    "Bukti transaksi *"
+   ],
+   "kolom": [],
+   "pilihan": [
+    ": Kas Kecil | Bank Mandiri IDR",
+    ": Pilih kategori… | 5-1100 — Honor Instruktur, Asesor & Narasumber | 5-1200 — Bahan Praktik & Perlengkapan Pelatihan | 5-1300 — Sewa Tempat & Fasilitas Kegiatan | 5-1400 — Konsumsi & Akomodasi Kegiatan | 5-1500 — Biaya Sertifikasi, Lisensi & Uji Kompetensi | 6-1100 — Gaji & Tunjangan Karyawan | 6-1200 — Sewa Kantor | 6-1300 — Listrik, Air, Internet & Telepon | 6-1400 — Pemasaran & Iklan | 6-1500 — Transportasi & Perjalanan Dinas | 6-1600 — ATK & Perlengkapan Kantor | 6-1700 — Pemeliharaan & Perbaikan | 6-1800 — Administrasi & Biaya Bank | 6-1900 — Perizinan, Legalitas & Profesional | 6-9000 — Beban Lain-lain"
+   ]
+  }
+ },
+ "exp-new": {
+  "title": "Formulir pengeluaran",
+  "caption": "Isi semua kolom bertanda *, lampirkan bukti, lalu simpan.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Akun kas/bank yang membayar."
+   },
+   {
+    "n": 2,
+    "text": "Kategori biaya (menentukan posisi di laporan laba rugi). Pilih yang paling sesuai."
+   },
+   {
+    "n": 3,
+    "text": "Jumlah uang keluar."
+   },
+   {
+    "n": 4,
+    "text": "Penerima/pemasok (opsional, membantu pelacakan)."
+   },
+   {
+    "n": 5,
+    "text": "Nomor nota/kuitansi."
+   },
+   {
+    "n": 6,
+    "text": "Unggah bukti (PDF/JPG/PNG)."
+   },
+   {
+    "n": 7,
+    "text": "Simpan → status “Menunggu persetujuan”. Belum mengurangi saldo sampai disetujui."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Catat pengeluaran"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Simpan"
+   ],
+   "isian": [
+    "Tanggal *",
+    "Dibayar dari *",
+    "Kategori *",
+    "Nominal *",
+    "Penerima",
+    "No. bukti / kuitansi",
+    "Keterangan *",
+    "Bukti transaksi *"
+   ],
+   "kolom": [],
+   "pilihan": [
+    ": Kas Kecil | Bank Mandiri IDR",
+    ": Pilih kategori… | 5-1100 — Honor Instruktur, Asesor & Narasumber | 5-1200 — Bahan Praktik & Perlengkapan Pelatihan | 5-1300 — Sewa Tempat & Fasilitas Kegiatan | 5-1400 — Konsumsi & Akomodasi Kegiatan | 5-1500 — Biaya Sertifikasi, Lisensi & Uji Kompetensi | 6-1100 — Gaji & Tunjangan Karyawan | 6-1200 — Sewa Kantor | 6-1300 — Listrik, Air, Internet & Telepon | 6-1400 — Pemasaran & Iklan | 6-1500 — Transportasi & Perjalanan Dinas | 6-1600 — ATK & Perlengkapan Kantor | 6-1700 — Pemeliharaan & Perbaikan | 6-1800 — Administrasi & Biaya Bank | 6-1900 — Perizinan, Legalitas & Profesional | 6-9000 — Beban Lain-lain"
+   ]
+  }
+ },
+ "exp-pending": {
+  "title": "Pengeluaran menunggu persetujuan",
+  "caption": "Entri tersimpan berstatus “Menunggu persetujuan”. Finance Manager menerima pemberitahuan di lonceng.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Pengeluaran yang baru diajukan."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Pengeluaran"
+   ],
+   "tombol": [
+    "Catat pengeluaran",
+    "Terapkan",
+    "Batalkan"
+   ],
+   "isian": [
+    "Keterangan / penerima / no. bukti",
+    "Dari tanggal",
+    "Sampai tanggal",
+    "Status Semua Menunggu persetujuan Berlaku Ditolak",
+    "Jenis Semua entri kas Pengeluaran Penerimaan lain / non-operasional"
+   ],
+   "kolom": [
+    "TANGGAL",
+    "KATEGORI",
+    "KETERANGAN",
+    "AKUN",
+    "NOMINAL",
+    "STATUS",
+    "PENCATAT",
+    "AKSI"
+   ],
+   "pilihan": [
+    "status: Semua | Menunggu persetujuan | Berlaku | Ditolak",
+    "kind: Semua entri kas | Pengeluaran | Penerimaan lain / non-operasional"
+   ]
+  }
+ },
+ "exp-list-fm": {
+  "title": "Daftar pengeluaran (Finance Manager)",
+  "caption": "Finance Manager melihat seluruh pengeluaran. Pengajuan yang menunggu muncul di atas bersama tombol Setujui / Tolak.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Pengingat jumlah pengajuan yang menunggu."
+   },
+   {
+    "n": 2,
+    "text": "Setujui: entri menjadi Berlaku (masuk saldo & laporan)."
+   },
+   {
+    "n": 3,
+    "text": "Tolak dengan alasan (tidak pernah masuk saldo/laporan)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Pengeluaran"
+   ],
+   "tombol": [
+    "Catat pengeluaran",
+    "Terapkan",
+    "Setujui",
+    "Tolak"
+   ],
+   "isian": [
+    "Keterangan / penerima / no. bukti",
+    "Dari tanggal",
+    "Sampai tanggal",
+    "Status Semua Menunggu persetujuan Berlaku Ditolak",
+    "Jenis Semua entri kas Pengeluaran Penerimaan lain / non-operasional"
+   ],
+   "kolom": [
+    "TANGGAL",
+    "KATEGORI",
+    "KETERANGAN",
+    "AKUN",
+    "NOMINAL",
+    "STATUS",
+    "PENCATAT",
+    "AKSI"
+   ],
+   "pilihan": [
+    "status: Semua | Menunggu persetujuan | Berlaku | Ditolak",
+    "kind: Semua entri kas | Pengeluaran | Penerimaan lain / non-operasional"
+   ]
+  }
+ },
+ "exp-approve-dialog": {
+  "title": "Menyetujui pengeluaran",
+  "caption": "Periksa nominal, kategori, dan bukti sebelum menyetujui. Pencatat tidak dapat menyetujui pengeluarannya sendiri.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Setujui."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Setujui pengeluaran?"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Ya, setujui"
+   ],
+   "isian": [],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "exp-reject-dialog": {
+  "title": "Menolak pengeluaran",
+  "caption": "Alasan wajib dan terlihat oleh pencatat. Pencatat dapat mencatat ulang dengan perbaikan.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Alasan penolakan."
+   },
+   {
+    "n": 2,
+    "text": "Tolak."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Tolak pengeluaran?"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Tolak pengeluaran"
+   ],
+   "isian": [
+    "Alasan penolakan *"
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "exp-reverse-dialog": {
+  "title": "Membalikkan pengeluaran yang sudah berlaku",
+  "caption": "Pengeluaran yang sudah Berlaku tidak dapat diedit/dihapus. Koreksi dengan pembalikan: dibuat baris pembalik bertanggal hari ini, entri asli tetap tampil.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Alasan wajib."
+   },
+   {
+    "n": 2,
+    "text": "Konfirmasi pembalikan."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Balikkan entri?"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Balikkan entri"
+   ],
+   "isian": [
+    "Alasan pembalikan *"
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "exp-list-after": {
+  "title": "Daftar setelah persetujuan, penolakan, dan pembalikan",
+  "caption": "Status tiap entri: Berlaku, Ditolak (beserta alasan), dan baris pembalik.",
+  "marks": [],
+  "ui": {
+   "judul": [
+    "Pengeluaran"
+   ],
+   "tombol": [
+    "Catat pengeluaran",
+    "Terapkan",
+    "Balikkan"
+   ],
+   "isian": [
+    "Keterangan / penerima / no. bukti",
+    "Dari tanggal",
+    "Sampai tanggal",
+    "Status Semua Menunggu persetujuan Berlaku Ditolak",
+    "Jenis Semua entri kas Pengeluaran Penerimaan lain / non-operasional"
+   ],
+   "kolom": [
+    "TANGGAL",
+    "KATEGORI",
+    "KETERANGAN",
+    "AKUN",
+    "NOMINAL",
+    "STATUS",
+    "PENCATAT",
+    "AKSI"
+   ],
+   "pilihan": [
+    "status: Semua | Menunggu persetujuan | Berlaku | Ditolak",
+    "kind: Semua entri kas | Pengeluaran | Penerimaan lain / non-operasional"
+   ]
+  }
+ },
+ "cash-overview-staff": {
+  "title": "Kas & Bank (Pelaksana)",
+  "caption": "Menu Kas & Bank menampilkan saldo tiap akun dan buku kas. Pelaksana dapat mencatat transfer antar akun dan penerimaan lain (menunggu persetujuan), tetapi tidak dapat membalikkan.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Memindahkan dana antar kas/bank."
+   },
+   {
+    "n": 2,
+    "text": "Mencatat uang masuk non-invoice (bunga, jasa giro, hibah). Menunggu persetujuan Finance Manager."
+   },
+   {
+    "n": 3,
+    "text": "Total seluruh akun aktif."
+   },
+   {
+    "n": 4,
+    "text": "Klik kartu akun untuk melihat buku kasnya."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Kas & Bank",
+    "Buku kas — Kas Kecil",
+    "Transfer antar akun terbaru"
+   ],
+   "tombol": [
+    "Transfer antar akun",
+    "Catat penerimaan lain",
+    "Terapkan"
+   ],
+   "isian": [
+    "Dari tanggal",
+    "Sampai tanggal"
+   ],
+   "kolom": [
+    "TANGGAL",
+    "URAIAN",
+    "MASUK",
+    "KELUAR",
+    "SALDO",
+    "DARI",
+    "KE",
+    "NOMINAL",
+    "KETERANGAN",
+    "STATUS"
+   ],
+   "pilihan": []
+  }
+ },
+ "cash-transfer": {
+  "title": "Formulir transfer antar akun",
+  "caption": "Total kas tidak berubah dan laba rugi tidak terpengaruh. Transfer langsung berlaku (tanpa persetujuan).",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Tanggal transfer (tidak boleh melewati hari ini)."
+   },
+   {
+    "n": 2,
+    "text": "Jumlah yang dipindahkan."
+   },
+   {
+    "n": 3,
+    "text": "Akun sumber dana."
+   },
+   {
+    "n": 4,
+    "text": "Akun tujuan (harus berbeda dari sumber)."
+   },
+   {
+    "n": 5,
+    "text": "Catatan opsional."
+   },
+   {
+    "n": 6,
+    "text": "Simpan."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Transfer antar akun"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Simpan transfer"
+   ],
+   "isian": [
+    "Tanggal *",
+    "Nominal *",
+    "Dari akun *",
+    "Ke akun *",
+    "Keterangan"
+   ],
+   "kolom": [],
+   "pilihan": [
+    ": Kas Kecil | Bank Mandiri IDR"
+   ]
+  }
+ },
+ "cash-receipt-staff": {
+  "title": "Catat penerimaan lain (Pelaksana)",
+  "caption": "Untuk uang masuk yang bukan pembayaran invoice. Kategori terbatas pada akun pendapatan; arah otomatis ‘Masuk’. Entri menunggu persetujuan Finance Manager.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Akun tempat uang diterima."
+   },
+   {
+    "n": 2,
+    "text": "Akun pendapatan lain-lain."
+   },
+   {
+    "n": 3,
+    "text": "Jumlah uang masuk."
+   },
+   {
+    "n": 4,
+    "text": "Pihak pemberi (opsional)."
+   },
+   {
+    "n": 5,
+    "text": "Uraian wajib diisi."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Catat penerimaan lain"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Simpan"
+   ],
+   "isian": [
+    "Tanggal *",
+    "Akun kas/bank *",
+    "Kategori *",
+    "Arah",
+    "Nominal *",
+    "Pemberi",
+    "No. bukti / kuitansi",
+    "Keterangan *",
+    "Bukti (opsional)"
+   ],
+   "kolom": [],
+   "pilihan": [
+    ": Kas Kecil | Bank Mandiri IDR",
+    ": Pilih kategori… | 4-2100 — Pendapatan Lain-lain | 4-2200 — Pendapatan Bunga & Jasa Giro",
+    ": Masuk (uang diterima) | Keluar (uang dibayarkan)"
+   ]
+  }
+ },
+ "cash-after-staff": {
+  "title": "Setelah transfer dicatat",
+  "caption": "Transfer muncul di ‘Transfer antar akun terbaru’ dan di buku kas kedua akun. Peringatan biru mengingatkan ada entri yang menunggu persetujuan.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Pengingat entri yang belum disetujui (belum masuk saldo)."
+   },
+   {
+    "n": 2,
+    "text": "Transfer yang baru dicatat."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Kas & Bank",
+    "Buku kas — Kas Kecil",
+    "Transfer antar akun terbaru"
+   ],
+   "tombol": [
+    "Transfer antar akun",
+    "Catat penerimaan lain",
+    "Terapkan"
+   ],
+   "isian": [
+    "Dari tanggal",
+    "Sampai tanggal"
+   ],
+   "kolom": [
+    "TANGGAL",
+    "URAIAN",
+    "MASUK",
+    "KELUAR",
+    "SALDO",
+    "DARI",
+    "KE",
+    "NOMINAL",
+    "KETERANGAN",
+    "STATUS"
+   ],
+   "pilihan": []
+  }
+ },
+ "cash-receipt-pending-fm": {
+  "title": "Menyetujui penerimaan lain",
+  "caption": "Penerimaan lain dari Pelaksana tampil di menu Pengeluaran dengan status Menunggu persetujuan, dan disetujui sama seperti pengeluaran.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Penerimaan lain yang diajukan Pelaksana."
+   },
+   {
+    "n": 2,
+    "text": "Setujui → masuk saldo & laporan."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Pengeluaran"
+   ],
+   "tombol": [
+    "Catat pengeluaran",
+    "Terapkan",
+    "Setujui",
+    "Tolak"
+   ],
+   "isian": [
+    "Keterangan / penerima / no. bukti",
+    "Dari tanggal",
+    "Sampai tanggal",
+    "Status Semua Menunggu persetujuan Berlaku Ditolak",
+    "Jenis Semua entri kas Pengeluaran Penerimaan lain / non-operasional"
+   ],
+   "kolom": [
+    "TANGGAL",
+    "KATEGORI",
+    "KETERANGAN",
+    "AKUN",
+    "NOMINAL",
+    "STATUS",
+    "PENCATAT",
+    "AKSI"
+   ],
+   "pilihan": [
+    "status: Semua | Menunggu persetujuan | Berlaku | Ditolak",
+    "kind: Semua entri kas | Pengeluaran | Penerimaan lain / non-operasional"
+   ]
+  }
+ },
+ "cash-overview-fm": {
+  "title": "Kas & Bank (Finance Manager)",
+  "caption": "Finance Manager memiliki semua aksi Pelaksana ditambah kolom Aksi untuk membalikkan transfer, dan tombol penerimaan/non-operasional yang langsung berlaku.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Transfer antar akun."
+   },
+   {
+    "n": 2,
+    "text": "Penerimaan lain & non-operasional (modal, prive, pinjaman, aset) — langsung berlaku."
+   },
+   {
+    "n": 3,
+    "text": "Aksi pembalikan hanya untuk Finance Manager."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Kas & Bank",
+    "Buku kas — Kas Kecil",
+    "Transfer antar akun terbaru"
+   ],
+   "tombol": [
+    "Transfer antar akun",
+    "Catat penerimaan / non-operasional",
+    "Terapkan",
+    "Balikkan"
+   ],
+   "isian": [
+    "Dari tanggal",
+    "Sampai tanggal"
+   ],
+   "kolom": [
+    "TANGGAL",
+    "URAIAN",
+    "MASUK",
+    "KELUAR",
+    "SALDO",
+    "DARI",
+    "KE",
+    "NOMINAL",
+    "KETERANGAN",
+    "STATUS",
+    "AKSI"
+   ],
+   "pilihan": []
+  }
+ },
+ "cash-other-fm": {
+  "title": "Catat penerimaan / non-operasional (Finance Manager)",
+  "caption": "Kategori mencakup pendapatan lain, modal, prive, pinjaman, dan aset. Arah (Masuk/Keluar) dapat dipilih untuk kategori non-pendapatan; entri langsung berlaku.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Pilih kategori; menentukan arah dan laporan."
+   },
+   {
+    "n": 2,
+    "text": "Masuk / Keluar (terkunci untuk pendapatan)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Catat penerimaan / non-operasional"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Simpan"
+   ],
+   "isian": [
+    "Tanggal *",
+    "Akun kas/bank *",
+    "Kategori *",
+    "Arah",
+    "Nominal *",
+    "Penerima",
+    "No. bukti / kuitansi",
+    "Keterangan *",
+    "Bukti (opsional)"
+   ],
+   "kolom": [],
+   "pilihan": [
+    ": Kas Kecil | Bank Mandiri IDR",
+    ": Pilih kategori… | 1-2100 — Peralatan Kantor | 1-2200 — Peralatan Pelatihan & Praktik | 1-2300 — Kendaraan | 2-1210 — Utang PPN (PPN Keluaran) | 2-1230 — Utang PPh Badan (angsuran PPh 25 / PPh 29) | 2-2100 — Utang Bank & Pinjaman | 3-1100 — Modal Disetor | 3-1200 — Prive / Penarikan Pemilik | 4-2100 — Pendapatan Lain-lain | 4-2200 — Pendapatan Bunga & Jasa Giro",
+    ": Masuk (uang diterima) | Keluar (uang dibayarkan)"
+   ]
+  }
+ },
+ "cash-ledger": {
+  "title": "Buku kas per akun",
+  "caption": "Klik kartu akun untuk melihat buku kasnya: saldo awal periode, setiap mutasi (pembayaran invoice, pengeluaran, penerimaan, transfer), saldo berjalan, dan saldo akhir.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Ubah periode buku kas."
+   },
+   {
+    "n": 2,
+    "text": "Saldo awal periode."
+   },
+   {
+    "n": 3,
+    "text": "Saldo akhir periode (sama dengan saldo di kartu bila sampai hari ini)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Kas & Bank",
+    "Buku kas — Bank Mandiri IDR",
+    "Transfer antar akun terbaru"
+   ],
+   "tombol": [
+    "Transfer antar akun",
+    "Catat penerimaan / non-operasional",
+    "Terapkan",
+    "Balikkan"
+   ],
+   "isian": [
+    "Dari tanggal",
+    "Sampai tanggal"
+   ],
+   "kolom": [
+    "TANGGAL",
+    "URAIAN",
+    "MASUK",
+    "KELUAR",
+    "SALDO",
+    "DARI",
+    "KE",
+    "NOMINAL",
+    "KETERANGAN",
+    "STATUS",
+    "AKSI"
+   ],
+   "pilihan": []
+  }
+ },
+ "cash-transfer-reverse": {
+  "title": "Membalikkan transfer",
+  "caption": "Transfer tidak dapat diedit/dihapus. Koreksi dengan pembalikan: dibuat transfer pembalik bertanggal hari ini, transfer asli tetap tercatat.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Alasan wajib."
+   },
+   {
+    "n": 2,
+    "text": "Konfirmasi."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Balikkan transfer?"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Balikkan transfer"
+   ],
+   "isian": [
+    "Alasan pembalikan *"
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "cash-transfer-reversed": {
+  "title": "Transfer setelah dibalikkan",
+  "caption": "Transfer asli berstatus ‘Sudah dibalik’; baris pembalik berlatar merah muda berstatus ‘Pembalikan’ lengkap dengan alasan.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Transfer asli."
+   },
+   {
+    "n": 2,
+    "text": "Baris pembalik."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Kas & Bank",
+    "Buku kas — Kas Kecil",
+    "Transfer antar akun terbaru"
+   ],
+   "tombol": [
+    "Transfer antar akun",
+    "Catat penerimaan / non-operasional",
+    "Terapkan",
+    "Balikkan"
+   ],
+   "isian": [
+    "Dari tanggal",
+    "Sampai tanggal"
+   ],
+   "kolom": [
+    "TANGGAL",
+    "URAIAN",
+    "MASUK",
+    "KELUAR",
+    "SALDO",
+    "DARI",
+    "KE",
+    "NOMINAL",
+    "KETERANGAN",
+    "STATUS",
+    "AKSI"
+   ],
+   "pilihan": []
+  }
+ },
+ "jrn-list-staff": {
+  "title": "Jurnal (Pelaksana: hanya lihat)",
+  "caption": "Buku jurnal seluruh transaksi. Jurnal dari pembayaran, entri kas, dan transfer dibuat otomatis. Pelaksana hanya melihat; mencatat dan membalikkan jurnal adalah wewenang Finance Manager.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Saring menurut sumber jurnal."
+   },
+   {
+    "n": 2,
+    "text": "Satu jurnal: nomor, tanggal, uraian, dan baris debit/kredit."
+   },
+   {
+    "n": 3,
+    "text": "Lencana sumber jurnal."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Jurnal"
+   ],
+   "tombol": [
+    "Terapkan"
+   ],
+   "isian": [
+    "Dari tanggal",
+    "Sampai tanggal",
+    "Sumber Semua Saldo awal kas Pembayaran invoice Entri kas Transfer Jurnal manual"
+   ],
+   "kolom": [],
+   "pilihan": [
+    "source: Semua | Saldo awal kas | Pembayaran invoice | Entri kas | Transfer | Jurnal manual"
+   ]
+  }
+ },
+ "jrn-list-fm": {
+  "title": "Jurnal (Finance Manager)",
+  "caption": "Finance Manager dapat mencatat jurnal manual (penyesuaian, saldo awal akun non-kas) dan membalikkan jurnal manual. Status penguncian buku tampil di atas daftar.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Mencatat jurnal manual."
+   },
+   {
+    "n": 2,
+    "text": "Rentang tanggal."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Jurnal"
+   ],
+   "tombol": [
+    "Catat jurnal",
+    "Terapkan"
+   ],
+   "isian": [
+    "Dari tanggal",
+    "Sampai tanggal",
+    "Sumber Semua Saldo awal kas Pembayaran invoice Entri kas Transfer Jurnal manual"
+   ],
+   "kolom": [],
+   "pilihan": [
+    "source: Semua | Saldo awal kas | Pembayaran invoice | Entri kas | Transfer | Jurnal manual"
+   ]
+  }
+ },
+ "jrn-new": {
+  "title": "Formulir jurnal manual",
+  "caption": "Jurnal harus seimbang (total debit = total kredit) agar dapat disimpan. Akun kas/bank tidak dapat dipilih di sini; gunakan modul Kas & Bank.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Penyesuaian/koreksi, atau Saldo awal akun non-kas."
+   },
+   {
+    "n": 2,
+    "text": "Tanggal jurnal."
+   },
+   {
+    "n": 3,
+    "text": "Nomor dokumen pendukung (opsional)."
+   },
+   {
+    "n": 4,
+    "text": "Uraian jurnal (wajib)."
+   },
+   {
+    "n": 5,
+    "text": "Pilih akun per baris."
+   },
+   {
+    "n": 6,
+    "text": "Isi debit ATAU kredit pada satu baris."
+   },
+   {
+    "n": 7,
+    "text": "Total harus sama dengan total kredit."
+   },
+   {
+    "n": 8,
+    "text": "Tambah baris untuk jurnal majemuk."
+   },
+   {
+    "n": 9,
+    "text": "Aktif hanya bila seimbang."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Catat jurnal manual"
+   ],
+   "tombol": [
+    "Tutup",
+    "Hapus baris 1",
+    "Hapus baris 2",
+    "Tambah baris",
+    "Batal",
+    "Simpan jurnal"
+   ],
+   "isian": [
+    "Jenis",
+    "Tanggal *",
+    "Referensi",
+    "Keterangan *",
+    "Debit baris 1",
+    "Kredit baris 1",
+    "Debit baris 2",
+    "Kredit baris 2"
+   ],
+   "kolom": [
+    "AKUN",
+    "DEBIT",
+    "KREDIT",
+    "CATATAN"
+   ],
+   "pilihan": [
+    ": Jurnal umum (penyesuaian) | Jurnal saldo awal (non-kas)",
+    "Akun baris 1: Pilih akun… | 1-1300 — Piutang Usaha | 1-1400 — Uang Muka Pajak (PPh dipotong pelanggan) | 1-1410 — PPN Masukan (dapat dikreditkan) | 1-2100 — Peralatan Kantor | 1-2200 — Peralatan Pelatihan & Praktik | 1-2300 — Kendaraan | 1-2900 — Akumulasi Penyusutan | 2-1100 — Utang Usaha | 2-1200 — Utang Pajak Lainnya (PPh 21/23/4(2) yang dipotong) | 2-1210 — Utang PPN (PPN Keluaran) | 2-1230 — Utang PPh Badan (angsuran PPh 25 / PPh 29) | 2-2100 — Utang Bank & Pinjaman | 3-1100 — Modal Disetor | 3-1200 — Prive / Penarikan Pemilik | 3-2100 — Saldo Laba | 4-2100 — Pendapatan Lain-lain | 4-2200 — Pendapatan Bunga & Jasa Giro | 5-1100 — Honor Instruktur, Asesor & Narasumber | 5-1200 — Bahan Praktik & Perlengkapan Pelatihan | 5-1300 — Sewa Tempat & Fasilitas Kegiatan | 5-1400 — Konsumsi & Akomodasi Kegiatan | 5-1500 — Biaya Sertifikasi, Lisensi & Uji Kompetensi | 6-1100 — Gaji & Tunjangan Karyawan | 6-1200 — Sewa Kantor | 6-1300 — Listrik, Air, Internet & Telepon | 6-1400 — Pemasaran & Iklan | 6-1500 — Transportasi & Perjalanan Dinas | 6-1600 — ATK & Perlengkapan Kantor | 6-1700 — Pemeliharaan & Perbaikan | 6-1800 — Administrasi & Biaya Bank | 6-1900 — Perizinan, Legalitas & Profesional | 6-2000 — Beban Penyusutan | 6-9000 — Beban Lain-lain | 7-1100 — Beban Pajak Penghasilan (PPh Badan)",
+    "Akun baris 2: Pilih akun… | 1-1300 — Piutang Usaha | 1-1400 — Uang Muka Pajak (PPh dipotong pelanggan) | 1-1410 — PPN Masukan (dapat dikreditkan) | 1-2100 — Peralatan Kantor | 1-2200 — Peralatan Pelatihan & Praktik | 1-2300 — Kendaraan | 1-2900 — Akumulasi Penyusutan | 2-1100 — Utang Usaha | 2-1200 — Utang Pajak Lainnya (PPh 21/23/4(2) yang dipotong) | 2-1210 — Utang PPN (PPN Keluaran) | 2-1230 — Utang PPh Badan (angsuran PPh 25 / PPh 29) | 2-2100 — Utang Bank & Pinjaman | 3-1100 — Modal Disetor | 3-1200 — Prive / Penarikan Pemilik | 3-2100 — Saldo Laba | 4-2100 — Pendapatan Lain-lain | 4-2200 — Pendapatan Bunga & Jasa Giro | 5-1100 — Honor Instruktur, Asesor & Narasumber | 5-1200 — Bahan Praktik & Perlengkapan Pelatihan | 5-1300 — Sewa Tempat & Fasilitas Kegiatan | 5-1400 — Konsumsi & Akomodasi Kegiatan | 5-1500 — Biaya Sertifikasi, Lisensi & Uji Kompetensi | 6-1100 — Gaji & Tunjangan Karyawan | 6-1200 — Sewa Kantor | 6-1300 — Listrik, Air, Internet & Telepon | 6-1400 — Pemasaran & Iklan | 6-1500 — Transportasi & Perjalanan Dinas | 6-1600 — ATK & Perlengkapan Kantor | 6-1700 — Pemeliharaan & Perbaikan | 6-1800 — Administrasi & Biaya Bank | 6-1900 — Perizinan, Legalitas & Profesional | 6-2000 — Beban Penyusutan | 6-9000 — Beban Lain-lain | 7-1100 — Beban Pajak Penghasilan (PPh Badan)"
+   ]
+  }
+ },
+ "jrn-saved": {
+  "title": "Jurnal manual tersimpan",
+  "caption": "Jurnal manual berlencana biru. Tombol Balikkan membuat jurnal pembalik (debit ↔ kredit) bertanggal hari ini; jurnal asli tetap tercatat.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Jurnal yang baru dicatat."
+   },
+   {
+    "n": 2,
+    "text": "Balikkan (koreksi)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Jurnal"
+   ],
+   "tombol": [
+    "Catat jurnal",
+    "Terapkan",
+    "Balikkan"
+   ],
+   "isian": [
+    "Dari tanggal",
+    "Sampai tanggal",
+    "Sumber Semua Saldo awal kas Pembayaran invoice Entri kas Transfer Jurnal manual"
+   ],
+   "kolom": [],
+   "pilihan": [
+    "source: Semua | Saldo awal kas | Pembayaran invoice | Entri kas | Transfer | Jurnal manual"
+   ]
+  }
+ },
+ "jrn-reverse": {
+  "title": "Membalikkan jurnal manual",
+  "caption": "Alasan wajib. Jurnal pembalik berlencana ‘Pembalikan’, jurnal asli ‘Sudah dibalik’.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Alasan wajib."
+   },
+   {
+    "n": 2,
+    "text": "Konfirmasi."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Balikkan jurnal?"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Balikkan jurnal"
+   ],
+   "isian": [
+    "Alasan pembalikan *"
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "jrn-reversed": {
+  "title": "Jurnal setelah dibalikkan",
+  "caption": "Jurnal asli dan pembaliknya sama-sama tampil sehingga jejak audit utuh.",
+  "marks": [],
+  "ui": {
+   "judul": [
+    "Jurnal"
+   ],
+   "tombol": [
+    "Catat jurnal",
+    "Terapkan"
+   ],
+   "isian": [
+    "Dari tanggal",
+    "Sampai tanggal",
+    "Sumber Semua Saldo awal kas Pembayaran invoice Entri kas Transfer Jurnal manual"
+   ],
+   "kolom": [],
+   "pilihan": [
+    "source: Semua | Saldo awal kas | Pembayaran invoice | Entri kas | Transfer | Jurnal manual"
+   ]
+  }
+ },
+ "rec-list-empty": {
+  "title": "Rekonsiliasi Bank (awal)",
+  "caption": "Kartu per akun menunjukkan terakhir direkonsiliasi sampai kapan dan periode berikutnya. Daftar rekening koran masih kosong.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Mulai dengan mengimpor CSV mutasi dari internet banking."
+   },
+   {
+    "n": 2,
+    "text": "Tanggal awal periode yang harus diimpor berikutnya."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Rekonsiliasi Bank",
+    "Rekening koran"
+   ],
+   "tombol": [
+    "Impor rekening koran"
+   ],
+   "isian": [],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "rec-import-form": {
+  "title": "Impor rekening koran: isi data",
+  "caption": "Pilih akun, periode, saldo awal dan akhir sesuai rekening koran bank, lalu unggah CSV (atau tempel isinya). Tombol Impor baru aktif setelah pratinjau valid.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Akun bank yang direkonsiliasi."
+   },
+   {
+    "n": 2,
+    "text": "Awal periode harus bersambung dengan periode sebelumnya."
+   },
+   {
+    "n": 3,
+    "text": "Saldo awal menurut rekening koran."
+   },
+   {
+    "n": 4,
+    "text": "Saldo akhir menurut rekening koran."
+   },
+   {
+    "n": 5,
+    "text": "Unggah berkas CSV dari internet banking."
+   },
+   {
+    "n": 6,
+    "text": "Periksa pembacaan CSV sebelum diimpor."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Impor rekening koran"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Pratinjau",
+    "Impor"
+   ],
+   "isian": [
+    "Akun",
+    "Awal periode *",
+    "Akhir periode *",
+    "Saldo awal menurut bank *",
+    "Saldo akhir menurut bank *",
+    "Label",
+    "Berkas CSV",
+    "atau tempel isi CSV"
+   ],
+   "kolom": [],
+   "pilihan": [
+    ": Kas Kecil | Bank Mandiri IDR"
+   ]
+  }
+ },
+ "rec-import-preview": {
+  "title": "Impor rekening koran: pratinjau & pemetaan kolom",
+  "caption": "Sistem mendeteksi kolom, format tanggal, dan format angka otomatis. Ubah bila keliru, klik Terapkan pemetaan. Centang hijau ‘Saldo awal + mutasi = saldo akhir’ menandakan berkas lengkap.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Ringkasan: jumlah baris, total mutasi, rentang tanggal."
+   },
+   {
+    "n": 2,
+    "text": "Format tanggal (hari/bulan/tahun, dst.)."
+   },
+   {
+    "n": 3,
+    "text": "Format angka (1.234.567,00 atau 1,234,567.00)."
+   },
+   {
+    "n": 4,
+    "text": "Terapkan setelah mengubah pemetaan."
+   },
+   {
+    "n": 5,
+    "text": "Pengecekan kelengkapan berkas."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Impor rekening koran"
+   ],
+   "tombol": [
+    "Tutup",
+    "Terapkan pemetaan",
+    "Batal",
+    "Pratinjau",
+    "Impor"
+   ],
+   "isian": [
+    "Akun",
+    "Awal periode *",
+    "Akhir periode *",
+    "Saldo awal menurut bank *",
+    "Saldo akhir menurut bank *",
+    "Label",
+    "Berkas CSV",
+    "atau tempel isi CSV",
+    "Baris pertama adalah judul kolom",
+    "Tanggal",
+    "Uraian",
+    "Referensi",
+    "Format tanggal",
+    "Jumlah (bertanda)",
+    "Debit (keluar)",
+    "Kredit (masuk)",
+    "Format angka"
+   ],
+   "kolom": [
+    "Tanggal",
+    "Uraian",
+    "Referensi",
+    "Jumlah"
+   ],
+   "pilihan": [
+    ": Kas Kecil | Bank Mandiri IDR",
+    ": Tanggal | Keterangan | Debit | Kredit | Saldo",
+    ": — tidak ada — | Tanggal | Keterangan | Debit | Kredit | Saldo",
+    ": hari/bulan/tahun | tahun-bulan-hari | bulan/hari/tahun",
+    ": 1.234.567,00 | 1,234,567.00"
+   ]
+  }
+ },
+ "rec-workspace": {
+  "title": "Ruang kerja rekonsiliasi (draft)",
+  "caption": "Atas: ringkasan selisih. Tengah: mutasi bank (baris kuning belum cocok). Bawah: transaksi buku yang belum muncul di bank. Tujuan: selisih 0.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Saldo akhir menurut bank."
+   },
+   {
+    "n": 2,
+    "text": "Saldo bank + transaksi buku yang beredar."
+   },
+   {
+    "n": 3,
+    "text": "Harus 0 sebelum finalisasi."
+   },
+   {
+    "n": 4,
+    "text": "Cocokkan otomatis menurut nominal & tanggal."
+   },
+   {
+    "n": 5,
+    "text": "Hapus draft bila salah impor."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Rekonsiliasi Bank Mandiri IDR",
+    "Mutasi rekening koran",
+    "Transaksi buku yang beredar"
+   ],
+   "tombol": [
+    "Pencocokan otomatis",
+    "Hapus draft",
+    "Cocokkan",
+    "Catat dari mutasi"
+   ],
+   "isian": [
+    "Jendela ± 0 hari 1 hari 3 hari 5 hari 7 hari 14 hari"
+   ],
+   "kolom": [
+    "TANGGAL",
+    "URAIAN",
+    "JUMLAH",
+    "DICOCOKKAN DENGAN",
+    "AKSI",
+    "KETERANGAN"
+   ],
+   "pilihan": [
+    ": 0 hari | 1 hari | 3 hari | 5 hari | 7 hari | 14 hari"
+   ]
+  }
+ },
+ "rec-automatch": {
+  "title": "Setelah pencocokan otomatis",
+  "caption": "Baris yang nominalnya sama persis dengan transaksi buku dalam jendela tanggal langsung dicocokkan (ditandai ‘otomatis’). Sisanya perlu ditangani manual.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Pencocokan otomatis."
+   },
+   {
+    "n": 2,
+    "text": "Masih perlu tindakan."
+   },
+   {
+    "n": 3,
+    "text": "Jendela toleransi tanggal (± hari)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Rekonsiliasi Bank Mandiri IDR",
+    "Mutasi rekening koran",
+    "Transaksi buku yang beredar"
+   ],
+   "tombol": [
+    "Pencocokan otomatis",
+    "Hapus draft",
+    "Lepas",
+    "Cocokkan",
+    "Catat dari mutasi"
+   ],
+   "isian": [
+    "Jendela ± 0 hari 1 hari 3 hari 5 hari 7 hari 14 hari"
+   ],
+   "kolom": [
+    "TANGGAL",
+    "URAIAN",
+    "JUMLAH",
+    "DICOCOKKAN DENGAN",
+    "AKSI",
+    "KETERANGAN"
+   ],
+   "pilihan": [
+    ": 0 hari | 1 hari | 3 hari | 5 hari | 7 hari | 14 hari"
+   ]
+  }
+ },
+ "rec-match-dialog": {
+  "title": "Mencocokkan manual",
+  "caption": "Pilih transaksi buku yang jumlahnya persis sama dengan sisa baris mutasi (urut dari yang paling mendekati). Beberapa transaksi boleh digabung bila totalnya sama.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Centang transaksi buku yang sesuai."
+   },
+   {
+    "n": 2,
+    "text": "Total terpilih harus = sisa; baru tombol aktif."
+   },
+   {
+    "n": 3,
+    "text": "Simpan pencocokan."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Cocokkan baris: 6-1200 Sewa Kantor — Sewa kantor bulanan"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Cocokkan"
+   ],
+   "isian": [
+    "22/09/2026 Sewa kantor bulanan -Rp 2.500.000",
+    "06/11/2026 Pembalikan transfer Bank Mandiri IDR → Kas Kecil -Rp 2.000.000"
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "rec-entry-staff": {
+  "title": "Catat dari mutasi (Pelaksana)",
+  "caption": "Untuk mutasi yang hanya ada di bank (biaya admin, bunga). Pelaksana mencatat entri kas dari mutasi; entri menunggu persetujuan Finance Manager, setelah itu baris dicocokkan.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Kategori biaya/pendapatan."
+   },
+   {
+    "n": 2,
+    "text": "Uraian (terisi dari mutasi)."
+   },
+   {
+    "n": 3,
+    "text": "Pelaksana: ‘Catat (menunggu persetujuan)’."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Catat dari mutasi bank"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Catat (menunggu persetujuan)"
+   ],
+   "isian": [
+    "Kategori *",
+    "Uraian"
+   ],
+   "kolom": [],
+   "pilihan": [
+    ": Pilih kategori… | 5-1100 — Honor Instruktur, Asesor & Narasumber | 5-1200 — Bahan Praktik & Perlengkapan Pelatihan | 5-1300 — Sewa Tempat & Fasilitas Kegiatan | 5-1400 — Konsumsi & Akomodasi Kegiatan | 5-1500 — Biaya Sertifikasi, Lisensi & Uji Kompetensi | 6-1100 — Gaji & Tunjangan Karyawan | 6-1200 — Sewa Kantor | 6-1300 — Listrik, Air, Internet & Telepon | 6-1400 — Pemasaran & Iklan | 6-1500 — Transportasi & Perjalanan Dinas | 6-1600 — ATK & Perlengkapan Kantor | 6-1700 — Pemeliharaan & Perbaikan | 6-1800 — Administrasi & Biaya Bank | 6-1900 — Perizinan, Legalitas & Profesional | 6-9000 — Beban Lain-lain"
+   ]
+  }
+ },
+ "rec-entry-fm": {
+  "title": "Catat dari mutasi (Finance Manager)",
+  "caption": "Finance Manager mencatat langsung berlaku dan baris mutasi otomatis dicocokkan.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Catat & cocokkan sekaligus."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Catat dari mutasi bank"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Catat & cocokkan"
+   ],
+   "isian": [
+    "Kategori *",
+    "Uraian"
+   ],
+   "kolom": [],
+   "pilihan": [
+    ": Pilih kategori… | 1-2100 — Peralatan Kantor | 1-2200 — Peralatan Pelatihan & Praktik | 1-2300 — Kendaraan | 2-1210 — Utang PPN (PPN Keluaran) | 2-1230 — Utang PPh Badan (angsuran PPh 25 / PPh 29) | 2-2100 — Utang Bank & Pinjaman | 3-1100 — Modal Disetor | 3-1200 — Prive / Penarikan Pemilik | 4-2100 — Pendapatan Lain-lain | 4-2200 — Pendapatan Bunga & Jasa Giro"
+   ]
+  }
+ },
+ "rec-ready": {
+  "title": "Siap difinalisasi (selisih 0)",
+  "caption": "Setelah semua baris cocok, selisih menjadi 0 (✓ hijau) dan tombol Finalisasi aktif. Transaksi buku yang masih beredar ditampilkan di bagian bawah sebagai alasan perbedaan saldo.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Selisih 0."
+   },
+   {
+    "n": 2,
+    "text": "Hanya Finance Manager dapat memfinalisasi."
+   },
+   {
+    "n": 3,
+    "text": "Transaksi buku yang belum tampil di bank."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Rekonsiliasi Bank Mandiri IDR",
+    "Mutasi rekening koran",
+    "Transaksi buku yang beredar"
+   ],
+   "tombol": [
+    "Pencocokan otomatis",
+    "Finalisasi",
+    "Hapus draft",
+    "Lepas"
+   ],
+   "isian": [
+    "Jendela ± 0 hari 1 hari 3 hari 5 hari 7 hari 14 hari"
+   ],
+   "kolom": [
+    "TANGGAL",
+    "URAIAN",
+    "JUMLAH",
+    "DICOCOKKAN DENGAN",
+    "AKSI",
+    "KETERANGAN"
+   ],
+   "pilihan": [
+    ": 0 hari | 1 hari | 3 hari | 5 hari | 7 hari | 14 hari"
+   ]
+  }
+ },
+ "rec-finalize-dialog": {
+  "title": "Konfirmasi finalisasi",
+  "caption": "Setelah final, pencocokan tidak dapat diubah kecuali dibuka kembali dengan alasan (hanya periode terakhir).",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Finalisasi."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Finalisasi rekonsiliasi?"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Ya, finalisasi"
+   ],
+   "isian": [],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "rec-final": {
+  "title": "Rekonsiliasi final",
+  "caption": "Status ‘Final’. Aksi tersisa: Buka kembali (dengan alasan) dan ekspor.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Buka kembali bila ada koreksi (alasan tercatat di audit)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Rekonsiliasi Bank Mandiri IDR",
+    "Mutasi rekening koran",
+    "Transaksi buku yang beredar"
+   ],
+   "tombol": [
+    "Buka kembali"
+   ],
+   "isian": [],
+   "kolom": [
+    "TANGGAL",
+    "URAIAN",
+    "JUMLAH",
+    "DICOCOKKAN DENGAN",
+    "AKSI",
+    "KETERANGAN"
+   ],
+   "pilihan": []
+  }
+ },
+ "rec-reopen-dialog": {
+  "title": "Membuka kembali rekonsiliasi",
+  "caption": "Hanya rekening koran terakhir yang sudah final pada akun tersebut yang dapat dibuka kembali.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Alasan wajib."
+   },
+   {
+    "n": 2,
+    "text": "Konfirmasi."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Buka kembali rekonsiliasi?"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Buka kembali"
+   ],
+   "isian": [
+    "Alasan *"
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "rec-list-after": {
+  "title": "Daftar rekening koran setelah final",
+  "caption": "Kartu akun kini menunjukkan tanggal terakhir direkonsiliasi; kolom Status ‘Final’. Impor periode berikutnya mulai dari tanggal yang disarankan.",
+  "marks": [],
+  "ui": {
+   "judul": [
+    "Rekonsiliasi Bank",
+    "Rekening koran"
+   ],
+   "tombol": [
+    "Impor rekening koran"
+   ],
+   "isian": [],
+   "kolom": [
+    "AKUN",
+    "PERIODE",
+    "SALDO AWAL",
+    "SALDO AKHIR",
+    "BARIS",
+    "BELUM COCOK",
+    "STATUS"
+   ],
+   "pilihan": []
+  }
+ },
+ "rpt-invoices": {
+  "title": "Laporan operasional: Daftar Invoice",
+  "caption": "Menu Laporan tersedia untuk Pelaksana dan Finance Manager. Pilih jenis laporan di baris lencana, atur periode dan pelanggan, lalu ekspor CSV/Excel.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Kelompok laporan: penerbitan invoice, penerimaan kas, piutang."
+   },
+   {
+    "n": 2,
+    "text": "Jenis laporan aktif (warna marun)."
+   },
+   {
+    "n": 3,
+    "text": "Periode laporan (bawaan: 1 Januari s.d. hari ini)."
+   },
+   {
+    "n": 4,
+    "text": "Saring per pelanggan."
+   },
+   {
+    "n": 5,
+    "text": "Ekspor CSV."
+   },
+   {
+    "n": 6,
+    "text": "Ekspor Excel (.xlsx)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Laporan",
+    "Daftar Invoice"
+   ],
+   "tombol": [
+    "Terapkan"
+   ],
+   "isian": [
+    "Dari tanggal",
+    "Sampai tanggal",
+    "Pelanggan Semua pelanggan CV Bima Satria Jaya Hotel Tirta Asri PT Cahaya Boga PT Nusantara Boga PT Rasa Bersama SMK Negeri 3 Sleman"
+   ],
+   "kolom": [
+    "NOMOR",
+    "TANGGAL",
+    "PELANGGAN",
+    "TOTAL INVOICE",
+    "DIBAYAR",
+    "SISA TAGIHAN",
+    "JATUH TEMPO",
+    "STATUS INVOICE",
+    "STATUS PEMBAYARAN",
+    "PEMBUAT"
+   ],
+   "pilihan": [
+    "customerId: Semua pelanggan | CV Bima Satria Jaya | Hotel Tirta Asri | PT Cahaya Boga | PT Nusantara Boga | PT Rasa Bersama | SMK Negeri 3 Sleman"
+   ]
+  }
+ },
+ "rpt-receivables": {
+  "title": "Laporan: Daftar Piutang",
+  "caption": "Invoice terbit dengan sisa tagihan > 0 per hari ini, beserta umur piutang. Laporan piutang selalu ‘per hari ini’, sehingga tidak memiliki filter tanggal.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Jenis laporan: piutang."
+   },
+   {
+    "n": 2,
+    "text": "Hanya yang sudah melewati jatuh tempo."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Laporan",
+    "Daftar Piutang"
+   ],
+   "tombol": [
+    "Terapkan"
+   ],
+   "isian": [
+    "Pelanggan Semua pelanggan CV Bima Satria Jaya Hotel Tirta Asri PT Cahaya Boga PT Nusantara Boga PT Rasa Bersama SMK Negeri 3 Sleman"
+   ],
+   "kolom": [
+    "NOMOR",
+    "PELANGGAN",
+    "TANGGAL",
+    "JATUH TEMPO",
+    "TOTAL INVOICE",
+    "DIBAYAR",
+    "SISA TAGIHAN",
+    "HARI TERLAMBAT",
+    "UMUR PIUTANG"
+   ],
+   "pilihan": [
+    "customerId: Semua pelanggan | CV Bima Satria Jaya | Hotel Tirta Asri | PT Cahaya Boga | PT Nusantara Boga | PT Rasa Bersama | SMK Negeri 3 Sleman"
+   ]
+  }
+ },
+ "rpt-monthly": {
+  "title": "Laporan: Rekap Bulanan & Tahunan",
+  "caption": "Membandingkan nilai invoice terbit dengan penerimaan kas per bulan. Dua angka ini berbeda dan tidak boleh dijumlahkan.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Jenis laporan."
+   },
+   {
+    "n": 2,
+    "text": "Catatan: laporan ini operasional, bukan laporan keuangan akuntansi."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Laporan",
+    "Rekap Bulanan & Tahunan"
+   ],
+   "tombol": [
+    "Terapkan"
+   ],
+   "isian": [
+    "Dari tanggal",
+    "Sampai tanggal",
+    "Pelanggan Semua pelanggan CV Bima Satria Jaya Hotel Tirta Asri PT Cahaya Boga PT Nusantara Boga PT Rasa Bersama SMK Negeri 3 Sleman"
+   ],
+   "kolom": [
+    "PERIODE",
+    "INVOICE TERBIT",
+    "NILAI INVOICE TERBIT",
+    "INVOICE BATAL",
+    "PENERIMAAN KAS",
+    "SELISIH (INVOICE − KAS)"
+   ],
+   "pilihan": [
+    "customerId: Semua pelanggan | CV Bima Satria Jaya | Hotel Tirta Asri | PT Cahaya Boga | PT Nusantara Boga | PT Rasa Bersama | SMK Negeri 3 Sleman"
+   ]
+  }
+ },
+ "rpt-payments": {
+  "title": "Laporan: Rekap Pembayaran Masuk",
+  "caption": "Penerimaan kas menurut tanggal pembayaran, termasuk pembalikan (negatif).",
+  "marks": [],
+  "ui": {
+   "judul": [
+    "Laporan",
+    "Rekap Pembayaran Masuk"
+   ],
+   "tombol": [
+    "Terapkan"
+   ],
+   "isian": [
+    "Dari tanggal",
+    "Sampai tanggal",
+    "Pelanggan Semua pelanggan CV Bima Satria Jaya Hotel Tirta Asri PT Cahaya Boga PT Nusantara Boga PT Rasa Bersama SMK Negeri 3 Sleman"
+   ],
+   "kolom": [
+    "TANGGAL BAYAR",
+    "INVOICE",
+    "PELANGGAN",
+    "JENIS",
+    "METODE",
+    "REFERENSI",
+    "UANG DITERIMA",
+    "PPH DIPOTONG PELANGGAN",
+    "PPN DALAM PEMBAYARAN",
+    "KETERANGAN",
+    "DICATAT OLEH"
+   ],
+   "pilihan": [
+    "customerId: Semua pelanggan | CV Bima Satria Jaya | Hotel Tirta Asri | PT Cahaya Boga | PT Nusantara Boga | PT Rasa Bersama | SMK Negeri 3 Sleman"
+   ]
+  }
+ },
+ "stm-income": {
+  "title": "Laporan Keuangan: Laba Rugi (basis kas)",
+  "caption": "Pelaksana dapat MELIHAT seluruh laporan keuangan namun tidak mengubahnya. Pendapatan diakui saat uang diterima, beban saat dibayar; hanya entri berlaku yang dihitung.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Lima laporan: Laba Rugi, Arus Kas, Neraca, Neraca Saldo, Buku Besar."
+   },
+   {
+    "n": 2,
+    "text": "Periode laporan."
+   },
+   {
+    "n": 3,
+    "text": "Bandingkan dengan periode sebelumnya / tahun lalu."
+   },
+   {
+    "n": 4,
+    "text": "Ekspor PDF (juga CSV & Excel)."
+   },
+   {
+    "n": 5,
+    "text": "Baris hasil akhir."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Laporan Keuangan",
+    "Laporan Laba Rugi (Basis Kas)"
+   ],
+   "tombol": [
+    "Terapkan"
+   ],
+   "isian": [
+    "Dari tanggal",
+    "Sampai tanggal",
+    "Pembanding Tanpa pembanding Periode sebelumnya Tahun lalu"
+   ],
+   "kolom": [],
+   "pilihan": [
+    "compare: Tanpa pembanding | Periode sebelumnya | Tahun lalu"
+   ]
+  }
+ },
+ "stm-compare": {
+  "title": "Laba Rugi dengan pembanding",
+  "caption": "Memilih pembanding menampilkan kolom Periode ini, Pembanding, Selisih, dan persen perubahan. Ekspor mengikuti tampilan yang sama.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Pilih pembanding lalu klik Terapkan."
+   },
+   {
+    "n": 2,
+    "text": "Tabel pembanding."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Laporan Keuangan",
+    "Laporan Laba Rugi (Basis Kas)"
+   ],
+   "tombol": [
+    "Terapkan"
+   ],
+   "isian": [
+    "Dari tanggal",
+    "Sampai tanggal",
+    "Pembanding Tanpa pembanding Periode sebelumnya Tahun lalu"
+   ],
+   "kolom": [
+    "URAIAN",
+    "PERIODE INI",
+    "PEMBANDING",
+    "SELISIH",
+    "%"
+   ],
+   "pilihan": [
+    "compare: Tanpa pembanding | Periode sebelumnya | Tahun lalu"
+   ]
+  }
+ },
+ "stm-cashflow": {
+  "title": "Arus Kas",
+  "caption": "Arus kas dikelompokkan operasi, investasi, pendanaan. Baris hijau di bawah memastikan kas akhir arus kas sama dengan kas di neraca.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Pengecekan: kas akhir arus kas = kas pada neraca."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Laporan Keuangan",
+    "Laporan Arus Kas (Basis Kas)",
+    "Rincian per akun"
+   ],
+   "tombol": [
+    "Terapkan"
+   ],
+   "isian": [
+    "Dari tanggal",
+    "Sampai tanggal",
+    "Pembanding Tanpa pembanding Periode sebelumnya Tahun lalu"
+   ],
+   "kolom": [
+    "AKUN",
+    "AWAL",
+    "PENERIMAAN INVOICE",
+    "ENTRI MASUK",
+    "ENTRI KELUAR",
+    "TRANSFER NETO",
+    "AKHIR"
+   ],
+   "pilihan": [
+    "compare: Tanpa pembanding | Periode sebelumnya | Tahun lalu"
+   ]
+  }
+ },
+ "stm-balance": {
+  "title": "Neraca",
+  "caption": "Posisi aset, kewajiban, dan ekuitas per tanggal. Laporan ‘per tanggal’ hanya memiliki satu filter tanggal.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Tanggal posisi neraca."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Laporan Keuangan",
+    "Laporan Posisi Keuangan / Neraca (Basis Kas)"
+   ],
+   "tombol": [
+    "Terapkan"
+   ],
+   "isian": [
+    "Per tanggal",
+    "Pembanding Tanpa pembanding Akhir periode sebelumnya Tahun lalu"
+   ],
+   "kolom": [],
+   "pilihan": [
+    "compare: Tanpa pembanding | Akhir periode sebelumnya | Tahun lalu"
+   ]
+  }
+ },
+ "stm-trial": {
+  "title": "Neraca Saldo",
+  "caption": "Saldo seluruh akun; total debit harus sama dengan total kredit.",
+  "marks": [],
+  "ui": {
+   "judul": [
+    "Laporan Keuangan",
+    "Neraca Saldo"
+   ],
+   "tombol": [
+    "Terapkan"
+   ],
+   "isian": [
+    "Per tanggal"
+   ],
+   "kolom": [
+    "KODE",
+    "AKUN",
+    "DEBIT",
+    "KREDIT"
+   ],
+   "pilihan": []
+  }
+ },
+ "stm-gl": {
+  "title": "Buku Besar per akun",
+  "caption": "Pilih satu akun untuk melihat seluruh mutasinya dengan saldo berjalan. Ekspor aktif setelah akun dipilih.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Pilih akun."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Laporan Keuangan",
+    "Buku Besar — 4-2100 Pendapatan Lain-lain"
+   ],
+   "tombol": [
+    "Terapkan"
+   ],
+   "isian": [
+    "Dari tanggal",
+    "Sampai tanggal",
+    "Akun Pilih akun… 1-1100 — Kas 1-1200 — Bank 1-1300 — Piutang Usaha 1-1400 — Uang Muka Pajak (PPh dipotong pelanggan) 1-1410 — PPN Masukan (dapat dikreditkan) 1-1450 — Penerimaan Invoice Belum Dialokasikan ke Kas/Bank 1-2100 — Peralatan Kantor 1-2200 — Peralatan Pelatihan & Praktik 1-2300 — Kendaraan 1-2900 — Akumulasi Penyusutan 2-1100 — Utang Usaha 2-1200 — Utang Pajak Lainnya (PPh 21/23/4(2) yang dipotong) 2-1210 — Utang PPN (PPN Keluaran) 2-1230 — Utang PPh Badan (angsuran PPh 25 / PPh 29) 2-2100 — Utang Bank & Pinjaman 3-1100 — Modal Disetor 3-1200 — Prive / Penarikan Pemilik 3-2100 — Saldo Laba 3-2200 — Laba (Rugi) Tahun Berjalan 4-1100 — Pendapatan Jasa Pelatihan & Sertifikasi 4-2100 — Pendapatan Lain-lain 4-2200 — Pendapatan Bunga & Jasa Giro 5-1100 — Honor Instruktur, Asesor & Narasumber 5-1200 — Bahan Praktik & Perlengkapan Pelatihan 5-1300 — Sewa Tempat & Fasilitas Kegiatan 5-1400 — Konsumsi & Akomodasi Kegiatan 5-1500 — Biaya Sertifikasi, Lisensi & Uji Kompetensi 6-1100 — Gaji & Tunjangan Karyawan 6-1200 — Sewa Kantor 6-1300 — Listrik, Air, Internet & Telepon 6-1400 — Pemasaran & Iklan 6-1500 — Transportasi & Perjalanan Dinas 6-1600 — ATK & Perlengkapan Kantor 6-1700 — Pemeliharaan & Perbaikan 6-1800 — Administrasi & Biaya Bank 6-1900 — Perizinan, Legalitas & Profesional 6-2000 — Beban Penyusutan 6-9000 — Beban Lain-lain 7-1100 — Beban Pajak Penghasilan (PPh Badan)"
+   ],
+   "kolom": [
+    "TANGGAL",
+    "SUMBER",
+    "URAIAN",
+    "DEBIT",
+    "KREDIT",
+    "SALDO"
+   ],
+   "pilihan": [
+    "accountId: Pilih akun… | 1-1100 — Kas | 1-1200 — Bank | 1-1300 — Piutang Usaha | 1-1400 — Uang Muka Pajak (PPh dipotong pelanggan) | 1-1410 — PPN Masukan (dapat dikreditkan) | 1-1450 — Penerimaan Invoice Belum Dialokasikan ke Kas/Bank | 1-2100 — Peralatan Kantor | 1-2200 — Peralatan Pelatihan & Praktik | 1-2300 — Kendaraan | 1-2900 — Akumulasi Penyusutan | 2-1100 — Utang Usaha | 2-1200 — Utang Pajak Lainnya (PPh 21/23/4(2) yang dipotong) | 2-1210 — Utang PPN (PPN Keluaran) | 2-1230 — Utang PPh Badan (angsuran PPh 25 / PPh 29) | 2-2100 — Utang Bank & Pinjaman | 3-1100 — Modal Disetor | 3-1200 — Prive / Penarikan Pemilik | 3-2100 — Saldo Laba | 3-2200 — Laba (Rugi) Tahun Berjalan | 4-1100 — Pendapatan Jasa Pelatihan & Sertifikasi | 4-2100 — Pendapatan Lain-lain | 4-2200 — Pendapatan Bunga & Jasa Giro | 5-1100 — Honor Instruktur, Asesor & Narasumber | 5-1200 — Bahan Praktik & Perlengkapan Pelatihan | 5-1300 — Sewa Tempat & Fasilitas Kegiatan | 5-1400 — Konsumsi & Akomodasi Kegiatan | 5-1500 — Biaya Sertifikasi, Lisensi & Uji Kompetensi | 6-1100 — Gaji & Tunjangan Karyawan | 6-1200 — Sewa Kantor | 6-1300 — Listrik, Air, Internet & Telepon | 6-1400 — Pemasaran & Iklan | 6-1500 — Transportasi & Perjalanan Dinas | 6-1600 — ATK & Perlengkapan Kantor | 6-1700 — Pemeliharaan & Perbaikan | 6-1800 — Administrasi & Biaya Bank | 6-1900 — Perizinan, Legalitas & Profesional | 6-2000 — Beban Penyusutan | 6-9000 — Beban Lain-lain | 7-1100 — Beban Pajak Penghasilan (PPh Badan)"
+   ]
+  }
+ },
+ "tax-summary-staff": {
+  "title": "Pajak: Ringkasan (Pelaksana, hanya lihat)",
+  "caption": "Ringkasan saldo pajak dan profil pajak. Pelaksana hanya melihat; mengubah profil (Administrator) dan mencatat setoran pajak (Finance Manager) tidak tersedia baginya.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Tab: Ringkasan, PPN, PPh dipotong pelanggan, Estimasi PPh badan, Setoran pajak."
+   },
+   {
+    "n": 2,
+    "text": "Saldo utang PPN dari penerimaan kas."
+   },
+   {
+    "n": 3,
+    "text": "Total PPh yang dipotong pelanggan (kredit pajak)."
+   },
+   {
+    "n": 4,
+    "text": "Profil pajak lembaga (diisi Administrator)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Pajak",
+    "Profil pajak"
+   ],
+   "tombol": [],
+   "isian": [],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "tax-ppn": {
+  "title": "Pajak: Rekap PPN",
+  "caption": "Rekap PPN per masa: menurut invoice (acuan faktur pajak) dan menurut uang yang diterima. Lembaga non-PKP umumnya bernilai nol.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Periode rekap."
+   },
+   {
+    "n": 2,
+    "text": "Ekspor."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Pajak",
+    "Rekap PPN keluaran"
+   ],
+   "tombol": [
+    "Terapkan"
+   ],
+   "isian": [
+    "Dari tanggal",
+    "Sampai tanggal"
+   ],
+   "kolom": [
+    "MASA",
+    "INVOICE BER-PPN",
+    "DPP (INVOICE)",
+    "PPN (INVOICE)",
+    "PPN DITERIMA KAS",
+    "DISETOR",
+    "PENYESUAIAN",
+    "UTANG PPN AKHIR"
+   ],
+   "pilihan": []
+  }
+ },
+ "tax-pph23": {
+  "title": "Pajak: Register PPh dipotong pelanggan",
+  "caption": "Daftar pembayaran yang dipotong PPh oleh pelanggan. Lencana ‘Belum ada’ berarti nomor bukti potong belum diisi — kejar dari pelanggan lalu isi dengan tombol ‘Isi nomor’.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Nomor bukti potong belum diisi."
+   },
+   {
+    "n": 2,
+    "text": "Isi nomor bukti potong (hanya sekali)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Pajak",
+    "Register PPh dipotong pelanggan"
+   ],
+   "tombol": [
+    "Terapkan",
+    "Isi nomor"
+   ],
+   "isian": [
+    "Dari tanggal",
+    "Sampai tanggal"
+   ],
+   "kolom": [
+    "TANGGAL",
+    "INVOICE",
+    "PELANGGAN",
+    "NPWP",
+    "JENIS",
+    "NO. BUKTI POTONG",
+    "PPH DIPOTONG"
+   ],
+   "pilihan": []
+  }
+ },
+ "tax-pph23-ref": {
+  "title": "Mengisi nomor bukti potong",
+  "caption": "Nomor hanya dapat diisi sekali. Bila salah, balikkan pembayaran (Finance Manager) lalu catat ulang dengan nomor yang benar.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Nomor bukti potong dari pelanggan."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Nomor bukti potong"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Simpan"
+   ],
+   "isian": [
+    "Nomor bukti potong *"
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "tax-corp": {
+  "title": "Pajak: Estimasi PPh badan",
+  "caption": "Estimasi manajemen dari pembukuan. Rezim dan tarif ditetapkan Administrator di profil pajak; bila belum diaktifkan akan tampil pemberitahuan seperti ini.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Tahun pajak."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Pajak"
+   ],
+   "tombol": [
+    "Catat setoran pajak",
+    "Terapkan"
+   ],
+   "isian": [
+    "Tahun"
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "tax-payments-fm": {
+  "title": "Pajak: Setoran pajak (Finance Manager)",
+  "caption": "Setoran pajak mengurangi utang PPN/PPh badan (bukan beban). Hanya Finance Manager yang dapat mencatat.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Catat setoran pajak baru."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Pajak",
+    "Setoran pajak"
+   ],
+   "tombol": [
+    "Catat setoran pajak"
+   ],
+   "isian": [],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "tax-payment-new": {
+  "title": "Formulir setoran pajak",
+  "caption": "Isi jenis pajak, masa, tanggal, akun sumber dana, nominal, dan NTPN/ID billing (wajib sebagai bukti).",
+  "marks": [
+   {
+    "n": 1,
+    "text": "PPN atau PPh badan."
+   },
+   {
+    "n": 2,
+    "text": "Contoh: 2026-09 atau 2026."
+   },
+   {
+    "n": 3,
+    "text": "Akun kas/bank sumber."
+   },
+   {
+    "n": 4,
+    "text": "Nominal disetor."
+   },
+   {
+    "n": 5,
+    "text": "Bukti setor (wajib)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Catat setoran pajak"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Simpan"
+   ],
+   "isian": [
+    "Jenis",
+    "Masa / tahun pajak *",
+    "Tanggal setor *",
+    "Dibayar dari",
+    "Nominal *",
+    "NTPN / ID billing *",
+    "Bukti setor (wajib di atas Rp 1.000.000)"
+   ],
+   "kolom": [],
+   "pilihan": [
+    ": PPN (kurangi utang PPN) | PPh badan (angsuran / kurang bayar)",
+    ": Kas Kecil | Bank Mandiri IDR"
+   ]
+  }
+ },
+ "tax-profile-admin": {
+  "title": "Profil pajak (Administrator)",
+  "caption": "Administrator mengatur status PKP, rezim PPh badan, dan tarif sesuai arahan konsultan pajak. Sistem tidak mengasumsikan tarif.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Tidak dihitung / tarif umum / final."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Profil pajak"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Simpan"
+   ],
+   "isian": [
+    "Perusahaan adalah Pengusaha Kena Pajak (PKP)",
+    "Rezim PPh badan"
+   ],
+   "kolom": [],
+   "pilihan": [
+    ": Tidak dihitung | Tarif umum (tahunan) | PPh final (peredaran bruto bulanan)"
+   ]
+  }
+ },
+ "close-staff": {
+  "title": "Tutup Buku (Pelaksana, hanya lihat)",
+  "caption": "Pelaksana dapat melihat status tiap periode tetapi tidak dapat menutup atau membuka kembali. Kunci buku menolak transaksi bertanggal sampai akhir bulan yang ditutup.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Satu baris per bulan: status, total aset, laba, catatan penutupan."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Tutup Buku",
+    "Periode"
+   ],
+   "tombol": [],
+   "isian": [],
+   "kolom": [
+    "PERIODE",
+    "STATUS",
+    "TOTAL ASET",
+    "LABA SEBELUM PAJAK",
+    "PENUTUPAN",
+    "AKSI"
+   ],
+   "pilihan": []
+  }
+ },
+ "close-fm": {
+  "title": "Tutup Buku (Finance Manager)",
+  "caption": "Bulan ditutup berurutan dari yang paling awal. Tombol ‘Tutup bulan’ hanya muncul pada bulan yang boleh ditutup berikutnya.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Tutup bulan ini."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Tutup Buku",
+    "Periode"
+   ],
+   "tombol": [
+    "Tutup bulan"
+   ],
+   "isian": [],
+   "kolom": [
+    "PERIODE",
+    "STATUS",
+    "TOTAL ASET",
+    "LABA SEBELUM PAJAK",
+    "PENUTUPAN",
+    "AKSI"
+   ],
+   "pilihan": []
+  }
+ },
+ "close-checklist": {
+  "title": "Daftar periksa penutupan",
+  "caption": "Sistem memeriksa pembukuan: centang hijau lolos; merah menghalangi (harus diselesaikan); kuning peringatan (boleh ditutup bila diakui). Wajib mengisi catatan penutupan.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Hasil pemeriksaan otomatis."
+   },
+   {
+    "n": 2,
+    "text": "Catatan wajib (min. 5 karakter)."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Tutup buku Agustus 2026"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Tutup Agustus 2026"
+   ],
+   "isian": [
+    "Catatan penutupan *"
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "close-confirm": {
+  "title": "Menutup bulan",
+  "caption": "Peringatan kuning harus diberi tanda ‘diakui’. Setelah menekan ‘Tutup …’, foto neraca saldo dan hash disimpan.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Konfirmasi penutupan."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Tutup buku Agustus 2026"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Tutup Agustus 2026"
+   ],
+   "isian": [
+    "Catatan penutupan *"
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "close-done": {
+  "title": "Periode yang sudah ditutup",
+  "caption": "Status ‘Ditutup’ beserta ‘Foto cocok’ (hash cocok dengan buku besar). Bila muncul ‘Foto berubah!’, hubungi Administrator.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Integritas angka periode terjaga."
+   },
+   {
+    "n": 2,
+    "text": "Buka kembali (alasan wajib) bila perlu koreksi."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Tutup Buku",
+    "Periode"
+   ],
+   "tombol": [
+    "Tutup bulan",
+    "Buka kembali"
+   ],
+   "isian": [],
+   "kolom": [
+    "PERIODE",
+    "STATUS",
+    "TOTAL ASET",
+    "LABA SEBELUM PAJAK",
+    "PENUTUPAN",
+    "AKSI"
+   ],
+   "pilihan": []
+  }
+ },
+ "close-reopen": {
+  "title": "Membuka kembali periode",
+  "caption": "Hanya periode yang paling akhir ditutup yang dapat dibuka. Alasan tercatat di audit log.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Alasan (min. 5 karakter)."
+   },
+   {
+    "n": 2,
+    "text": "Konfirmasi."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Buka kembali Agustus 2026"
+   ],
+   "tombol": [
+    "Tutup",
+    "Batal",
+    "Buka kembali"
+   ],
+   "isian": [
+    "Alasan *"
+   ],
+   "kolom": [],
+   "pilihan": []
+  }
+ },
+ "set-company": {
+  "title": "Pengaturan: Perusahaan & dokumen",
+  "caption": "Identitas lembaga yang tampil di PDF invoice. Pelaksana dan Finance Manager hanya melihat; perubahan dilakukan Administrator.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Bagian pengaturan yang terlihat untuk peran Anda."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Pengaturan",
+    "Identitas lembaga",
+    "Penandatangan",
+    "Logo, cap & tanda tangan",
+    "Ketentuan pembayaran default",
+    "Tampilan dokumen"
+   ],
+   "tombol": [],
+   "isian": [
+    "Nama lembaga *",
+    "Tagline",
+    "Alamat *",
+    "Telepon",
+    "Email",
+    "NPWP",
+    "Website",
+    "Nama penandatangan *",
+    "Jabatan *",
+    "Teks penutup *",
+    "Tampilkan di invoice",
+    "Metode pembayaran default *",
+    "Jangka waktu default (hari) *",
+    "Hitungan hari",
+    "Catatan pembayaran (di bawah rekening)",
+    "Footer dokumen",
+    "Format Rupiah",
+    "Sumber terbilang (Inword)"
+   ],
+   "kolom": [],
+   "pilihan": [
+    ": Hari kalender | Hari kerja (Senin–Jumat)",
+    ": Gaya invoice referensi — Rp. 14.000.000,- | Rp 14.000.000 | Rp 14.000.000,00",
+    ": Total invoice (Nett Total) | Sisa tagihan setelah DP"
+   ]
+  }
+ },
+ "set-banks": {
+  "title": "Pengaturan: Rekening bank",
+  "caption": "Rekening bank yang dicetak pada invoice.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Bagian pengaturan yang terlihat untuk peran Anda."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Pengaturan",
+    "Rekening bank"
+   ],
+   "tombol": [],
+   "isian": [],
+   "kolom": [
+    "LABEL",
+    "NOMOR REKENING",
+    "ATAS NAMA",
+    "STATUS"
+   ],
+   "pilihan": []
+  }
+ },
+ "set-numbering": {
+  "title": "Pengaturan: Penomoran invoice",
+  "caption": "Format dan urutan nomor invoice berikutnya.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Bagian pengaturan yang terlihat untuk peran Anda."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Pengaturan",
+    "Format nomor"
+   ],
+   "tombol": [],
+   "isian": [
+    "Format *",
+    "Awalan {PREFIX}",
+    "Reset urutan",
+    "Nomor awal untuk periode baru"
+   ],
+   "kolom": [],
+   "pilihan": [
+    ": Tidak pernah (nomor berlanjut terus) | Setiap tahun | Setiap bulan"
+   ]
+  }
+ },
+ "set-finance": {
+  "title": "Pengaturan: Keuangan",
+  "caption": "Akun kas/bank beserta saldo awal dan bagan akun. Finance Manager dan Pelaksana hanya melihat; Administrator mengelola.",
+  "marks": [
+   {
+    "n": 1,
+    "text": "Bagian pengaturan yang terlihat untuk peran Anda."
+   }
+  ],
+  "ui": {
+   "judul": [
+    "Pengaturan",
+    "Akun kas & bank",
+    "Bagan akun (usulan SAK EMKM)"
+   ],
+   "tombol": [],
+   "isian": [],
+   "kolom": [
+    "NAMA",
+    "JENIS",
+    "AKUN BAGAN AKUN",
+    "SALDO AWAL",
+    "TANGGAL SALDO AWAL",
+    "SALDO KINI",
+    "STATUS",
+    "KODE",
+    "ARUS KAS",
+    "DAPAT DIPILIH MANUAL"
+   ],
+   "pilihan": []
+  }
+ },
+ "set-finance-admin": {
+  "title": "Pengaturan Keuangan (Administrator)",
+  "caption": "Administrator menambah akun kas/bank, saldo awal, dan mengelola bagan akun. Contoh di sini hanya untuk gambaran; Pelaksana dan Finance Manager tidak melakukannya.",
+  "marks": [],
+  "ui": {
+   "judul": [
+    "Pengaturan",
+    "Akun kas & bank",
+    "Bagan akun (usulan SAK EMKM)"
+   ],
+   "tombol": [
+    "Tambah akun",
+    "Edit",
+    "Nonaktifkan"
+   ],
+   "isian": [],
+   "kolom": [
+    "NAMA",
+    "JENIS",
+    "AKUN BAGAN AKUN",
+    "SALDO AWAL",
+    "TANGGAL SALDO AWAL",
+    "SALDO KINI",
+    "STATUS",
+    "AKSI",
+    "KODE",
+    "ARUS KAS",
+    "DAPAT DIPILIH MANUAL"
+   ],
+   "pilihan": []
+  }
+ },
+ "audit-admin": {
+  "title": "Audit Log (Administrator)",
+  "caption": "Seluruh aksi penting tercatat (siapa, kapan, apa). Menu ini hanya untuk Administrator.",
+  "marks": [],
+  "ui": {
+   "judul": [
+    "Audit Log"
+   ],
+   "tombol": [
+    "Terapkan",
+    "Sebelum / sesudah"
+   ],
+   "isian": [
+    "Cari ringkasan / email / alasan",
+    "Aksi (awalan)",
+    "Objek Semua Invoice Customer Product TaxConfiguration BankAccount CompanySettings InvoiceNumberSequence User StoredFile Export",
+    "Dari",
+    "Sampai"
+   ],
+   "kolom": [
+    "WAKTU",
+    "PELAKU",
+    "AKSI",
+    "RINGKASAN",
+    "DETAIL"
+   ],
+   "pilihan": [
+    "entityType: Semua | Invoice | Customer | Product | TaxConfiguration | BankAccount | CompanySettings | InvoiceNumberSequence | User | StoredFile | Export"
+   ]
+  }
+ }
+}
