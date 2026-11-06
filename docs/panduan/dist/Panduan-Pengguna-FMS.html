@@ -1,0 +1,1913 @@
+<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Panduan Pengguna — Trilogika FMS</title><style>
+:root{--brand:#8a0f35;--ink:#1c1917;--muted:#57534e;--line:#e7e5e4}
+*{box-sizing:border-box} body{font:14px/1.6 "Inter","Segoe UI",system-ui,sans-serif;color:var(--ink);margin:0;background:#fff}
+main{max-width:900px;margin:0 auto;padding:24px}
+.cover{min-height:92vh;display:flex;flex-direction:column;justify-content:center;border-left:10px solid var(--brand);padding-left:32px;page-break-after:always}
+.cover h1{font-size:40px;margin:0 0 8px;color:var(--brand)} .cover p{font-size:18px;color:var(--muted);margin:4px 0}
+h1{font-size:26px;color:var(--brand);border-bottom:2px solid var(--brand);padding-bottom:6px;margin-top:0;page-break-before:always}
+.bab:first-of-type h1{page-break-before:auto}
+h2{font-size:19px;margin-top:28px;border-bottom:1px solid var(--line);padding-bottom:3px} h3{font-size:16px;margin-top:22px}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:13px} th,td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top} th{background:#f5f5f4}
+blockquote{margin:12px 0;padding:8px 14px;border-left:4px solid var(--brand);background:#fdf2f5;color:#44403c}
+code,pre{background:#f5f5f4;border-radius:4px;font-size:12.5px} code{padding:1px 4px} pre{padding:10px;overflow:auto}
+figure{margin:16px 0;border:1px solid var(--line);border-radius:8px;padding:10px;page-break-inside:avoid;background:#fafaf9}
+figure img{width:100%;height:auto;border:1px solid var(--line);border-radius:4px;display:block}
+.ft{font-weight:600;font-size:13px;color:var(--brand);margin-bottom:6px}
+.cap{margin:8px 0 4px;color:var(--muted);font-size:12.5px}
+.legend{list-style:none;padding:0;margin:6px 0 0;font-size:12.5px} .legend li{display:flex;gap:8px;margin:3px 0;align-items:flex-start}
+.n{flex:none;width:19px;height:19px;border-radius:50%;background:#dc2626;color:#fff;font-size:11px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;margin-top:1px}
+.toc ul{list-style:none;padding:0;columns:1} .toc li{margin:2px 0} .toc .l1{font-weight:600;margin-top:8px} .toc .l2{padding-left:18px;font-size:12.5px} .toc a{color:var(--ink);text-decoration:none}
+.toc{page-break-after:always} .toc-h{border:0;margin-top:0}
+@media print{main{max-width:none;padding:0} h2,h3{page-break-after:avoid}}
+</style></head><body><main><header class="cover"><h1>Panduan Pengguna</h1><p><b>Trilogika Financial Management System</b></p><p>Untuk Pelaksana (Staf Administrasi Keuangan) dan Finance Manager</p><p>131 tangkapan layar bernomor · 16 bab + lampiran</p><p>Versi 2026-11-07</p></header><nav class="toc"><h2 class="toc-h">Daftar Isi</h2><ul><li class="l1"><a href="#s-0">Tentang Panduan Ini</a></li><li class="l2"><a href="#s-1">Cara membaca panduan</a></li><li class="l2"><a href="#s-2">Prinsip kerja sistem (wajib dipahami)</a></li><li class="l2"><a href="#s-3">Peta menu</a></li><li class="l1"><a href="#s-4">Bab 1 — Memulai: Masuk, Keamanan, dan Mengenal Tampilan</a></li><li class="l2"><a href="#s-5">1.1 Masuk ke aplikasi</a></li><li class="l2"><a href="#s-6">1.2 Mengganti password pertama kali</a></li><li class="l2"><a href="#s-7">1.3 Mengenal kerangka aplikasi</a></li><li class="l2"><a href="#s-8">1.4 Autentikasi dua langkah (2FA)</a></li><li class="l2"><a href="#s-9">Tips &amp; Kesalahan Umum</a></li><li class="l1"><a href="#s-10">Bab 2 — Dashboard Keuangan</a></li><li class="l2"><a href="#s-11">2.1 Membaca dashboard</a></li><li class="l2"><a href="#s-12">2.2 Memilih periode</a></li><li class="l2"><a href="#s-13">2.3 Grafik dalam bentuk tabel</a></li><li class="l2"><a href="#s-14">2.4 Dashboard untuk satu pelanggan</a></li><li class="l2"><a href="#s-15">Tips</a></li><li class="l1"><a href="#s-16">Bab 3 — Pelanggan</a></li><li class="l2"><a href="#s-17">3.1 Daftar pelanggan</a></li><li class="l2"><a href="#s-18">3.2 Menambah pelanggan</a></li><li class="l2"><a href="#s-19">3.3 Detail pelanggan</a></li><li class="l2"><a href="#s-20">3.4 Mengubah pelanggan</a></li><li class="l2"><a href="#s-21">3.5 Mengarsipkan pelanggan</a></li><li class="l2"><a href="#s-22">Tips &amp; Kesalahan Umum</a></li><li class="l1"><a href="#s-23">Bab 4 — Produk &amp; Layanan</a></li><li class="l2"><a href="#s-24">Cara memakainya</a></li><li class="l2"><a href="#s-25">Tips</a></li><li class="l1"><a href="#s-26">Bab 5 — Invoice</a></li><li class="l2"><a href="#s-27">5.1 Alur hidup sebuah invoice</a></li><li class="l2"><a href="#s-28">5.2 Daftar invoice</a></li><li class="l2"><a href="#s-29">5.3 Membuat invoice (Pelaksana)</a></li><li class="l2"><a href="#s-30">5.4 Draft, pratinjau PDF, dan pengajuan</a></li><li class="l2"><a href="#s-31">5.5 Verifikasi dan penerbitan (Finance Manager)</a></li><li class="l2"><a href="#s-32">5.6 Invoice terbit</a></li><li class="l2"><a href="#s-33">5.7 Membatalkan invoice terbit (Finance Manager)</a></li><li class="l2"><a href="#s-34">5.8 Menduplikasi invoice</a></li><li class="l2"><a href="#s-35">5.9 Menghapus draft</a></li><li class="l2"><a href="#s-36">Tips &amp; Kesalahan Umum</a></li><li class="l1"><a href="#s-37">Bab 6 — Pembayaran</a></li><li class="l2"><a href="#s-38">6.1 Mencatat pembayaran dari halaman invoice</a></li><li class="l2"><a href="#s-39">6.2 Pembayaran dengan PPh dipotong pelanggan</a></li><li class="l2"><a href="#s-40">6.3 Pembayaran melebihi sisa tagihan</a></li><li class="l2"><a href="#s-41">6.4 Invoice lunas dan kwitansi</a></li><li class="l2"><a href="#s-42">6.5 Menu Pembayaran</a></li><li class="l2"><a href="#s-43">6.6 Membalikkan pembayaran (Finance Manager)</a></li><li class="l2"><a href="#s-44">Tips &amp; Kesalahan Umum</a></li><li class="l1"><a href="#s-45">Bab 7 — Pengeluaran</a></li><li class="l2"><a href="#s-46">7.1 Alur</a></li><li class="l2"><a href="#s-47">7.2 Daftar pengeluaran</a></li><li class="l2"><a href="#s-48">7.3 Mencatat pengeluaran (Pelaksana)</a></li><li class="l2"><a href="#s-49">7.4 Persetujuan (Finance Manager)</a></li><li class="l2"><a href="#s-50">7.5 Membalikkan pengeluaran berlaku (Finance Manager)</a></li><li class="l2"><a href="#s-51">Tips &amp; Kesalahan Umum</a></li><li class="l1"><a href="#s-52">Bab 8 — Kas &amp; Bank</a></li><li class="l2"><a href="#s-53">8.1 Tampilan utama</a></li><li class="l2"><a href="#s-54">8.2 Transfer antar akun</a></li><li class="l2"><a href="#s-55">8.3 Penerimaan lain</a></li><li class="l2"><a href="#s-56">8.4 Tampilan Finance Manager</a></li><li class="l2"><a href="#s-57">8.5 Buku kas per akun</a></li><li class="l2"><a href="#s-58">8.6 Membalikkan transfer (Finance Manager)</a></li><li class="l2"><a href="#s-59">Tips &amp; Kesalahan Umum</a></li><li class="l1"><a href="#s-60">Bab 9 — Jurnal</a></li><li class="l2"><a href="#s-61">9.1 Daftar jurnal</a></li><li class="l2"><a href="#s-62">9.2 Mencatat jurnal manual (Finance Manager)</a></li><li class="l2"><a href="#s-63">9.3 Membalikkan jurnal manual</a></li><li class="l2"><a href="#s-64">Tips</a></li><li class="l1"><a href="#s-65">Bab 10 — Rekonsiliasi Bank</a></li><li class="l2"><a href="#s-66">10.1 Alur kerja</a></li><li class="l2"><a href="#s-67">10.2 Halaman awal</a></li><li class="l2"><a href="#s-68">10.3 Mengimpor rekening koran</a></li><li class="l2"><a href="#s-69">10.4 Ruang kerja rekonsiliasi</a></li><li class="l2"><a href="#s-70">10.5 Finalisasi (Finance Manager)</a></li><li class="l2"><a href="#s-71">Tips &amp; Kesalahan Umum</a></li><li class="l1"><a href="#s-72">Bab 11 — Laporan Operasional</a></li><li class="l2"><a href="#s-73">Cara memakai</a></li><li class="l2"><a href="#s-74">Tips</a></li><li class="l1"><a href="#s-75">Bab 12 — Laporan Keuangan</a></li><li class="l2"><a href="#s-76">12.1 Laba Rugi</a></li><li class="l2"><a href="#s-77">12.2 Pembanding</a></li><li class="l2"><a href="#s-78">12.3 Arus Kas</a></li><li class="l2"><a href="#s-79">12.4 Neraca</a></li><li class="l2"><a href="#s-80">12.5 Neraca Saldo</a></li><li class="l2"><a href="#s-81">12.6 Buku Besar</a></li><li class="l2"><a href="#s-82">Tips</a></li><li class="l1"><a href="#s-83">Bab 13 — Pajak</a></li><li class="l2"><a href="#s-84">13.1 Ringkasan</a></li><li class="l2"><a href="#s-85">13.2 PPN</a></li><li class="l2"><a href="#s-86">13.3 PPh dipotong pelanggan</a></li><li class="l2"><a href="#s-87">13.4 Estimasi PPh badan</a></li><li class="l2"><a href="#s-88">13.5 Setoran pajak (Finance Manager)</a></li><li class="l2"><a href="#s-89">13.6 Profil pajak (Administrator)</a></li><li class="l2"><a href="#s-90">Tips</a></li><li class="l1"><a href="#s-91">Bab 14 — Tutup Buku</a></li><li class="l2"><a href="#s-92">14.1 Daftar periode</a></li><li class="l2"><a href="#s-93">14.2 Menutup bulan</a></li><li class="l2"><a href="#s-94">14.3 Membuka kembali</a></li><li class="l2"><a href="#s-95">Tips &amp; Kesalahan Umum</a></li><li class="l1"><a href="#s-96">Bab 15 — Pengaturan dan Audit Log (tampilan untuk Pelaksana &amp; Finance Manager)</a></li><li class="l2"><a href="#s-97">15.1 Perusahaan &amp; dokumen</a></li><li class="l2"><a href="#s-98">15.2 Rekening bank</a></li><li class="l2"><a href="#s-99">15.3 Penomoran invoice</a></li><li class="l2"><a href="#s-100">15.4 Keuangan</a></li><li class="l2"><a href="#s-101">15.5 Tampilan Administrator (sebagai gambaran)</a></li><li class="l2"><a href="#s-102">Kapan menghubungi Administrator?</a></li><li class="l1"><a href="#s-103">Lampiran A — Alur Kerja End-to-End</a></li><li class="l2"><a href="#s-104">Skenario koreksi</a></li><li class="l1"><a href="#s-105">Lampiran B — Rutinitas Kerja</a></li><li class="l2"><a href="#s-106">Pelaksana</a></li><li class="l2"><a href="#s-107">Finance Manager</a></li><li class="l1"><a href="#s-108">Lampiran C — Matriks Hak Akses</a></li><li class="l1"><a href="#s-109">Lampiran D — Pesan Galat, Penyebab, dan Solusi</a></li><li class="l2"><a href="#s-110">FAQ</a></li><li class="l1"><a href="#s-111">Lampiran E — Glosarium</a></li></ul></nav><section class="bab"><h1 id="s-0">Tentang Panduan Ini</h1>
+<p>Panduan ini menjelaskan <strong>setiap menu dan fitur</strong> Trilogika Financial Management System (FMS) lengkap dengan tangkapan layar bernomor. Ditulis untuk dua peran pengguna harian:</p>
+<table>
+<thead>
+<tr>
+<th>Peran</th>
+<th>Nama di aplikasi</th>
+<th>Gambaran tugas</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Pelaksana</strong></td>
+<td>Staf Administrasi Keuangan</td>
+<td>Menginput data: pelanggan, invoice (lalu mengajukannya), pembayaran, pengeluaran dan penerimaan lain (diajukan), transfer kas, impor &amp; pencocokan rekening koran. Melihat seluruh laporan, tanpa dapat mengubahnya.</td>
+</tr>
+<tr>
+<td><strong>Finance Manager</strong></td>
+<td>Finance Manager</td>
+<td>Penyetuju dan pemegang otoritas koreksi: memverifikasi &amp; menerbitkan invoice, menyetujui pengeluaran, membalikkan transaksi, jurnal manual, finalisasi rekonsiliasi, setoran pajak, tutup buku, dan melihat dashboard.</td>
+</tr>
+</tbody></table>
+<p>Administrator (pemilik sistem) mengelola pengguna, pengaturan, penomoran, pajak, dan integrasi. Menu Administrator tidak dibahas rinci di sini; hanya tampilan yang perlu diketahui kedua peran di atas.</p>
+<h2 id="s-1">Cara membaca panduan</h2>
+<ul>
+<li><strong>Kotak peran</strong> di awal tiap bab menunjukkan siapa yang dapat melakukan apa. Bila Anda Pelaksana dan fitur hanya untuk Finance Manager, tombolnya memang <strong>tidak muncul</strong> di layar Anda; itu normal, bukan galat.</li>
+<li><strong>Penanda angka merah</strong> pada gambar (①, ②, …) menunjuk elemen yang dijelaskan pada daftar bernomor di bawah gambar.</li>
+<li>Data pada gambar adalah <strong>data contoh</strong> (pelanggan, nominal, dan nomor invoice fiktif).</li>
+<li>Setiap bab diakhiri <strong>Tips &amp; Kesalahan Umum</strong>. Daftar lengkap pesan galat ada di Lampiran D.</li>
+</ul>
+<h2 id="s-2">Prinsip kerja sistem (wajib dipahami)</h2>
+<ol>
+<li><strong>Draft → Diajukan → Diterbitkan.</strong> Pelaksana menyusun dan mengajukan; Finance Manager menerbitkan. Invoice terbit bernomor, bertanda tangan, dan <strong>dibekukan</strong>.</li>
+<li><strong>Tidak ada hapus/ubah diam-diam.</strong> Transaksi yang sudah berlaku (pembayaran, pengeluaran, transfer, jurnal) tidak dapat diedit atau dihapus. Koreksi dilakukan dengan <strong>pembalikan</strong> oleh Finance Manager; transaksi asli tetap tampil sehingga jejaknya utuh.</li>
+<li><strong>Dua tahap untuk uang keluar.</strong> Pengeluaran yang dicatat Pelaksana berstatus <em>Menunggu persetujuan</em> dan <strong>belum</strong> memengaruhi saldo/laporan sampai Finance Manager menyetujui. Pencatat tidak dapat menyetujui entrinya sendiri.</li>
+<li><strong>Basis kas.</strong> Laporan keuangan mengakui pendapatan saat uang diterima dan beban saat dibayar. Nilai <em>invoice terbit</em> dan <em>penerimaan kas</em> dilaporkan terpisah dan tidak boleh dijumlahkan.</li>
+<li><strong>Buku dikunci per bulan.</strong> Setelah bulan ditutup, transaksi bertanggal pada bulan itu ditolak. Koreksi dilakukan lewat pembalikan bertanggal hari ini.</li>
+<li><strong>Semua tercatat.</strong> Siapa melakukan apa dan kapan terekam di riwayat invoice dan audit log.</li>
+</ol>
+<h2 id="s-3">Peta menu</h2>
+<table>
+<thead>
+<tr>
+<th>Menu</th>
+<th>Pelaksana</th>
+<th>Finance Manager</th>
+<th>Bab</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Dashboard</td>
+<td>— (tidak tersedia)</td>
+<td>✔</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Invoice</td>
+<td>Buat, ubah draft, ajukan, tarik kembali, duplikasi, hapus draft, PDF</td>
+<td>+ Terbitkan, kembalikan, batalkan</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Pembayaran</td>
+<td>Catat</td>
+<td>+ Balikkan</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Pelanggan</td>
+<td>Lihat, tambah, ubah, arsipkan</td>
+<td>sama</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Produk &amp; Layanan</td>
+<td>Lihat</td>
+<td>Lihat</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Pengeluaran</td>
+<td>Ajukan, batalkan pengajuan sendiri</td>
+<td>+ Setujui, tolak, balikkan</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Kas &amp; Bank</td>
+<td>Transfer, penerimaan lain (diajukan)</td>
+<td>+ Penerimaan/non-operasional langsung berlaku, balikkan transfer</td>
+<td>8</td>
+</tr>
+<tr>
+<td>Jurnal</td>
+<td>Lihat</td>
+<td>+ Jurnal manual, balikkan</td>
+<td>9</td>
+</tr>
+<tr>
+<td>Rekonsiliasi</td>
+<td>Impor, cocokkan, catat dari mutasi (diajukan), hapus draft</td>
+<td>+ Finalisasi, buka kembali</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Laporan</td>
+<td>Lihat &amp; ekspor</td>
+<td>sama</td>
+<td>11</td>
+</tr>
+<tr>
+<td>Laporan Keuangan</td>
+<td>Lihat &amp; ekspor</td>
+<td>sama</td>
+<td>12</td>
+</tr>
+<tr>
+<td>Pajak</td>
+<td>Lihat; isi nomor bukti potong</td>
+<td>+ Setoran pajak, masukan tahun</td>
+<td>13</td>
+</tr>
+<tr>
+<td>Tutup Buku</td>
+<td>Lihat</td>
+<td>+ Tutup, buka kembali</td>
+<td>14</td>
+</tr>
+<tr>
+<td>Pengaturan</td>
+<td>Lihat (sebagian tab)</td>
+<td>Lihat</td>
+<td>15</td>
+</tr>
+<tr>
+<td>Audit Log</td>
+<td>—</td>
+<td>—</td>
+<td>Administrator</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>Rincian lengkap hak akses ada di <strong>Lampiran C</strong>.</p>
+</blockquote>
+</section>
+<section class="bab"><h1 id="s-4">Bab 1 — Memulai: Masuk, Keamanan, dan Mengenal Tampilan</h1>
+<blockquote>
+<p><strong>Peran:</strong> Pelaksana ✔ · Finance Manager ✔ (Finance Manager <strong>wajib</strong> mengaktifkan 2FA)</p>
+</blockquote>
+<h2 id="s-5">1.1 Masuk ke aplikasi</h2>
+<ol>
+<li>Buka alamat aplikasi di Chrome, Edge, atau Safari.</li>
+<li>Isi <strong>Email</strong> dan <strong>Password</strong> yang diberikan Administrator, lalu klik <strong>Masuk</strong>.</li>
+<li>Bila salah 5 kali berturut-turut, akun dikunci sementara 15 menit. Tunggu atau minta bantuan Administrator.</li>
+</ol>
+<figure id="fig-login"><figcaption class="ft">Gambar 1 — Halaman masuk</figcaption><img src="img/login.jpg" alt="Halaman masuk" ><p class="cap">Alamat aplikasi dibuka di peramban (Chrome/Edge/Safari). Tombol bulan/matahari di kanan atas mengganti tema terang/gelap.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Email akun Anda (diberikan Administrator).</span></li><li value="2"><span class="n">2</span><span>Password. Ikon mata di ujung kanan menampilkan/menyembunyikan isian.</span></li><li value="3"><span class="n">3</span><span>Klik Masuk. Setelah 5 kali salah, akun dikunci sementara 15 menit.</span></li><li value="4"><span class="n">4</span><span>Ganti tema terang/gelap (pilihan diingat di perangkat ini).</span></li></ol></figure>
+
+
+<h2 id="s-6">1.2 Mengganti password pertama kali</h2>
+<p>Akun baru memakai <strong>password sementara</strong>. Aplikasi memaksa Anda menggantinya sebelum dapat dipakai.</p>
+<p><strong>Aturan password baru:</strong> minimal 12 karakter, bukan password umum, dan tidak memuat nama atau email Anda. Setelah disimpan, sesi Anda di perangkat lain otomatis berakhir.</p>
+<figure id="fig-pw-forced"><figcaption class="ft">Gambar 2 — Ganti password saat masuk pertama kali</figcaption><img src="img/pw-forced.jpg" alt="Ganti password saat masuk pertama kali" ><p class="cap">Akun baru memakai password sementara dari Administrator. Aplikasi memaksa Anda menggantinya sebelum bisa dipakai.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Isi password sementara dari Administrator.</span></li><li value="2"><span class="n">2</span><span>Password baru: minimal 12 karakter, bukan password umum, tidak memuat nama/email Anda.</span></li><li value="3"><span class="n">3</span><span>Ketik ulang password baru yang sama.</span></li><li value="4"><span class="n">4</span><span>Simpan. Sesi Anda di perangkat lain otomatis berakhir.</span></li></ol></figure>
+
+
+<p>Anda dapat mengganti password kapan saja lewat menu pengguna (pojok kanan atas).</p>
+<h2 id="s-7">1.3 Mengenal kerangka aplikasi</h2>
+<p>Semua halaman memiliki kerangka yang sama. <strong>Menu yang tampil mengikuti peran Anda</strong>; menu yang tidak ada berarti bukan wewenang peran Anda.</p>
+<figure id="fig-shell"><figcaption class="ft">Gambar 3 — Kerangka aplikasi</figcaption><img src="img/shell.jpg" alt="Kerangka aplikasi" ><p class="cap">Semua halaman memakai kerangka yang sama. Menu yang tampil mengikuti peran Anda.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Merek &amp; nama aplikasi (klik untuk ke halaman awal).</span></li><li value="2"><span class="n">2</span><span>Pencarian global: invoice, pelanggan, pembayaran, entri kas.</span></li><li value="3"><span class="n">3</span><span>Lonceng: daftar pekerjaan yang menunggu Anda. Titik merah = ada yang perlu ditindak.</span></li><li value="4"><span class="n">4</span><span>Tema terang/gelap.</span></li><li value="5"><span class="n">5</span><span>Menu pengguna: identitas, ganti password, Keamanan (2FA), Keluar.</span></li><li value="6"><span class="n">6</span><span>Menu utama (sidebar). Item yang tidak tampil berarti tidak termasuk wewenang peran Anda.</span></li></ol></figure>
+
+
+<h3>Lonceng notifikasi</h3>
+<p>Berisi antrean pekerjaan sesuai peran, misalnya <em>invoice menunggu verifikasi</em> (Finance Manager) atau <em>invoice dikembalikan</em> dan <em>invoice jatuh tempo</em>. Klik butirnya untuk langsung membuka daftar yang sudah terfilter. <strong>Titik merah</strong> artinya ada yang perlu ditindak.</p>
+<figure id="fig-shell-bell"><figcaption class="ft">Gambar 4 — Lonceng notifikasi</figcaption><img src="img/shell-bell.jpg" alt="Lonceng notifikasi" ><p class="cap">Berisi antrean pekerjaan sesuai peran (mis. invoice menunggu verifikasi, pengeluaran menunggu persetujuan, invoice jatuh tempo). Klik butir untuk langsung ke daftar yang sudah terfilter.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Setiap baris = satu jenis pekerjaan beserta jumlahnya; klik untuk membukanya.</span></li></ol></figure>
+
+
+<h3>Menu pengguna</h3>
+<figure id="fig-shell-usermenu"><figcaption class="ft">Gambar 5 — Menu pengguna</figcaption><img src="img/shell-usermenu.jpg" alt="Menu pengguna" ><p class="cap">Dibuka dengan mengklik nama lembaga di kanan atas.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Nama, email, dan peran Anda.</span></li><li value="2"><span class="n">2</span><span>Ganti password kapan saja.</span></li><li value="3"><span class="n">3</span><span>Aktifkan/kelola autentikasi dua langkah.</span></li><li value="4"><span class="n">4</span><span>Keluar dari aplikasi (selalu lakukan di komputer bersama).</span></li></ol></figure>
+
+
+<h3>Pencarian global</h3>
+<p>Ketik minimal 2 karakter lalu tekan Enter. Hasil dikelompokkan per jenis dan hanya memuat data yang boleh Anda lihat.</p>
+<figure id="fig-search"><figcaption class="ft">Gambar 6 — Hasil pencarian global</figcaption><img src="img/search.jpg" alt="Hasil pencarian global" ><p class="cap">Ketik minimal 2 karakter di kotak cari (atas) lalu tekan Enter. Hasil dikelompokkan per jenis dan hanya menampilkan yang boleh Anda lihat.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Kata kunci: nomor invoice, nama pelanggan, referensi transfer, keterangan kas.</span></li><li value="2"><span class="n">2</span><span>Tiap bagian menunjukkan jumlah hasil; klik baris untuk membuka dokumennya.</span></li></ol></figure>
+
+
+<h3>Tema terang/gelap</h3>
+<figure id="fig-theme-dark"><figcaption class="ft">Gambar 7 — Tema gelap</figcaption><img src="img/theme-dark.jpg" alt="Tema gelap" ><p class="cap">Nyaman untuk bekerja malam hari. Pilihan tema tersimpan di perangkat Anda dan tidak memengaruhi PDF/Excel.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Klik lagi untuk kembali ke tema terang.</span></li></ol></figure>
+
+
+<h3>Di ponsel</h3>
+<p>Aplikasi menyesuaikan layar kecil. Menu utama dibuka dari tombol tiga garis.</p>
+<figure id="fig-mobile-list"><figcaption class="ft">Gambar 8 — Tampilan di ponsel</figcaption><img src="img/mobile-list.jpg" alt="Tampilan di ponsel" ><p class="cap">Aplikasi menyesuaikan layar kecil. Menu utama berada di tombol tiga garis.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Buka menu utama.</span></li><li value="2"><span class="n">2</span><span>Pencarian.</span></li></ol></figure>
+
+
+
+<figure id="fig-mobile-menu"><figcaption class="ft">Gambar 9 — Menu di ponsel</figcaption><img src="img/mobile-menu.jpg" alt="Menu di ponsel" ><p class="cap">Pilih halaman dari laci menu; tutup dengan tanda silang atau mengetuk area gelap.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Ketuk untuk berpindah halaman.</span></li></ol></figure>
+
+
+<h2 id="s-8">1.4 Autentikasi dua langkah (2FA)</h2>
+<p>2FA menambah lapisan keamanan: selain password, Anda memasukkan kode 6 digit dari aplikasi autentikator di ponsel (Google Authenticator, Microsoft Authenticator, Aegis, dsb.). <strong>Finance Manager dan Administrator wajib mengaktifkannya</strong>; mereka diarahkan ke halaman ini saat pertama masuk. Pelaksana boleh mengaktifkan secara sukarela.</p>
+<h3>Mengaktifkan 2FA</h3>
+<ol>
+<li>Menu pengguna → <strong>Keamanan (2FA)</strong>, klik <strong>Mulai mengaktifkan</strong>.</li>
+<li>Masukkan password Anda.</li>
+<li>Pindai kode QR dengan aplikasi autentikator (atau ketik kunci manual), lalu masukkan 6 digit yang tampil.</li>
+<li>Simpan <strong>10 kode pemulihan</strong>. Kode hanya ditampilkan <strong>sekali</strong>.</li>
+</ol>
+<figure id="fig-sec-idle"><figcaption class="ft">Gambar 10 — Keamanan akun — sebelum 2FA aktif</figcaption><img src="img/sec-idle.jpg" alt="Keamanan akun — sebelum 2FA aktif" ><p class="cap">Dibuka dari menu pengguna → Keamanan (2FA). Peran yang diwajibkan (mis. Finance Manager &amp; Administrator) akan diarahkan ke sini saat pertama masuk.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Status saat ini.</span></li><li value="2"><span class="n">2</span><span>Mulai mengaktifkan.</span></li></ol></figure>
+
+
+
+<figure id="fig-sec-password"><figcaption class="ft">Gambar 11 — Konfirmasi password</figcaption><img src="img/sec-password.jpg" alt="Konfirmasi password" ><p class="cap">Demi keamanan, aplikasi meminta password lagi sebelum membuat kunci 2FA.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Masukkan password akun Anda.</span></li><li value="2"><span class="n">2</span><span>Lanjut ke kode QR.</span></li></ol></figure>
+
+
+
+<figure id="fig-sec-qr"><figcaption class="ft">Gambar 12 — Pindai kode QR</figcaption><img src="img/sec-qr.jpg" alt="Pindai kode QR" ><p class="cap">Buka aplikasi autentikator di ponsel (Google Authenticator, Microsoft Authenticator, Aegis, dll.) → tambah akun → pindai kode ini.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Kode QR untuk dipindai aplikasi autentikator.</span></li><li value="2"><span class="n">2</span><span>Tidak bisa memindai? Ketik kunci ini secara manual di aplikasi.</span></li><li value="3"><span class="n">3</span><span>Masukkan 6 digit yang tampil di aplikasi (berganti tiap 30 detik).</span></li><li value="4"><span class="n">4</span><span>Aktifkan 2FA.</span></li></ol></figure>
+
+
+
+<figure id="fig-sec-recovery"><figcaption class="ft">Gambar 13 — Simpan kode pemulihan</figcaption><img src="img/sec-recovery.jpg" alt="Simpan kode pemulihan" ><p class="cap">10 kode sekali pakai untuk masuk bila ponsel hilang/rusak. Ditampilkan SEKALI saja.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Sepuluh kode pemulihan. Setiap kode hanya berlaku sekali.</span></li><li value="2"><span class="n">2</span><span>Salin ke papan klip, atau Unduh .txt.</span></li><li value="3"><span class="n">3</span><span>Centang setelah kode tersimpan di tempat aman (brankas/pengelola password — bukan di ponsel yang sama).</span></li><li value="4"><span class="n">4</span><span>Selesai (baru aktif setelah dicentang).</span></li></ol></figure>
+
+
+
+<figure id="fig-sec-active"><figcaption class="ft">Gambar 14 — Keamanan akun — 2FA aktif</figcaption><img src="img/sec-active.jpg" alt="Keamanan akun — 2FA aktif" ><p class="cap">Status memuat tanggal aktif dan sisa kode pemulihan.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Status, tanggal aktif, dan sisa kode pemulihan.</span></li><li value="2"><span class="n">2</span><span>Buat 10 kode baru (yang lama hangus) — lakukan bila kode hampir habis.</span></li><li value="3"><span class="n">3</span><span>Mematikan 2FA (tidak tersedia untuk peran yang diwajibkan).</span></li></ol></figure>
+
+
+<h3>Masuk dengan 2FA</h3>
+<p>Setelah password benar, masukkan kode 6 digit dari autentikator <strong>atau</strong> salah satu kode pemulihan (format <code>XXXXX-XXXXX</code>; tiap kode hanya sekali pakai).</p>
+<figure id="fig-login-2fa"><figcaption class="ft">Gambar 15 — Masuk dengan 2FA (langkah 2)</figcaption><img src="img/login-2fa.jpg" alt="Masuk dengan 2FA (langkah 2)" ><p class="cap">Setelah password benar, aplikasi meminta kode dari aplikasi autentikator. Tanpa kode, tidak ada sesi yang dibuat.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Kode 6 digit dari aplikasi autentikator, ATAU salah satu kode pemulihan (format XXXXX-XXXXX).</span></li><li value="2"><span class="n">2</span><span>Verifikasi untuk masuk.</span></li><li value="3"><span class="n">3</span><span>Kembali ke langkah 1 (mis. salah akun).</span></li></ol></figure>
+
+
+<h3>Kode pemulihan habis atau menonaktifkan 2FA</h3>
+<p>Tindakan sensitif meminta password <strong>dan</strong> satu kode. Buat ulang kode pemulihan bila hampir habis (kode lama hangus). Peran yang diwajibkan tidak dapat mematikan 2FA.</p>
+<figure id="fig-sec-regen"><figcaption class="ft">Gambar 16 — Buat ulang kode pemulihan / nonaktifkan</figcaption><img src="img/sec-regen.jpg" alt="Buat ulang kode pemulihan / nonaktifkan" ><p class="cap">Tindakan sensitif selalu meminta password dan satu kode (dari autentikator atau salah satu kode pemulihan).</p><ol class="legend"><li value="1"><span class="n">1</span><span>Password akun.</span></li><li value="2"><span class="n">2</span><span>Kode autentikator atau kode pemulihan.</span></li></ol></figure>
+
+
+<blockquote>
+<p><strong>Ponsel hilang?</strong> Masuk dengan kode pemulihan, lalu daftarkan ponsel baru. Bila kode pun hilang, hubungi Administrator untuk mereset 2FA Anda.</p>
+</blockquote>
+<h2 id="s-9">Tips &amp; Kesalahan Umum</h2>
+<ul>
+<li>Jangan menyimpan kode pemulihan di ponsel yang sama dengan autentikator; pakai brankas/pengelola password.</li>
+<li>Selalu <strong>Keluar</strong> bila memakai komputer bersama.</li>
+<li>Jam ponsel harus akurat; kode 6 digit bergantung pada waktu.</li>
+</ul>
+</section>
+<section class="bab"><h1 id="s-10">Bab 2 — Dashboard Keuangan</h1>
+<blockquote>
+<p><strong>Peran:</strong> Finance Manager ✔ · Pelaksana ✘ (menu tidak tersedia)</p>
+</blockquote>
+<p>Dashboard memberi gambaran cepat kondisi penagihan. Semua angka dihitung langsung dari database, bukan input manual, sehingga selalu sama dengan daftar dan laporan.</p>
+<h2 id="s-11">2.1 Membaca dashboard</h2>
+<figure id="fig-dash"><figcaption class="ft">Gambar 17 — Dashboard Keuangan</figcaption><img src="img/dash.jpg" alt="Dashboard Keuangan" ><p class="cap">Hanya Finance Manager (dan Administrator) yang melihat dashboard. Semua angka dihitung langsung dari database, bukan input manual.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Periode tanggal yang dianalisis (bawaan: 1 Januari s.d. hari ini).</span></li><li value="2"><span class="n">2</span><span>Saring seluruh angka untuk satu pelanggan.</span></li><li value="3"><span class="n">3</span><span>Tiga angka utama: Nilai Invoice Terbit, Penerimaan Kas, dan Piutang Belum Dibayar. Klik kartu untuk melihat rinciannya.</span></li><li value="4"><span class="n">4</span><span>Enam status invoice yang SALING LEPAS (satu invoice hanya masuk satu status). Klik untuk membuka daftar yang cocok.</span></li><li value="5"><span class="n">5</span><span>Tren per bulan: Invoice Terbit (merah) dan Penerimaan Kas (kuning). Arahkan kursor ke titik untuk melihat nilai.</span></li><li value="6"><span class="n">6</span><span>Lima invoice terbaru pada periode; klik nomor untuk membuka.</span></li><li value="7"><span class="n">7</span><span>Jumlah &amp; nilai per status (termasuk Dibatalkan). Baris Total = seluruh invoice pada periode.</span></li></ol></figure>
+
+
+<p><strong>Cara memahami angka:</strong></p>
+<ul>
+<li><strong>Nilai Invoice Terbit</strong> = total nilai invoice yang diterbitkan pada periode (penerbitan, <em>bukan</em> uang masuk).</li>
+<li><strong>Penerimaan Kas</strong> = uang yang benar-benar diterima pada periode (menurut tanggal pembayaran, dikurangi pembalikan).</li>
+<li><strong>Piutang Belum Dibayar</strong> = sisa tagihan invoice terbit per hari ini.</li>
+<li>Enam status invoice <strong>saling lepas</strong>: satu invoice hanya masuk ke satu status, sehingga jumlahnya cocok dengan Total.</li>
+<li>Angka Nilai Invoice dan Penerimaan Kas <strong>tidak boleh dijumlahkan</strong>.</li>
+</ul>
+<h2 id="s-12">2.2 Memilih periode</h2>
+<figure id="fig-dash-period"><figcaption class="ft">Gambar 18 — Memilih periode</figcaption><img src="img/dash-period.jpg" alt="Memilih periode" ><p class="cap">Klik tombol periode. Pilih rentang cepat atau isi tanggal sendiri.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Rentang cepat: Bulan ini, 30 hari terakhir, Tahun ini, Tahun lalu.</span></li><li value="2"><span class="n">2</span><span>Tanggal awal.</span></li><li value="3"><span class="n">3</span><span>Tanggal akhir (tidak boleh di masa depan).</span></li><li value="4"><span class="n">4</span><span>Terapkan. Tombol nonaktif bila tanggal tidak valid.</span></li></ol></figure>
+
+
+<p>Tombol <strong>Terapkan</strong> nonaktif bila tanggal tidak valid (tanggal akhir tidak boleh di masa depan atau sebelum tanggal awal).</p>
+<h2 id="s-13">2.3 Grafik dalam bentuk tabel</h2>
+<figure id="fig-dash-table"><figcaption class="ft">Gambar 19 — Grafik dalam bentuk tabel</figcaption><img src="img/dash-table.jpg" alt="Grafik dalam bentuk tabel" ><p class="cap">Tombol “Tampilkan tabel” mengganti grafik dengan tabel angka (berguna untuk dicetak atau dibaca pembaca layar).</p><ol class="legend"><li value="1"><span class="n">1</span><span>Kembali ke grafik.</span></li><li value="2"><span class="n">2</span><span>Nilai invoice terbit dan penerimaan kas tiap bulan.</span></li></ol></figure>
+
+
+<h2 id="s-14">2.4 Dashboard untuk satu pelanggan</h2>
+<figure id="fig-dash-customer"><figcaption class="ft">Gambar 20 — Dashboard untuk satu pelanggan</figcaption><img src="img/dash-customer.jpg" alt="Dashboard untuk satu pelanggan" ><p class="cap">Setelah memilih pelanggan, semua kartu, status, grafik, dan tabel hanya memuat data pelanggan itu.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Pelanggan terpilih (kembalikan ke “Semua Pelanggan” untuk melihat keseluruhan).</span></li></ol></figure>
+
+
+<h2 id="s-15">Tips</h2>
+<ul>
+<li>Klik kartu atau status untuk membuka daftar invoice yang terfilter sesuai definisi yang sama.</li>
+<li>Cek dashboard dan lonceng setiap pagi sebagai titik awal pekerjaan harian.</li>
+</ul>
+</section>
+<section class="bab"><h1 id="s-16">Bab 3 — Pelanggan</h1>
+<blockquote>
+<p><strong>Peran:</strong> Pelaksana ✔ · Finance Manager ✔ (lihat, tambah, ubah, arsipkan)</p>
+</blockquote>
+<h2 id="s-17">3.1 Daftar pelanggan</h2>
+<figure id="fig-cust-list"><figcaption class="ft">Gambar 21 — Daftar pelanggan</figcaption><img src="img/cust-list.jpg" alt="Daftar pelanggan" ><p class="cap">Menu Pelanggan. Pelaksana dan Finance Manager dapat menambah, mengubah, dan mengarsipkan pelanggan.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Cari nama, kontak, kota, atau email.</span></li><li value="2"><span class="n">2</span><span>Tampilkan pelanggan Aktif, Diarsipkan, atau Semua.</span></li><li value="3"><span class="n">3</span><span>Tambah pelanggan baru.</span></li><li value="4"><span class="n">4</span><span>Piutang = nilai invoice terbit dikurangi pembayaran yang tercatat.</span></li><li value="5"><span class="n">5</span><span>Edit data pelanggan; Arsipkan menyembunyikan pelanggan dari pilihan invoice baru (riwayat tetap).</span></li></ol></figure>
+
+
+<p><strong>Piutang</strong> per pelanggan = nilai invoice terbit dikurangi pembayaran yang tercatat.</p>
+<h2 id="s-18">3.2 Menambah pelanggan</h2>
+<ol>
+<li>Klik <strong>Tambah pelanggan</strong>.</li>
+<li>Isi <strong>Nama</strong> (wajib) persis seperti yang akan tercetak di invoice. Lengkapi kontak, kota, email, dan NPWP bila ada.</li>
+<li>Klik <strong>Simpan</strong>.</li>
+</ol>
+<figure id="fig-cust-new"><figcaption class="ft">Gambar 22 — Menambah pelanggan</figcaption><img src="img/cust-new.jpg" alt="Menambah pelanggan" ><p class="cap">Hanya nama yang wajib; makin lengkap data kontak, makin rapi invoice dan penagihan.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Nama perusahaan/instansi persis seperti yang akan tercetak di invoice.</span></li><li value="2"><span class="n">2</span><span>NPWP (opsional) — dicetak bila diisi.</span></li><li value="3"><span class="n">3</span><span>Simpan. Aplikasi memeriksa kemungkinan duplikat lebih dulu.</span></li></ol></figure>
+
+
+
+<figure id="fig-cust-saved"><figcaption class="ft">Gambar 23 — Pelanggan tersimpan</figcaption><img src="img/cust-saved.jpg" alt="Pelanggan tersimpan" ><p class="cap">Muncul notifikasi hijau dan pelanggan baru langsung ada di daftar serta di pilihan invoice.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Pelanggan baru.</span></li></ol></figure>
+
+
+<h3>Pencegahan duplikat</h3>
+<p>Sistem mencegah pelanggan ganda karena salah ketik.</p>
+<ul>
+<li><strong>Nama dan kota sama persis</strong> → penyimpanan <strong>ditolak</strong> dan pelanggan yang cocok ditampilkan. Pakai yang sudah ada.</li>
+</ul>
+<figure id="fig-cust-dup-exact"><figcaption class="ft">Gambar 24 — Pelanggan yang sudah ada (ditolak)</figcaption><img src="img/cust-dup-exact.jpg" alt="Pelanggan yang sudah ada (ditolak)" ><p class="cap">Bila nama dan kota sama persis dengan pelanggan yang sudah ada, penyimpanan ditolak dan pelanggan yang cocok ditampilkan. Pakai pelanggan itu, jangan buat ganda.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Pesan penolakan beserta pelanggan yang cocok (nama dan kotanya).</span></li></ol></figure>
+
+
+<ul>
+<li><strong>Nama sama, kota berbeda</strong> → diminta <strong>konfirmasi</strong>. Pilih lanjut hanya bila memang entitas berbeda (misalnya cabang lain).</li>
+</ul>
+<figure id="fig-cust-dup"><figcaption class="ft">Gambar 25 — Peringatan pelanggan mirip</figcaption><img src="img/cust-dup.jpg" alt="Peringatan pelanggan mirip" ><p class="cap">Bila nama sama tetapi kota berbeda, aplikasi meminta konfirmasi. Ini mencegah catatan ganda karena salah ketik, tetapi tetap mengizinkan cabang/pelanggan yang memang berbeda.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Pilih ini HANYA bila memang pelanggan yang berbeda (mis. cabang lain). Jika sama, tekan Batal dan pakai pelanggan yang sudah ada.</span></li></ol></figure>
+
+
+<h2 id="s-19">3.3 Detail pelanggan</h2>
+<p>Klik nama pelanggan untuk melihat data kontak, ringkasan piutang, dan seluruh riwayat invoice.</p>
+<figure id="fig-cust-detail"><figcaption class="ft">Gambar 26 — Detail pelanggan</figcaption><img src="img/cust-detail.jpg" alt="Detail pelanggan" ><p class="cap">Klik nama pelanggan di daftar. Menampilkan data kontak, ringkasan piutang, dan seluruh riwayat invoice pelanggan itu.</p></figure>
+
+
+<h2 id="s-20">3.4 Mengubah pelanggan</h2>
+<p>Perubahan data pelanggan <strong>tidak</strong> mengubah invoice yang sudah terbit (nama pada invoice terbit adalah salinan beku).</p>
+<figure id="fig-cust-edit"><figcaption class="ft">Gambar 27 — Mengubah pelanggan</figcaption><img src="img/cust-edit.jpg" alt="Mengubah pelanggan" ><p class="cap">Perubahan data pelanggan tidak mengubah invoice yang sudah terbit (nama pada invoice terbit adalah salinan beku).</p><ol class="legend"><li value="1"><span class="n">1</span><span>Simpan perubahan.</span></li></ol></figure>
+
+
+<h2 id="s-21">3.5 Mengarsipkan pelanggan</h2>
+<p>Pelanggan yang tidak aktif <strong>diarsipkan</strong>, bukan dihapus: riwayatnya tetap utuh dan pelanggan tidak muncul di pilihan invoice baru. Untuk mengaktifkan kembali, filter <strong>Status → Diarsipkan</strong> lalu aktifkan.</p>
+<figure id="fig-cust-archive"><figcaption class="ft">Gambar 28 — Mengarsipkan pelanggan</figcaption><img src="img/cust-archive.jpg" alt="Mengarsipkan pelanggan" ><p class="cap">Pelanggan yang tidak aktif diarsipkan (bukan dihapus). Riwayatnya tetap utuh dan dapat diaktifkan kembali lewat filter Status → Diarsipkan.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Konfirmasi pengarsipan.</span></li></ol></figure>
+
+
+<h2 id="s-22">Tips &amp; Kesalahan Umum</h2>
+<ul>
+<li>Cari dulu sebelum menambah; hindari duplikat.</li>
+<li>Tulis nama lembaga lengkap dan konsisten (mis. “PT Nusantara Boga”, bukan “Nusantara”).</li>
+<li>Ejaan nama menentukan tampilan di PDF invoice; periksa sebelum menyimpan.</li>
+</ul>
+</section>
+<section class="bab"><h1 id="s-23">Bab 4 — Produk &amp; Layanan</h1>
+<blockquote>
+<p><strong>Peran:</strong> Pelaksana ✔ lihat · Finance Manager ✔ lihat · Penambahan/perubahan: Administrator</p>
+</blockquote>
+<p>Katalog yang dipilih saat membuat invoice. Memilih produk mengisi <strong>satuan, harga, deskripsi, dan pajak bawaan</strong> secara otomatis.</p>
+<figure id="fig-prod-list"><figcaption class="ft">Gambar 29 — Produk &amp; Layanan (katalog)</figcaption><img src="img/prod-list.jpg" alt="Produk &amp; Layanan (katalog)" ><p class="cap">Katalog yang dipilih saat membuat invoice. Pelaksana dan Finance Manager dapat MELIHAT; penambahan/perubahan produk dilakukan Administrator.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Cari kode atau nama produk.</span></li><li value="2"><span class="n">2</span><span>Harga default terisi otomatis di baris invoice (dapat diubah oleh yang berwenang).</span></li><li value="3"><span class="n">3</span><span>Pajak bawaan produk (non-PKP: umumnya “Tanpa pajak”).</span></li></ol></figure>
+
+
+<h2 id="s-24">Cara memakainya</h2>
+<ol>
+<li>Cari produk berdasarkan kode atau nama untuk memastikan produk/skema yang benar.</li>
+<li>Saat membuat invoice, pilih produk pada baris; harga default terisi otomatis.</li>
+<li>Bila produk tidak ada atau harga katalog perlu diubah permanen, hubungi Administrator.</li>
+</ol>
+<h2 id="s-25">Tips</h2>
+<ul>
+<li>Harga di baris invoice boleh disesuaikan oleh yang berwenang (Pelaksana dan Finance Manager), tetapi katalog tidak berubah.</li>
+<li>Lembaga ini non-PKP, sehingga pajak bawaan umumnya <em>Tanpa pajak</em>.</li>
+</ul>
+</section>
+<section class="bab"><h1 id="s-26">Bab 5 — Invoice</h1>
+<blockquote>
+<p><strong>Peran:</strong> Pelaksana ✔ buat, ubah draft, ajukan, tarik kembali, duplikasi, hapus draft, lihat PDF · Finance Manager ✔ + terbitkan, kembalikan, batalkan</p>
+</blockquote>
+<h2 id="s-27">5.1 Alur hidup sebuah invoice</h2>
+<pre><code>Draft ──(Pelaksana ajukan)──► Menunggu Verifikasi ──(Finance Manager setujui)──► Diterbitkan ──► (dibayar bertahap) ──► Lunas
+  ▲                                   │                                               │
+  └──(Finance Manager kembalikan)─────┘                                               └──(Finance Manager batalkan)──► Dibatalkan
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Artinya</th>
+<th>Bisa diubah?</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Draft</strong></td>
+<td>Belum bernomor, berwatermark DRAFT</td>
+<td>Ya, oleh pembuatnya</td>
+</tr>
+<tr>
+<td><strong>Menunggu Verifikasi</strong></td>
+<td>Diajukan, menunggu Finance Manager</td>
+<td>Tidak (terkunci); dapat ditarik kembali</td>
+</tr>
+<tr>
+<td><strong>Diterbitkan</strong></td>
+<td>Bernomor resmi, bertanda tangan &amp; cap</td>
+<td>Tidak (dibekukan)</td>
+</tr>
+<tr>
+<td><strong>Dibatalkan</strong></td>
+<td>Dibatalkan beserta alasan; nomor tidak dipakai ulang</td>
+<td>Tidak</td>
+</tr>
+</tbody></table>
+<p>Status <strong>pembayaran</strong> terpisah dari status dokumen: <em>Belum Dibayar → Dibayar Sebagian → Lunas</em>, dan <em>Jatuh Tempo</em> bila melewati tanggal jatuh tempo dengan sisa tagihan.</p>
+<h2 id="s-28">5.2 Daftar invoice</h2>
+<figure id="fig-inv-list"><figcaption class="ft">Gambar 30 — Daftar invoice</figcaption><img src="img/inv-list.jpg" alt="Daftar invoice" ><p class="cap">Menu Invoice. Pelaksana melihat seluruh invoice; Finance Manager juga.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Membuat invoice baru.</span></li><li value="2"><span class="n">2</span><span>Ekspor daftar (sesuai filter) ke CSV atau Excel.</span></li><li value="3"><span class="n">3</span><span>Cari nomor invoice atau nama pelanggan.</span></li><li value="4"><span class="n">4</span><span>Saring menurut status dokumen: Draft, Menunggu verifikasi, Diterbitkan, Dibatalkan.</span></li><li value="5"><span class="n">5</span><span>Saring menurut pembayaran: Belum dibayar, Dibayar sebagian, Lunas, Jatuh tempo.</span></li><li value="6"><span class="n">6</span><span>Terapkan filter (Reset mengembalikan semua).</span></li><li value="7"><span class="n">7</span><span>Sisa = tagihan yang belum dibayar. Merah = sudah lewat jatuh tempo.</span></li><li value="8"><span class="n">8</span><span>Menu aksi per baris (Duplikasi, Hapus draft, Batalkan — sesuai status &amp; peran).</span></li></ol></figure>
+
+
+
+<figure id="fig-inv-list-filtered"><figcaption class="ft">Gambar 31 — Contoh filter: invoice terbit yang jatuh tempo</figcaption><img src="img/inv-list-filtered.jpg" alt="Contoh filter: invoice terbit yang jatuh tempo" ><p class="cap">Kombinasi filter dapat dipakai untuk menyiapkan penagihan. Angka di dashboard dan lonceng memakai definisi yang sama.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Filter aktif.</span></li></ol></figure>
+
+
+
+<figure id="fig-inv-row-menu"><figcaption class="ft">Gambar 32 — Menu aksi pada baris</figcaption><img src="img/inv-row-menu.jpg" alt="Menu aksi pada baris" ><p class="cap">Pada draft: Duplikasi dan Hapus draft. Pada invoice terbit: Duplikasi (dan Batalkan invoice untuk Finance Manager).</p><ol class="legend"><li value="1"><span class="n">1</span><span>Salin invoice menjadi draft baru (tanpa nomor &amp; pembayaran).</span></li></ol></figure>
+
+
+<h2 id="s-29">5.3 Membuat invoice (Pelaksana)</h2>
+<p>Klik <strong>Buat invoice</strong>. Formulir terdiri dari tiga bagian.</p>
+<h3>a. Informasi utama</h3>
+<figure id="fig-inv-new-top"><figcaption class="ft">Gambar 33 — Membuat invoice — Informasi utama</figcaption><img src="img/inv-new-top.jpg" alt="Membuat invoice — Informasi utama" ><p class="cap">Buka Invoice → Buat invoice. Bagian atas berisi data dokumen.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Pilih pelanggan: ketik sebagian nama lalu pilih dari daftar. Pelanggan baru dapat ditambahkan langsung dari sini.</span></li><li value="2"><span class="n">2</span><span>Tanggal invoice (bawaan hari ini).</span></li><li value="3"><span class="n">3</span><span>Jangka waktu pembayaran dalam hari. Tanggal jatuh tempo dihitung otomatis.</span></li><li value="4"><span class="n">4</span><span>Hari kalender atau hari kerja (Senin–Jumat).</span></li><li value="5"><span class="n">5</span><span>Nomor kontrak/PO pelanggan (opsional, tercetak di invoice).</span></li><li value="6"><span class="n">6</span><span>Rekening tujuan pembayaran yang tercetak di invoice.</span></li></ol></figure>
+
+
+<h3>b. Rincian transaksi</h3>
+<figure id="fig-inv-new-lines"><figcaption class="ft">Gambar 34 — Rincian transaksi (baris produk/layanan)</figcaption><img src="img/inv-new-lines.jpg" alt="Rincian transaksi (baris produk/layanan)" ><p class="cap">Setiap baris = satu produk/layanan. Memilih produk mengisi satuan, harga, dan deskripsi otomatis.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Cari &amp; pilih produk dari katalog.</span></li><li value="2"><span class="n">2</span><span>Jumlah (qty). Harga satuan terisi dari katalog.</span></li><li value="3"><span class="n">3</span><span>Deskripsi baris yang tercetak. Boleh ditambah (mis. nama peserta, periode); “Remark” program tetap mengikuti produk.</span></li><li value="4"><span class="n">4</span><span>Diskon per baris (Rupiah) — hanya bila diizinkan.</span></li><li value="5"><span class="n">5</span><span>Tambah baris produk lain.</span></li><li value="6"><span class="n">6</span><span>Ubah urutan baris atau hapus baris.</span></li></ol></figure>
+
+
+<h3>c. Ringkasan biaya</h3>
+<figure id="fig-inv-new-summary"><figcaption class="ft">Gambar 35 — Ringkasan biaya (dihitung otomatis)</figcaption><img src="img/inv-new-summary.jpg" alt="Ringkasan biaya (dihitung otomatis)" ><p class="cap">Panel kanan menghitung ulang setiap kali isian berubah. Angka akhir selalu dihitung ulang oleh server saat disimpan.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Diskon tambahan atas seluruh invoice (bila berwenang).</span></li><li value="2"><span class="n">2</span><span>Biaya transport dan Administrasi (opsional).</span></li><li value="3"><span class="n">3</span><span>Nett Total = total invoice, lengkap dengan terbilang.</span></li><li value="4"><span class="n">4</span><span>DP yang sudah diterima: dicatat sebagai pembayaran pertama saat invoice terbit (tidak mengurangi nilai invoice).</span></li><li value="5"><span class="n">5</span><span>Sisa tagihan setelah DP.</span></li><li value="6"><span class="n">6</span><span>Simpan DAN langsung ajukan ke Finance Manager (jalan pintas bila sudah yakin).</span></li><li value="7"><span class="n">7</span><span>Simpan sebagai draft (belum bernomor) — bisa dilanjutkan nanti.</span></li><li value="8"><span class="n">8</span><span>Simpan lalu tampilkan PDF draft untuk diperiksa.</span></li></ol></figure>
+
+
+<h3>Validasi</h3>
+<p>Isian wajib yang kosong ditandai merah dengan pesan. Perbaiki lalu simpan lagi.</p>
+<figure id="fig-inv-new-error"><figcaption class="ft">Gambar 36 — Validasi saat menyimpan</figcaption><img src="img/inv-new-error.jpg" alt="Validasi saat menyimpan" ><p class="cap">Isian wajib yang kosong ditandai merah dengan pesan. Perbaiki lalu simpan lagi.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Pesan kesalahan / isian yang harus dilengkapi.</span></li></ol></figure>
+
+
+<h3>Tiga cara menyimpan</h3>
+<table>
+<thead>
+<tr>
+<th>Tombol</th>
+<th>Hasil</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Simpan sebagai draft</strong></td>
+<td>Draft tersimpan, dapat dilanjutkan nanti</td>
+</tr>
+<tr>
+<td><strong>Simpan &amp; lihat PDF draft</strong></td>
+<td>Draft tersimpan, lalu pratinjau PDF berwatermark dibuka</td>
+</tr>
+<tr>
+<td><strong>Simpan &amp; ajukan verifikasi</strong></td>
+<td>Draft tersimpan dan langsung dikirim ke Finance Manager</td>
+</tr>
+</tbody></table>
+<h2 id="s-30">5.4 Draft, pratinjau PDF, dan pengajuan</h2>
+<figure id="fig-inv-draft"><figcaption class="ft">Gambar 37 — Draft invoice tersimpan</figcaption><img src="img/inv-draft.jpg" alt="Draft invoice tersimpan" ><p class="cap">Draft belum bernomor dan berwatermark DRAFT. Isi masih dapat diubah oleh pembuatnya.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Ubah isi draft (hanya selama masih draft dan hanya oleh pembuatnya).</span></li><li value="2"><span class="n">2</span><span>Pratinjau PDF draft (berwatermark).</span></li><li value="3"><span class="n">3</span><span>Kirim ke Finance Manager untuk diperiksa &amp; diterbitkan.</span></li><li value="4"><span class="n">4</span><span>Menu: Duplikasi dan Hapus draft.</span></li><li value="5"><span class="n">5</span><span>Penanda status: belum bernomor, tanpa tanda tangan &amp; cap.</span></li><li value="6"><span class="n">6</span><span>Ringkasan biaya dan sisa tagihan.</span></li></ol></figure>
+
+
+
+<figure id="fig-inv-pdf-draft"><figcaption class="ft">Gambar 38 — PDF draft (pratinjau)</figcaption><img src="img/inv-pdf-draft.jpg" alt="PDF draft (pratinjau)" ><p class="cap">Pratinjau draft berwatermark DRAFT; tanda tangan dan cap baru muncul setelah disetujui.</p></figure>
+
+
+<h3>Mengajukan untuk verifikasi</h3>
+<p>Setelah diajukan, isi invoice <strong>terkunci</strong>. Finance Manager menerima pemberitahuan di lonceng.</p>
+<figure id="fig-inv-submit-dialog"><figcaption class="ft">Gambar 39 — Mengajukan untuk verifikasi</figcaption><img src="img/inv-submit-dialog.jpg" alt="Mengajukan untuk verifikasi" ><p class="cap">Setelah diajukan, isi invoice terkunci. Draft tetap berwatermark sampai Finance Manager menyetujui.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Konfirmasi pengajuan.</span></li></ol></figure>
+
+
+
+<figure id="fig-inv-submitted"><figcaption class="ft">Gambar 40 — Invoice menunggu verifikasi</figcaption><img src="img/inv-submitted.jpg" alt="Invoice menunggu verifikasi" ><p class="cap">Status berubah menjadi “Menunggu Verifikasi”. Pelaksana tidak dapat mengubah isinya, tetapi masih boleh menarik kembali selama belum diperiksa.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Status dokumen.</span></li><li value="2"><span class="n">2</span><span>Tarik kembali pengajuan (invoice kembali menjadi draft yang dapat diedit).</span></li></ol></figure>
+
+
+<h3>Menarik kembali pengajuan</h3>
+<p>Dipakai bila Anda menyadari kesalahan <strong>sebelum</strong> Finance Manager memeriksa. Invoice kembali menjadi draft yang bisa diedit.</p>
+<figure id="fig-inv-withdraw-dialog"><figcaption class="ft">Gambar 41 — Menarik kembali pengajuan</figcaption><img src="img/inv-withdraw-dialog.jpg" alt="Menarik kembali pengajuan" ><p class="cap">Dipakai bila ada kesalahan yang disadari sebelum Finance Manager memeriksa.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Konfirmasi (di sini dibatalkan agar alur berlanjut).</span></li></ol></figure>
+
+
+<h2 id="s-31">5.5 Verifikasi dan penerbitan (Finance Manager)</h2>
+<p>Buka invoice dari lonceng atau filter <em>Menunggu verifikasi</em>. Periksa pelanggan, rincian, nominal, dan PDF.</p>
+<figure id="fig-inv-review"><figcaption class="ft">Gambar 42 — Meninjau invoice yang diajukan (Finance Manager)</figcaption><img src="img/inv-review.jpg" alt="Meninjau invoice yang diajukan (Finance Manager)" ><p class="cap">Finance Manager membuka invoice dari lonceng atau filter “Menunggu verifikasi”. Periksa pelanggan, rincian, nominal, dan PDF sebelum memutuskan.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Periksa PDF (masih berwatermark DRAFT).</span></li><li value="2"><span class="n">2</span><span>Setujui &amp; terbitkan: nomor dialokasikan, tanda tangan &amp; cap muncul, isi dibekukan.</span></li><li value="3"><span class="n">3</span><span>Kembalikan ke pelaksana dengan catatan perbaikan.</span></li><li value="4"><span class="n">4</span><span>Rincian yang diperiksa.</span></li></ol></figure>
+
+
+<h3>Opsi 1 — Kembalikan ke Pelaksana</h3>
+<p>Tulis catatan perbaikan yang <strong>spesifik</strong>; catatan terlihat oleh Pelaksana.</p>
+<figure id="fig-inv-return-dialog"><figcaption class="ft">Gambar 43 — Mengembalikan invoice ke pelaksana</figcaption><img src="img/inv-return-dialog.jpg" alt="Mengembalikan invoice ke pelaksana" ><p class="cap">Alasan wajib diisi dan akan terlihat oleh pelaksana.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Tulis perbaikan yang diminta secara spesifik.</span></li><li value="2"><span class="n">2</span><span>Kembalikan.</span></li></ol></figure>
+
+
+<h3>Pelaksana memperbaiki</h3>
+<figure id="fig-inv-returned"><figcaption class="ft">Gambar 44 — Invoice dikembalikan oleh Finance Manager</figcaption><img src="img/inv-returned.jpg" alt="Invoice dikembalikan oleh Finance Manager" ><p class="cap">Pelaksana melihat catatan perbaikan pada halaman invoice (juga di riwayat). Draft dapat diedit lagi.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Catatan dari Finance Manager.</span></li><li value="2"><span class="n">2</span><span>Perbaiki isi draft.</span></li></ol></figure>
+
+
+
+<figure id="fig-inv-edit"><figcaption class="ft">Gambar 45 — Mengedit draft</figcaption><img src="img/inv-edit.jpg" alt="Mengedit draft" ><p class="cap">Formulir sama dengan saat membuat invoice, sudah terisi. Ubah yang perlu, lalu simpan.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Contoh perbaikan: jumlah peserta menjadi 6.</span></li><li value="2"><span class="n">2</span><span>Simpan perbaikan sekaligus mengajukan ulang.</span></li><li value="3"><span class="n">3</span><span>Atau simpan saja tanpa mengajukan.</span></li></ol></figure>
+
+
+<h3>Opsi 2 — Setujui &amp; terbitkan</h3>
+<p>Nomor dialokasikan (urut, tidak dipakai ulang), tanda tangan dan cap muncul, isi dibekukan. Bila ada DP yang diisi, DP dicatat sebagai pembayaran pertama.</p>
+<figure id="fig-inv-approve-dialog"><figcaption class="ft">Gambar 46 — Menyetujui &amp; menerbitkan</figcaption><img src="img/inv-approve-dialog.jpg" alt="Menyetujui &amp; menerbitkan" ><p class="cap">Tindakan ini tidak dapat dibatalkan dengan mudah: isi dibekukan, nomor terpakai. Koreksi setelah terbit dilakukan lewat pembatalan.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Terbitkan.</span></li></ol></figure>
+
+
+<h2 id="s-32">5.6 Invoice terbit</h2>
+<figure id="fig-inv-issued"><figcaption class="ft">Gambar 47 — Invoice terbit</figcaption><img src="img/inv-issued.jpg" alt="Invoice terbit" ><p class="cap">Setelah terbit invoice bernomor, pelanggan &amp; rincian dibekukan, dan siap ditagih.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Nomor invoice resmi (urut, tidak pernah dipakai ulang).</span></li><li value="2"><span class="n">2</span><span>Preview PDF resmi di layar; Unduh PDF menyimpan berkasnya.</span></li><li value="3"><span class="n">3</span><span>Mencatat pembayaran/DP dari pelanggan (lihat bab Pembayaran).</span></li><li value="4"><span class="n">4</span><span>Duplikasi atau Batalkan invoice (Finance Manager).</span></li><li value="5"><span class="n">5</span><span>Daftar pembayaran yang tercatat pada invoice ini.</span></li><li value="6"><span class="n">6</span><span>Riwayat: siapa membuat, mengajukan, mengembalikan, menyetujui — lengkap dengan waktunya.</span></li></ol></figure>
+
+
+
+<figure id="fig-inv-pdf-issued"><figcaption class="ft">Gambar 48 — PDF invoice resmi</figcaption><img src="img/inv-pdf-issued.jpg" alt="PDF invoice resmi" ><p class="cap">PDF resmi: bernomor, bertanda tangan Finance Manager dan bercap. Bandingkan dengan draft di atas.</p></figure>
+
+
+<h2 id="s-33">5.7 Membatalkan invoice terbit (Finance Manager)</h2>
+<figure id="fig-inv-menu-detail"><figcaption class="ft">Gambar 49 — Menu aksi pada invoice terbit</figcaption><img src="img/inv-menu-detail.jpg" alt="Menu aksi pada invoice terbit" ><p class="cap">Hanya Finance Manager yang dapat membatalkan invoice terbit.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Salin menjadi draft baru.</span></li><li value="2"><span class="n">2</span><span>Batalkan invoice (alasan wajib).</span></li></ol></figure>
+
+
+<p>Alasan wajib. <strong>Bila sudah ada pembayaran, balikkan pembayaran lebih dulu</strong> (Bab 6). Invoice tetap tersimpan dengan status Dibatalkan.</p>
+<figure id="fig-inv-cancel-dialog"><figcaption class="ft">Gambar 50 — Membatalkan invoice terbit</figcaption><img src="img/inv-cancel-dialog.jpg" alt="Membatalkan invoice terbit" ><p class="cap">Invoice tetap tersimpan dengan status Dibatalkan dan nomornya tidak dipakai ulang. Bila sudah ada pembayaran, balikkan pembayaran lebih dulu.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Alasan wajib (tercatat di riwayat).</span></li><li value="2"><span class="n">2</span><span>Konfirmasi pembatalan (tidak dijalankan pada contoh ini).</span></li></ol></figure>
+
+
+
+<figure id="fig-inv-cancelled"><figcaption class="ft">Gambar 51 — Invoice yang dibatalkan</figcaption><img src="img/inv-cancelled.jpg" alt="Invoice yang dibatalkan" ><p class="cap">Pesan merah menjelaskan siapa, kapan, dan mengapa dibatalkan. PDF-nya berwatermark DIBATALKAN.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Keterangan pembatalan beserta alasan.</span></li></ol></figure>
+
+
+<h2 id="s-34">5.8 Menduplikasi invoice</h2>
+<p>Berguna untuk pelanggan berulang. Rincian disalin, tetapi <strong>tanpa nomor, tanpa DP, dan tanpa pembayaran</strong>. Sesuaikan tanggal dan jumlah, lalu simpan atau ajukan.</p>
+<figure id="fig-inv-duplicated"><figcaption class="ft">Gambar 52 — Hasil duplikasi</figcaption><img src="img/inv-duplicated.jpg" alt="Hasil duplikasi" ><p class="cap">Duplikasi membuat draft baru dan langsung membuka formulir ubah: rincian disalin, tetapi tanpa nomor, tanpa DP, dan tanpa pembayaran. Sesuaikan tanggal/jumlah, lalu simpan atau ajukan.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Draft baru (bukan invoice terbit).</span></li><li value="2"><span class="n">2</span><span>Periksa tanggal — bawaan hari ini.</span></li><li value="3"><span class="n">3</span><span>Simpan sebagai draft.</span></li></ol></figure>
+
+
+<h2 id="s-35">5.9 Menghapus draft</h2>
+<p>Hanya draft (belum bernomor) yang dapat dihapus; penghapusan tercatat di audit log. Invoice yang sudah bernomor tidak dihapus, tetapi dibatalkan.</p>
+<figure id="fig-inv-delete-dialog"><figcaption class="ft">Gambar 53 — Menghapus draft</figcaption><img src="img/inv-delete-dialog.jpg" alt="Menghapus draft" ><p class="cap">Hanya draft (belum bernomor) yang dapat dihapus; penghapusan tercatat di audit log.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Konfirmasi hapus.</span></li></ol></figure>
+
+
+<h2 id="s-36">Tips &amp; Kesalahan Umum</h2>
+<ul>
+<li><strong>Periksa tanggal dan jatuh tempo</strong> sebelum mengajukan; invoice terbit tidak dapat diubah.</li>
+<li>Gunakan kolom deskripsi baris untuk detail (nama peserta, periode); “Remark” program mengikuti produk.</li>
+<li>Bila salah setelah terbit: batalkan (Finance Manager) lalu duplikasi menjadi draft baru.</li>
+<li>Pelaksana hanya dapat mengedit/mengajukan/menghapus draft <strong>miliknya sendiri</strong>.</li>
+<li>DP tidak mengurangi nilai invoice; ia dicatat sebagai pembayaran pertama.</li>
+</ul>
+</section>
+<section class="bab"><h1 id="s-37">Bab 6 — Pembayaran</h1>
+<blockquote>
+<p><strong>Peran:</strong> Pelaksana ✔ catat pembayaran · Finance Manager ✔ catat + <strong>balikkan</strong></p>
+</blockquote>
+<p>Pembayaran hanya dapat dicatat untuk <strong>invoice terbit</strong> dengan sisa tagihan.</p>
+<h2 id="s-38">6.1 Mencatat pembayaran dari halaman invoice</h2>
+<ol>
+<li>Buka invoice terbit → <strong>Catat pembayaran</strong>.</li>
+<li>Isi tanggal uang diterima, jumlah, metode, akun penerima, referensi, dan (opsional) bukti.</li>
+<li><strong>Simpan</strong>.</li>
+</ol>
+<figure id="fig-pay-dialog"><figcaption class="ft">Gambar 54 — Mencatat pembayaran</figcaption><img src="img/pay-dialog.jpg" alt="Mencatat pembayaran" ><p class="cap">Dari halaman invoice terbit → Catat pembayaran. Satu invoice dapat dibayar bertahap (DP, termin, pelunasan).</p><ol class="legend"><li value="1"><span class="n">1</span><span>Tanggal uang diterima (bukan tanggal pencatatan).</span></li><li value="2"><span class="n">2</span><span>Jumlah yang diterima. Tidak boleh melebihi sisa tagihan.</span></li><li value="3"><span class="n">3</span><span>Transfer, Tunai, QRIS, Virtual Account, Cek/Giro, atau Lainnya.</span></li><li value="4"><span class="n">4</span><span>Akun kas/bank penerima. “Otomatis” = bank default untuk Transfer/QRIS/VA, kas untuk Tunai.</span></li><li value="5"><span class="n">5</span><span>Isi bila pelanggan memotong PPh (mis. PPh 23) — lihat contoh berikutnya.</span></li><li value="6"><span class="n">6</span><span>Nomor referensi transfer/bukti — mempermudah pencocokan dengan rekening koran.</span></li><li value="7"><span class="n">7</span><span>Unggah bukti transfer (PDF/JPG/PNG, opsional).</span></li><li value="8"><span class="n">8</span><span>Simpan. Pembayaran tidak dapat diubah/dihapus; koreksi hanya lewat pembalikan oleh Finance Manager.</span></li></ol></figure>
+
+
+<p>Setelah dicatat, status pembayaran berubah otomatis dan uang masuk ke buku kas akun yang dipilih.</p>
+<figure id="fig-pay-recorded"><figcaption class="ft">Gambar 55 — Setelah pembayaran dicatat</figcaption><img src="img/pay-recorded.jpg" alt="Setelah pembayaran dicatat" ><p class="cap">Status pembayaran berubah otomatis (Belum Dibayar → Dibayar Sebagian → Lunas). Pembayaran masuk ke buku kas akun yang dipilih.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Status pembayaran.</span></li><li value="2"><span class="n">2</span><span>Daftar pembayaran (termasuk DP) beserta pencatatnya.</span></li><li value="3"><span class="n">3</span><span>Sisa tagihan terkini.</span></li></ol></figure>
+
+
+<h2 id="s-39">6.2 Pembayaran dengan PPh dipotong pelanggan</h2>
+<p>Bila pelanggan (mis. instansi) memotong PPh 23, uang yang masuk lebih kecil dari tagihan. Isi <strong>nominal uang yang diterima</strong> dan <strong>PPh yang dipotong</strong>; keduanya mengurangi sisa tagihan. Nomor bukti potong dapat diisi kemudian di menu Pajak (Bab 13).</p>
+<figure id="fig-pay-pph"><figcaption class="ft">Gambar 56 — Pembayaran dengan PPh dipotong pelanggan</figcaption><img src="img/pay-pph.jpg" alt="Pembayaran dengan PPh dipotong pelanggan" ><p class="cap">Bila pelanggan (mis. instansi) memotong PPh 23, uang yang masuk lebih kecil dari tagihan. Isi nominal uang yang DITERIMA dan PPh yang dipotong — keduanya mengurangi sisa tagihan.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Uang yang benar-benar masuk ke rekening.</span></li><li value="2"><span class="n">2</span><span>PPh yang dipotong pelanggan (menjadi kredit pajak lembaga). Nomor bukti potong dapat diisi kemudian di menu Pajak.</span></li></ol></figure>
+
+
+<h2 id="s-40">6.3 Pembayaran melebihi sisa tagihan</h2>
+<figure id="fig-pay-over"><figcaption class="ft">Gambar 57 — Pembayaran melebihi sisa tagihan ditolak</figcaption><img src="img/pay-over.jpg" alt="Pembayaran melebihi sisa tagihan ditolak" ><p class="cap">Aplikasi menolak nominal di atas sisa tagihan dan menyebutkan sisa yang benar.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Pesan kesalahan memuat sisa tagihan yang boleh dibayar.</span></li></ol></figure>
+
+
+<h2 id="s-41">6.4 Invoice lunas dan kwitansi</h2>
+<p>Sisa nol → status <strong>Lunas</strong>. PDF otomatis berjudul <strong>KWITANSI</strong> dengan tanda LUNAS dan tanggal pelunasan.</p>
+<figure id="fig-pay-paid"><figcaption class="ft">Gambar 58 — Invoice lunas</figcaption><img src="img/pay-paid.jpg" alt="Invoice lunas" ><p class="cap">Sisa tagihan nol → status Lunas. PDF-nya otomatis berjudul KWITANSI.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Status Lunas.</span></li><li value="2"><span class="n">2</span><span>Unduh PDF (kini berupa kwitansi).</span></li></ol></figure>
+
+
+
+<figure id="fig-inv-pdf-kwitansi"><figcaption class="ft">Gambar 59 — Kwitansi (invoice lunas)</figcaption><img src="img/inv-pdf-kwitansi.jpg" alt="Kwitansi (invoice lunas)" ><p class="cap">Invoice yang sudah lunas otomatis berjudul KWITANSI, bertanda LUNAS beserta tanggal pelunasan. Nomor dan isinya tetap sama.</p></figure>
+
+
+<h2 id="s-42">6.5 Menu Pembayaran</h2>
+<p>Seluruh pembayaran dan pembalikan, berguna untuk mencocokkan dengan rekening koran.</p>
+<figure id="fig-pay-list"><figcaption class="ft">Gambar 60 — Daftar pembayaran</figcaption><img src="img/pay-list.jpg" alt="Daftar pembayaran" ><p class="cap">Menu Pembayaran: seluruh pembayaran dan pembalikan. Dipakai untuk mencocokkan dengan rekening koran.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Catat pembayaran: pilih invoice terbit lalu isi formulir yang sama.</span></li><li value="2"><span class="n">2</span><span>Cari nomor invoice, pelanggan, atau referensi transfer.</span></li><li value="3"><span class="n">3</span><span>Tampilkan Pembayaran saja atau Pembalikan saja.</span></li><li value="4"><span class="n">4</span><span>Akun kas/bank penerima.</span></li><li value="5"><span class="n">5</span><span>PPh yang dipotong pelanggan pada pembayaran itu.</span></li></ol></figure>
+
+
+<p>Mencatat dari menu ini: klik <strong>Catat pembayaran</strong>, cari invoice, lalu isi formulir yang sama.</p>
+<figure id="fig-pay-pick"><figcaption class="ft">Gambar 61 — Memilih invoice untuk dibayar</figcaption><img src="img/pay-pick.jpg" alt="Memilih invoice untuk dibayar" ><p class="cap">Dari halaman Pembayaran, cari invoice terbit yang masih punya sisa tagihan.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Ketik nomor atau nama pelanggan lalu pilih invoice.</span></li></ol></figure>
+
+
+<h2 id="s-43">6.6 Membalikkan pembayaran (Finance Manager)</h2>
+<p>Pembayaran <strong>tidak dapat diedit atau dihapus</strong>. Kesalahan (salah nominal, salah akun, uang tidak jadi masuk) dikoreksi dengan pembalikan.</p>
+<figure id="fig-pay-reverse-dialog"><figcaption class="ft">Gambar 62 — Membalikkan pembayaran (Finance Manager)</figcaption><img src="img/pay-reverse-dialog.jpg" alt="Membalikkan pembayaran (Finance Manager)" ><p class="cap">Pembayaran tidak dapat diedit atau dihapus. Kesalahan dikoreksi dengan pembalikan — baris pembalik bernilai negatif, baris asli tetap terlihat.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Alasan wajib dan tercatat di audit.</span></li><li value="2"><span class="n">2</span><span>Konfirmasi. Saldo invoice dan kas/bank dikoreksi otomatis.</span></li></ol></figure>
+
+
+
+<figure id="fig-pay-reversed"><figcaption class="ft">Gambar 63 — Hasil pembalikan</figcaption><img src="img/pay-reversed.jpg" alt="Hasil pembalikan" ><p class="cap">Baris Pembalikan (nominal negatif) muncul di daftar bersama alasannya; status invoice kembali menyesuaikan.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Baris pembalik.</span></li></ol></figure>
+
+
+<blockquote>
+<p>Pelaksana yang menemukan kesalahan pembayaran: laporkan ke Finance Manager dengan nomor invoice dan alasannya, lalu catat ulang pembayaran yang benar setelah dibalikkan.</p>
+</blockquote>
+<h2 id="s-44">Tips &amp; Kesalahan Umum</h2>
+<ul>
+<li>Isi <strong>tanggal uang diterima</strong>, bukan tanggal Anda mengetik.</li>
+<li>Isi <strong>referensi transfer</strong>; itu memudahkan pencocokan rekening koran otomatis.</li>
+<li>Pastikan <strong>akun penerima</strong> benar. Pilihan “Otomatis” memakai bank default (Transfer/QRIS/VA) atau kas (Tunai).</li>
+<li>PPh dipotong: jangan memasukkan nominal tagihan penuh sebagai uang diterima.</li>
+</ul>
+</section>
+<section class="bab"><h1 id="s-45">Bab 7 — Pengeluaran</h1>
+<blockquote>
+<p><strong>Peran:</strong> Pelaksana ✔ ajukan, batalkan pengajuan sendiri · Finance Manager ✔ + setujui, tolak, balikkan</p>
+</blockquote>
+<h2 id="s-46">7.1 Alur</h2>
+<pre><code>Pelaksana catat ──► Menunggu persetujuan ──► (Finance Manager) Setujui ──► Berlaku ──► (Finance Manager) Balikkan bila salah
+                                      └─────► Tolak (alasan wajib) ──► Ditolak
+</code></pre>
+<p>Hanya entri berstatus <strong>Berlaku</strong> yang masuk saldo, buku kas, dan laporan.</p>
+<h2 id="s-47">7.2 Daftar pengeluaran</h2>
+<figure id="fig-exp-list"><figcaption class="ft">Gambar 64 — Daftar pengeluaran (Pelaksana)</figcaption><img src="img/exp-list.jpg" alt="Daftar pengeluaran (Pelaksana)" ><p class="cap">Menu Pengeluaran. Pelaksana mengajukan pengeluaran; Finance Manager menyetujui. Pelaksana hanya melihat pengeluaran yang ia catat sendiri.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Mencatat pengeluaran baru.</span></li><li value="2"><span class="n">2</span><span>Saring: Menunggu persetujuan, Berlaku, Ditolak.</span></li><li value="3"><span class="n">3</span><span>Pengeluaran atau Penerimaan lain / non-operasional.</span></li><li value="4"><span class="n">4</span><span>Hanya entri berstatus Berlaku yang masuk saldo dan laporan.</span></li><li value="5"><span class="n">5</span><span>Pelaksana dapat membatalkan pengajuannya sendiri selama masih menunggu persetujuan.</span></li></ol></figure>
+
+
+<h2 id="s-48">7.3 Mencatat pengeluaran (Pelaksana)</h2>
+<ol>
+<li>Klik <strong>Catat pengeluaran</strong>.</li>
+<li>Pilih akun pembayar, kategori biaya, isi nominal, penerima, nomor bukti, dan keterangan.</li>
+<li>Lampirkan bukti. <strong>Wajib</strong> bila nominal di atas Rp 1.000.000.</li>
+<li><strong>Simpan</strong>.</li>
+</ol>
+<figure id="fig-exp-proof-required"><figcaption class="ft">Gambar 65 — Bukti wajib untuk pengeluaran di atas Rp1 juta</figcaption><img src="img/exp-proof-required.jpg" alt="Bukti wajib untuk pengeluaran di atas Rp1 juta" ><p class="cap">Pengeluaran lebih dari Rp1.000.000 tidak dapat disimpan tanpa bukti (nota/kuitansi). Di bawah itu bukti opsional tetapi dianjurkan.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Pesan: bukti wajib.</span></li></ol></figure>
+
+
+
+<figure id="fig-exp-new"><figcaption class="ft">Gambar 66 — Formulir pengeluaran</figcaption><img src="img/exp-new.jpg" alt="Formulir pengeluaran" ><p class="cap">Isi semua kolom bertanda *, lampirkan bukti, lalu simpan.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Akun kas/bank yang membayar.</span></li><li value="2"><span class="n">2</span><span>Kategori biaya (menentukan posisi di laporan laba rugi). Pilih yang paling sesuai.</span></li><li value="3"><span class="n">3</span><span>Jumlah uang keluar.</span></li><li value="4"><span class="n">4</span><span>Penerima/pemasok (opsional, membantu pelacakan).</span></li><li value="5"><span class="n">5</span><span>Nomor nota/kuitansi.</span></li><li value="6"><span class="n">6</span><span>Unggah bukti (PDF/JPG/PNG).</span></li><li value="7"><span class="n">7</span><span>Simpan → status “Menunggu persetujuan”. Belum mengurangi saldo sampai disetujui.</span></li></ol></figure>
+
+
+
+<figure id="fig-exp-pending"><figcaption class="ft">Gambar 67 — Pengeluaran menunggu persetujuan</figcaption><img src="img/exp-pending.jpg" alt="Pengeluaran menunggu persetujuan" ><p class="cap">Entri tersimpan berstatus “Menunggu persetujuan”. Finance Manager menerima pemberitahuan di lonceng.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Pengeluaran yang baru diajukan.</span></li></ol></figure>
+
+
+<h2 id="s-49">7.4 Persetujuan (Finance Manager)</h2>
+<figure id="fig-exp-list-fm"><figcaption class="ft">Gambar 68 — Daftar pengeluaran (Finance Manager)</figcaption><img src="img/exp-list-fm.jpg" alt="Daftar pengeluaran (Finance Manager)" ><p class="cap">Finance Manager melihat seluruh pengeluaran. Pengajuan yang menunggu muncul di atas bersama tombol Setujui / Tolak.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Pengingat jumlah pengajuan yang menunggu.</span></li><li value="2"><span class="n">2</span><span>Setujui: entri menjadi Berlaku (masuk saldo &amp; laporan).</span></li><li value="3"><span class="n">3</span><span>Tolak dengan alasan (tidak pernah masuk saldo/laporan).</span></li></ol></figure>
+
+
+<h3>Menyetujui</h3>
+<p>Periksa nominal, kategori, dan bukti. Pencatat tidak dapat menyetujui pengeluarannya sendiri.</p>
+<figure id="fig-exp-approve-dialog"><figcaption class="ft">Gambar 69 — Menyetujui pengeluaran</figcaption><img src="img/exp-approve-dialog.jpg" alt="Menyetujui pengeluaran" ><p class="cap">Periksa nominal, kategori, dan bukti sebelum menyetujui. Pencatat tidak dapat menyetujui pengeluarannya sendiri.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Setujui.</span></li></ol></figure>
+
+
+<h3>Menolak</h3>
+<figure id="fig-exp-reject-dialog"><figcaption class="ft">Gambar 70 — Menolak pengeluaran</figcaption><img src="img/exp-reject-dialog.jpg" alt="Menolak pengeluaran" ><p class="cap">Alasan wajib dan terlihat oleh pencatat. Pencatat dapat mencatat ulang dengan perbaikan.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Alasan penolakan.</span></li><li value="2"><span class="n">2</span><span>Tolak.</span></li></ol></figure>
+
+
+<h2 id="s-50">7.5 Membalikkan pengeluaran berlaku (Finance Manager)</h2>
+<figure id="fig-exp-reverse-dialog"><figcaption class="ft">Gambar 71 — Membalikkan pengeluaran yang sudah berlaku</figcaption><img src="img/exp-reverse-dialog.jpg" alt="Membalikkan pengeluaran yang sudah berlaku" ><p class="cap">Pengeluaran yang sudah Berlaku tidak dapat diedit/dihapus. Koreksi dengan pembalikan: dibuat baris pembalik bertanggal hari ini, entri asli tetap tampil.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Alasan wajib.</span></li><li value="2"><span class="n">2</span><span>Konfirmasi pembalikan.</span></li></ol></figure>
+
+
+
+<figure id="fig-exp-list-after"><figcaption class="ft">Gambar 72 — Daftar setelah persetujuan, penolakan, dan pembalikan</figcaption><img src="img/exp-list-after.jpg" alt="Daftar setelah persetujuan, penolakan, dan pembalikan" ><p class="cap">Status tiap entri: Berlaku, Ditolak (beserta alasan), dan baris pembalik.</p></figure>
+
+
+<h2 id="s-51">Tips &amp; Kesalahan Umum</h2>
+<ul>
+<li>Pilih <strong>kategori yang paling sesuai</strong>; kategori menentukan posisi di laporan laba rugi (beban langsung program atau beban operasional).</li>
+<li>Foto nota harus jelas dan terbaca; nota buram adalah alasan penolakan paling umum.</li>
+<li>Salah input sebelum disetujui: <strong>Batalkan</strong> pengajuan lalu catat ulang. Setelah berlaku: minta Finance Manager membalikkan.</li>
+<li>Pengeluaran yang ditolak tidak pernah memengaruhi saldo.</li>
+</ul>
+</section>
+<section class="bab"><h1 id="s-52">Bab 8 — Kas &amp; Bank</h1>
+<blockquote>
+<p><strong>Peran:</strong> Pelaksana ✔ transfer, penerimaan lain (diajukan) · Finance Manager ✔ + penerimaan/non-operasional langsung berlaku, balikkan transfer</p>
+</blockquote>
+<p>Saldo = saldo awal (diinput Administrator) + seluruh mutasi <strong>berlaku</strong> sejak tanggal saldo awal.</p>
+<h2 id="s-53">8.1 Tampilan utama</h2>
+<figure id="fig-cash-overview-staff"><figcaption class="ft">Gambar 73 — Kas &amp; Bank (Pelaksana)</figcaption><img src="img/cash-overview-staff.jpg" alt="Kas &amp; Bank (Pelaksana)" ><p class="cap">Menu Kas &amp; Bank menampilkan saldo tiap akun dan buku kas. Pelaksana dapat mencatat transfer antar akun dan penerimaan lain (menunggu persetujuan), tetapi tidak dapat membalikkan.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Memindahkan dana antar kas/bank.</span></li><li value="2"><span class="n">2</span><span>Mencatat uang masuk non-invoice (bunga, jasa giro, hibah). Menunggu persetujuan Finance Manager.</span></li><li value="3"><span class="n">3</span><span>Total seluruh akun aktif.</span></li><li value="4"><span class="n">4</span><span>Klik kartu akun untuk melihat buku kasnya.</span></li></ol></figure>
+
+
+<ul>
+<li>Kartu akun menampilkan saldo dan saldo awal. Klik kartu untuk melihat buku kas akun itu.</li>
+<li>Pemberitahuan di atas halaman: <strong>saldo negatif</strong> (merah; periksa penerimaan yang belum dicatat atau salah input), <strong>pembayaran invoice belum dialokasikan ke akun</strong> (kuning), dan <strong>entri menunggu persetujuan</strong> (biru; belum dihitung dalam saldo).</li>
+</ul>
+<h2 id="s-54">8.2 Transfer antar akun</h2>
+<p>Memindahkan dana antar kas/bank (mis. isi kas kecil). Total kas tidak berubah dan laba rugi tidak terpengaruh. Transfer <strong>langsung berlaku</strong> tanpa persetujuan.</p>
+<figure id="fig-cash-transfer"><figcaption class="ft">Gambar 74 — Formulir transfer antar akun</figcaption><img src="img/cash-transfer.jpg" alt="Formulir transfer antar akun" ><p class="cap">Total kas tidak berubah dan laba rugi tidak terpengaruh. Transfer langsung berlaku (tanpa persetujuan).</p><ol class="legend"><li value="1"><span class="n">1</span><span>Tanggal transfer (tidak boleh melewati hari ini).</span></li><li value="2"><span class="n">2</span><span>Jumlah yang dipindahkan.</span></li><li value="3"><span class="n">3</span><span>Akun sumber dana.</span></li><li value="4"><span class="n">4</span><span>Akun tujuan (harus berbeda dari sumber).</span></li><li value="5"><span class="n">5</span><span>Catatan opsional.</span></li><li value="6"><span class="n">6</span><span>Simpan.</span></li></ol></figure>
+
+
+<h2 id="s-55">8.3 Penerimaan lain</h2>
+<p>Untuk uang masuk yang <strong>bukan</strong> pembayaran invoice (bunga, jasa giro, hibah).</p>
+<ul>
+<li><strong>Pelaksana:</strong> kategori terbatas pada akun pendapatan; arah otomatis <em>Masuk</em>; entri <strong>menunggu persetujuan</strong>.</li>
+<li><strong>Finance Manager:</strong> dapat memilih kategori non-operasional (modal, prive, pinjaman, aset); entri <strong>langsung berlaku</strong>.</li>
+</ul>
+<figure id="fig-cash-receipt-staff"><figcaption class="ft">Gambar 75 — Catat penerimaan lain (Pelaksana)</figcaption><img src="img/cash-receipt-staff.jpg" alt="Catat penerimaan lain (Pelaksana)" ><p class="cap">Untuk uang masuk yang bukan pembayaran invoice. Kategori terbatas pada akun pendapatan; arah otomatis ‘Masuk’. Entri menunggu persetujuan Finance Manager.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Akun tempat uang diterima.</span></li><li value="2"><span class="n">2</span><span>Akun pendapatan lain-lain.</span></li><li value="3"><span class="n">3</span><span>Jumlah uang masuk.</span></li><li value="4"><span class="n">4</span><span>Pihak pemberi (opsional).</span></li><li value="5"><span class="n">5</span><span>Uraian wajib diisi.</span></li></ol></figure>
+
+
+
+<figure id="fig-cash-after-staff"><figcaption class="ft">Gambar 76 — Setelah transfer dicatat</figcaption><img src="img/cash-after-staff.jpg" alt="Setelah transfer dicatat" ><p class="cap">Transfer muncul di ‘Transfer antar akun terbaru’ dan di buku kas kedua akun. Peringatan biru mengingatkan ada entri yang menunggu persetujuan.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Pengingat entri yang belum disetujui (belum masuk saldo).</span></li><li value="2"><span class="n">2</span><span>Transfer yang baru dicatat.</span></li></ol></figure>
+
+
+<h3>Finance Manager menyetujui penerimaan lain</h3>
+<p>Penerimaan yang diajukan Pelaksana tampil di menu <strong>Pengeluaran</strong> (status Menunggu persetujuan) dan disetujui seperti pengeluaran.</p>
+<figure id="fig-cash-receipt-pending-fm"><figcaption class="ft">Gambar 77 — Menyetujui penerimaan lain</figcaption><img src="img/cash-receipt-pending-fm.jpg" alt="Menyetujui penerimaan lain" ><p class="cap">Penerimaan lain dari Pelaksana tampil di menu Pengeluaran dengan status Menunggu persetujuan, dan disetujui sama seperti pengeluaran.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Penerimaan lain yang diajukan Pelaksana.</span></li><li value="2"><span class="n">2</span><span>Setujui → masuk saldo &amp; laporan.</span></li></ol></figure>
+
+
+<h2 id="s-56">8.4 Tampilan Finance Manager</h2>
+<figure id="fig-cash-overview-fm"><figcaption class="ft">Gambar 78 — Kas &amp; Bank (Finance Manager)</figcaption><img src="img/cash-overview-fm.jpg" alt="Kas &amp; Bank (Finance Manager)" ><p class="cap">Finance Manager memiliki semua aksi Pelaksana ditambah kolom Aksi untuk membalikkan transfer, dan tombol penerimaan/non-operasional yang langsung berlaku.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Transfer antar akun.</span></li><li value="2"><span class="n">2</span><span>Penerimaan lain &amp; non-operasional (modal, prive, pinjaman, aset) — langsung berlaku.</span></li><li value="3"><span class="n">3</span><span>Aksi pembalikan hanya untuk Finance Manager.</span></li></ol></figure>
+
+
+
+<figure id="fig-cash-other-fm"><figcaption class="ft">Gambar 79 — Catat penerimaan / non-operasional (Finance Manager)</figcaption><img src="img/cash-other-fm.jpg" alt="Catat penerimaan / non-operasional (Finance Manager)" ><p class="cap">Kategori mencakup pendapatan lain, modal, prive, pinjaman, dan aset. Arah (Masuk/Keluar) dapat dipilih untuk kategori non-pendapatan; entri langsung berlaku.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Pilih kategori; menentukan arah dan laporan.</span></li><li value="2"><span class="n">2</span><span>Masuk / Keluar (terkunci untuk pendapatan).</span></li></ol></figure>
+
+
+<h2 id="s-57">8.5 Buku kas per akun</h2>
+<p>Setiap mutasi (pembayaran invoice, pengeluaran, penerimaan, transfer) tampil dengan saldo berjalan.</p>
+<figure id="fig-cash-ledger"><figcaption class="ft">Gambar 80 — Buku kas per akun</figcaption><img src="img/cash-ledger.jpg" alt="Buku kas per akun" ><p class="cap">Klik kartu akun untuk melihat buku kasnya: saldo awal periode, setiap mutasi (pembayaran invoice, pengeluaran, penerimaan, transfer), saldo berjalan, dan saldo akhir.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Ubah periode buku kas.</span></li><li value="2"><span class="n">2</span><span>Saldo awal periode.</span></li><li value="3"><span class="n">3</span><span>Saldo akhir periode (sama dengan saldo di kartu bila sampai hari ini).</span></li></ol></figure>
+
+
+<h2 id="s-58">8.6 Membalikkan transfer (Finance Manager)</h2>
+<figure id="fig-cash-transfer-reverse"><figcaption class="ft">Gambar 81 — Membalikkan transfer</figcaption><img src="img/cash-transfer-reverse.jpg" alt="Membalikkan transfer" ><p class="cap">Transfer tidak dapat diedit/dihapus. Koreksi dengan pembalikan: dibuat transfer pembalik bertanggal hari ini, transfer asli tetap tercatat.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Alasan wajib.</span></li><li value="2"><span class="n">2</span><span>Konfirmasi.</span></li></ol></figure>
+
+
+
+<figure id="fig-cash-transfer-reversed"><figcaption class="ft">Gambar 82 — Transfer setelah dibalikkan</figcaption><img src="img/cash-transfer-reversed.jpg" alt="Transfer setelah dibalikkan" ><p class="cap">Transfer asli berstatus ‘Sudah dibalik’; baris pembalik berlatar merah muda berstatus ‘Pembalikan’ lengkap dengan alasan.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Transfer asli.</span></li><li value="2"><span class="n">2</span><span>Baris pembalik.</span></li></ol></figure>
+
+
+<h2 id="s-59">Tips &amp; Kesalahan Umum</h2>
+<ul>
+<li>Transfer salah akun → minta Finance Manager membalikkan, lalu catat ulang.</li>
+<li>Saldo negatif hampir selalu berarti ada penerimaan yang belum dicatat.</li>
+<li>Jangan mencatat penerimaan invoice di sini; catat sebagai <strong>pembayaran</strong> pada invoice (Bab 6).</li>
+</ul>
+</section>
+<section class="bab"><h1 id="s-60">Bab 9 — Jurnal</h1>
+<blockquote>
+<p><strong>Peran:</strong> Pelaksana ✔ lihat · Finance Manager ✔ lihat, <strong>catat jurnal manual</strong>, balikkan</p>
+</blockquote>
+<p>Buku jurnal seluruh transaksi. Jurnal dari pembayaran, entri kas, dan transfer dibuat <strong>otomatis</strong> (tidak mungkin berselisih). Jurnal manual dipakai hanya untuk <strong>penyesuaian</strong> (mis. penyusutan) dan <strong>saldo awal akun non-kas</strong> (aset tetap, utang, modal).</p>
+<h2 id="s-61">9.1 Daftar jurnal</h2>
+<figure id="fig-jrn-list-staff"><figcaption class="ft">Gambar 83 — Jurnal (Pelaksana: hanya lihat)</figcaption><img src="img/jrn-list-staff.jpg" alt="Jurnal (Pelaksana: hanya lihat)" ><p class="cap">Buku jurnal seluruh transaksi. Jurnal dari pembayaran, entri kas, dan transfer dibuat otomatis. Pelaksana hanya melihat; mencatat dan membalikkan jurnal adalah wewenang Finance Manager.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Saring menurut sumber jurnal.</span></li><li value="2"><span class="n">2</span><span>Satu jurnal: nomor, tanggal, uraian, dan baris debit/kredit.</span></li><li value="3"><span class="n">3</span><span>Lencana sumber jurnal.</span></li></ol></figure>
+
+
+
+<figure id="fig-jrn-list-fm"><figcaption class="ft">Gambar 84 — Jurnal (Finance Manager)</figcaption><img src="img/jrn-list-fm.jpg" alt="Jurnal (Finance Manager)" ><p class="cap">Finance Manager dapat mencatat jurnal manual (penyesuaian, saldo awal akun non-kas) dan membalikkan jurnal manual. Status penguncian buku tampil di atas daftar.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Mencatat jurnal manual.</span></li><li value="2"><span class="n">2</span><span>Rentang tanggal.</span></li></ol></figure>
+
+
+<h2 id="s-62">9.2 Mencatat jurnal manual (Finance Manager)</h2>
+<ol>
+<li>Klik <strong>Catat jurnal</strong>.</li>
+<li>Pilih <strong>Jenis</strong>: <em>Penyesuaian/koreksi</em> atau <em>Saldo awal</em>.</li>
+<li>Isi tanggal, keterangan (wajib), referensi (opsional).</li>
+<li>Isi minimal dua baris: pilih akun, lalu <strong>debit atau kredit</strong> (satu baris tidak boleh keduanya).</li>
+<li>Pastikan <strong>total debit = total kredit</strong>; tombol <strong>Simpan jurnal</strong> baru aktif bila seimbang.</li>
+</ol>
+<p>Akun kas/bank tidak dapat dipilih di sini; gunakan modul Kas &amp; Bank agar saldo kas selalu cocok.</p>
+<figure id="fig-jrn-new"><figcaption class="ft">Gambar 85 — Formulir jurnal manual</figcaption><img src="img/jrn-new.jpg" alt="Formulir jurnal manual" ><p class="cap">Jurnal harus seimbang (total debit = total kredit) agar dapat disimpan. Akun kas/bank tidak dapat dipilih di sini; gunakan modul Kas &amp; Bank.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Penyesuaian/koreksi, atau Saldo awal akun non-kas.</span></li><li value="2"><span class="n">2</span><span>Tanggal jurnal.</span></li><li value="3"><span class="n">3</span><span>Nomor dokumen pendukung (opsional).</span></li><li value="4"><span class="n">4</span><span>Uraian jurnal (wajib).</span></li><li value="5"><span class="n">5</span><span>Pilih akun per baris.</span></li><li value="6"><span class="n">6</span><span>Isi debit ATAU kredit pada satu baris.</span></li><li value="7"><span class="n">7</span><span>Total harus sama dengan total kredit.</span></li><li value="8"><span class="n">8</span><span>Tambah baris untuk jurnal majemuk.</span></li><li value="9"><span class="n">9</span><span>Aktif hanya bila seimbang.</span></li></ol></figure>
+
+
+
+<figure id="fig-jrn-saved"><figcaption class="ft">Gambar 86 — Jurnal manual tersimpan</figcaption><img src="img/jrn-saved.jpg" alt="Jurnal manual tersimpan" ><p class="cap">Jurnal manual berlencana biru. Tombol Balikkan membuat jurnal pembalik (debit ↔ kredit) bertanggal hari ini; jurnal asli tetap tercatat.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Jurnal yang baru dicatat.</span></li><li value="2"><span class="n">2</span><span>Balikkan (koreksi).</span></li></ol></figure>
+
+
+<h2 id="s-63">9.3 Membalikkan jurnal manual</h2>
+<figure id="fig-jrn-reverse"><figcaption class="ft">Gambar 87 — Membalikkan jurnal manual</figcaption><img src="img/jrn-reverse.jpg" alt="Membalikkan jurnal manual" ><p class="cap">Alasan wajib. Jurnal pembalik berlencana ‘Pembalikan’, jurnal asli ‘Sudah dibalik’.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Alasan wajib.</span></li><li value="2"><span class="n">2</span><span>Konfirmasi.</span></li></ol></figure>
+
+
+
+<figure id="fig-jrn-reversed"><figcaption class="ft">Gambar 88 — Jurnal setelah dibalikkan</figcaption><img src="img/jrn-reversed.jpg" alt="Jurnal setelah dibalikkan" ><p class="cap">Jurnal asli dan pembaliknya sama-sama tampil sehingga jejak audit utuh.</p></figure>
+
+
+<h2 id="s-64">Tips</h2>
+<ul>
+<li>Jurnal saldo awal bertanggal tepat pada tanggal mulai pembukuan dan harus seimbang.</li>
+<li>Tulis keterangan yang bisa dipahami auditor enam bulan lagi.</li>
+<li>Jurnal pada bulan yang sudah ditutup ditolak (Bab 14).</li>
+</ul>
+</section>
+<section class="bab"><h1 id="s-65">Bab 10 — Rekonsiliasi Bank</h1>
+<blockquote>
+<p><strong>Peran:</strong> Pelaksana ✔ impor, cocokkan, catat dari mutasi (diajukan), hapus draft · Finance Manager ✔ + <strong>finalisasi</strong> dan <strong>buka kembali</strong></p>
+</blockquote>
+<p>Rekonsiliasi mencocokkan <strong>rekening koran bank</strong> dengan <strong>buku</strong>. Targetnya: <strong>Selisih = 0</strong>.</p>
+<pre><code>Saldo akhir bank + transaksi buku yang masih beredar = Saldo bank disesuaikan  ═  Saldo buku
+</code></pre>
+<h2 id="s-66">10.1 Alur kerja</h2>
+<ol>
+<li>Unduh CSV mutasi dari internet banking.</li>
+<li><strong>Impor</strong> rekening koran (Pelaksana).</li>
+<li><strong>Pencocokan otomatis</strong>, lalu cocokkan sisanya secara <strong>manual</strong>.</li>
+<li>Mutasi yang hanya ada di bank (biaya admin, bunga): <strong>Catat dari mutasi</strong>.</li>
+<li>Selisih 0 → <strong>Finalisasi</strong> (Finance Manager).</li>
+</ol>
+<h2 id="s-67">10.2 Halaman awal</h2>
+<figure id="fig-rec-list-empty"><figcaption class="ft">Gambar 89 — Rekonsiliasi Bank (awal)</figcaption><img src="img/rec-list-empty.jpg" alt="Rekonsiliasi Bank (awal)" ><p class="cap">Kartu per akun menunjukkan terakhir direkonsiliasi sampai kapan dan periode berikutnya. Daftar rekening koran masih kosong.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Mulai dengan mengimpor CSV mutasi dari internet banking.</span></li><li value="2"><span class="n">2</span><span>Tanggal awal periode yang harus diimpor berikutnya.</span></li></ol></figure>
+
+
+<h2 id="s-68">10.3 Mengimpor rekening koran</h2>
+<p>Siapkan: periode (awal periode harus bersambung dengan periode sebelumnya), <strong>saldo awal</strong> dan <strong>saldo akhir menurut rekening koran</strong>, dan berkas CSV.</p>
+<figure id="fig-rec-import-form"><figcaption class="ft">Gambar 90 — Impor rekening koran: isi data</figcaption><img src="img/rec-import-form.jpg" alt="Impor rekening koran: isi data" ><p class="cap">Pilih akun, periode, saldo awal dan akhir sesuai rekening koran bank, lalu unggah CSV (atau tempel isinya). Tombol Impor baru aktif setelah pratinjau valid.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Akun bank yang direkonsiliasi.</span></li><li value="2"><span class="n">2</span><span>Awal periode harus bersambung dengan periode sebelumnya.</span></li><li value="3"><span class="n">3</span><span>Saldo awal menurut rekening koran.</span></li><li value="4"><span class="n">4</span><span>Saldo akhir menurut rekening koran.</span></li><li value="5"><span class="n">5</span><span>Unggah berkas CSV dari internet banking.</span></li><li value="6"><span class="n">6</span><span>Periksa pembacaan CSV sebelum diimpor.</span></li></ol></figure>
+
+
+<p>Klik <strong>Pratinjau</strong>. Sistem mendeteksi kolom, format tanggal, dan format angka. Ubah bila keliru lalu <strong>Terapkan pemetaan</strong>. Tombol <strong>Impor</strong> hanya aktif jika berkas tanpa error dan <strong>saldo awal + mutasi = saldo akhir</strong>.</p>
+<figure id="fig-rec-import-preview"><figcaption class="ft">Gambar 91 — Impor rekening koran: pratinjau &amp; pemetaan kolom</figcaption><img src="img/rec-import-preview.jpg" alt="Impor rekening koran: pratinjau &amp; pemetaan kolom" ><p class="cap">Sistem mendeteksi kolom, format tanggal, dan format angka otomatis. Ubah bila keliru, klik Terapkan pemetaan. Centang hijau ‘Saldo awal + mutasi = saldo akhir’ menandakan berkas lengkap.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Ringkasan: jumlah baris, total mutasi, rentang tanggal.</span></li><li value="2"><span class="n">2</span><span>Format tanggal (hari/bulan/tahun, dst.).</span></li><li value="3"><span class="n">3</span><span>Format angka (1.234.567,00 atau 1,234,567.00).</span></li><li value="4"><span class="n">4</span><span>Terapkan setelah mengubah pemetaan.</span></li><li value="5"><span class="n">5</span><span>Pengecekan kelengkapan berkas.</span></li></ol></figure>
+
+
+<p><strong>Memetakan kolom:</strong> kolom <em>Jumlah (bertanda)</em> dipakai bila bank memberi satu kolom positif/negatif; bila bank memisahkan <em>Debit (keluar)</em> dan <em>Kredit (masuk)</em>, pilih keduanya. Format angka Indonesia <code>1.234.567,00</code>; format Inggris <code>1,234,567.00</code>.</p>
+<h2 id="s-69">10.4 Ruang kerja rekonsiliasi</h2>
+<figure id="fig-rec-workspace"><figcaption class="ft">Gambar 92 — Ruang kerja rekonsiliasi (draft)</figcaption><img src="img/rec-workspace.jpg" alt="Ruang kerja rekonsiliasi (draft)" ><p class="cap">Atas: ringkasan selisih. Tengah: mutasi bank (baris kuning belum cocok). Bawah: transaksi buku yang belum muncul di bank. Tujuan: selisih 0.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Saldo akhir menurut bank.</span></li><li value="2"><span class="n">2</span><span>Saldo bank + transaksi buku yang beredar.</span></li><li value="3"><span class="n">3</span><span>Harus 0 sebelum finalisasi.</span></li><li value="4"><span class="n">4</span><span>Cocokkan otomatis menurut nominal &amp; tanggal.</span></li><li value="5"><span class="n">5</span><span>Hapus draft bila salah impor.</span></li></ol></figure>
+
+
+<h3>Pencocokan otomatis</h3>
+<p>Menyamakan nominal yang persis sama dengan transaksi buku dalam jendela tanggal (± 0–14 hari; bawaan 5).</p>
+<figure id="fig-rec-automatch"><figcaption class="ft">Gambar 93 — Setelah pencocokan otomatis</figcaption><img src="img/rec-automatch.jpg" alt="Setelah pencocokan otomatis" ><p class="cap">Baris yang nominalnya sama persis dengan transaksi buku dalam jendela tanggal langsung dicocokkan (ditandai ‘otomatis’). Sisanya perlu ditangani manual.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Pencocokan otomatis.</span></li><li value="2"><span class="n">2</span><span>Masih perlu tindakan.</span></li><li value="3"><span class="n">3</span><span>Jendela toleransi tanggal (± hari).</span></li></ol></figure>
+
+
+<h3>Pencocokan manual</h3>
+<p>Untuk baris yang tidak cocok otomatis (mis. tanggal bergeser jauh atau satu setoran untuk beberapa transaksi). Pilih transaksi yang <strong>totalnya persis sama</strong> dengan sisa baris mutasi.</p>
+<figure id="fig-rec-match-dialog"><figcaption class="ft">Gambar 94 — Mencocokkan manual</figcaption><img src="img/rec-match-dialog.jpg" alt="Mencocokkan manual" ><p class="cap">Pilih transaksi buku yang jumlahnya persis sama dengan sisa baris mutasi (urut dari yang paling mendekati). Beberapa transaksi boleh digabung bila totalnya sama.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Centang transaksi buku yang sesuai.</span></li><li value="2"><span class="n">2</span><span>Total terpilih harus = sisa; baru tombol aktif.</span></li><li value="3"><span class="n">3</span><span>Simpan pencocokan.</span></li></ol></figure>
+
+
+<p>Tombol <strong>Lepas</strong> membatalkan pencocokan sebuah baris selama masih draft.</p>
+<h3>Catat dari mutasi</h3>
+<p>Untuk mutasi yang belum ada di buku (biaya admin, bunga bank).</p>
+<ul>
+<li><strong>Pelaksana:</strong> entri tercatat <strong>menunggu persetujuan</strong> Finance Manager; setelah disetujui, cocokkan barisnya.</li>
+<li><strong>Finance Manager:</strong> entri langsung berlaku dan otomatis dicocokkan.</li>
+<li>Uang keluar di atas Rp 1.000.000 wajib melampirkan bukti.</li>
+</ul>
+<figure id="fig-rec-entry-staff"><figcaption class="ft">Gambar 95 — Catat dari mutasi (Pelaksana)</figcaption><img src="img/rec-entry-staff.jpg" alt="Catat dari mutasi (Pelaksana)" ><p class="cap">Untuk mutasi yang hanya ada di bank (biaya admin, bunga). Pelaksana mencatat entri kas dari mutasi; entri menunggu persetujuan Finance Manager, setelah itu baris dicocokkan.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Kategori biaya/pendapatan.</span></li><li value="2"><span class="n">2</span><span>Uraian (terisi dari mutasi).</span></li><li value="3"><span class="n">3</span><span>Pelaksana: ‘Catat (menunggu persetujuan)’.</span></li></ol></figure>
+
+
+
+<figure id="fig-rec-entry-fm"><figcaption class="ft">Gambar 96 — Catat dari mutasi (Finance Manager)</figcaption><img src="img/rec-entry-fm.jpg" alt="Catat dari mutasi (Finance Manager)" ><p class="cap">Finance Manager mencatat langsung berlaku dan baris mutasi otomatis dicocokkan.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Catat &amp; cocokkan sekaligus.</span></li></ol></figure>
+
+
+<h2 id="s-70">10.5 Finalisasi (Finance Manager)</h2>
+<p>Setelah selisih 0, tombol <strong>Finalisasi</strong> aktif.</p>
+<figure id="fig-rec-ready"><figcaption class="ft">Gambar 97 — Siap difinalisasi (selisih 0)</figcaption><img src="img/rec-ready.jpg" alt="Siap difinalisasi (selisih 0)" ><p class="cap">Setelah semua baris cocok, selisih menjadi 0 (✓ hijau) dan tombol Finalisasi aktif. Transaksi buku yang masih beredar ditampilkan di bagian bawah sebagai alasan perbedaan saldo.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Selisih 0.</span></li><li value="2"><span class="n">2</span><span>Hanya Finance Manager dapat memfinalisasi.</span></li><li value="3"><span class="n">3</span><span>Transaksi buku yang belum tampil di bank.</span></li></ol></figure>
+
+
+
+<figure id="fig-rec-finalize-dialog"><figcaption class="ft">Gambar 98 — Konfirmasi finalisasi</figcaption><img src="img/rec-finalize-dialog.jpg" alt="Konfirmasi finalisasi" ><p class="cap">Setelah final, pencocokan tidak dapat diubah kecuali dibuka kembali dengan alasan (hanya periode terakhir).</p><ol class="legend"><li value="1"><span class="n">1</span><span>Finalisasi.</span></li></ol></figure>
+
+
+
+<figure id="fig-rec-final"><figcaption class="ft">Gambar 99 — Rekonsiliasi final</figcaption><img src="img/rec-final.jpg" alt="Rekonsiliasi final" ><p class="cap">Status ‘Final’. Aksi tersisa: Buka kembali (dengan alasan) dan ekspor.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Buka kembali bila ada koreksi (alasan tercatat di audit).</span></li></ol></figure>
+
+
+<h3>Membuka kembali</h3>
+<p>Hanya rekening koran <strong>terakhir</strong> yang final pada akun tersebut. Alasan wajib dan tercatat di audit.</p>
+<figure id="fig-rec-reopen-dialog"><figcaption class="ft">Gambar 100 — Membuka kembali rekonsiliasi</figcaption><img src="img/rec-reopen-dialog.jpg" alt="Membuka kembali rekonsiliasi" ><p class="cap">Hanya rekening koran terakhir yang sudah final pada akun tersebut yang dapat dibuka kembali.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Alasan wajib.</span></li><li value="2"><span class="n">2</span><span>Konfirmasi.</span></li></ol></figure>
+
+
+
+<figure id="fig-rec-list-after"><figcaption class="ft">Gambar 101 — Daftar rekening koran setelah final</figcaption><img src="img/rec-list-after.jpg" alt="Daftar rekening koran setelah final" ><p class="cap">Kartu akun kini menunjukkan tanggal terakhir direkonsiliasi; kolom Status ‘Final’. Impor periode berikutnya mulai dari tanggal yang disarankan.</p></figure>
+
+
+<h2 id="s-71">Tips &amp; Kesalahan Umum</h2>
+<ul>
+<li>Selisih tidak nol? Periksa: pembayaran/pengeluaran belum dicatat di buku, nominal salah, atau pencocokan keliru.</li>
+<li>“Transaksi buku yang beredar” normal untuk setoran atau cek dalam perjalanan; ia akan cocok di periode berikutnya.</li>
+<li>Salah impor? <strong>Hapus draft</strong> lalu impor ulang; transaksi buku tidak terpengaruh.</li>
+<li>Impor per bulan secara rutin; jangan menumpuk berbulan-bulan.</li>
+</ul>
+</section>
+<section class="bab"><h1 id="s-72">Bab 11 — Laporan Operasional</h1>
+<blockquote>
+<p><strong>Peran:</strong> Pelaksana ✔ · Finance Manager ✔ (lihat &amp; ekspor CSV/Excel)</p>
+</blockquote>
+<p>Laporan operasional penagihan. <strong>Bukan</strong> laporan akuntansi: nilai invoice (penerbitan) dan penerimaan kas dilaporkan terpisah dan tidak boleh dijumlahkan.</p>
+<table>
+<thead>
+<tr>
+<th>Kelompok</th>
+<th>Laporan</th>
+<th>Fungsi</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Penerbitan invoice</td>
+<td>Daftar Invoice</td>
+<td>Seluruh invoice terbit &amp; batal menurut tanggal invoice</td>
+</tr>
+<tr>
+<td></td>
+<td>Rekap per Pelanggan</td>
+<td>Nilai invoice, jumlah dibayar, dan sisanya per pelanggan</td>
+</tr>
+<tr>
+<td></td>
+<td>Rekap per Produk / Skema</td>
+<td>Nilai bersih baris per produk</td>
+</tr>
+<tr>
+<td></td>
+<td>Invoice Lunas</td>
+<td>Invoice terbit yang sudah lunas</td>
+</tr>
+<tr>
+<td></td>
+<td>Invoice Dibatalkan</td>
+<td>Beserta alasan dan pelakunya</td>
+</tr>
+<tr>
+<td>Penerimaan kas</td>
+<td>Rekap Pembayaran Masuk</td>
+<td>Menurut tanggal pembayaran, termasuk pembalikan</td>
+</tr>
+<tr>
+<td></td>
+<td>Rekap Bulanan &amp; Tahunan</td>
+<td>Invoice terbit vs penerimaan kas per bulan</td>
+</tr>
+<tr>
+<td>Piutang</td>
+<td>Daftar Piutang</td>
+<td>Sisa tagihan &gt; 0 per hari ini beserta umur piutang</td>
+</tr>
+<tr>
+<td></td>
+<td>Invoice Jatuh Tempo</td>
+<td>Melewati jatuh tempo, belum lunas</td>
+</tr>
+</tbody></table>
+<figure id="fig-rpt-invoices"><figcaption class="ft">Gambar 102 — Laporan operasional: Daftar Invoice</figcaption><img src="img/rpt-invoices.jpg" alt="Laporan operasional: Daftar Invoice" ><p class="cap">Menu Laporan tersedia untuk Pelaksana dan Finance Manager. Pilih jenis laporan di baris lencana, atur periode dan pelanggan, lalu ekspor CSV/Excel.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Kelompok laporan: penerbitan invoice, penerimaan kas, piutang.</span></li><li value="2"><span class="n">2</span><span>Jenis laporan aktif (warna marun).</span></li><li value="3"><span class="n">3</span><span>Periode laporan (bawaan: 1 Januari s.d. hari ini).</span></li><li value="4"><span class="n">4</span><span>Saring per pelanggan.</span></li><li value="5"><span class="n">5</span><span>Ekspor CSV.</span></li><li value="6"><span class="n">6</span><span>Ekspor Excel (.xlsx).</span></li></ol></figure>
+
+
+
+<figure id="fig-rpt-receivables"><figcaption class="ft">Gambar 103 — Laporan: Daftar Piutang</figcaption><img src="img/rpt-receivables.jpg" alt="Laporan: Daftar Piutang" ><p class="cap">Invoice terbit dengan sisa tagihan &gt; 0 per hari ini, beserta umur piutang. Laporan piutang selalu ‘per hari ini’, sehingga tidak memiliki filter tanggal.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Jenis laporan: piutang.</span></li><li value="2"><span class="n">2</span><span>Hanya yang sudah melewati jatuh tempo.</span></li></ol></figure>
+
+
+
+<figure id="fig-rpt-monthly"><figcaption class="ft">Gambar 104 — Laporan: Rekap Bulanan &amp; Tahunan</figcaption><img src="img/rpt-monthly.jpg" alt="Laporan: Rekap Bulanan &amp; Tahunan" ><p class="cap">Membandingkan nilai invoice terbit dengan penerimaan kas per bulan. Dua angka ini berbeda dan tidak boleh dijumlahkan.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Jenis laporan.</span></li><li value="2"><span class="n">2</span><span>Catatan: laporan ini operasional, bukan laporan keuangan akuntansi.</span></li></ol></figure>
+
+
+
+<figure id="fig-rpt-payments"><figcaption class="ft">Gambar 105 — Laporan: Rekap Pembayaran Masuk</figcaption><img src="img/rpt-payments.jpg" alt="Laporan: Rekap Pembayaran Masuk" ><p class="cap">Penerimaan kas menurut tanggal pembayaran, termasuk pembalikan (negatif).</p></figure>
+
+
+<h2 id="s-73">Cara memakai</h2>
+<ol>
+<li>Pilih jenis laporan.</li>
+<li>Atur <strong>periode</strong> dan <strong>pelanggan</strong> (laporan piutang selalu <em>per hari ini</em>, tanpa filter tanggal).</li>
+<li>Klik <strong>Terapkan</strong>, lalu <strong>CSV</strong> atau <strong>Excel</strong> untuk mengunduh. Ekspor mengikuti filter yang tampil.</li>
+</ol>
+<h2 id="s-74">Tips</h2>
+<ul>
+<li>Gunakan <em>Daftar Piutang</em> untuk menyusun penagihan mingguan.</li>
+<li>Gunakan <em>Rekap Bulanan</em> untuk membandingkan penerbitan vs kas.</li>
+</ul>
+</section>
+<section class="bab"><h1 id="s-75">Bab 12 — Laporan Keuangan</h1>
+<blockquote>
+<p><strong>Peran:</strong> Pelaksana ✔ <strong>hanya lihat &amp; ekspor</strong> · Finance Manager ✔ lihat &amp; ekspor</p>
+</blockquote>
+<p>Laporan basis kas dari buku besar: pendapatan diakui saat uang diterima, beban saat dibayar. Hanya entri <strong>berlaku (disetujui)</strong> yang dihitung.</p>
+<table>
+<thead>
+<tr>
+<th>Laporan</th>
+<th>Isi</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Laba Rugi</strong></td>
+<td>Pendapatan, beban langsung program, laba kotor, beban operasional, pendapatan lain, laba bersih</td>
+</tr>
+<tr>
+<td><strong>Arus Kas</strong></td>
+<td>Kas dari operasi, investasi, pendanaan</td>
+</tr>
+<tr>
+<td><strong>Neraca</strong></td>
+<td>Aset, kewajiban, ekuitas per tanggal</td>
+</tr>
+<tr>
+<td><strong>Neraca Saldo</strong></td>
+<td>Saldo seluruh akun; debit = kredit</td>
+</tr>
+<tr>
+<td><strong>Buku Besar</strong></td>
+<td>Mutasi satu akun dengan saldo berjalan</td>
+</tr>
+</tbody></table>
+<h2 id="s-76">12.1 Laba Rugi</h2>
+<figure id="fig-stm-income"><figcaption class="ft">Gambar 106 — Laporan Keuangan: Laba Rugi (basis kas)</figcaption><img src="img/stm-income.jpg" alt="Laporan Keuangan: Laba Rugi (basis kas)" ><p class="cap">Pelaksana dapat MELIHAT seluruh laporan keuangan namun tidak mengubahnya. Pendapatan diakui saat uang diterima, beban saat dibayar; hanya entri berlaku yang dihitung.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Lima laporan: Laba Rugi, Arus Kas, Neraca, Neraca Saldo, Buku Besar.</span></li><li value="2"><span class="n">2</span><span>Periode laporan.</span></li><li value="3"><span class="n">3</span><span>Bandingkan dengan periode sebelumnya / tahun lalu.</span></li><li value="4"><span class="n">4</span><span>Ekspor PDF (juga CSV &amp; Excel).</span></li><li value="5"><span class="n">5</span><span>Baris hasil akhir.</span></li></ol></figure>
+
+
+<p>PPN yang diterima dikeluarkan dari pendapatan (dicatat sebagai utang PPN). PPh yang dipotong pelanggan dicatat sebagai kredit pajak, bukan uang masuk.</p>
+<h2 id="s-77">12.2 Pembanding</h2>
+<p>Pilih <strong>Pembanding</strong> (periode sebelumnya / tahun lalu) untuk laba rugi, neraca, dan arus kas. Ekspor mengikuti tampilan yang sama.</p>
+<figure id="fig-stm-compare"><figcaption class="ft">Gambar 107 — Laba Rugi dengan pembanding</figcaption><img src="img/stm-compare.jpg" alt="Laba Rugi dengan pembanding" ><p class="cap">Memilih pembanding menampilkan kolom Periode ini, Pembanding, Selisih, dan persen perubahan. Ekspor mengikuti tampilan yang sama.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Pilih pembanding lalu klik Terapkan.</span></li><li value="2"><span class="n">2</span><span>Tabel pembanding.</span></li></ol></figure>
+
+
+<h2 id="s-78">12.3 Arus Kas</h2>
+<p>Baris pengecekan memastikan <strong>kas akhir arus kas = kas pada neraca</strong>. Bila tampil merah “KAS TIDAK COCOK”, hubungi Administrator.</p>
+<figure id="fig-stm-cashflow"><figcaption class="ft">Gambar 108 — Arus Kas</figcaption><img src="img/stm-cashflow.jpg" alt="Arus Kas" ><p class="cap">Arus kas dikelompokkan operasi, investasi, pendanaan. Baris hijau di bawah memastikan kas akhir arus kas sama dengan kas di neraca.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Pengecekan: kas akhir arus kas = kas pada neraca.</span></li></ol></figure>
+
+
+<h2 id="s-79">12.4 Neraca</h2>
+<figure id="fig-stm-balance"><figcaption class="ft">Gambar 109 — Neraca</figcaption><img src="img/stm-balance.jpg" alt="Neraca" ><p class="cap">Posisi aset, kewajiban, dan ekuitas per tanggal. Laporan ‘per tanggal’ hanya memiliki satu filter tanggal.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Tanggal posisi neraca.</span></li></ol></figure>
+
+
+<h2 id="s-80">12.5 Neraca Saldo</h2>
+<figure id="fig-stm-trial"><figcaption class="ft">Gambar 110 — Neraca Saldo</figcaption><img src="img/stm-trial.jpg" alt="Neraca Saldo" ><p class="cap">Saldo seluruh akun; total debit harus sama dengan total kredit.</p></figure>
+
+
+<h2 id="s-81">12.6 Buku Besar</h2>
+<p>Pilih satu akun, lalu <strong>Terapkan</strong>.</p>
+<figure id="fig-stm-gl"><figcaption class="ft">Gambar 111 — Buku Besar per akun</figcaption><img src="img/stm-gl.jpg" alt="Buku Besar per akun" ><p class="cap">Pilih satu akun untuk melihat seluruh mutasinya dengan saldo berjalan. Ekspor aktif setelah akun dipilih.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Pilih akun.</span></li></ol></figure>
+
+
+<h2 id="s-82">Tips</h2>
+<ul>
+<li>Peringatan di atas laporan (pembayaran belum dialokasikan, pengeluaran menunggu persetujuan) menjelaskan mengapa angka belum final.</li>
+<li>Ekspor <strong>PDF</strong> untuk arsip atau rapat; <strong>Excel</strong> untuk analisis.</li>
+<li>Laporan ini estimasi manajemen berbasis kas, bukan SPT.</li>
+</ul>
+</section>
+<section class="bab"><h1 id="s-83">Bab 13 — Pajak</h1>
+<blockquote>
+<p><strong>Peran:</strong> Pelaksana ✔ lihat, <strong>isi nomor bukti potong</strong> · Finance Manager ✔ + <strong>catat setoran pajak</strong> dan masukan tahunan · Profil pajak: Administrator</p>
+</blockquote>
+<p>Rekap PPN, PPh yang dipotong pelanggan, estimasi PPh badan, dan setoran pajak. Ini <strong>estimasi manajemen</strong> dari pembukuan basis kas, <strong>bukan SPT</strong>. Sistem tidak mengasumsikan tarif.</p>
+<h2 id="s-84">13.1 Ringkasan</h2>
+<figure id="fig-tax-summary-staff"><figcaption class="ft">Gambar 112 — Pajak: Ringkasan (Pelaksana, hanya lihat)</figcaption><img src="img/tax-summary-staff.jpg" alt="Pajak: Ringkasan (Pelaksana, hanya lihat)" ><p class="cap">Ringkasan saldo pajak dan profil pajak. Pelaksana hanya melihat; mengubah profil (Administrator) dan mencatat setoran pajak (Finance Manager) tidak tersedia baginya.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Tab: Ringkasan, PPN, PPh dipotong pelanggan, Estimasi PPh badan, Setoran pajak.</span></li><li value="2"><span class="n">2</span><span>Saldo utang PPN dari penerimaan kas.</span></li><li value="3"><span class="n">3</span><span>Total PPh yang dipotong pelanggan (kredit pajak).</span></li><li value="4"><span class="n">4</span><span>Profil pajak lembaga (diisi Administrator).</span></li></ol></figure>
+
+
+<h2 id="s-85">13.2 PPN</h2>
+<p>Lembaga non-PKP umumnya bernilai nol. Tabel membandingkan PPN menurut invoice (acuan faktur pajak) dengan PPN yang diterima kas.</p>
+<figure id="fig-tax-ppn"><figcaption class="ft">Gambar 113 — Pajak: Rekap PPN</figcaption><img src="img/tax-ppn.jpg" alt="Pajak: Rekap PPN" ><p class="cap">Rekap PPN per masa: menurut invoice (acuan faktur pajak) dan menurut uang yang diterima. Lembaga non-PKP umumnya bernilai nol.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Periode rekap.</span></li><li value="2"><span class="n">2</span><span>Ekspor.</span></li></ol></figure>
+
+
+<h2 id="s-86">13.3 PPh dipotong pelanggan</h2>
+<p>Register seluruh pembayaran yang dipotong PPh. Lencana <strong>Belum ada</strong> berarti nomor bukti potong belum diisi.</p>
+<figure id="fig-tax-pph23"><figcaption class="ft">Gambar 114 — Pajak: Register PPh dipotong pelanggan</figcaption><img src="img/tax-pph23.jpg" alt="Pajak: Register PPh dipotong pelanggan" ><p class="cap">Daftar pembayaran yang dipotong PPh oleh pelanggan. Lencana ‘Belum ada’ berarti nomor bukti potong belum diisi — kejar dari pelanggan lalu isi dengan tombol ‘Isi nomor’.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Nomor bukti potong belum diisi.</span></li><li value="2"><span class="n">2</span><span>Isi nomor bukti potong (hanya sekali).</span></li></ol></figure>
+
+
+<h3>Mengisi nomor bukti potong</h3>
+<p>Dapat diisi <strong>satu kali</strong>. Untuk koreksi, minta Finance Manager membalikkan pembayaran lalu catat ulang dengan nomor yang benar.</p>
+<figure id="fig-tax-pph23-ref"><figcaption class="ft">Gambar 115 — Mengisi nomor bukti potong</figcaption><img src="img/tax-pph23-ref.jpg" alt="Mengisi nomor bukti potong" ><p class="cap">Nomor hanya dapat diisi sekali. Bila salah, balikkan pembayaran (Finance Manager) lalu catat ulang dengan nomor yang benar.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Nomor bukti potong dari pelanggan.</span></li></ol></figure>
+
+
+<h2 id="s-87">13.4 Estimasi PPh badan</h2>
+<figure id="fig-tax-corp"><figcaption class="ft">Gambar 116 — Pajak: Estimasi PPh badan</figcaption><img src="img/tax-corp.jpg" alt="Pajak: Estimasi PPh badan" ><p class="cap">Estimasi manajemen dari pembukuan. Rezim dan tarif ditetapkan Administrator di profil pajak; bila belum diaktifkan akan tampil pemberitahuan seperti ini.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Tahun pajak.</span></li></ol></figure>
+
+
+<p>Bila rezim dan tarif sudah diaktifkan Administrator, halaman menampilkan perhitungan dan <strong>jurnal penyesuaian yang disarankan</strong>, yang dapat dicatat Finance Manager. Untuk tarif umum, Finance Manager menginput <strong>masukan tahun</strong> (koreksi fiskal, kompensasi kerugian, pengurang) dari akuntan.</p>
+<h2 id="s-88">13.5 Setoran pajak (Finance Manager)</h2>
+<p>Kas keluar yang mengurangi utang PPN atau utang PPh badan (<strong>bukan beban</strong>). NTPN/ID billing wajib sebagai bukti.</p>
+<figure id="fig-tax-payments-fm"><figcaption class="ft">Gambar 117 — Pajak: Setoran pajak (Finance Manager)</figcaption><img src="img/tax-payments-fm.jpg" alt="Pajak: Setoran pajak (Finance Manager)" ><p class="cap">Setoran pajak mengurangi utang PPN/PPh badan (bukan beban). Hanya Finance Manager yang dapat mencatat.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Catat setoran pajak baru.</span></li></ol></figure>
+
+
+
+<figure id="fig-tax-payment-new"><figcaption class="ft">Gambar 118 — Formulir setoran pajak</figcaption><img src="img/tax-payment-new.jpg" alt="Formulir setoran pajak" ><p class="cap">Isi jenis pajak, masa, tanggal, akun sumber dana, nominal, dan NTPN/ID billing (wajib sebagai bukti).</p><ol class="legend"><li value="1"><span class="n">1</span><span>PPN atau PPh badan.</span></li><li value="2"><span class="n">2</span><span>Contoh: 2026-09 atau 2026.</span></li><li value="3"><span class="n">3</span><span>Akun kas/bank sumber.</span></li><li value="4"><span class="n">4</span><span>Nominal disetor.</span></li><li value="5"><span class="n">5</span><span>Bukti setor (wajib).</span></li></ol></figure>
+
+
+<h2 id="s-89">13.6 Profil pajak (Administrator)</h2>
+<figure id="fig-tax-profile-admin"><figcaption class="ft">Gambar 119 — Profil pajak (Administrator)</figcaption><img src="img/tax-profile-admin.jpg" alt="Profil pajak (Administrator)" ><p class="cap">Administrator mengatur status PKP, rezim PPh badan, dan tarif sesuai arahan konsultan pajak. Sistem tidak mengasumsikan tarif.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Tidak dihitung / tarif umum / final.</span></li></ol></figure>
+
+
+<h2 id="s-90">Tips</h2>
+<ul>
+<li>Setiap bulan, tindak lanjuti baris <strong>Belum ada</strong> pada register PPh agar kredit pajak punya bukti.</li>
+<li>Konsultasikan tarif dan rezim dengan konsultan pajak sebelum mengaturnya.</li>
+</ul>
+</section>
+<section class="bab"><h1 id="s-91">Bab 14 — Tutup Buku</h1>
+<blockquote>
+<p><strong>Peran:</strong> Pelaksana ✔ lihat · Finance Manager ✔ <strong>tutup</strong> dan <strong>buka kembali</strong></p>
+</blockquote>
+<p>Penutupan menyimpan <strong>foto neraca saldo + hash</strong> dan mengunci transaksi bertanggal sampai akhir bulan itu. Bulan ditutup <strong>berurutan</strong> dari yang paling awal.</p>
+<h2 id="s-92">14.1 Daftar periode</h2>
+<figure id="fig-close-staff"><figcaption class="ft">Gambar 120 — Tutup Buku (Pelaksana, hanya lihat)</figcaption><img src="img/close-staff.jpg" alt="Tutup Buku (Pelaksana, hanya lihat)" ><p class="cap">Pelaksana dapat melihat status tiap periode tetapi tidak dapat menutup atau membuka kembali. Kunci buku menolak transaksi bertanggal sampai akhir bulan yang ditutup.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Satu baris per bulan: status, total aset, laba, catatan penutupan.</span></li></ol></figure>
+
+
+
+<figure id="fig-close-fm"><figcaption class="ft">Gambar 121 — Tutup Buku (Finance Manager)</figcaption><img src="img/close-fm.jpg" alt="Tutup Buku (Finance Manager)" ><p class="cap">Bulan ditutup berurutan dari yang paling awal. Tombol ‘Tutup bulan’ hanya muncul pada bulan yang boleh ditutup berikutnya.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Tutup bulan ini.</span></li></ol></figure>
+
+
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Artinya</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Belum ditutup</td>
+<td>Bulan sudah berlalu, belum ditutup</td>
+</tr>
+<tr>
+<td>Berjalan</td>
+<td>Bulan berjalan, belum boleh ditutup</td>
+</tr>
+<tr>
+<td>Ditutup</td>
+<td>Terkunci, ada foto &amp; hash</td>
+</tr>
+<tr>
+<td>Dibuka kembali</td>
+<td>Pernah ditutup lalu dibuka (alasan tercatat)</td>
+</tr>
+</tbody></table>
+<h2 id="s-93">14.2 Menutup bulan</h2>
+<ol>
+<li>Pastikan transaksi bulan itu lengkap: invoice, pembayaran, pengeluaran <strong>sudah disetujui</strong>, rekonsiliasi bank selesai.</li>
+<li>Klik <strong>Tutup bulan</strong> pada bulan yang berhak ditutup.</li>
+<li>Baca <strong>daftar periksa</strong>: ✔ lolos, ✘ menghalangi (selesaikan dulu), ⚠ peringatan (boleh dilanjutkan bila <strong>diakui</strong>).</li>
+<li>Isi <strong>catatan penutupan</strong> (min. 5 karakter) lalu klik <strong>Tutup <bulan></strong>.</li>
+</ol>
+<figure id="fig-close-checklist"><figcaption class="ft">Gambar 122 — Daftar periksa penutupan</figcaption><img src="img/close-checklist.jpg" alt="Daftar periksa penutupan" ><p class="cap">Sistem memeriksa pembukuan: centang hijau lolos; merah menghalangi (harus diselesaikan); kuning peringatan (boleh ditutup bila diakui). Wajib mengisi catatan penutupan.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Hasil pemeriksaan otomatis.</span></li><li value="2"><span class="n">2</span><span>Catatan wajib (min. 5 karakter).</span></li></ol></figure>
+
+
+
+<figure id="fig-close-confirm"><figcaption class="ft">Gambar 123 — Menutup bulan</figcaption><img src="img/close-confirm.jpg" alt="Menutup bulan" ><p class="cap">Peringatan kuning harus diberi tanda ‘diakui’. Setelah menekan ‘Tutup …’, foto neraca saldo dan hash disimpan.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Konfirmasi penutupan.</span></li></ol></figure>
+
+
+
+<figure id="fig-close-done"><figcaption class="ft">Gambar 124 — Periode yang sudah ditutup</figcaption><img src="img/close-done.jpg" alt="Periode yang sudah ditutup" ><p class="cap">Status ‘Ditutup’ beserta ‘Foto cocok’ (hash cocok dengan buku besar). Bila muncul ‘Foto berubah!’, hubungi Administrator.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Integritas angka periode terjaga.</span></li><li value="2"><span class="n">2</span><span>Buka kembali (alasan wajib) bila perlu koreksi.</span></li></ol></figure>
+
+
+<p><strong>Foto cocok</strong> berarti angka periode sama dengan perhitungan ulang buku besar. Bila muncul <strong>Foto berubah!</strong>, segera hubungi Administrator.</p>
+<h2 id="s-94">14.3 Membuka kembali</h2>
+<p>Hanya periode yang paling akhir ditutup. Alasan wajib dan tercatat di audit log.</p>
+<figure id="fig-close-reopen"><figcaption class="ft">Gambar 125 — Membuka kembali periode</figcaption><img src="img/close-reopen.jpg" alt="Membuka kembali periode" ><p class="cap">Hanya periode yang paling akhir ditutup yang dapat dibuka. Alasan tercatat di audit log.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Alasan (min. 5 karakter).</span></li><li value="2"><span class="n">2</span><span>Konfirmasi.</span></li></ol></figure>
+
+
+<h2 id="s-95">Tips &amp; Kesalahan Umum</h2>
+<ul>
+<li>Tutup bulan setelah rekonsiliasi bank final dan tidak ada pengeluaran menunggu persetujuan.</li>
+<li>Setelah ditutup, koreksi dilakukan dengan pembalikan bertanggal hari ini (jatuh di bulan berjalan).</li>
+<li>Transaksi bertanggal pada bulan tertutup akan ditolak; ini disengaja.</li>
+</ul>
+</section>
+<section class="bab"><h1 id="s-96">Bab 15 — Pengaturan dan Audit Log (tampilan untuk Pelaksana &amp; Finance Manager)</h1>
+<blockquote>
+<p><strong>Peran:</strong> Pelaksana ✔ lihat · Finance Manager ✔ lihat · Mengubah: <strong>Administrator</strong></p>
+</blockquote>
+<p>Pelaksana dan Finance Manager dapat <strong>melihat</strong> beberapa tab pengaturan untuk memeriksa data yang tercetak atau dipakai sistem, tetapi tidak dapat mengubahnya.</p>
+<h2 id="s-97">15.1 Perusahaan &amp; dokumen</h2>
+<p>Identitas lembaga yang tampil pada PDF invoice.</p>
+<figure id="fig-set-company"><figcaption class="ft">Gambar 126 — Pengaturan: Perusahaan &amp; dokumen</figcaption><img src="img/set-company.jpg" alt="Pengaturan: Perusahaan &amp; dokumen" ><p class="cap">Identitas lembaga yang tampil di PDF invoice. Pelaksana dan Finance Manager hanya melihat; perubahan dilakukan Administrator.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Bagian pengaturan yang terlihat untuk peran Anda.</span></li></ol></figure>
+
+
+<h2 id="s-98">15.2 Rekening bank</h2>
+<p>Rekening tujuan yang dapat dipilih pada invoice.</p>
+<figure id="fig-set-banks"><figcaption class="ft">Gambar 127 — Pengaturan: Rekening bank</figcaption><img src="img/set-banks.jpg" alt="Pengaturan: Rekening bank" ><p class="cap">Rekening bank yang dicetak pada invoice.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Bagian pengaturan yang terlihat untuk peran Anda.</span></li></ol></figure>
+
+
+<h2 id="s-99">15.3 Penomoran invoice</h2>
+<p>Format dan urutan nomor berikutnya.</p>
+<figure id="fig-set-numbering"><figcaption class="ft">Gambar 128 — Pengaturan: Penomoran invoice</figcaption><img src="img/set-numbering.jpg" alt="Pengaturan: Penomoran invoice" ><p class="cap">Format dan urutan nomor invoice berikutnya.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Bagian pengaturan yang terlihat untuk peran Anda.</span></li></ol></figure>
+
+
+<h2 id="s-100">15.4 Keuangan</h2>
+<p>Akun kas/bank, saldo awal, dan bagan akun. Bila akun kas belum ada, menu Kas &amp; Bank memintanya dibuat Administrator.</p>
+<figure id="fig-set-finance"><figcaption class="ft">Gambar 129 — Pengaturan: Keuangan</figcaption><img src="img/set-finance.jpg" alt="Pengaturan: Keuangan" ><p class="cap">Akun kas/bank beserta saldo awal dan bagan akun. Finance Manager dan Pelaksana hanya melihat; Administrator mengelola.</p><ol class="legend"><li value="1"><span class="n">1</span><span>Bagian pengaturan yang terlihat untuk peran Anda.</span></li></ol></figure>
+
+
+<h2 id="s-101">15.5 Tampilan Administrator (sebagai gambaran)</h2>
+<p>Tab Pajak, Pengguna, dan Integrasi hanya ada bagi Administrator.</p>
+<figure id="fig-set-finance-admin"><figcaption class="ft">Gambar 130 — Pengaturan Keuangan (Administrator)</figcaption><img src="img/set-finance-admin.jpg" alt="Pengaturan Keuangan (Administrator)" ><p class="cap">Administrator menambah akun kas/bank, saldo awal, dan mengelola bagan akun. Contoh di sini hanya untuk gambaran; Pelaksana dan Finance Manager tidak melakukannya.</p></figure>
+
+
+
+<figure id="fig-audit-admin"><figcaption class="ft">Gambar 131 — Audit Log (Administrator)</figcaption><img src="img/audit-admin.jpg" alt="Audit Log (Administrator)" ><p class="cap">Seluruh aksi penting tercatat (siapa, kapan, apa). Menu ini hanya untuk Administrator.</p></figure>
+
+
+<h2 id="s-102">Kapan menghubungi Administrator?</h2>
+<table>
+<thead>
+<tr>
+<th>Kebutuhan</th>
+<th>Hubungi</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Lupa password / akun terkunci / reset 2FA</td>
+<td>Administrator</td>
+</tr>
+<tr>
+<td>Tambah produk, ubah harga katalog</td>
+<td>Administrator</td>
+</tr>
+<tr>
+<td>Tambah rekening bank atau akun kas, ubah saldo awal</td>
+<td>Administrator</td>
+</tr>
+<tr>
+<td>Ubah format nomor invoice</td>
+<td>Administrator</td>
+</tr>
+<tr>
+<td>Profil pajak (PKP, rezim, tarif)</td>
+<td>Administrator</td>
+</tr>
+<tr>
+<td>“Foto berubah!” atau “KAS TIDAK COCOK”</td>
+<td>Administrator (segera)</td>
+</tr>
+</tbody></table>
+</section>
+<section class="bab"><h1 id="s-103">Lampiran A — Alur Kerja End-to-End</h1>
+<p>Contoh satu siklus lengkap. <strong>P</strong> = Pelaksana, <strong>FM</strong> = Finance Manager.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Langkah</th>
+<th>Siapa</th>
+<th>Bab</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Pelanggan baru? Cari dulu, tambah bila belum ada</td>
+<td>P</td>
+<td>3</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Buat invoice → simpan draft → periksa PDF draft</td>
+<td>P</td>
+<td>5.3–5.4</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Ajukan untuk verifikasi</td>
+<td>P</td>
+<td>5.4</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Periksa; setujui &amp; terbitkan <strong>atau</strong> kembalikan dengan catatan</td>
+<td>FM</td>
+<td>5.5</td>
+</tr>
+<tr>
+<td>5</td>
+<td>(Bila dikembalikan) perbaiki dan ajukan ulang</td>
+<td>P</td>
+<td>5.5</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Kirim PDF invoice terbit ke pelanggan</td>
+<td>P/FM</td>
+<td>5.6</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Uang masuk → catat pembayaran (DP/termin/pelunasan), isi referensi dan PPh dipotong bila ada</td>
+<td>P</td>
+<td>6</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Invoice lunas → unduh kwitansi</td>
+<td>P/FM</td>
+<td>6.4</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Pengeluaran operasional: catat + lampirkan bukti</td>
+<td>P</td>
+<td>7</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Setujui atau tolak pengeluaran</td>
+<td>FM</td>
+<td>7.4</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Isi kas kecil / pindah dana antar akun</td>
+<td>P</td>
+<td>8.2</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Bunga bank, jasa giro: catat penerimaan lain</td>
+<td>P (diajukan) / FM</td>
+<td>8.3</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Akhir bulan: impor rekening koran, cocokkan, catat biaya admin/bunga</td>
+<td>P</td>
+<td>10</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Finalisasi rekonsiliasi</td>
+<td>FM</td>
+<td>10.5</td>
+</tr>
+<tr>
+<td>15</td>
+<td>Isi nomor bukti potong PPh yang masuk</td>
+<td>P</td>
+<td>13.3</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Jurnal penyesuaian (mis. penyusutan)</td>
+<td>FM</td>
+<td>9.2</td>
+</tr>
+<tr>
+<td>17</td>
+<td>Setoran pajak bila ada</td>
+<td>FM</td>
+<td>13.5</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Periksa laporan keuangan &amp; arus kas = neraca</td>
+<td>FM (P melihat)</td>
+<td>12</td>
+</tr>
+<tr>
+<td>19</td>
+<td>Tutup buku bulan itu</td>
+<td>FM</td>
+<td>14</td>
+</tr>
+</tbody></table>
+<h2 id="s-104">Skenario koreksi</h2>
+<table>
+<thead>
+<tr>
+<th>Kesalahan</th>
+<th>Penanganan</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Invoice draft salah</td>
+<td>Pelaksana ubah (atau hapus) draft</td>
+</tr>
+<tr>
+<td>Invoice diajukan, salah</td>
+<td>Pelaksana <strong>tarik kembali</strong>, perbaiki, ajukan ulang</td>
+</tr>
+<tr>
+<td>Invoice terbit, salah</td>
+<td>FM <strong>batalkan</strong> (balikkan pembayaran dulu bila ada) → duplikasi → ajukan baru</td>
+</tr>
+<tr>
+<td>Pembayaran salah catat</td>
+<td>FM <strong>balikkan</strong> → P catat ulang yang benar</td>
+</tr>
+<tr>
+<td>Pengeluaran salah, belum disetujui</td>
+<td>P <strong>batalkan</strong> pengajuan, catat ulang</td>
+</tr>
+<tr>
+<td>Pengeluaran salah, sudah berlaku</td>
+<td>FM <strong>balikkan</strong> → P catat ulang</td>
+</tr>
+<tr>
+<td>Transfer salah</td>
+<td>FM <strong>balikkan</strong> → P catat ulang</td>
+</tr>
+<tr>
+<td>Jurnal manual salah</td>
+<td>FM <strong>balikkan</strong> → catat ulang</td>
+</tr>
+<tr>
+<td>Rekonsiliasi final tapi ada koreksi</td>
+<td>FM <strong>buka kembali</strong> (periode terakhir)</td>
+</tr>
+<tr>
+<td>Bulan sudah ditutup</td>
+<td>FM <strong>buka kembali</strong> periode terakhir, atau koreksi bertanggal hari ini</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="s-105">Lampiran B — Rutinitas Kerja</h1>
+<h2 id="s-106">Pelaksana</h2>
+<table>
+<thead>
+<tr>
+<th>Kapan</th>
+<th>Kegiatan</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Harian</strong></td>
+<td>Cek lonceng (invoice dikembalikan, jatuh tempo). Input invoice baru &amp; ajukan. Catat pembayaran yang masuk (isi referensi). Catat pengeluaran dengan bukti. Tindak lanjuti draft yang dikembalikan.</td>
+</tr>
+<tr>
+<td><strong>Mingguan</strong></td>
+<td>Tinjau <em>Daftar Piutang</em> dan <em>Invoice Jatuh Tempo</em>; tagih pelanggan. Pastikan tidak ada pengajuan menggantung. Rapikan pelanggan duplikat/arsip.</td>
+</tr>
+<tr>
+<td><strong>Bulanan</strong></td>
+<td>Impor rekening koran tiap akun bank; cocokkan otomatis lalu manual; catat biaya admin/bunga. Lengkapi nomor bukti potong PPh. Siapkan bahan penutupan bulan bagi Finance Manager.</td>
+</tr>
+</tbody></table>
+<h2 id="s-107">Finance Manager</h2>
+<table>
+<thead>
+<tr>
+<th>Kapan</th>
+<th>Kegiatan</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Harian</strong></td>
+<td>Lonceng &amp; Dashboard. Verifikasi/terbitkan atau kembalikan invoice. Setujui/tolak pengeluaran &amp; penerimaan lain.</td>
+</tr>
+<tr>
+<td><strong>Mingguan</strong></td>
+<td>Tinjau piutang &amp; jatuh tempo; evaluasi arus kas; cek pengajuan yang tertunda.</td>
+</tr>
+<tr>
+<td><strong>Bulanan</strong></td>
+<td>Finalisasi rekonsiliasi. Jurnal penyesuaian. Setoran pajak. Periksa Laba Rugi, Arus Kas, Neraca (arus kas = neraca). <strong>Tutup buku</strong>.</td>
+</tr>
+<tr>
+<td><strong>Tahunan</strong></td>
+<td>Masukan tahun PPh badan bersama akuntan; cetak laporan tahunan (PDF/Excel).</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="s-108">Lampiran C — Matriks Hak Akses</h1>
+<p>✔ = boleh · ✘ = tidak ada tombol/ditolak sistem · (A) = hanya Administrator.</p>
+<table>
+<thead>
+<tr>
+<th>Fitur</th>
+<th align="center">Pelaksana</th>
+<th align="center">Finance Manager</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Dashboard</td>
+<td align="center">✘</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>Lihat daftar &amp; detail invoice</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>Buat / ubah / hapus draft</td>
+<td align="center">✔ (milik sendiri)</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>Harga satuan, baris bebas, diskon</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>Ajukan / tarik kembali pengajuan</td>
+<td align="center">✔ (milik sendiri)</td>
+<td align="center">—</td>
+</tr>
+<tr>
+<td>Setujui &amp; terbitkan, kembalikan</td>
+<td align="center">✘</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>Batalkan invoice terbit</td>
+<td align="center">✘</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>Duplikasi invoice</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>PDF draft / PDF invoice terbit / riwayat</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>Catat pembayaran</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>Balikkan pembayaran</td>
+<td align="center">✘</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>Pelanggan: lihat, tambah, ubah, arsipkan</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>Produk: lihat</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>Produk: kelola</td>
+<td align="center">(A)</td>
+<td align="center">(A)</td>
+</tr>
+<tr>
+<td>Catat pengeluaran (diajukan)</td>
+<td align="center">✔</td>
+<td align="center">✔ (langsung berlaku)</td>
+</tr>
+<tr>
+<td>Lihat pengeluaran</td>
+<td align="center">milik sendiri</td>
+<td align="center">semua</td>
+</tr>
+<tr>
+<td>Setujui / tolak pengeluaran</td>
+<td align="center">✘</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>Balikkan pengeluaran, transfer, jurnal</td>
+<td align="center">✘</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>Kas &amp; Bank: lihat saldo &amp; buku kas</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>Transfer antar akun</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>Penerimaan lain</td>
+<td align="center">✔ (diajukan)</td>
+<td align="center">✔ (langsung berlaku)</td>
+</tr>
+<tr>
+<td>Penerimaan non-operasional (modal, prive, pinjaman, aset)</td>
+<td align="center">✘</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>Jurnal: lihat</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>Jurnal manual</td>
+<td align="center">✘</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>Rekonsiliasi: impor, cocokkan, hapus draft</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>Rekonsiliasi: catat dari mutasi</td>
+<td align="center">✔ (diajukan)</td>
+<td align="center">✔ (langsung)</td>
+</tr>
+<tr>
+<td>Rekonsiliasi: finalisasi / buka kembali</td>
+<td align="center">✘</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>Laporan operasional</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>Laporan keuangan (lihat &amp; ekspor)</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>Pajak: lihat; isi nomor bukti potong</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>Pajak: setoran, masukan tahun, jurnal PPh</td>
+<td align="center">✘</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>Pajak: profil</td>
+<td align="center">(A)</td>
+<td align="center">(A)</td>
+</tr>
+<tr>
+<td>Tutup buku / buka kembali</td>
+<td align="center">✘</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>Pengaturan: lihat</td>
+<td align="center">✔</td>
+<td align="center">✔</td>
+</tr>
+<tr>
+<td>Pengaturan: ubah, pengguna, integrasi, penomoran, bagan akun, akun kas</td>
+<td align="center">(A)</td>
+<td align="center">(A)</td>
+</tr>
+<tr>
+<td>Audit log</td>
+<td align="center">(A)</td>
+<td align="center">(A)</td>
+</tr>
+<tr>
+<td>2FA</td>
+<td align="center">sukarela</td>
+<td align="center"><strong>wajib</strong></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>Sumber kebenaran: matriks ini mengikuti <code>src/lib/permissions.ts</code>. Bila ada perbedaan antara panduan dan layar, layar (pengaturan terbaru) yang benar; laporkan agar panduan diperbarui.</p>
+</blockquote>
+<hr>
+<h1 id="s-109">Lampiran D — Pesan Galat, Penyebab, dan Solusi</h1>
+<table>
+<thead>
+<tr>
+<th>Pesan / gejala</th>
+<th>Penyebab</th>
+<th>Solusi</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Akun terkunci setelah salah password</td>
+<td>5 kali salah berturut-turut</td>
+<td>Tunggu 15 menit, atau minta Administrator</td>
+</tr>
+<tr>
+<td>“Password tidak boleh memuat nama Anda”</td>
+<td>Password mengandung nama/email</td>
+<td>Pilih password lain ≥ 12 karakter</td>
+</tr>
+<tr>
+<td>Kode 2FA selalu salah</td>
+<td>Jam ponsel tidak akurat</td>
+<td>Aktifkan waktu otomatis; atau pakai kode pemulihan</td>
+</tr>
+<tr>
+<td>“Pelanggan … sudah ada”</td>
+<td>Nama &amp; kota sama persis</td>
+<td>Pakai pelanggan yang sudah ada</td>
+</tr>
+<tr>
+<td>“Ada pelanggan dengan identitas mirip”</td>
+<td>Nama sama, kota beda</td>
+<td>Konfirmasi bila memang berbeda; batal bila sama</td>
+</tr>
+<tr>
+<td>Tombol <strong>Simpan jurnal</strong> nonaktif</td>
+<td>Debit ≠ kredit</td>
+<td>Samakan total debit dan kredit</td>
+</tr>
+<tr>
+<td>“Anda tidak berwenang memberi diskon / mengubah harga”</td>
+<td>Izin peran</td>
+<td>Hubungi Finance Manager</td>
+</tr>
+<tr>
+<td>“Invoice sedang menunggu verifikasi dan terkunci”</td>
+<td>Sudah diajukan</td>
+<td><strong>Tarik kembali</strong> pengajuan bila perlu mengubah</td>
+</tr>
+<tr>
+<td>“Draft ini baru saja diubah oleh pengguna/tab lain”</td>
+<td>Dua tab membuka draft yang sama</td>
+<td>Muat ulang halaman</td>
+</tr>
+<tr>
+<td>“Hanya draft yang dapat dihapus. Invoice terbit harus dibatalkan.”</td>
+<td>Invoice sudah bernomor</td>
+<td>Finance Manager membatalkan</td>
+</tr>
+<tr>
+<td>“Invoice ini memiliki pembayaran tercatat. Balikkan seluruh pembayaran …”</td>
+<td>Membatalkan invoice yang sudah dibayar</td>
+<td>Balikkan pembayaran dulu</td>
+</tr>
+<tr>
+<td>“Invoice ini sudah lunas”</td>
+<td>Tidak ada sisa tagihan</td>
+<td>Periksa pembayaran ganda; balikkan bila salah</td>
+</tr>
+<tr>
+<td>Pembayaran ditolak: melebihi sisa</td>
+<td>Nominal &gt; sisa tagihan</td>
+<td>Isi sesuai sisa yang tertera</td>
+</tr>
+<tr>
+<td>Bukti wajib</td>
+<td>Pengeluaran &gt; Rp 1.000.000</td>
+<td>Lampirkan nota</td>
+</tr>
+<tr>
+<td>“Anda tidak dapat menyetujui entri yang Anda catat sendiri”</td>
+<td>Pemisahan tugas</td>
+<td>Minta Finance Manager lain</td>
+</tr>
+<tr>
+<td>“Hanya entri yang sudah berlaku yang dapat dibalikkan”</td>
+<td>Entri masih menunggu atau ditolak</td>
+<td>Batalkan pengajuan / catat ulang</td>
+</tr>
+<tr>
+<td>“Entri ini sudah pernah dibalikkan”</td>
+<td>Pembalikan ganda</td>
+<td>Tidak perlu tindakan</td>
+</tr>
+<tr>
+<td>“Akun asal dan tujuan harus berbeda”</td>
+<td>Transfer ke akun yang sama</td>
+<td>Pilih akun lain</td>
+</tr>
+<tr>
+<td>“Berkas CSV bermasalah”</td>
+<td>Format tanggal/angka tidak cocok</td>
+<td>Ubah <strong>Format tanggal/angka</strong>, <strong>Terapkan pemetaan</strong></td>
+</tr>
+<tr>
+<td>Impor nonaktif, “saldo awal + mutasi tidak sama”</td>
+<td>CSV tidak lengkap atau saldo salah</td>
+<td>Periksa periode, saldo awal/akhir, dan berkas</td>
+</tr>
+<tr>
+<td>“baris bertanggal di luar periode …”</td>
+<td>Mutasi di luar rentang yang dipilih</td>
+<td>Perbaiki periode atau CSV</td>
+</tr>
+<tr>
+<td>Finalisasi nonaktif, “Belum dapat difinalisasi”</td>
+<td>Selisih ≠ 0 atau masih ada baris belum cocok</td>
+<td>Selesaikan sesuai daftar masalah</td>
+</tr>
+<tr>
+<td>“Buku sudah ditutup sampai …”</td>
+<td>Transaksi bertanggal bulan tertutup</td>
+<td>Finance Manager buka kembali periode, atau koreksi bertanggal hari ini</td>
+</tr>
+<tr>
+<td>“Belum dapat ditutup: …”</td>
+<td>Cek HARD gagal</td>
+<td>Selesaikan butir bertanda ✘</td>
+</tr>
+<tr>
+<td>“Akui peringatan berikut sebelum menutup”</td>
+<td>Butir ⚠ belum dicentang</td>
+<td>Centang pengakuan bila memang wajar</td>
+</tr>
+<tr>
+<td>“Foto berubah!”</td>
+<td>Angka periode tertutup berubah di luar prosedur</td>
+<td>Hubungi Administrator segera</td>
+</tr>
+<tr>
+<td>“KAS TIDAK COCOK”</td>
+<td>Arus kas ≠ neraca</td>
+<td>Hubungi Administrator</td>
+</tr>
+<tr>
+<td>Menu tidak muncul</td>
+<td>Bukan wewenang peran Anda</td>
+<td>Normal; lihat Lampiran C</td>
+</tr>
+<tr>
+<td>Saldo kas negatif (banner merah)</td>
+<td>Penerimaan belum dicatat / salah input</td>
+<td>Periksa buku kas akun tersebut</td>
+</tr>
+<tr>
+<td>“Belum ada akun kas/bank”</td>
+<td>Administrator belum mengatur</td>
+<td>Minta Administrator (Pengaturan → Keuangan)</td>
+</tr>
+</tbody></table>
+<h2 id="s-110">FAQ</h2>
+<p><strong>Mengapa pengeluaran saya belum mengurangi saldo?</strong> Masih <em>Menunggu persetujuan</em>. Saldo berubah setelah Finance Manager menyetujui.</p>
+<p><strong>Bolehkah mengedit pembayaran yang salah?</strong> Tidak. Finance Manager membalikkannya, lalu Anda mencatat ulang.</p>
+<p><strong>Kenapa nomor invoice meloncat?</strong> Nomor dialokasikan saat diterbitkan, tidak pernah dipakai ulang; invoice batal tetap memakai nomornya.</p>
+<p><strong>Apakah dashboard dan laporan boleh dijumlahkan (invoice + kas)?</strong> Tidak. Penerbitan dan penerimaan kas adalah dua ukuran berbeda.</p>
+<p><strong>Mengapa laporan keuangan tidak memasukkan piutang?</strong> Sistem berbasis kas: pendapatan diakui saat uang masuk.</p>
+<p><strong>Bagaimana jika pelanggan membayar dua kali?</strong> Catat sesuai kenyataan hanya sampai sisa tagihan; kelebihan tidak dapat dicatat pada invoice. Bahas pengembalian dengan Finance Manager.</p>
+<p><strong>Bisakah saya menghapus pelanggan?</strong> Tidak; arsipkan. Riwayat tetap utuh.</p>
+<p><strong>Apakah gambar di panduan sama persis dengan layar saya?</strong> Tata letak sama; data pada gambar adalah data contoh, dan menu/tombol mengikuti peran Anda.</p>
+<hr>
+<h1 id="s-111">Lampiran E — Glosarium</h1>
+<table>
+<thead>
+<tr>
+<th>Istilah</th>
+<th>Arti</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Basis kas</strong></td>
+<td>Pendapatan diakui saat uang diterima, beban saat dibayar</td>
+</tr>
+<tr>
+<td><strong>Draft</strong></td>
+<td>Invoice belum bernomor yang masih dapat diubah</td>
+</tr>
+<tr>
+<td><strong>Nett Total</strong></td>
+<td>Total akhir invoice setelah diskon, biaya, dan pajak</td>
+</tr>
+<tr>
+<td><strong>DP</strong></td>
+<td>Uang muka; dicatat sebagai pembayaran pertama saat invoice terbit</td>
+</tr>
+<tr>
+<td><strong>Piutang</strong></td>
+<td>Sisa tagihan invoice terbit yang belum dibayar</td>
+</tr>
+<tr>
+<td><strong>Jatuh tempo</strong></td>
+<td>Tanggal batas pembayaran (tanggal invoice + jangka waktu)</td>
+</tr>
+<tr>
+<td><strong>Kwitansi</strong></td>
+<td>PDF invoice yang sudah lunas, bertanda LUNAS</td>
+</tr>
+<tr>
+<td><strong>Pembalikan</strong></td>
+<td>Baris koreksi bernilai berlawanan; transaksi asli tetap tampil</td>
+</tr>
+<tr>
+<td><strong>Berlaku</strong></td>
+<td>Entri yang sudah disetujui dan dihitung dalam saldo/laporan</td>
+</tr>
+<tr>
+<td><strong>Menunggu persetujuan</strong></td>
+<td>Entri diajukan, belum memengaruhi saldo</td>
+</tr>
+<tr>
+<td><strong>Transfer</strong></td>
+<td>Pemindahan dana antar kas/bank; tidak memengaruhi laba rugi</td>
+</tr>
+<tr>
+<td><strong>Jurnal manual</strong></td>
+<td>Jurnal penyesuaian yang dicatat Finance Manager</td>
+</tr>
+<tr>
+<td><strong>Rekonsiliasi</strong></td>
+<td>Pencocokan rekening koran dengan buku; target selisih 0</td>
+</tr>
+<tr>
+<td><strong>Transaksi beredar</strong></td>
+<td>Ada di buku tetapi belum muncul di rekening koran</td>
+</tr>
+<tr>
+<td><strong>Finalisasi</strong></td>
+<td>Mengunci hasil rekonsiliasi periode</td>
+</tr>
+<tr>
+<td><strong>PPh 23 dipotong</strong></td>
+<td>Pajak yang dipotong pelanggan; menjadi kredit pajak lembaga</td>
+</tr>
+<tr>
+<td><strong>Bukti potong</strong></td>
+<td>Dokumen pelanggan atas PPh yang dipotong</td>
+</tr>
+<tr>
+<td><strong>NTPN</strong></td>
+<td>Nomor Transaksi Penerimaan Negara (bukti setor pajak)</td>
+</tr>
+<tr>
+<td><strong>PKP</strong></td>
+<td>Pengusaha Kena Pajak</td>
+</tr>
+<tr>
+<td><strong>Tutup buku</strong></td>
+<td>Mengunci transaksi sampai akhir bulan dan menyimpan foto + hash</td>
+</tr>
+<tr>
+<td><strong>Hash / foto</strong></td>
+<td>Sidik jari digital neraca saldo penutupan untuk mendeteksi perubahan</td>
+</tr>
+<tr>
+<td><strong>2FA / TOTP</strong></td>
+<td>Autentikasi dua langkah dengan kode 6 digit berganti tiap 30 detik</td>
+</tr>
+<tr>
+<td><strong>Kode pemulihan</strong></td>
+<td>Kode sekali pakai untuk masuk bila ponsel hilang</td>
+</tr>
+<tr>
+<td><strong>Audit log</strong></td>
+<td>Catatan seluruh aksi penting (siapa, kapan, apa)</td>
+</tr>
+</tbody></table>
+</section>
+</main></body></html>
