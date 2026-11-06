@@ -56,6 +56,13 @@ export async function runSmoke({ baseUrl, email, password, totpSecret, timeoutMs
   // 4. Halaman login & header keamanan
   const login = await req("/login");
   check("Halaman login terbuka", login.status === 200 && /text\/html/.test(login.headers.get("content-type") ?? ""), `HTTP ${login.status}`);
+  // Ikon tab (favicon): tanpa ikon, peramban menampilkan globe bawaan. Periksa tautan <link rel="icon"> DAN /favicon.ico (dipakai peramban/pemindai lama).
+  const html = await login.clone().text().catch(() => "");
+  const iconHref = /<link[^>]+rel="icon"[^>]*href="([^"]+)"|<link[^>]+href="([^"]+)"[^>]*rel="icon"/.exec(html);
+  const icon = iconHref ? await req(iconHref[1] ?? iconHref[2]) : null;
+  check("Ikon tab: <link rel=\"icon\"> menunjuk gambar yang ada", Boolean(icon && icon.status === 200 && /^image\//.test(icon.headers.get("content-type") ?? "")), iconHref ? `${iconHref[1] ?? iconHref[2]} → HTTP ${icon?.status}` : "tautan ikon tidak ada di <head>");
+  const ico = await req("/favicon.ico");
+  check("Ikon tab: /favicon.ico tersedia", ico.status === 200 && /image\//.test(ico.headers.get("content-type") ?? ""), `HTTP ${ico.status} ${ico.headers.get("content-type") ?? ""}`);
   const h = login.headers;
   check("Header: Content-Security-Policy (frame-ancestors, object-src)", /frame-ancestors/.test(h.get("content-security-policy") ?? ""));
   check("Header: X-Content-Type-Options: nosniff", (h.get("x-content-type-options") ?? "").toLowerCase() === "nosniff");

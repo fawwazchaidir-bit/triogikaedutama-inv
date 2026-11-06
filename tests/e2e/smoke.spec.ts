@@ -22,7 +22,7 @@ test.describe("smoke test pasca-deploy (scripts/smoke.mjs)", () => {
 
     const full = await runSmoke({ baseUrl: "http://127.0.0.1:3100", email: "finance@trilogika.test", password: E2E_PASSWORD });
     expect(full.checks.filter((c: { status: string }) => c.status === "FAIL")).toEqual([]);
-    for (const name of ["Cookie sesi: HttpOnly", "Sesi sah: /api/me → 200", "Logout berhasil", "Sesi dicabut setelah logout → 401"]) {
+    for (const name of ["Ikon tab: /favicon.ico tersedia", "Cookie sesi: HttpOnly", "Sesi sah: /api/me → 200", "Logout berhasil", "Sesi dicabut setelah logout → 401"]) {
       expect(full.checks.find((c: { name: string }) => c.name === name)?.status, name).toBe("PASS");
     }
   });
